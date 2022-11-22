@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import MultilineTextFields from './components/MultilineTextFields';
+import TextButtons from './components/button';
 
 function App() {
   return (
     <div className="App">
-      <MultilineTextFields></MultilineTextFields>
+      <TextButtons></TextButtons>
     </div>
   );
 }
