@@ -22,6 +22,7 @@ export default function InputTextComponent() {
                            sx={{ width: 600 }}
                 />
             </div>
+            <br/>
             <div>
                 <Button variant="contained" color="success">
                     Generate
