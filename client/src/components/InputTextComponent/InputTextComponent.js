@@ -1,5 +1,6 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
+import {Button} from "@mui/material";
 
 export default function InputTextComponent() {
     const [promptValue, setPromptValue] = React.useState('');
@@ -11,14 +12,21 @@ export default function InputTextComponent() {
     return (
         <div>
             <br/>
-            <TextField id="outlined-basic"
-                       label="What blog would you like me to write for you?"
-                       placeholder="Example: How to learn how to code"
-                       variant="outlined"
-                       fullWidth
-                       onChange={handleChange}
-                       sx={{ width: 400 }}
-            />
+            <div>
+                <TextField id="outlined-basic"
+                           label="What blog would you like me to write for you?"
+                           placeholder="Example: How to learn how to code"
+                           variant="outlined"
+                           fullWidth
+                           onChange={handleChange}
+                           sx={{ width: 600 }}
+                />
+            </div>
+            <div>
+                <Button variant="contained" color="success">
+                    Generate
+                </Button>
+            </div>
         </div>
 
     )
