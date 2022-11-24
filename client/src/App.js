@@ -1,10 +1,10 @@
 import './App.css';
+import InputTextComponent from "./components/InputTextComponent/InputTextComponent";
 
 function App() {
     return (
         <div className="App">
-            <TextButtons></TextButtons>
-            <MultilineTextFields></MultilineTextFields>
+            <InputTextComponent></InputTextComponent>
         </div>
     );
 }
