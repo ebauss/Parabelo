@@ -9,6 +9,17 @@ export default function InputTextComponent() {
     }
 
     return (
-        <TextField id="outlined-basic" label="Enter Prompt Here" variant="outlined" onChange={handleChange} />
+        <div>
+            <br/>
+            <TextField id="outlined-basic"
+                       label="What blog would you like me to write for you?"
+                       placeholder="Example: How to learn how to code"
+                       variant="outlined"
+                       fullWidth
+                       onChange={handleChange}
+                       sx={{ width: 400 }}
+            />
+        </div>
+
     )
 }
