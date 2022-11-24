@@ -2,10 +2,10 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 
 export default function InputTextComponent() {
-    const [value, setValue] = React.useState('');
+    const [promptValue, setPromptValue] = React.useState('');
 
     const handleChange = (event) => {
-        setValue(event.target.value);
+        setPromptValue(event.target.value);
     }
 
     return (
