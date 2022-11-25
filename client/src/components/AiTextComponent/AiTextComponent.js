@@ -1,6 +1,8 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import {Button} from "@mui/material";
+const { Configuration, OpenAIApi } = require("openai");
+require('dotenv').config()
 
 export default function AiTextComponent() {
     const [promptValue, setPromptValue] = React.useState('');
@@ -16,22 +18,25 @@ export default function AiTextComponent() {
      * Send the prompt to the server; the server will then send the request to OpenAi.
      */
     const handleClick = async () => {
-        const url = 'http://localhost:8000/test';
+        const configuration = new Configuration({
+            apiKey: process.env.OPENAI_API_KEY,
+        });
 
         const modifiedPrompt = 'Write a long blog post about ' + promptValue;
 
-        const response = await fetch(url, {
-            method: 'POST',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                prompt: modifiedPrompt
-            })
-        })
+        const openai = new OpenAIApi(configuration);
 
-        const data = await response.text();
+        const response = await openai.createCompletion({
+            model: "text-davinci-002",
+            prompt: modifiedPrompt,
+            temperature: 0.9,
+            max_tokens: 3000,
+            top_p: 1,
+            frequency_penalty: 0,
+            presence_penalty: 0,
+        });
+
+        const data = await response.data.choices[0].text;
 
         if (data) {
             setResultValue(data);
