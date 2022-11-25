@@ -2,12 +2,15 @@
  * Require node dependencies.
  */
 const express = require("express");
+const bodyParser = require('body-parser');
 /* ------------------------------------ */
 
 require('dotenv').config();
 
 const app = express(); // Initiate express.
 const port = process.env.PORT || 8000;
+
+app.use(bodyParser.json());
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
