@@ -1,7 +1,6 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import {Button} from "@mui/material";
-import {daDK} from "@mui/material/locale";
 
 export default function AiTextComponent() {
     const [promptValue, setPromptValue] = React.useState('');
@@ -65,6 +64,7 @@ export default function AiTextComponent() {
                 multiline
                 rows={20}
                 placeholder="Your blog will appear here."
+                value={resultValue}
                 sx={{ width: 600 }}
                 InputLabelProps={{ shrink: true }}
             />
