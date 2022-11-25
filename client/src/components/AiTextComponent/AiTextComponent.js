@@ -19,7 +19,9 @@ export default function AiTextComponent() {
      */
     const handleClick = async () => {
         const configuration = new Configuration({
-            apiKey: process.env.OPENAI_API_KEY,
+            // TODO Need to setup this properly.
+            // TODO Use this link https://www.linkedin.com/pulse/how-use-environment-files-env-react-app-muhammad-sameem/
+            apiKey: process.env.REACT_APP_OPENAI_API_KEY,
         });
 
         const modifiedPrompt = 'Write a long blog post about ' + promptValue;
