@@ -2,7 +2,7 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import {Button} from "@mui/material";
 
-export default function InputTextComponent() {
+export default function AiTextComponent() {
     const [promptValue, setPromptValue] = React.useState('');
 
     const handleChange = (event) => {
@@ -28,6 +28,16 @@ export default function InputTextComponent() {
                     Generate
                 </Button>
             </div>
+            <br/>
+            <TextField
+                id="outlined-multiline-static"
+                label="Result"
+                multiline
+                rows={20}
+                placeholder="Your blog will appear here."
+                sx={{ width: 600 }}
+                InputLabelProps={{ shrink: true }}
+            />
         </div>
 
     )
