@@ -8,6 +8,11 @@ export default function AiTextComponent() {
     const [promptValue, setPromptValue] = React.useState('');
     const [resultValue, setResultValue] = React.useState('');
 
+    /**
+     * Handles the text changes in the text box.
+     *
+     * @param event contains data of the event
+     */
     const handleChange = (event) => {
         setPromptValue(event.target.value);
     }
