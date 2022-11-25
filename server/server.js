@@ -22,6 +22,9 @@ app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 })
 
+/**
+ * Sends an api request to OpenAi.
+ */
 app.post('/test', async (req, res) => {
     console.log('Ai is generating the blog post. Please wait...')
 
@@ -42,9 +45,6 @@ app.post('/test', async (req, res) => {
         frequency_penalty: 0,
         presence_penalty: 0,
     });
-
-    console.log(`Prompt = ${somePrompt}`);
-    console.log(`Result: ${response.data.choices[0].text}`);
 
     res.send(response.data.choices[0].text);
 })
