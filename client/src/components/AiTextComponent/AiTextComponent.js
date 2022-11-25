@@ -1,12 +1,37 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import {Button} from "@mui/material";
+import {daDK} from "@mui/material/locale";
 
 export default function AiTextComponent() {
     const [promptValue, setPromptValue] = React.useState('');
 
     const handleChange = (event) => {
         setPromptValue(event.target.value);
+    }
+
+    /**
+     * handles the generate button click.
+     *
+     * Send the prompt to the server; the server will then send the request to OpenAi.
+     */
+    const handleClick = () => {
+        const url = 'http://localhost:8000/test';
+
+        const modifiedPrompt = 'Write a blog post about ' + promptValue;
+
+        fetch(url, {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                prompt: modifiedPrompt
+            })
+        })
+            .then((response) => response.json())
+            .then((data) => console.log(data));
     }
 
     return (
