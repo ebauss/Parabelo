@@ -5,6 +5,7 @@ import {daDK} from "@mui/material/locale";
 
 export default function AiTextComponent() {
     const [promptValue, setPromptValue] = React.useState('');
+    const [resultValue, setResultValue] = React.useState('');
 
     const handleChange = (event) => {
         setPromptValue(event.target.value);
@@ -15,12 +16,12 @@ export default function AiTextComponent() {
      *
      * Send the prompt to the server; the server will then send the request to OpenAi.
      */
-    const handleClick = () => {
+    const handleClick = async () => {
         const url = 'http://localhost:8000/test';
 
-        const modifiedPrompt = 'Write a blog post about ' + promptValue;
+        const modifiedPrompt = 'Write a long blog post about ' + promptValue;
 
-        fetch(url, {
+        const response = await fetch(url, {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -30,8 +31,12 @@ export default function AiTextComponent() {
                 prompt: modifiedPrompt
             })
         })
-            .then((response) => response.json())
-            .then((data) => console.log(data));
+
+        const data = await response.text();
+
+        if (data) {
+            setResultValue(data);
+        }
     }
 
     return (
@@ -49,7 +54,7 @@ export default function AiTextComponent() {
             </div>
             <br/>
             <div>
-                <Button variant="contained" color="success">
+                <Button variant="contained" color="success" onClick={handleClick}>
                     Generate
                 </Button>
             </div>
