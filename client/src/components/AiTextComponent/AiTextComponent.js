@@ -1,7 +1,8 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import {Button} from "@mui/material";
-const { Configuration, OpenAIApi } = require("openai");
+
+const {Configuration, OpenAIApi} = require("openai");
 // require('dotenv').config()
 
 export default function AiTextComponent() {
@@ -58,7 +59,7 @@ export default function AiTextComponent() {
                            variant="outlined"
                            fullWidth
                            onChange={handleChange}
-                           sx={{ width: 600 }}
+                           sx={{width: 600}}
                 />
             </div>
             <br/>
@@ -75,8 +76,8 @@ export default function AiTextComponent() {
                 rows={20}
                 placeholder="Your blog will appear here."
                 value={resultValue}
-                sx={{ width: 600 }}
-                InputLabelProps={{ shrink: true }}
+                sx={{width: 600}}
+                InputLabelProps={{shrink: true}}
                 InputProps={{
                     readOnly: true,
                 }}
