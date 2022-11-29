@@ -3,7 +3,6 @@ import TextField from '@mui/material/TextField';
 import {Button} from "@mui/material";
 
 const {Configuration, OpenAIApi} = require("openai");
-// require('dotenv').config()
 
 export default function AiTextComponent() {
     const [promptValue, setPromptValue] = React.useState('');
