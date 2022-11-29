@@ -23,6 +23,8 @@ export default function AiTextComponent() {
      * Send the prompt to the server; the server will then send the request to OpenAi.
      */
     const handleClick = async () => {
+        // TODO handle this click by sending an api request for the api key from server so that env variables are hidden
+        //  from the public.
         const configuration = new Configuration({
             apiKey: process.env.REACT_APP_OPENAI_API_KEY,
         });
