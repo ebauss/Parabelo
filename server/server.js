@@ -21,3 +21,5 @@ app.use(bodyParser.json());
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 })
+
+// TODO configure so that routes are in a different folder.
