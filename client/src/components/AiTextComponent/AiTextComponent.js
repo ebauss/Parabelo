@@ -2,7 +2,7 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import {Button} from "@mui/material";
 const { Configuration, OpenAIApi } = require("openai");
-require('dotenv').config()
+// require('dotenv').config()
 
 export default function AiTextComponent() {
     const [promptValue, setPromptValue] = React.useState('');
@@ -24,8 +24,6 @@ export default function AiTextComponent() {
      */
     const handleClick = async () => {
         const configuration = new Configuration({
-            // TODO Need to setup this properly.
-            // TODO Use this link https://www.linkedin.com/pulse/how-use-environment-files-env-react-app-muhammad-sameem/
             apiKey: process.env.REACT_APP_OPENAI_API_KEY,
         });
 
@@ -34,7 +32,7 @@ export default function AiTextComponent() {
         const openai = new OpenAIApi(configuration);
 
         const response = await openai.createCompletion({
-            model: "text-davinci-002",
+            model: "text-davinci-003",
             prompt: modifiedPrompt,
             temperature: 0.9,
             max_tokens: 3000,
@@ -79,6 +77,9 @@ export default function AiTextComponent() {
                 value={resultValue}
                 sx={{ width: 600 }}
                 InputLabelProps={{ shrink: true }}
+                InputProps={{
+                    readOnly: true,
+                }}
             />
         </div>
 
