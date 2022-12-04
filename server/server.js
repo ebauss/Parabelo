@@ -4,6 +4,7 @@
 const express = require("express");
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const routes = require('./routes/api');
 /* ------------------------------------ */
 
 require('dotenv').config();
@@ -18,8 +19,9 @@ app.use(cors({
 
 app.use(bodyParser.json());
 
+// api URL is https://<domain>/<route>. When running locally, it is http://localhost:<port>/<route>
+app.use('/', routes);
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 })
-
-// TODO configure so that routes are in a different folder.
