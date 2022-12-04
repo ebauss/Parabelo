@@ -23,17 +23,25 @@ export default function AiTextComponent() {
      * Send the prompt to the server; the server will then send the request to OpenAi.
      */
     const handleClick = async () => {
-        // TODO handle this click by sending an api request for the api key from server so that env variables are hidden
-        //  from the public.
+        const apiKeyResponse = await fetch("http://localhost:8000/getOpenAIApiKey",{
+            method: "Get",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+
+        const apiKeyData = await apiKeyResponse.text();
+
         const configuration = new Configuration({
-            apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+            apiKey: apiKeyData,
         });
 
         const modifiedPrompt = 'Write a long blog post about ' + promptValue;
 
         const openai = new OpenAIApi(configuration);
 
-        const response = await openai.createCompletion({
+        const aiApiResponse = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: modifiedPrompt,
             temperature: 0.9,
@@ -43,10 +51,10 @@ export default function AiTextComponent() {
             presence_penalty: 0,
         });
 
-        const data = await response.data.choices[0].text;
+        const aiApiData = await aiApiResponse.data.choices[0].text;
 
-        if (data) {
-            setResultValue(data);
+        if (aiApiData) {
+            setResultValue(aiApiData);
         }
     }
 
