@@ -1,12 +1,14 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
-import {Button} from "@mui/material";
+import LoadingButton from '@mui/lab/LoadingButton';
+import SendIcon from '@mui/icons-material/Send';
 
 const {Configuration, OpenAIApi} = require("openai");
 
 export default function AiTextComponent() {
     const [promptValue, setPromptValue] = React.useState('');
     const [resultValue, setResultValue] = React.useState('');
+    const [loading, setLoading] = React.useState(false);
 
     /**
      * Handles the text changes in the text box.
@@ -23,6 +25,8 @@ export default function AiTextComponent() {
      * Send the prompt to the server; the server will then send the request to OpenAi.
      */
     const handleClick = async () => {
+        setLoading(true); // Starts the loading animation on the button.
+
         const apiKeyResponse = await fetch("http://localhost:8000/getOpenAIApiKey",{
             method: "Get",
             credentials: "include",
@@ -56,6 +60,8 @@ export default function AiTextComponent() {
         if (aiApiData) {
             setResultValue(aiApiData);
         }
+
+        setLoading(false); // Ends the loading animation on the button.
     }
 
     return (
@@ -73,9 +79,19 @@ export default function AiTextComponent() {
             </div>
             <br/>
             <div>
-                <Button variant="contained" color="success" onClick={handleClick}>
-                    Generate
-                </Button>
+                {/*<Button variant="contained" color="success" onClick={handleClick}>*/}
+                {/*    Generate*/}
+                {/*</Button>*/}
+                <LoadingButton
+                    size="small"
+                    onClick={handleClick}
+                    endIcon={<SendIcon />}
+                    loading={loading}
+                    loadingPosition="end"
+                    variant="contained"
+                >
+                    Send
+                </LoadingButton>
             </div>
             <br/>
             <TextField
