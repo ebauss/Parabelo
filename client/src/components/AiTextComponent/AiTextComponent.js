@@ -41,7 +41,7 @@ export default function AiTextComponent() {
             apiKey: apiKeyData,
         });
 
-        const modifiedPrompt = 'Write a long blog post about ' + promptValue;
+        const modifiedPrompt = 'Write a super long blog post about ' + promptValue;
 
         const openai = new OpenAIApi(configuration);
 
@@ -58,7 +58,7 @@ export default function AiTextComponent() {
         const aiApiData = await aiApiResponse.data.choices[0].text;
 
         if (aiApiData) {
-            setResultValue(aiApiData);
+            setResultValue(aiApiData.trim());
         }
 
         setLoading(false); // Ends the loading animation on the button.
