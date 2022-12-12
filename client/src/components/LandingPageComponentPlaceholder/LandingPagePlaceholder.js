@@ -7,7 +7,7 @@ export default function LandingPagePlaceholder() {
      */
     const handleGoToWebAppClick = () => {
         // Try using window.open() first. Maybe switch to Link later on?
-        window.open("/app", "_self");
+        window.open("/paraphrasing", "_self");
     }
 
     return (
