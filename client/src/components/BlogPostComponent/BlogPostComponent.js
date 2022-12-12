@@ -5,7 +5,7 @@ import SendIcon from '@mui/icons-material/Send';
 
 const {Configuration, OpenAIApi} = require("openai");
 
-export default function AiTextComponent() {
+export default function BlogPostComponent() {
     const [promptValue, setPromptValue] = React.useState('');
     const [resultValue, setResultValue] = React.useState('');
     const [loading, setLoading] = React.useState(false);

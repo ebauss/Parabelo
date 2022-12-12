@@ -1,10 +1,10 @@
 import * as React from 'react';
-import AiTextComponent from "../../../components/AiTextComponent/AiTextComponent";
+import BlogPostComponent from "../../../components/BlogPostComponent/BlogPostComponent";
 
 export default function BlogPost() {
     return (
         <div>
-            <AiTextComponent></AiTextComponent>
+            <BlogPostComponent></BlogPostComponent>
         </div>
     )
 }
