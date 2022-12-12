@@ -3,7 +3,7 @@ import {Button} from "@mui/material";
 
 export default function LandingPagePlaceholder() {
     /**
-     * Handles the go to web app click from the button.
+     * Handles the go-to web app click from the button.
      */
     const handleGoToWebAppClick = () => {
         // Try using window.open() first. Maybe switch to Link later on?

@@ -1,8 +1,7 @@
 import './App.css';
-import AiTextComponent from "./components/AiTextComponent/AiTextComponent";
+import BlogPost from "./pages/WebApplication/BlogPost/BlogPost";
 import LandingPagePlaceholder from "./components/LandingPageComponentPlaceholder/LandingPagePlaceholder";
 import {
-    BrowserRouter as Router,
     Routes,
     Route
 } from "react-router-dom";
@@ -11,7 +10,7 @@ function App() {
     return (
         <div className="App">
             <Routes>
-                <Route path="/app" element={<AiTextComponent/>}/>
+                <Route path="/app" element={<BlogPost/>}/>
                 <Route path="/" element={<LandingPagePlaceholder/>}/>
             </Routes>
         </div>
