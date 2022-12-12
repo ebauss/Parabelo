@@ -46,7 +46,7 @@ export default function ParaphrasingComponent() {
             apiKey: apiKeyData,
         });
 
-        const modifiedPrompt = 'Write a super long blog post about ' + promptValue;
+        const modifiedPrompt = 'Rewrite the following in a fun mood: ' + promptValue;
 
         const openai = new OpenAIApi(configuration);
 
@@ -74,8 +74,9 @@ export default function ParaphrasingComponent() {
             <br/>
             <div>
                 <TextField id="outlined-basic"
-                           label="What blog would you like me to write for you?"
-                           placeholder="Example: How to learn how to code"
+                           multiline
+                           rows={20}
+                           label="What do you want me to paraphrase?"
                            variant="outlined"
                            fullWidth
                            onChange={handleChange}
@@ -87,12 +88,11 @@ export default function ParaphrasingComponent() {
                 <LoadingButton
                     size="small"
                     onClick={handleClick}
-                    endIcon={<SendIcon />}
                     loading={loading}
                     loadingPosition="end"
                     variant="contained"
                 >
-                    Send
+                    Paraphrase
                 </LoadingButton>
             </div>
             <br/>
@@ -101,7 +101,7 @@ export default function ParaphrasingComponent() {
                 label="Result"
                 multiline
                 rows={20}
-                placeholder="Your blog will appear here."
+                placeholder="Your text will appear here"
                 value={resultValue}
                 sx={{width: 600}}
                 InputLabelProps={{shrink: true}}
