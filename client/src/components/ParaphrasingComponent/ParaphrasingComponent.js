@@ -1,7 +1,7 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
-import LoadingButton from '@mui/lab/LoadingButton';
-import SendIcon from '@mui/icons-material/Send';
+import {ToggleButton, ToggleButtonGroup} from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 const {Configuration, OpenAIApi} = require("openai");
 
@@ -11,6 +11,9 @@ export default function ParaphrasingComponent() {
 
     /* Stores the result string obtained from OpenAi. */
     const [resultValue, setResultValue] = React.useState('');
+
+    /* Stores the mood value for paraphrasing. */
+    const [moodValue, setMoodValue] = React.useState('fun');
 
     /* Determines whether the loading animation is activated or not. */
     const [loading, setLoading] = React.useState(false);
@@ -25,6 +28,15 @@ export default function ParaphrasingComponent() {
     }
 
     /**
+     * Handles the change for the button group for the moods.
+     *
+     * @param event contains data of the event
+     */
+    const handleButtonGroupChange = (event) => {
+        setMoodValue(event.target.value);
+    }
+
+    /**
      * handles the generate button click.
      *
      * Send the prompt to the server; the server will then send the request to OpenAi.
@@ -32,7 +44,7 @@ export default function ParaphrasingComponent() {
     const handleClick = async () => {
         setLoading(true); // Starts the loading animation on the button.
 
-        const apiKeyResponse = await fetch("http://localhost:8000/getOpenAIApiKey",{
+        const apiKeyResponse = await fetch("http://localhost:8000/getOpenAIApiKey", {
             method: "Get",
             credentials: "include",
             headers: {
@@ -46,7 +58,7 @@ export default function ParaphrasingComponent() {
             apiKey: apiKeyData,
         });
 
-        const modifiedPrompt = 'Rewrite the following in a fun mood: ' + promptValue;
+        const modifiedPrompt = 'Rewrite the following in a ' + moodValue + ' mood: ' + promptValue;
 
         const openai = new OpenAIApi(configuration);
 
@@ -85,6 +97,19 @@ export default function ParaphrasingComponent() {
             </div>
             <br/>
             <div>
+                <ToggleButtonGroup
+                    color="primary"
+                    value={moodValue}
+                    exclusive
+                    onChange={handleButtonGroupChange}
+                    aria-label="Platform"
+                >
+                    <ToggleButton value="fun">Fun</ToggleButton>
+                    <ToggleButton value="professional">Professional</ToggleButton>
+                    <ToggleButton value="technical">Technical</ToggleButton>
+                    <ToggleButton value="creative">Creative</ToggleButton>
+                </ToggleButtonGroup>
+
                 <LoadingButton
                     size="small"
                     onClick={handleClick}
