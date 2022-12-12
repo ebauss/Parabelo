@@ -6,8 +6,13 @@ import SendIcon from '@mui/icons-material/Send';
 const {Configuration, OpenAIApi} = require("openai");
 
 export default function BlogPostComponent() {
+    /* Stores the string entered in the prompt text field. */
     const [promptValue, setPromptValue] = React.useState('');
+
+    /* Stores the result string obtained from OpenAi. */
     const [resultValue, setResultValue] = React.useState('');
+
+    /* Determines whether the loading animation is activated or not. */
     const [loading, setLoading] = React.useState(false);
 
     /**
@@ -79,9 +84,6 @@ export default function BlogPostComponent() {
             </div>
             <br/>
             <div>
-                {/*<Button variant="contained" color="success" onClick={handleClick}>*/}
-                {/*    Generate*/}
-                {/*</Button>*/}
                 <LoadingButton
                     size="small"
                     onClick={handleClick}
