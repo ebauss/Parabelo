@@ -42,6 +42,8 @@ export default function BlogPostComponent() {
 
         const apiKeyData = await apiKeyResponse.text();
 
+        console.log(apiKeyData);
+
         const configuration = new Configuration({
             apiKey: apiKeyData,
         });

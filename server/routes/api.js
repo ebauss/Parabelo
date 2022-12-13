@@ -6,6 +6,7 @@ const router = express.Router();
 /* ------------------------------------ */
 
 router.get('/getOpenAIApiKey', (req, res) => {
+    console.log("Api Key requested");
     res.send(process.env.OPENAI_API_KEY);
 })
 
