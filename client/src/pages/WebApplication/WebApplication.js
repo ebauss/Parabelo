@@ -5,11 +5,12 @@ import {
 } from "react-router-dom";
 import BlogPostComponent from "../../components/BlogPostComponent/BlogPostComponent";
 import ParaphrasingComponent from "../../components/ParaphrasingComponent/ParaphrasingComponent";
+import NavBarLoggedIn from "../../components/NavBarLoggedIn/NavBarLoggedIn";
 
 export default function WebApplication() {
-    // TODO append navbar here. Put it outside of the Routes.
     return (
         <div>
+            <NavBarLoggedIn></NavBarLoggedIn>
             <Routes>
                 <Route path="/blogpost" element={<BlogPostComponent/>}/>
                 <Route path="/paraphrasing" element={<ParaphrasingComponent/>}/>
