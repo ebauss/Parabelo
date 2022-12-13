@@ -1,7 +1,5 @@
 import './App.css';
-import BlogPost from "./pages/WebApplication/BlogPost/BlogPost";
 import LandingPagePlaceholder from "./components/LandingPageComponentPlaceholder/LandingPagePlaceholder";
-import Paraphrasing from "./pages/WebApplication/Paraphrasing/Paraphrasing";
 import WebApplication from "./pages/WebApplication/WebApplication";
 import {
     Routes,
