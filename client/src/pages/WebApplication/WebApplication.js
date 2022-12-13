@@ -7,9 +7,9 @@ import BlogPostComponent from "../../components/BlogPostComponent/BlogPostCompon
 import ParaphrasingComponent from "../../components/ParaphrasingComponent/ParaphrasingComponent";
 
 export default function WebApplication() {
+    // TODO append navbar here. Put it outside of the Routes.
     return (
         <div>
-            // TODO append navbar here. Put it outside of the Routes.
             <Routes>
                 <Route path="/blogpost" element={<BlogPostComponent/>}/>
                 <Route path="/paraphrasing" element={<ParaphrasingComponent/>}/>
