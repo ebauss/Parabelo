@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Paraphrasing Tool', 'Blog Post'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export default function NavBarLoggedIn() {
@@ -27,8 +27,9 @@ export default function NavBarLoggedIn() {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseNavMenu = () => {
+    const handleCloseNavMenu = (event) => {
         setAnchorElNav(null);
+        console.log(event.target.getAttribute("key"));
     };
 
     const handleCloseUserMenu = () => {
@@ -55,7 +56,7 @@ export default function NavBarLoggedIn() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        Parabelo
                     </Typography>
 
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
