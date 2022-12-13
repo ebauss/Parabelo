@@ -9,6 +9,7 @@ import ParaphrasingComponent from "../../components/ParaphrasingComponent/Paraph
 export default function WebApplication() {
     return (
         <div>
+            // TODO append navbar here. Put it outside of the Routes.
             <Routes>
                 <Route path="/blogpost" element={<BlogPostComponent/>}/>
                 <Route path="/paraphrasing" element={<ParaphrasingComponent/>}/>
