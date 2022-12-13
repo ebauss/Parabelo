@@ -14,9 +14,9 @@ function App() {
     return (
         <div className="App">
             <Routes>
-                <Route path="/app" element={<WebApplication/>}/>
-                <Route path="/blogpost" element={<BlogPost/>}/>
-                <Route path="/paraphrasing" element={<Paraphrasing/>}/>
+                <Route path="/app/*" element={<WebApplication/>}/>
+                {/*<Route path="/blogpost" element={<BlogPost/>}/>*/}
+                {/*<Route path="/paraphrasing" element={<Paraphrasing/>}/>*/}
                 <Route path="/" element={<LandingPagePlaceholder/>}/>
             </Routes>
         </div>
