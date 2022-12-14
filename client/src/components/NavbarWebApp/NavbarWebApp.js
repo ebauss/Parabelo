@@ -23,8 +23,6 @@ import EditIcon from '@mui/icons-material/Edit';
 
 const drawerWidth = 240;
 
-const pages = [['Paraphrasing Tool', 'paraphrasing'], ['Blog Post', 'blogpost']];
-
 const openedMixin = (theme) => ({
     width: drawerWidth,
     transition: theme.transitions.create('width', {
