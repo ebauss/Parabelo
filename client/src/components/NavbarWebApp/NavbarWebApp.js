@@ -17,8 +17,9 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import {Link} from "react-router-dom";
+import NotesIcon from '@mui/icons-material/Notes';
+import EditIcon from '@mui/icons-material/Edit';
 
 const drawerWidth = 240;
 
@@ -131,30 +132,50 @@ export default function NavbarWebApp() {
                 </DrawerHeader>
                 <Divider/>
                 <List>
-                    {pages.map((text, index) => (
-                        <ListItem key={text[1]} disablePadding sx={{display: 'block'}}>
-                            <Link to={`/app/${text[1]}`} style={{textDecoration: 'none', color: "black"}}>
-                                <ListItemButton
+                    <ListItem key='paraphrasing' disablePadding sx={{display: 'block'}}>
+                        <Link to='/app/paraphrasing' style={{textDecoration: 'none', color: "black"}}>
+                            <ListItemButton
+                                sx={{
+                                    minHeight: 48,
+                                    justifyContent: open ? 'initial' : 'center',
+                                    px: 2.5,
+                                }}
+                            >
+                                <ListItemIcon
                                     sx={{
-                                        minHeight: 48,
-                                        justifyContent: open ? 'initial' : 'center',
-                                        px: 2.5,
+                                        minWidth: 0,
+                                        mr: open ? 3 : 'auto',
+                                        justifyContent: 'center',
                                     }}
                                 >
-                                    <ListItemIcon
-                                        sx={{
-                                            minWidth: 0,
-                                            mr: open ? 3 : 'auto',
-                                            justifyContent: 'center',
-                                        }}
-                                    >
-                                        {index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}
-                                    </ListItemIcon>
-                                    <ListItemText primary={text[0]} sx={{opacity: open ? 1 : 0}}/>
-                                </ListItemButton>
-                            </Link>
-                        </ListItem>
-                    ))}
+                                    <EditIcon/>
+                                </ListItemIcon>
+                                <ListItemText primary='Paraphrasing Tool' sx={{opacity: open ? 1 : 0}}/>
+                            </ListItemButton>
+                        </Link>
+                    </ListItem>
+                    <ListItem key='blogpost' disablePadding sx={{display: 'block'}}>
+                        <Link to='/app/blogpost' style={{textDecoration: 'none', color: "black"}}>
+                            <ListItemButton
+                                sx={{
+                                    minHeight: 48,
+                                    justifyContent: open ? 'initial' : 'center',
+                                    px: 2.5,
+                                }}
+                            >
+                                <ListItemIcon
+                                    sx={{
+                                        minWidth: 0,
+                                        mr: open ? 3 : 'auto',
+                                        justifyContent: 'center',
+                                    }}
+                                >
+                                    <NotesIcon/>
+                                </ListItemIcon>
+                                <ListItemText primary='Blog Post Writer' sx={{opacity: open ? 1 : 0}}/>
+                            </ListItemButton>
+                        </Link>
+                    </ListItem>
                 </List>
             </Drawer>
             <DrawerHeader/>
