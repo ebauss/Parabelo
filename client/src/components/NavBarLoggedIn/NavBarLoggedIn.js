@@ -91,7 +91,9 @@ export default function NavBarLoggedIn() {
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center">
-                                        <Link to={`/app/${page}`}>{page}</Link>
+                                        <Link to={`/app/${page}`} style={{textDecoration: 'none', color: "black"}}>
+                                            {page}
+                                        </Link>
                                     </Typography>
                                 </MenuItem>
                             ))}
@@ -123,7 +125,9 @@ export default function NavBarLoggedIn() {
                                 onClick={handleCloseNavMenu}
                                 sx={{my: 2, color: 'white', display: 'block'}}
                             >
-                                <Link to={`/app/${page}`}>{page}</Link>
+                                <Link to={`/app/${page}`} style={{textDecoration: 'none', color: "white"}}>
+                                    {page}
+                                </Link>
                             </Button>
                         ))}
                     </Box>
@@ -153,7 +157,9 @@ export default function NavBarLoggedIn() {
                             {settings.map((setting) => (
                                 <MenuItem key={setting} id={setting} onClick={handleCloseUserMenu}>
                                     <Typography textAlign="center">
-                                        <Link to={`/app/${setting}`}>{setting}</Link>
+                                        <Link to={`/app/${setting}`} style={{textDecoration: 'none', color: "black"}}>
+                                            {setting}
+                                        </Link>
                                     </Typography>
                                 </MenuItem>
                             ))}
