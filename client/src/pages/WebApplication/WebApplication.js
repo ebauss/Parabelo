@@ -5,12 +5,12 @@ import {
 } from "react-router-dom";
 import BlogPostComponent from "../../components/BlogPostComponent/BlogPostComponent";
 import ParaphrasingComponent from "../../components/ParaphrasingComponent/ParaphrasingComponent";
-import NavBarLoggedIn from "../../components/NavBarLoggedIn/NavBarLoggedIn";
+import NavbarWebApp from "../../components/NavbarWebApp/NavbarWebApp";
 
 export default function WebApplication() {
     return (
         <div>
-            <NavBarLoggedIn></NavBarLoggedIn>
+            <NavbarWebApp></NavbarWebApp>
             <Routes>
                 <Route path="/blogpost" element={<BlogPostComponent/>}/>
                 <Route path="/paraphrasing" element={<ParaphrasingComponent/>}/>

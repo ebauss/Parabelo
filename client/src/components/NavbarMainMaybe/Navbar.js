@@ -17,7 +17,7 @@ import {Link} from "react-router-dom";
 const pages = [['Paraphrasing Tool','paraphrasing'], ['Blog Post', 'blogpost']];
 const settings = ['My Account', 'Dashboard', 'Logout'];
 
-export default function NavBarLoggedIn() {
+export default function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
