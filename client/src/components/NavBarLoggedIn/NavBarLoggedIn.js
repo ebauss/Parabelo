@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import {Link} from "react-router-dom";
 
-const pages = ['paraphrasing', 'blogpost'];
+const pages = [['Paraphrasing Tool','paraphrasing'], ['Blog Post', 'blogpost']];
 const settings = ['My Account', 'Dashboard', 'Logout'];
 
 export default function NavBarLoggedIn() {
@@ -56,7 +56,7 @@ export default function NavBarLoggedIn() {
                             textDecoration: 'none',
                         }}
                     >
-                        Parabelo
+                        PARABELO
                     </Typography>
 
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
@@ -89,10 +89,10 @@ export default function NavBarLoggedIn() {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                                <MenuItem key={page[1]} onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center">
-                                        <Link to={`/app/${page}`} style={{textDecoration: 'none', color: "black"}}>
-                                            {page}
+                                        <Link to={`/app/${page[1]}`} style={{textDecoration: 'none', color: "black"}}>
+                                            {page[0]}
                                         </Link>
                                     </Typography>
                                 </MenuItem>
@@ -116,17 +116,17 @@ export default function NavBarLoggedIn() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        PARABELO
                     </Typography>
                     <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
                         {pages.map((page) => (
                             <Button
-                                key={page}
+                                key={page[1]}
                                 onClick={handleCloseNavMenu}
                                 sx={{my: 2, color: 'white', display: 'block'}}
                             >
-                                <Link to={`/app/${page}`} style={{textDecoration: 'none', color: "white"}}>
-                                    {page}
+                                <Link to={`/app/${page[1]}`} style={{textDecoration: 'none', color: "white"}}>
+                                    {page[0]}
                                 </Link>
                             </Button>
                         ))}
