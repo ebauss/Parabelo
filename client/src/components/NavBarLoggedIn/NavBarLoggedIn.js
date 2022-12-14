@@ -12,9 +12,10 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import {Link} from "react-router-dom";
 
-const pages = ['Paraphrasing Tool', 'Blog Post'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ['paraphrasing', 'blogpost'];
+const settings = ['My Account', 'Dashboard', 'Logout'];
 
 export default function NavBarLoggedIn() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -27,9 +28,8 @@ export default function NavBarLoggedIn() {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseNavMenu = (event) => {
+    const handleCloseNavMenu = () => {
         setAnchorElNav(null);
-        console.log(event.target.getAttribute("key"));
     };
 
     const handleCloseUserMenu = () => {
@@ -90,7 +90,9 @@ export default function NavBarLoggedIn() {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                                    <Typography textAlign="center">
+                                        <Link to={`/app/${page}`}>{page}</Link>
+                                    </Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -121,7 +123,7 @@ export default function NavBarLoggedIn() {
                                 onClick={handleCloseNavMenu}
                                 sx={{my: 2, color: 'white', display: 'block'}}
                             >
-                                {page}
+                                <Link to={`/app/${page}`}>{page}</Link>
                             </Button>
                         ))}
                     </Box>
@@ -149,8 +151,10 @@ export default function NavBarLoggedIn() {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
+                                <MenuItem key={setting} id={setting} onClick={handleCloseUserMenu}>
+                                    <Typography textAlign="center">
+                                        <Link to={`/app/${setting}`}>{setting}</Link>
+                                    </Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
