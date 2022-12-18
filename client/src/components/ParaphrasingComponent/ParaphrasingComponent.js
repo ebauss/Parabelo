@@ -108,6 +108,7 @@ export default function ParaphrasingComponent() {
                     <ToggleButton value="professional">Professional</ToggleButton>
                     <ToggleButton value="technical">Technical</ToggleButton>
                     <ToggleButton value="creative">Creative</ToggleButton>
+                    <ToggleButton value="persuasive">Persuasive</ToggleButton>
                 </ToggleButtonGroup>
 
                 <LoadingButton
