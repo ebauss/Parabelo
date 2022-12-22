@@ -94,7 +94,7 @@ export default function AdCopyComponent() {
                     loadingPosition="end"
                     variant="contained"
                 >
-                    Send
+                    Go
                 </LoadingButton>
             </div>
             <br/>

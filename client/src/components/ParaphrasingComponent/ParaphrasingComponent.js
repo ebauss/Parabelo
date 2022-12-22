@@ -2,6 +2,7 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import {ToggleButton, ToggleButtonGroup} from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
+import SendIcon from "@mui/icons-material/Send";
 
 const {Configuration, OpenAIApi} = require("openai");
 
@@ -114,11 +115,12 @@ export default function ParaphrasingComponent() {
                 <LoadingButton
                     size="small"
                     onClick={handleClick}
+                    endIcon={<SendIcon />}
                     loading={loading}
                     loadingPosition="end"
                     variant="contained"
                 >
-                    Paraphrase
+                    Go
                 </LoadingButton>
             </div>
             <br/>
