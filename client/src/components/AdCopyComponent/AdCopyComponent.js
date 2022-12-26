@@ -76,8 +76,7 @@ export default function AdCopyComponent() {
             <br/>
             <div>
                 <TextField id="outlined-basic"
-                           label="What blog would you like me to write for you?"
-                           placeholder="Example: How to learn how to code"
+                           label="What ad would you like me to write for you?"
                            variant="outlined"
                            fullWidth
                            onChange={handleChange}
