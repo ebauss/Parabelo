@@ -19,6 +19,7 @@ import ListItemText from '@mui/material/ListItemText';
 import {Link} from "react-router-dom";
 import NotesIcon from '@mui/icons-material/Notes';
 import EditIcon from '@mui/icons-material/Edit';
+import CopyrightIcon from '@mui/icons-material/Copyright';
 
 const drawerWidth = 240;
 
@@ -170,6 +171,28 @@ export default function NavbarWebApp() {
                                     <NotesIcon/>
                                 </ListItemIcon>
                                 <ListItemText primary='Blog Post Writer' sx={{opacity: open ? 1 : 0}}/>
+                            </ListItemButton>
+                        </Link>
+                    </ListItem>
+                    <ListItem key='adCopy' disablePadding sx={{display: 'block'}}>
+                        <Link to='/app/adCopy' style={{textDecoration: 'none', color: "black"}}>
+                            <ListItemButton
+                                sx={{
+                                    minHeight: 48,
+                                    justifyContent: open ? 'initial' : 'center',
+                                    px: 2.5,
+                                }}
+                            >
+                                <ListItemIcon
+                                    sx={{
+                                        minWidth: 0,
+                                        mr: open ? 3 : 'auto',
+                                        justifyContent: 'center',
+                                    }}
+                                >
+                                    <CopyrightIcon/>
+                                </ListItemIcon>
+                                <ListItemText primary='Copy Writer' sx={{opacity: open ? 1 : 0}}/>
                             </ListItemButton>
                         </Link>
                     </ListItem>
