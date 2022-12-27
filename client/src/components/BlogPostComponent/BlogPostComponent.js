@@ -2,6 +2,7 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
+import Typography from "@mui/material/Typography";
 
 const {Configuration, OpenAIApi} = require("openai");
 
@@ -73,6 +74,10 @@ export default function BlogPostComponent() {
 
     return (
         <div>
+            <br/>
+            <Typography variant="h5" gutterBottom>
+                Blog Post Writer
+            </Typography>
             <br/>
             <div>
                 <TextField id="outlined-basic"

@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import {ToggleButton, ToggleButtonGroup} from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import SendIcon from "@mui/icons-material/Send";
+import Typography from "@mui/material/Typography";
 
 const {Configuration, OpenAIApi} = require("openai");
 
@@ -84,6 +85,10 @@ export default function ParaphrasingComponent() {
 
     return (
         <div>
+            <br/>
+            <Typography variant="h5" gutterBottom>
+                Paraphrasing Tool
+            </Typography>
             <br/>
             <div>
                 <TextField id="outlined-basic"
