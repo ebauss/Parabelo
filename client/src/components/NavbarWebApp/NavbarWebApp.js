@@ -175,7 +175,7 @@ export default function NavbarWebApp() {
                         </Link>
                     </ListItem>
                     <ListItem key='adCopy' disablePadding sx={{display: 'block'}}>
-                        <Link to='/app/adCopy' style={{textDecoration: 'none', color: "black"}}>
+                        <Link to='/app/copyWriter' style={{textDecoration: 'none', color: "black"}}>
                             <ListItemButton
                                 sx={{
                                     minHeight: 48,

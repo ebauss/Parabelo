@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 
 const {Configuration, OpenAIApi} = require("openai");
 
-export default function AdCopyComponent() {
+export default function CopyWriter() {
     /* Stores the string entered in the prompt text field. */
     const [promptValue, setPromptValue] = React.useState('');
 
