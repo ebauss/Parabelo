@@ -14,8 +14,11 @@ export default function ParaphrasingComponent() {
     /* Stores the result string obtained from OpenAi. */
     const [resultValue, setResultValue] = React.useState('');
 
-    /* Stores the mood value for paraphrasing. */
+    /* Stores the style value for paraphrasing. */
     const [moodValue, setMoodValue] = React.useState('fun');
+
+    /* Stores the tone value for paraphrasing. */
+    const [toneValue, setToneValue] = React.useState('happy');
 
     /* Determines whether the loading animation is activated or not. */
     const [loading, setLoading] = React.useState(false);
@@ -30,12 +33,21 @@ export default function ParaphrasingComponent() {
     }
 
     /**
-     * Handles the change for the button group for the moods.
+     * Handles the change for the button group for the writing style.
      *
      * @param event contains data of the event
      */
-    const handleButtonGroupChange = (event) => {
+    const handleStyleButtonGroupChange = (event) => {
         setMoodValue(event.target.value);
+    }
+
+    /**
+     * handles the change for the button group for the tone of voice.
+     *
+     * @param event contains data of the event
+     */
+    const handleToneButtonGroupChange = (event) => {
+        setToneValue(event.target.value);
     }
 
     /**
@@ -60,7 +72,8 @@ export default function ParaphrasingComponent() {
             apiKey: apiKeyData,
         });
 
-        const modifiedPrompt = 'Rewrite the following in a ' + moodValue + ' mood: ' + promptValue;
+        const modifiedPrompt = 'Rewrite the following in a ' + moodValue + ' mood: ' + promptValue + 'and in a '
+            + toneValue + ' tone of voice.';
 
         const openai = new OpenAIApi(configuration);
 
@@ -107,7 +120,7 @@ export default function ParaphrasingComponent() {
                     color="primary"
                     value={moodValue}
                     exclusive
-                    onChange={handleButtonGroupChange}
+                    onChange={handleStyleButtonGroupChange}
                     aria-label="Platform"
                 >
                     <ToggleButton value="fun">Fun</ToggleButton>
@@ -116,7 +129,27 @@ export default function ParaphrasingComponent() {
                     <ToggleButton value="creative">Creative</ToggleButton>
                     <ToggleButton value="persuasive">Persuasive</ToggleButton>
                 </ToggleButtonGroup>
-
+            </div>
+            <div>
+                <ToggleButtonGroup
+                    color="primary"
+                    value={toneValue}
+                    exclusive
+                    onChange={handleToneButtonGroupChange}
+                    aria-label="Platform"
+                >
+                    <ToggleButton value="humorous">Humorous</ToggleButton>
+                    <ToggleButton value="formal">Formal</ToggleButton>
+                    <ToggleButton value="informal">Informal</ToggleButton>
+                    <ToggleButton value="serious">Serious</ToggleButton>
+                    <ToggleButton value="optimistic">Optimistic</ToggleButton>
+                    <ToggleButton value="motivating">Motivating</ToggleButton>
+                    <ToggleButton value="respectful">Respectful</ToggleButton>
+                    <ToggleButton value="assertive">Assertive</ToggleButton>
+                    <ToggleButton value="conversational">Conversational</ToggleButton>
+                </ToggleButtonGroup>
+            </div>
+            <div>
                 <LoadingButton
                     size="small"
                     onClick={handleClick}
