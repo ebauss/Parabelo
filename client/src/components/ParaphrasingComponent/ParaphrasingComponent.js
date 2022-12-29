@@ -116,6 +116,9 @@ export default function ParaphrasingComponent() {
             </div>
             <br/>
             <div>
+                <Typography variant="subtitle1" gutterBottom>
+                    Style
+                </Typography>
                 <ToggleButtonGroup
                     color="primary"
                     value={styleValue}
@@ -132,6 +135,9 @@ export default function ParaphrasingComponent() {
             </div>
             <br/>
             <div>
+                <Typography variant="subtitle1" gutterBottom>
+                    Tone
+                </Typography>
                 <ToggleButtonGroup
                     color="primary"
                     value={toneValue}
@@ -148,7 +154,7 @@ export default function ParaphrasingComponent() {
                 <LoadingButton
                     size="small"
                     onClick={handleClick}
-                    endIcon={<SendIcon />}
+                    endIcon={<SendIcon/>}
                     loading={loading}
                     loadingPosition="end"
                     variant="contained"
