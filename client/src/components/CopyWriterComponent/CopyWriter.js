@@ -10,6 +10,9 @@ export default function CopyWriter() {
     /* Stores the string entered in the prompt text field. */
     const [promptValue, setPromptValue] = React.useState('');
 
+    /* Stores the string stored in the things to mention text field. */
+    const [thingsToMentionValue, setThingsToMentionValue] = React.useState('');
+
     /* Stores the result string obtained from OpenAi. */
     const [resultValue, setResultValue] = React.useState('');
 
@@ -17,12 +20,21 @@ export default function CopyWriter() {
     const [loading, setLoading] = React.useState(false);
 
     /**
-     * Handles the text changes in the text box.
+     * Handles the text changes in the prompt text box.
      *
      * @param event contains data of the event
      */
-    const handleChange = (event) => {
+    const handlePromptChange = (event) => {
         setPromptValue(event.target.value);
+    }
+
+    /**
+     * Handles the text changes in the things to mention text box.
+     *
+     * @param event
+     */
+    const handleThingsToMentionChange = (event) => {
+        setThingsToMentionValue(event.target.value);
     }
 
     /**
@@ -49,7 +61,15 @@ export default function CopyWriter() {
             apiKey: apiKeyData,
         });
 
-        const modifiedPrompt = 'Write an advertisement about ' + promptValue;
+        let modifiedPrompt;
+
+        if (thingsToMentionValue) {
+            modifiedPrompt = 'Write ad copy for ' + promptValue + '. ' + 'Things to mention: ' + thingsToMentionValue;
+        } else {
+            modifiedPrompt = 'Write ad copy for ' + promptValue;
+        }
+
+        console.log(modifiedPrompt);
 
         const openai = new OpenAIApi(configuration);
 
@@ -57,7 +77,7 @@ export default function CopyWriter() {
             model: "text-davinci-003",
             prompt: modifiedPrompt,
             temperature: 0.9,
-            max_tokens: 3000,
+            max_tokens: 1000,
             top_p: 1,
             frequency_penalty: 0,
             presence_penalty: 0,
@@ -84,7 +104,19 @@ export default function CopyWriter() {
                            label="What ad would you like me to write for you?"
                            variant="outlined"
                            fullWidth
-                           onChange={handleChange}
+                           onChange={handlePromptChange}
+                           sx={{width: 600}}
+                />
+            </div>
+            <br/>
+            <div>
+                <TextField id="outlined-basic"
+                           label='Things to mention (Separate entries with a ",")'
+                           variant="outlined"
+                           multiline
+                           rows={4}
+                           fullWidth
+                           onChange={handleThingsToMentionChange}
                            sx={{width: 600}}
                 />
             </div>
