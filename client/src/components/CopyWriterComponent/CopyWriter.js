@@ -55,8 +55,6 @@ export default function CopyWriter() {
 
         const apiKeyData = await apiKeyResponse.text();
 
-        console.log(apiKeyData);
-
         const configuration = new Configuration({
             apiKey: apiKeyData,
         });
