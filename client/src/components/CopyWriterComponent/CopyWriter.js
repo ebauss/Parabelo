@@ -61,6 +61,7 @@ export default function CopyWriter() {
 
         let modifiedPrompt;
 
+        // TODO change this into a switch of some sort. Like and if statement chain with string concatenation.
         if (thingsToMentionValue) {
             modifiedPrompt = 'Write ad copy for ' + promptValue + '. ' + 'Things to mention: ' + thingsToMentionValue;
         } else {
