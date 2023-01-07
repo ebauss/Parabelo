@@ -20,8 +20,9 @@ import {Link} from "react-router-dom";
 import NotesIcon from '@mui/icons-material/Notes';
 import EditIcon from '@mui/icons-material/Edit';
 import CopyrightIcon from '@mui/icons-material/Copyright';
+import DescriptionIcon from '@mui/icons-material/Description';
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 
 const openedMixin = (theme) => ({
     width: drawerWidth,
@@ -193,6 +194,28 @@ export default function NavbarWebApp() {
                                     <CopyrightIcon/>
                                 </ListItemIcon>
                                 <ListItemText primary='Copy Writer' sx={{opacity: open ? 1 : 0}}/>
+                            </ListItemButton>
+                        </Link>
+                    </ListItem>
+                    <ListItem key='productDescriptionWriter' disablePadding sx={{display: 'block'}}>
+                        <Link to='/app/productDescriptionWriter' style={{textDecoration: 'none', color: "black"}}>
+                            <ListItemButton
+                                sx={{
+                                    minHeight: 48,
+                                    justifyContent: open ? 'initial' : 'center',
+                                    px: 2.5,
+                                }}
+                            >
+                                <ListItemIcon
+                                    sx={{
+                                        minWidth: 0,
+                                        mr: open ? 3 : 'auto',
+                                        justifyContent: 'center',
+                                    }}
+                                >
+                                    <DescriptionIcon/>
+                                </ListItemIcon>
+                                <ListItemText primary='Product Description Writer' sx={{opacity: open ? 1 : 0}}/>
                             </ListItemButton>
                         </Link>
                     </ListItem>
