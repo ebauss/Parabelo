@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {styled, useTheme} from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
@@ -16,11 +16,13 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import NotesIcon from '@mui/icons-material/Notes';
 import EditIcon from '@mui/icons-material/Edit';
 import CopyrightIcon from '@mui/icons-material/Copyright';
 import DescriptionIcon from '@mui/icons-material/Description';
+import { useAuth0 } from "@auth0/auth0-react";
+import { Button } from "@mui/material";
 
 const drawerWidth = 280;
 
@@ -45,7 +47,7 @@ const closedMixin = (theme) => ({
     },
 });
 
-const DrawerHeader = styled('div')(({theme}) => ({
+const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
@@ -56,7 +58,7 @@ const DrawerHeader = styled('div')(({theme}) => ({
 
 const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
-})(({theme, open}) => ({
+})(({ theme, open }) => ({
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
@@ -72,8 +74,8 @@ const AppBar = styled(MuiAppBar, {
     }),
 }));
 
-const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== 'open'})(
-    ({theme, open}) => ({
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+    ({ theme, open }) => ({
         width: drawerWidth,
         flexShrink: 0,
         whiteSpace: 'nowrap',
@@ -92,6 +94,7 @@ const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== 'open'})
 export default function NavbarWebApp() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const { logout } = useAuth0();
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -102,8 +105,8 @@ export default function NavbarWebApp() {
     };
 
     return (
-        <Box sx={{display: 'flex'}}>
-            <CssBaseline/>
+        <Box sx={{ display: 'flex' }}>
+            <CssBaseline />
             <AppBar position="fixed" open={open}>
                 <Toolbar>
                     <IconButton
@@ -113,26 +116,29 @@ export default function NavbarWebApp() {
                         edge="start"
                         sx={{
                             marginRight: 5,
-                            ...(open && {display: 'none'}),
+                            ...(open && { display: 'none' }),
                         }}
                     >
-                        <MenuIcon/>
+                        <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
                         Parabelo
                     </Typography>
+                    <Button variant="outlined" size="large" onClick={logout}>
+                        Log Out
+                    </Button>
                 </Toolbar>
             </AppBar>
             <Drawer variant="permanent" open={open}>
                 <DrawerHeader>
                     <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
+                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
                 </DrawerHeader>
-                <Divider/>
+                <Divider />
                 <List>
-                    <ListItem key='paraphrasing' disablePadding sx={{display: 'block'}}>
-                        <Link to='/app/paraphrasing' style={{textDecoration: 'none', color: "black"}}>
+                    <ListItem key='paraphrasing' disablePadding sx={{ display: 'block' }}>
+                        <Link to='/app/paraphrasing' style={{ textDecoration: 'none', color: "black" }}>
                             <ListItemButton
                                 sx={{
                                     minHeight: 48,
@@ -147,14 +153,14 @@ export default function NavbarWebApp() {
                                         justifyContent: 'center',
                                     }}
                                 >
-                                    <EditIcon/>
+                                    <EditIcon />
                                 </ListItemIcon>
-                                <ListItemText primary='Paraphrasing Tool' sx={{opacity: open ? 1 : 0}}/>
+                                <ListItemText primary='Paraphrasing Tool' sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </Link>
                     </ListItem>
-                    <ListItem key='blogpost' disablePadding sx={{display: 'block'}}>
-                        <Link to='/app/blogpost' style={{textDecoration: 'none', color: "black"}}>
+                    <ListItem key='blogpost' disablePadding sx={{ display: 'block' }}>
+                        <Link to='/app/blogpost' style={{ textDecoration: 'none', color: "black" }}>
                             <ListItemButton
                                 sx={{
                                     minHeight: 48,
@@ -169,14 +175,14 @@ export default function NavbarWebApp() {
                                         justifyContent: 'center',
                                     }}
                                 >
-                                    <NotesIcon/>
+                                    <NotesIcon />
                                 </ListItemIcon>
-                                <ListItemText primary='Blog Post Writer' sx={{opacity: open ? 1 : 0}}/>
+                                <ListItemText primary='Blog Post Writer' sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </Link>
                     </ListItem>
-                    <ListItem key='adCopy' disablePadding sx={{display: 'block'}}>
-                        <Link to='/app/copyWriter' style={{textDecoration: 'none', color: "black"}}>
+                    <ListItem key='adCopy' disablePadding sx={{ display: 'block' }}>
+                        <Link to='/app/copyWriter' style={{ textDecoration: 'none', color: "black" }}>
                             <ListItemButton
                                 sx={{
                                     minHeight: 48,
@@ -191,14 +197,14 @@ export default function NavbarWebApp() {
                                         justifyContent: 'center',
                                     }}
                                 >
-                                    <CopyrightIcon/>
+                                    <CopyrightIcon />
                                 </ListItemIcon>
-                                <ListItemText primary='Copy Writer' sx={{opacity: open ? 1 : 0}}/>
+                                <ListItemText primary='Copy Writer' sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </Link>
                     </ListItem>
-                    <ListItem key='productDescriptionWriter' disablePadding sx={{display: 'block'}}>
-                        <Link to='/app/productDescriptionWriter' style={{textDecoration: 'none', color: "black"}}>
+                    <ListItem key='productDescriptionWriter' disablePadding sx={{ display: 'block' }}>
+                        <Link to='/app/productDescriptionWriter' style={{ textDecoration: 'none', color: "black" }}>
                             <ListItemButton
                                 sx={{
                                     minHeight: 48,
@@ -213,15 +219,15 @@ export default function NavbarWebApp() {
                                         justifyContent: 'center',
                                     }}
                                 >
-                                    <DescriptionIcon/>
+                                    <DescriptionIcon />
                                 </ListItemIcon>
-                                <ListItemText primary='Product Description Writer' sx={{opacity: open ? 1 : 0}}/>
+                                <ListItemText primary='Product Description Writer' sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </Link>
                     </ListItem>
                 </List>
             </Drawer>
-            <DrawerHeader/>
+            <DrawerHeader />
         </Box>
     );
 }
