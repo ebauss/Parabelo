@@ -8,8 +8,11 @@ import ParaphrasingComponent from "../../components/ParaphrasingComponent/Paraph
 import NavbarWebApp from "../../components/NavbarWebApp/NavbarWebApp";
 import CopyWriter from "../../components/CopyWriterComponent/CopyWriter";
 import ProductDescriptionComponent from '../../components/ProductDescriptionComponent/ProductDescriptionComponent';
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function WebApplication() {
+    const { user, isAuthenticated, isLoading } = useAuth0();
+
     return (
         <div>
             <NavbarWebApp></NavbarWebApp>
@@ -18,7 +21,7 @@ export default function WebApplication() {
                 <Route path="/copyWriter" element={<CopyWriter />} />
                 <Route path="/paraphrasing" element={<ParaphrasingComponent />} />
                 <Route path="/productDescriptionWriter" element={<ProductDescriptionComponent />} />
-                <Route path="/" element={<h1>Here is a placeholder for the app.</h1>} />
+                <Route path="/" element={<h1>Welcome {user.name}!</h1>} />
             </Routes>
         </div>
     )
