@@ -68,8 +68,6 @@ export default function ProductDescriptionComponent() {
             modifiedPrompt = 'Write a product description for ' + promptValue;
         }
 
-        console.log(modifiedPrompt);
-
         const openai = new OpenAIApi(configuration);
 
         const aiApiResponse = await openai.createCompletion({
