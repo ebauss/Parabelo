@@ -108,7 +108,7 @@ export default function NavbarWebApp() {
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
             <AppBar position="fixed" open={open}>
-                <Toolbar>
+                <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -124,7 +124,7 @@ export default function NavbarWebApp() {
                     <Typography variant="h6" noWrap component="div">
                         Parabelo
                     </Typography>
-                    <Button variant="outlined" size="large" onClick={logout}>
+                    <Button variant="text" size="large" onClick={logout} color="inherit">
                         Log Out
                     </Button>
                 </Toolbar>
