@@ -23,6 +23,7 @@ import CopyrightIcon from '@mui/icons-material/Copyright';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "@mui/material";
+import MailIcon from '@mui/icons-material/Mail';
 
 const drawerWidth = 280;
 
@@ -222,6 +223,28 @@ export default function NavbarWebApp() {
                                     <DescriptionIcon />
                                 </ListItemIcon>
                                 <ListItemText primary='Product Description Writer' sx={{ opacity: open ? 1 : 0 }} />
+                            </ListItemButton>
+                        </Link>
+                    </ListItem>
+                    <ListItem key='emailMarketingWriter' disablePadding sx={{ display: 'block' }}>
+                        <Link to='/app/emailMarketingWriter' style={{ textDecoration: 'none', color: "black" }}>
+                            <ListItemButton
+                                sx={{
+                                    minHeight: 48,
+                                    justifyContent: open ? 'initial' : 'center',
+                                    px: 2.5,
+                                }}
+                            >
+                                <ListItemIcon
+                                    sx={{
+                                        minWidth: 0,
+                                        mr: open ? 3 : 'auto',
+                                        justifyContent: 'center',
+                                    }}
+                                >
+                                    <MailIcon />
+                                </ListItemIcon>
+                                <ListItemText primary='Email Marketing Writer' sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </Link>
                     </ListItem>

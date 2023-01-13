@@ -63,9 +63,9 @@ export default function EmailMarketingComponent() {
 
         // TODO change this into a switch of some sort. Like and if statement chain with string concatenation.
         if (thingsToMentionValue) {
-            modifiedPrompt = 'Write a product description for ' + promptValue + '. ' + 'Things to mention: ' + thingsToMentionValue;
+            modifiedPrompt = 'Write a marketing email for ' + promptValue + '. ' + 'Things to mention: ' + thingsToMentionValue;
         } else {
-            modifiedPrompt = 'Write a product description for ' + promptValue;
+            modifiedPrompt = 'Write a marketing email for ' + promptValue;
         }
 
         const openai = new OpenAIApi(configuration);
@@ -93,12 +93,12 @@ export default function EmailMarketingComponent() {
         <div>
             <br/>
             <Typography variant="h5" gutterBottom>
-                Product Description Writer
+                Email Marketing Writer
             </Typography>
             <br/>
             <div>
                 <TextField id="outlined-basic"
-                           label="What product description would you like me to write for you?"
+                           label="What marketing email would you like me to write for you?"
                            variant="outlined"
                            fullWidth
                            onChange={handlePromptChange}
