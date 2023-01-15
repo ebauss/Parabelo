@@ -9,6 +9,7 @@ import NavbarWebApp from "../../components/NavbarWebApp/NavbarWebApp";
 import CopyWriter from "../../components/CopyWriterComponent/CopyWriter";
 import ProductDescriptionComponent from '../../components/ProductDescriptionComponent/ProductDescriptionComponent';
 import EmailMarketingComponent from '../../components/EmailMarketingComponent/EmailMarketingComponent';
+import AppMainPageComponent from '../../components/AppMainPageComponent/AppMainPageComponent';
 
 export default function WebApplication() {
     return (
@@ -20,7 +21,7 @@ export default function WebApplication() {
                 <Route path="/emailMarketingWriter" element={<EmailMarketingComponent />} />
                 <Route path="/paraphrasing" element={<ParaphrasingComponent />} />
                 <Route path="/productDescriptionWriter" element={<ProductDescriptionComponent />} />
-                <Route path="/" element={<h1>Welcome to the app!</h1>} />
+                <Route path="/" element={<AppMainPageComponent />} />
             </Routes>
         </div>
     )
