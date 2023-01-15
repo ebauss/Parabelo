@@ -122,9 +122,11 @@ export default function NavbarWebApp() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
-                        Parabelo
-                    </Typography>
+                    <Link to='/app' style={{ textDecoration: 'none', color: "white" }}>
+                        <Typography variant="h6" noWrap component="div">
+                            Parabelo
+                        </Typography>
+                    </Link>
                     <Button variant="text" size="large" onClick={logout} color="inherit">
                         Log Out
                     </Button>
