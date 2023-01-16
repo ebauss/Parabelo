@@ -11,8 +11,8 @@ root.render(
     <React.StrictMode>
         <BrowserRouter>
             <Auth0Provider
-                domain="dev-qw5gqp8rnisenpl3.us.auth0.com"
-                clientId="bukP5d3CKsrkfxfKlaWYN5AtifcCi522"
+                domain="parabelodev.us.auth0.com"
+                clientId="K4k4iNdge0leB643mx5ZOgxxQxhbAkfV"
                 redirectUri="http://localhost:3000/app/"
             >
                 <App />
