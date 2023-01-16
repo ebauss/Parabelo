@@ -58,7 +58,7 @@ export default function ParaphrasingComponent() {
     const handleClick = async () => {
         setLoading(true); // Starts the loading animation on the button.
 
-        const apiKeyResponse = await fetch("http://localhost:8000/getOpenAIApiKey", {
+        const apiKeyResponse = await fetch("https://parabelo.herokuapp.com/getOpenAIApiKey", {
             method: "Get",
             credentials: "include",
             headers: {
