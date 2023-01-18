@@ -11,13 +11,15 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from "react-router-dom";
-import {useAuth0} from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // [{Name of Button}, {path}]
 const pages = [['Use Cases', 'useCases'], ['Resources', 'resources'], ['Pricing', 'pricing']];
 
 export default function Navbar() {
-    const {loginWithRedirect} = useAuth0();
+    const { loginWithRedirect } = useAuth0();
+    const logIn = () => loginWithRedirect();
+    const signUp = () => loginWithRedirect({ screen_hint: 'signup' });
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -126,8 +128,14 @@ export default function Navbar() {
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-                        <Button variant="outlined" size="large" onClick={loginWithRedirect} color="inherit">
-                            Log In / Sign Up
+                        <Button variant="outlined" size="large" onClick={logIn} color="inherit">
+                            Log In
+                        </Button>
+                    </Box>
+
+                    <Box sx={{ marginLeft: 2, flexGrow: 0 }}>
+                        <Button variant="outlined" size="large" onClick={signUp} color="inherit">
+                            Get Started!
                         </Button>
                     </Box>
                 </Toolbar>
