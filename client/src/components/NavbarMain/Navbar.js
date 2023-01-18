@@ -128,13 +128,17 @@ export default function Navbar() {
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-                        <Button variant="outlined" size="large" onClick={logIn} color="inherit">
+                        <Button variant="text" size="large" onClick={logIn} color="inherit">
                             Log In
                         </Button>
                     </Box>
 
                     <Box sx={{ marginLeft: 2, flexGrow: 0 }}>
-                        <Button variant="outlined" size="large" onClick={signUp} color="inherit">
+                        <Button variant="contained" 
+                        size="large" 
+                        onClick={signUp}
+                        sx={{ backgroundColor: '#e57373'}}
+                        >
                             Get Started!
                         </Button>
                     </Box>
