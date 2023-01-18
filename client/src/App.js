@@ -4,14 +4,14 @@ import {
     Routes,
     Route
 } from "react-router-dom";
-import LandingPageComponent from './components/LandingPageComponent/LandingPageComponent';
+import LandingPage from './pages/LandingPage/LandingPage';
 
 function App() {
     return (
         <div className="App">
             <Routes>
                 <Route path="/app/*" element={<WebApplication/>}/>
-                <Route path="/" element={<LandingPageComponent/>}/>
+                <Route path="/" element={<LandingPage/>}/>
             </Routes>
         </div>
     );

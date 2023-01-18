@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Button} from "@mui/material";
 import {useAuth0} from "@auth0/auth0-react";
 
-export default function LandingPagePlaceholder() {
+export default function LandingPageComponent() {
     const {loginWithRedirect} = useAuth0();
 
     /**
