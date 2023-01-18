@@ -12,12 +12,14 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import {useAuth0} from "@auth0/auth0-react";
 
-const pages = [['Use Cases','useCases'], ['Resources', 'resources'], ['Pricing', 'pricing']];
-const settings = ['My Account', 'Dashboard', 'Logout'];
+const pages = [['Use Cases', 'useCases'], ['Resources', 'resources'], ['Pricing', 'pricing']];
 
 export default function Navbar() {
+    const {loginWithRedirect} = useAuth0();
+
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -40,7 +42,7 @@ export default function Navbar() {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{display: {xs: 'none', md: 'flex'}, mr: 1}}/>
+                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography
                         variant="h6"
                         noWrap
@@ -48,7 +50,7 @@ export default function Navbar() {
                         href="/"
                         sx={{
                             mr: 2,
-                            display: {xs: 'none', md: 'flex'},
+                            display: { xs: 'none', md: 'flex' },
                             fontFamily: 'monospace',
                             fontWeight: 700,
                             letterSpacing: '.3rem',
@@ -59,7 +61,7 @@ export default function Navbar() {
                         PARABELO
                     </Typography>
 
-                    <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -68,7 +70,7 @@ export default function Navbar() {
                             onClick={handleOpenNavMenu}
                             color="inherit"
                         >
-                            <MenuIcon/>
+                            <MenuIcon />
                         </IconButton>
                         <Menu
                             id="menu-appbar"
@@ -85,13 +87,13 @@ export default function Navbar() {
                             open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
                             sx={{
-                                display: {xs: 'block', md: 'none'},
+                                display: { xs: 'block', md: 'none' },
                             }}
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page[1]} onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center">
-                                        <Link to={`/${page[1]}`} style={{textDecoration: 'none', color: "black"}}>
+                                        <Link to={`/${page[1]}`} style={{ textDecoration: 'none', color: "black" }}>
                                             {page[0]}
                                         </Link>
                                     </Typography>
@@ -99,7 +101,7 @@ export default function Navbar() {
                             ))}
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{display: {xs: 'flex', md: 'none'}, mr: 1}}/>
+                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
                         noWrap
@@ -107,7 +109,7 @@ export default function Navbar() {
                         href=""
                         sx={{
                             mr: 2,
-                            display: {xs: 'flex', md: 'none'},
+                            display: { xs: 'flex', md: 'none' },
                             flexGrow: 1,
                             fontFamily: 'monospace',
                             fontWeight: 700,
@@ -118,52 +120,24 @@ export default function Navbar() {
                     >
                         PARABELO
                     </Typography>
-                    <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                             <Button
                                 key={page[1]}
                                 onClick={handleCloseNavMenu}
-                                sx={{my: 2, color: 'white', display: 'block'}}
+                                sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                <Link to={`/${page[1]}`} style={{textDecoration: 'none', color: "white"}}>
+                                <Link to={`/${page[1]}`} style={{ textDecoration: 'none', color: "white" }}>
                                     {page[0]}
                                 </Link>
                             </Button>
                         ))}
                     </Box>
 
-                    <Box sx={{flexGrow: 0}}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg"/>
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{mt: '45px'}}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} id={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">
-                                        <Link to={`/${setting}`} style={{textDecoration: 'none', color: "black"}}>
-                                            {setting}
-                                        </Link>
-                                    </Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
+                    <Box sx={{ flexGrow: 0 }}>
+                        <Button variant="outlined" size="large" onClick={loginWithRedirect} color="inherit">
+                            Log In / Sign Up
+                        </Button>
                     </Box>
                 </Toolbar>
             </Container>

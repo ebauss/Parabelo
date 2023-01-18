@@ -8,9 +8,6 @@ export default function LandingPageComponent() {
     return (
         <div>
             <h1>Landing Page Placeholder</h1>
-            <Button variant="outlined" size="large" onClick={loginWithRedirect}>
-                Log In
-            </Button>
         </div>
     );
 }
