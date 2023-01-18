@@ -4,7 +4,7 @@ import {
     Routes
 } from "react-router-dom";
 import LandingPageComponent from '../../components/LandingPageComponent/LandingPageComponent';
-import Navbar from '../../components/NavbarMainMaybe/Navbar'; 
+import Navbar from '../../components/NavbarMain/Navbar'; 
 
 export default function LandingPage() {
     return (

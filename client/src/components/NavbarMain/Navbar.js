@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import {Link} from "react-router-dom";
 
-const pages = [['Paraphrasing Tool','paraphrasing'], ['Blog Post', 'blogpost']];
+const pages = [['Use Cases','useCases'], ['Resources', 'resources'], ['Pricing', 'pricing']];
 const settings = ['My Account', 'Dashboard', 'Logout'];
 
 export default function Navbar() {
@@ -91,7 +91,7 @@ export default function Navbar() {
                             {pages.map((page) => (
                                 <MenuItem key={page[1]} onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center">
-                                        <Link to={`/app/${page[1]}`} style={{textDecoration: 'none', color: "black"}}>
+                                        <Link to={`/${page[1]}`} style={{textDecoration: 'none', color: "black"}}>
                                             {page[0]}
                                         </Link>
                                     </Typography>
@@ -125,7 +125,7 @@ export default function Navbar() {
                                 onClick={handleCloseNavMenu}
                                 sx={{my: 2, color: 'white', display: 'block'}}
                             >
-                                <Link to={`/app/${page[1]}`} style={{textDecoration: 'none', color: "white"}}>
+                                <Link to={`/${page[1]}`} style={{textDecoration: 'none', color: "white"}}>
                                     {page[0]}
                                 </Link>
                             </Button>
@@ -157,7 +157,7 @@ export default function Navbar() {
                             {settings.map((setting) => (
                                 <MenuItem key={setting} id={setting} onClick={handleCloseUserMenu}>
                                     <Typography textAlign="center">
-                                        <Link to={`/app/${setting}`} style={{textDecoration: 'none', color: "black"}}>
+                                        <Link to={`/${setting}`} style={{textDecoration: 'none', color: "black"}}>
                                             {setting}
                                         </Link>
                                     </Typography>
