@@ -15,6 +15,7 @@ export default function LandingPageComponent() {
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'space-evenly',
+                flexWrap: 'wrap-reverse',
                 alignItems: 'center',
                 backgroundColor: '#07767f',
                 paddingLeft: 10,
