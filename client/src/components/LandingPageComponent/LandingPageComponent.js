@@ -11,6 +11,7 @@ export default function LandingPageComponent() {
 
     return (
         <div>
+            {/* Start of hero banner section. */}
             <Box sx={{
                 display: 'flex',
                 flexDirection: 'row',
@@ -33,7 +34,7 @@ export default function LandingPageComponent() {
                         variant="h3"
                         sx={{
                             color: 'white',
-                            width: 500
+                            width: 500,
                         }} >
                         Unlock the Power of Parabelo
                     </Typography>
@@ -50,15 +51,56 @@ export default function LandingPageComponent() {
                     <Button variant="contained"
                         size="large"
                         onClick={signUp}
-                        sx={{ 
-                            backgroundColor: '#ff5c4c' 
+                        sx={{
+                            backgroundColor: '#ff5c4c'
                         }}
                     >
                         Try Now!
                     </Button>
                 </Box>
-
             </Box>
+            {/* End of hero banner section. */}
+
+            {/* Start of are you ready section. */}
+            <Box
+                sx={{
+                    paddingTop: 10,
+                    paddingBottom: 10,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}
+            >
+                <Box
+                    sx={{
+                        width: 500
+                    }}
+                >
+                    <Typography
+                        variant='h4'
+                    >
+                        Are you ready to level up your writing?
+                    </Typography>
+                    <br />
+                    <Typography
+                        variant="h6"
+                    >
+                        Never struggle with your writing again with Parabelo.
+                    </Typography>
+                    <br />
+                    <Button variant="contained"
+                        size="large"
+                        onClick={signUp}
+                        sx={{
+                            backgroundColor: '#ff5c4c'
+                        }}
+                    >
+                        Get Started Now!
+                    </Button>
+                </Box>
+            </Box>
+            {/* End of are you ready section. */}
 
         </div>
     );
