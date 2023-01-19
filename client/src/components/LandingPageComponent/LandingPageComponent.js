@@ -23,9 +23,16 @@ export default function LandingPageComponent() {
                         height: 600
                     }}
                 />
-                <Typography variant="h2">
-                    Placeholder text here
-                </Typography>
+                <Box>
+                    <Typography variant="h3">
+                        Unlock the Power of Parabelo
+                    </Typography>
+                    <br />
+                    <Typography variant="h6">
+                        Create unique content quickly and easily! Generate high-quality text tailored to your needs with our powerful AI technology. Save time and money with automated generation of content for marketing, SEO, and more. Get started now!
+                    </Typography>
+                </Box>
+
             </Box>
 
         </div>
