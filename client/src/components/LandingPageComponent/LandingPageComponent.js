@@ -3,9 +3,11 @@ import Box from '@mui/material/Box';
 import { useAuth0 } from "@auth0/auth0-react";
 import landingPageHero from '../../assets/landing-page-hero.png';
 import { Typography } from '@mui/material';
+import Button from '@mui/material/Button';
 
 export default function LandingPageComponent() {
-    const { loginWithRedirect } = useAuth0(); // Need this for Call to Actions.
+    const { loginWithRedirect } = useAuth0();
+    const signUp = () => loginWithRedirect({ screen_hint: 'signup' });
 
     return (
         <div>
@@ -24,13 +26,21 @@ export default function LandingPageComponent() {
                     }}
                 />
                 <Box>
-                    <Typography variant="h3" sx={{ color: 'white'}} >
+                    <Typography variant="h3" sx={{ color: 'white' }} >
                         Unlock the Power of Parabelo
                     </Typography>
                     <br />
-                    <Typography variant="h6" sx={{ color: 'white'}}>
+                    <Typography variant="h6" sx={{ color: 'white' }}>
                         Create unique content quickly and easily! Generate high-quality text tailored to your needs with our powerful AI technology. Save time and money with automated generation of content for marketing, SEO, and more. Get started now!
                     </Typography>
+                    <br />
+                    <Button variant="contained"
+                        size="large"
+                        onClick={signUp}
+                        sx={{ backgroundColor: '#ff5c4c' }}
+                    >
+                        Try Now!
+                    </Button>
                 </Box>
 
             </Box>
