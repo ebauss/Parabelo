@@ -13,7 +13,8 @@ export default function LandingPageComponent() {
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'space-evenly',
-                alignItems: 'center'
+                alignItems: 'center',
+                backgroundColor: '#07767f'
             }}>
                 <Box
                     component="img"
