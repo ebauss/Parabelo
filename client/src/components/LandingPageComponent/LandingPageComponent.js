@@ -24,11 +24,11 @@ export default function LandingPageComponent() {
                     }}
                 />
                 <Box>
-                    <Typography variant="h3">
+                    <Typography variant="h3" sx={{ color: 'white'}} >
                         Unlock the Power of Parabelo
                     </Typography>
                     <br />
-                    <Typography variant="h6">
+                    <Typography variant="h6" sx={{ color: 'white'}}>
                         Create unique content quickly and easily! Generate high-quality text tailored to your needs with our powerful AI technology. Save time and money with automated generation of content for marketing, SEO, and more. Get started now!
                     </Typography>
                 </Box>
