@@ -32,7 +32,7 @@ export default function Navbar() {
     };
 
     return (
-        <AppBar position="static" sx={{ backgroundColor: '#07767f'}}>
+        <AppBar sx={{ backgroundColor: '#07767f'}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
