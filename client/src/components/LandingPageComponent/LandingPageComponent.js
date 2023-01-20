@@ -13,9 +13,9 @@ export default function LandingPageComponent() {
 
     return (
         <div>
-            <br/>
-            <br/>
-            <br/>
+            <br />
+            <br />
+            <br />
             {/* Start of hero banner section. */}
             <Box sx={{
                 display: 'flex',
@@ -68,7 +68,7 @@ export default function LandingPageComponent() {
                 </Box>
             </Box>
             {/* End of hero banner section. */}
-            <br/>
+            <br />
             {/* Start of section. */}
             <Box sx={{
                 marginLeft: 5,
@@ -77,66 +77,144 @@ export default function LandingPageComponent() {
                 <Typography variant="h4">
                     Parabelo helps you with...
                 </Typography>
-                <br/>
+                <br />
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6} md={4}>
                         <Card variant="outlined">
-                            <Typography variant="h5">
+                            <br />
+                            <Typography variant="h5"
+                                sx={{
+                                    paddingLeft: 4,
+                                    paddingRight: 4
+                                }}
+                            >
                                 Lorem ipsum dolor
                             </Typography>
-                            <Typography variant="h6">
+                            <br />
+                            <Typography variant="h6"
+                                sx={{
+                                    paddingLeft: 4,
+                                    paddingRight: 4
+                                }}
+                            >
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             </Typography>
+                            <br />
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
                         <Card variant="outlined">
-                            <Typography variant="h5">
+                            <br />
+                            <Typography variant="h5"
+                                sx={{
+                                    paddingLeft: 4,
+                                    paddingRight: 4
+                                }}
+                            >
                                 Lorem ipsum dolor
                             </Typography>
-                            <Typography variant="h6">
+                            <br />
+                            <Typography variant="h6"
+                                sx={{
+                                    paddingLeft: 4,
+                                    paddingRight: 4
+                                }}
+                            >
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             </Typography>
+                            <br />
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
                         <Card variant="outlined">
-                            <Typography variant="h5">
+                            <br />
+                            <Typography variant="h5"
+                                sx={{
+                                    paddingLeft: 4,
+                                    paddingRight: 4
+                                }}
+                            >
                                 Lorem ipsum dolor
                             </Typography>
-                            <Typography variant="h6">
+                            <br />
+                            <Typography variant="h6"
+                                sx={{
+                                    paddingLeft: 4,
+                                    paddingRight: 4
+                                }}
+                            >
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             </Typography>
+                            <br />
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
                         <Card variant="outlined">
-                            <Typography variant="h5">
+                            <br />
+                            <Typography variant="h5"
+                                sx={{
+                                    paddingLeft: 4,
+                                    paddingRight: 4
+                                }}
+                            >
                                 Lorem ipsum dolor
                             </Typography>
-                            <Typography variant="h6">
+                            <br />
+                            <Typography variant="h6"
+                                sx={{
+                                    paddingLeft: 4,
+                                    paddingRight: 4
+                                }}
+                            >
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             </Typography>
+                            <br />
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
                         <Card variant="outlined">
-                            <Typography variant="h5">
+                            <br />
+                            <Typography variant="h5"
+                                sx={{
+                                    paddingLeft: 4,
+                                    paddingRight: 4
+                                }}
+                            >
                                 Lorem ipsum dolor
                             </Typography>
-                            <Typography variant="h6">
+                            <br />
+                            <Typography variant="h6"
+                                sx={{
+                                    paddingLeft: 4,
+                                    paddingRight: 4
+                                }}
+                            >
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             </Typography>
+                            <br />
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
                         <Card variant="outlined">
-                            <Typography variant="h5">
+                            <br />
+                            <Typography variant="h5"
+                                sx={{
+                                    paddingLeft: 4,
+                                    paddingRight: 4
+                                }}
+                            >
                                 Lorem ipsum dolor
                             </Typography>
-                            <Typography variant="h6">
+                            <br />
+                            <Typography variant="h6"
+                                sx={{
+                                    paddingLeft: 4,
+                                    paddingRight: 4
+                                }}
+                            >
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             </Typography>
+                            <br />
                         </Card>
                     </Grid>
                 </Grid>
