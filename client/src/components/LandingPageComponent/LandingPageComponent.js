@@ -4,6 +4,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import landingPageHero from '../../assets/landing-page-hero.png';
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
 
 export default function LandingPageComponent() {
     const { loginWithRedirect } = useAuth0();
@@ -60,6 +62,80 @@ export default function LandingPageComponent() {
                 </Box>
             </Box>
             {/* End of hero banner section. */}
+            <br/>
+            {/* Start of section. */}
+            <Box sx={{
+                marginLeft: 5,
+                marginRight: 5
+            }}>
+                <Typography variant="h4">
+                    Parabelo helps you with...
+                </Typography>
+                <br/>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <Card variant="outlined">
+                            <Typography variant="h5">
+                                Lorem ipsum dolor
+                            </Typography>
+                            <Typography variant="h6">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </Typography>
+                        </Card>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <Card variant="outlined">
+                            <Typography variant="h5">
+                                Lorem ipsum dolor
+                            </Typography>
+                            <Typography variant="h6">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </Typography>
+                        </Card>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <Card variant="outlined">
+                            <Typography variant="h5">
+                                Lorem ipsum dolor
+                            </Typography>
+                            <Typography variant="h6">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </Typography>
+                        </Card>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <Card variant="outlined">
+                            <Typography variant="h5">
+                                Lorem ipsum dolor
+                            </Typography>
+                            <Typography variant="h6">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </Typography>
+                        </Card>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <Card variant="outlined">
+                            <Typography variant="h5">
+                                Lorem ipsum dolor
+                            </Typography>
+                            <Typography variant="h6">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </Typography>
+                        </Card>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <Card variant="outlined">
+                            <Typography variant="h5">
+                                Lorem ipsum dolor
+                            </Typography>
+                            <Typography variant="h6">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </Typography>
+                        </Card>
+                    </Grid>
+                </Grid>
+            </Box>
+            {/* End of section. */}
 
             {/* Start of are you ready section. */}
             <Box
@@ -86,7 +162,7 @@ export default function LandingPageComponent() {
                     <Typography
                         variant="h6"
                     >
-                        Never struggle with your writing again with Parabelo.
+                        Never struggle with your writing using Parabelo.
                     </Typography>
                     <br />
                     <Button variant="contained"
