@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, "build")));
 
 app.use(cors({
     credentials: true,
-    origin: "http://localhost:3000"
+    origin: "https://parabelo.herokuapp.com/"
 }));
 
 app.use(bodyParser.json());
