@@ -13,6 +13,9 @@ export default function LandingPageComponent() {
 
     return (
         <div>
+            <br/>
+            <br/>
+            <br/>
             {/* Start of hero banner section. */}
             <Box sx={{
                 display: 'flex',
@@ -22,16 +25,19 @@ export default function LandingPageComponent() {
                 alignItems: 'center',
                 backgroundColor: '#07767f',
                 paddingLeft: 10,
-                paddingRight: 10
+                paddingRight: 10,
+                paddingTop: 5
             }}>
                 <Box
                     component="img"
                     src={landingPageHero}
                     sx={{
-                        height: 500
+                        height: 700
                     }}
                 />
-                <Box>
+                <Box sx={{
+                    paddingBottom: 5
+                }}>
                     <Typography
                         variant="h3"
                         sx={{
