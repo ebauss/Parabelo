@@ -13,7 +13,7 @@ root.render(
             <Auth0Provider
                 domain="parabelodev.us.auth0.com"
                 clientId="K4k4iNdge0leB643mx5ZOgxxQxhbAkfV"
-                redirectUri="http://localhost:3000/app/"
+                redirectUri={window.location.origin + "/app/"}
             >
                 <App />
             </Auth0Provider>
