@@ -10,6 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <BrowserRouter>
+        {/* TODO: Add these files to a .env so that they are secret. */}
             <Auth0Provider
                 domain="parabelodev.us.auth0.com"
                 clientId="K4k4iNdge0leB643mx5ZOgxxQxhbAkfV"
