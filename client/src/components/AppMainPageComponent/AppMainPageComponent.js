@@ -12,32 +12,60 @@ export default function AppMainPageComponent() {
                 Writing Tools
             </Typography>
             <br />
-            <Grid container spacing={3}>
-                <Grid item xs={4}>
+            <Grid container spacing={4} sx={{
+                paddingLeft: 10,
+                paddingRight: 10
+            }}>
+                <Grid item xs={12} md={6} >
                     <Link to='/app/paraphrasing' style={{ textDecoration: 'none', color: "black" }}>
-                        <Button variant="outlined" size="large">
+                        <Button variant="outlined" size="large"
+                        sx={{
+                            height: 200,
+                            width: 300
+                        }}
+                        >
                             Paraphrasing Tool
                         </Button>
                     </Link>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12} md={6} >
                     <Link to='/app/blogpost' style={{ textDecoration: 'none', color: "black" }}>
-                        <Button variant="outlined" size="large">Blog Post Writer</Button>
+                        <Button variant="outlined" size="large"
+                        sx={{
+                            height: 200,
+                            width: 300
+                        }}
+                        >Blog Post Writer</Button>
                     </Link>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12} md={6} >
                     <Link to='/app/copyWriter' style={{ textDecoration: 'none', color: "black" }}>
-                        <Button variant="outlined" size="large">Copy Writer</Button>
+                        <Button variant="outlined" size="large"
+                        sx={{
+                            height: 200,
+                            width: 300
+                        }}
+                        >Copy Writer</Button>
                     </Link>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} md={6} >
                     <Link to='/app/productDescriptionWriter' style={{ textDecoration: 'none', color: "black" }}>
-                        <Button variant="outlined" size="large">Product Description Writer</Button>
+                        <Button variant="outlined" size="large"
+                        sx={{
+                            height: 200,
+                            width: 300
+                        }}
+                        >Product Description Writer</Button>
                     </Link>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} md={6} >
                     <Link to='/app/emailMarketingWriter' style={{ textDecoration: 'none', color: "black" }}>
-                        <Button variant="outlined" size="large">Email Marketing Writer</Button>
+                        <Button variant="outlined" size="large"
+                        sx={{
+                            height: 200,
+                            width: 300
+                        }}
+                        >Email Marketing Writer</Button>
                     </Link>
                 </Grid>
             </Grid>
