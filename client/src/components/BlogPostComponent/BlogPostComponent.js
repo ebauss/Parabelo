@@ -10,6 +10,9 @@ export default function BlogPostComponent() {
     /* Stores the string entered in the prompt text field. */
     const [promptValue, setPromptValue] = React.useState('');
 
+    /* Stores the string stored in the things to mention text field. */
+    const [keywordsValue, setKeywordsValue] = React.useState('');
+
     /* Stores the result string obtained from OpenAi. */
     const [resultValue, setResultValue] = React.useState('');
 
@@ -17,12 +20,21 @@ export default function BlogPostComponent() {
     const [loading, setLoading] = React.useState(false);
 
     /**
-     * Handles the text changes in the text box.
+     * Handles the text changes in the prompt text box.
      *
      * @param event contains data of the event
      */
-    const handleChange = (event) => {
+    const handlePromptChange = (event) => {
         setPromptValue(event.target.value);
+    }
+
+    /**
+     * Handles the text changes in the things to mention text box.
+     *
+     * @param event
+     */
+    const handleThingsToMentionChange = (event) => {
+        setKeywordsValue(event.target.value);
     }
 
     /**
@@ -47,7 +59,14 @@ export default function BlogPostComponent() {
             apiKey: apiKeyData,
         });
 
-        const modifiedPrompt = 'Write a super long blog post about ' + promptValue;
+        let modifiedPrompt;
+
+        // TODO change this into a switch of some sort. Like and if statement chain with string concatenation.
+        if (keywordsValue) {
+            modifiedPrompt = 'Write a super long blog post about ' + promptValue + '. ' + 'Add the following keywords: ' + keywordsValue;
+        } else {
+            modifiedPrompt = 'Write a super long blog post about ' + promptValue;
+        }
 
         const openai = new OpenAIApi(configuration);
 
@@ -83,7 +102,19 @@ export default function BlogPostComponent() {
                            placeholder="Example: How to learn how to code"
                            variant="outlined"
                            fullWidth
-                           onChange={handleChange}
+                           onChange={handlePromptChange}
+                           sx={{width: 600}}
+                />
+            </div>
+            <br/>
+            <div>
+                <TextField id="outlined-basic"
+                           label='Keywords to add (Separate entries with a ",")'
+                           variant="outlined"
+                           multiline
+                           rows={4}
+                           fullWidth
+                           onChange={handleThingsToMentionChange}
                            sx={{width: 600}}
                 />
             </div>
