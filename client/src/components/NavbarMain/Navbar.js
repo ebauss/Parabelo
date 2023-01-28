@@ -137,7 +137,7 @@ export default function Navbar() {
                         <Button variant="contained" 
                         size="large" 
                         onClick={signUp}
-                        sx={{ backgroundColor: '#ec6226'}}
+                        color="secondary"
                         >
                             Get Started!
                         </Button>

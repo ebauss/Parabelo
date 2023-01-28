@@ -36,9 +36,7 @@ export default function PricingComponent() {
                         <Button 
                         variant="contained"
                         size="large"
-                        sx={{
-                            backgroundColor: '#ec6226'
-                        }}
+                        color="secondary"
                         >
                             Purchase
                         </Button>
@@ -64,9 +62,7 @@ export default function PricingComponent() {
                         <Button 
                         variant="contained"
                         size="large"
-                        sx={{
-                            backgroundColor: '#ec6226'
-                        }}
+                        color="secondary"
                         >
                             Purchase
                         </Button>
@@ -92,9 +88,7 @@ export default function PricingComponent() {
                         <Button 
                         variant="contained"
                         size="large"
-                        sx={{
-                            backgroundColor: '#ec6226'
-                        }}
+                        color="secondary"
                         >
                             Purchase
                         </Button>

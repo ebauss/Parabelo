@@ -17,13 +17,14 @@ export default function LandingPageComponent() {
             <br />
             <br />
             {/* Start of hero banner section. */}
-            <Box sx={{
+            <Box 
+            bgcolor="primary.main"
+            sx={{
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'space-evenly',
                 flexWrap: 'wrap-reverse',
                 alignItems: 'center',
-                backgroundColor: '#398870',
                 paddingLeft: 10,
                 paddingRight: 10,
                 paddingTop: 5
@@ -59,9 +60,7 @@ export default function LandingPageComponent() {
                     <Button variant="contained"
                         size="large"
                         onClick={signUp}
-                        sx={{
-                            backgroundColor: '#ec6226'
-                        }}
+                        color="secondary"
                     >
                         Try Now!
                     </Button>
@@ -252,9 +251,7 @@ export default function LandingPageComponent() {
                     <Button variant="contained"
                         size="large"
                         onClick={signUp}
-                        sx={{
-                            backgroundColor: '#ec6226'
-                        }}
+                        color="secondary"
                     >
                         Get Started Now!
                     </Button>
