@@ -6,7 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { create } from '@mui/material/styles/createTransitions';
 
 const theme = createTheme({
     palette: {
