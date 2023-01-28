@@ -13,9 +13,6 @@ export default function LandingPageComponent() {
 
     return (
         <div>
-            <br />
-            <br />
-            <br />
             {/* Start of hero banner section. */}
             <Box 
             bgcolor="primary.main"
@@ -27,7 +24,8 @@ export default function LandingPageComponent() {
                 alignItems: 'center',
                 paddingLeft: 10,
                 paddingRight: 10,
-                paddingTop: 5
+                paddingTop: 5,
+                marginTop: 7
             }}>
                 <Box
                     component="img"

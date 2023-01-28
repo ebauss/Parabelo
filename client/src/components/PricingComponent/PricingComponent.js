@@ -7,10 +7,8 @@ import Button from '@mui/material/Button';
 export default function PricingComponent() {
     return (
         <div>
-            <br />
-            <br />
-            <br />
             <Grid container spacing={4} sx={{
+                marginTop: 7,
                 paddingTop: 5,
                 paddingBottom: 5,
                 paddingLeft: 10,
