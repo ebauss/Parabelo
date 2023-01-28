@@ -79,7 +79,7 @@ export default function LandingPageComponent() {
                 <br />
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Card variant="outlined">
+                        <Card variant="outlined" sx={{boxShadow: 2}}>
                             <br />
                             <Typography variant="h5"
                                 sx={{
@@ -102,7 +102,7 @@ export default function LandingPageComponent() {
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Card variant="outlined">
+                        <Card variant="outlined" sx={{boxShadow: 2}}>
                             <br />
                             <Typography variant="h5"
                                 sx={{
@@ -125,7 +125,7 @@ export default function LandingPageComponent() {
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Card variant="outlined">
+                        <Card variant="outlined" sx={{boxShadow: 2}}>
                             <br />
                             <Typography variant="h5"
                                 sx={{
@@ -148,7 +148,7 @@ export default function LandingPageComponent() {
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Card variant="outlined">
+                        <Card variant="outlined" sx={{boxShadow: 2}}>
                             <br />
                             <Typography variant="h5"
                                 sx={{
@@ -171,7 +171,7 @@ export default function LandingPageComponent() {
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Card variant="outlined">
+                        <Card variant="outlined" sx={{boxShadow: 2}}>
                             <br />
                             <Typography variant="h5"
                                 sx={{
@@ -194,7 +194,7 @@ export default function LandingPageComponent() {
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Card variant="outlined">
+                        <Card variant="outlined" sx={{boxShadow: 2}}>
                             <br />
                             <Typography variant="h5"
                                 sx={{
