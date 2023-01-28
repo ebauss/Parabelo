@@ -37,7 +37,7 @@ export default function PricingComponent() {
                         variant="contained"
                         size="large"
                         sx={{
-                            backgroundColor: '#398870'
+                            backgroundColor: '#ec6226'
                         }}
                         >
                             Purchase
@@ -65,7 +65,7 @@ export default function PricingComponent() {
                         variant="contained"
                         size="large"
                         sx={{
-                            backgroundColor: '#398870'
+                            backgroundColor: '#ec6226'
                         }}
                         >
                             Purchase
@@ -93,7 +93,7 @@ export default function PricingComponent() {
                         variant="contained"
                         size="large"
                         sx={{
-                            backgroundColor: '#398870'
+                            backgroundColor: '#ec6226'
                         }}
                         >
                             Purchase

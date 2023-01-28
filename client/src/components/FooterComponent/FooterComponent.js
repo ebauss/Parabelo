@@ -10,7 +10,7 @@ export default function FooterComponent() {
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'space-around',
-                backgroundColor: '#ef9a32',
+                backgroundColor: '#398870',
                 paddingTop: 2,
                 paddingBottom: 2
             }}

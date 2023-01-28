@@ -23,7 +23,7 @@ export default function LandingPageComponent() {
                 justifyContent: 'space-evenly',
                 flexWrap: 'wrap-reverse',
                 alignItems: 'center',
-                backgroundColor: '#ef9a32',
+                backgroundColor: '#398870',
                 paddingLeft: 10,
                 paddingRight: 10,
                 paddingTop: 5
@@ -60,7 +60,7 @@ export default function LandingPageComponent() {
                         size="large"
                         onClick={signUp}
                         sx={{
-                            backgroundColor: '#398870'
+                            backgroundColor: '#ec6226'
                         }}
                     >
                         Try Now!
@@ -253,7 +253,7 @@ export default function LandingPageComponent() {
                         size="large"
                         onClick={signUp}
                         sx={{
-                            backgroundColor: '#398870'
+                            backgroundColor: '#ec6226'
                         }}
                     >
                         Get Started Now!

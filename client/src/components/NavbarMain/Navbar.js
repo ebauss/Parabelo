@@ -32,7 +32,7 @@ export default function Navbar() {
     };
 
     return (
-        <AppBar sx={{ backgroundColor: '#ef9a32'}}>
+        <AppBar sx={{ backgroundColor: '#398870'}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -137,7 +137,7 @@ export default function Navbar() {
                         <Button variant="contained" 
                         size="large" 
                         onClick={signUp}
-                        sx={{ backgroundColor: '#398870'}}
+                        sx={{ backgroundColor: '#ec6226'}}
                         >
                             Get Started!
                         </Button>
