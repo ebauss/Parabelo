@@ -19,7 +19,8 @@ export default function PricingComponent() {
                 <Grid item xs={12} md={4}>
                     <Card variant="outlined" sx={{
                         paddingTop: 2,
-                        paddingBottom: 2
+                        paddingBottom: 2,
+                        boxShadow: 2
                     }}>
                         <Typography variant="h5">
                             Basic
@@ -45,7 +46,8 @@ export default function PricingComponent() {
                 <Grid item xs={12} md={4}>
                     <Card variant="outlined" sx={{
                         paddingTop: 2,
-                        paddingBottom: 2
+                        paddingBottom: 2,
+                        boxShadow: 2
                     }}>
                         <Typography variant="h5">
                             Enthusiast
@@ -71,7 +73,8 @@ export default function PricingComponent() {
                 <Grid item xs={12} md={4}>
                     <Card variant="outlined" sx={{
                         paddingTop: 2,
-                        paddingBottom: 2
+                        paddingBottom: 2,
+                        boxShadow: 2
                     }}>
                         <Typography variant="h5">
                             Professional
