@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { useAuth0 } from "@auth0/auth0-react";
-import landingPageHero from '../../assets/landing-page-hero.png';
+import landingPageHero from '../../assets/happy-landing-page-hero-no-background.png';
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -23,7 +23,7 @@ export default function LandingPageComponent() {
                 justifyContent: 'space-evenly',
                 flexWrap: 'wrap-reverse',
                 alignItems: 'center',
-                backgroundColor: '#07767f',
+                backgroundColor: '#ef9a32',
                 paddingLeft: 10,
                 paddingRight: 10,
                 paddingTop: 5
@@ -60,7 +60,7 @@ export default function LandingPageComponent() {
                         size="large"
                         onClick={signUp}
                         sx={{
-                            backgroundColor: '#ff5c4c'
+                            backgroundColor: '#398870'
                         }}
                     >
                         Try Now!
@@ -253,7 +253,7 @@ export default function LandingPageComponent() {
                         size="large"
                         onClick={signUp}
                         sx={{
-                            backgroundColor: '#ff5c4c'
+                            backgroundColor: '#398870'
                         }}
                     >
                         Get Started Now!
