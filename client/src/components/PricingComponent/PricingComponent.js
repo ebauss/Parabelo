@@ -1,7 +1,6 @@
-import { Typography } from '@mui/material';
+import { Paper, Typography } from '@mui/material';
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
 
 export default function PricingComponent() {
@@ -15,10 +14,9 @@ export default function PricingComponent() {
                 paddingRight: 10
             }}>
                 <Grid item xs={12} md={4}>
-                    <Card variant="outlined" sx={{
+                    <Paper elevation={3} sx={{
                         paddingTop: 2,
-                        paddingBottom: 2,
-                        boxShadow: 2
+                        paddingBottom: 2
                     }}>
                         <Typography variant="h5">
                             Basic
@@ -39,13 +37,12 @@ export default function PricingComponent() {
                         >
                             Purchase
                         </Button>
-                    </Card>
+                    </Paper>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <Card variant="outlined" sx={{
+                    <Paper elevation={3} sx={{
                         paddingTop: 2,
-                        paddingBottom: 2,
-                        boxShadow: 2
+                        paddingBottom: 2
                     }}>
                         <Typography variant="h5">
                             Enthusiast
@@ -66,13 +63,12 @@ export default function PricingComponent() {
                         >
                             Purchase
                         </Button>
-                    </Card>
+                    </Paper>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <Card variant="outlined" sx={{
+                    <Paper elevation={3} sx={{
                         paddingTop: 2,
-                        paddingBottom: 2,
-                        boxShadow: 2
+                        paddingBottom: 2
                     }}>
                         <Typography variant="h5">
                             Professional
@@ -93,7 +89,7 @@ export default function PricingComponent() {
                         >
                             Purchase
                         </Button>
-                    </Card>
+                    </Paper>
                 </Grid>
             </Grid>
         </div>
