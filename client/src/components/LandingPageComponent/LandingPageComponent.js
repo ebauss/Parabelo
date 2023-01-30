@@ -5,6 +5,7 @@ import landingPageHero from '../../assets/happy-landing-page-hero-no-background.
 import { Paper, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+import { red } from '@mui/material/colors';
 
 export default function LandingPageComponent() {
     const { loginWithRedirect } = useAuth0();
@@ -76,7 +77,11 @@ export default function LandingPageComponent() {
                 <br />
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Paper elevation={3}>
+                        <Paper elevation={3} sx={{
+                            "&:hover": {
+                                transform: "scale3d(1.05, 1.05, 1.05)",
+                            }
+                        }}>
                             <br />
                             <Typography variant="h5"
                                 sx={{
@@ -99,7 +104,11 @@ export default function LandingPageComponent() {
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Paper elevation={3}>
+                        <Paper elevation={3} sx={{
+                            "&:hover": {
+                                transform: "scale3d(1.05, 1.05, 1.05)",
+                            }
+                        }}>
                             <br />
                             <Typography variant="h5"
                                 sx={{
@@ -122,7 +131,11 @@ export default function LandingPageComponent() {
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Paper elevation={3}>
+                        <Paper elevation={3} sx={{
+                            "&:hover": {
+                                transform: "scale3d(1.05, 1.05, 1.05)",
+                            }
+                        }}>
                             <br />
                             <Typography variant="h5"
                                 sx={{
@@ -145,7 +158,11 @@ export default function LandingPageComponent() {
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Paper elevation={3}>
+                        <Paper elevation={3} sx={{
+                            "&:hover": {
+                                transform: "scale3d(1.05, 1.05, 1.05)",
+                            }
+                        }}>
                             <br />
                             <Typography variant="h5"
                                 sx={{
@@ -168,7 +185,11 @@ export default function LandingPageComponent() {
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Paper elevation={3}>
+                        <Paper elevation={3} sx={{
+                            "&:hover": {
+                                transform: "scale3d(1.05, 1.05, 1.05)",
+                            }
+                        }}>
                             <br />
                             <Typography variant="h5"
                                 sx={{
@@ -191,7 +212,11 @@ export default function LandingPageComponent() {
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Paper elevation={3}>
+                        <Paper elevation={3} sx={{
+                            "&:hover": {
+                                transform: "scale3d(1.05, 1.05, 1.05)",
+                            }
+                        }}>
                             <br />
                             <Typography variant="h5"
                                 sx={{
