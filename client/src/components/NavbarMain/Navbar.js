@@ -32,10 +32,9 @@ export default function Navbar() {
     };
 
     return (
-        <AppBar sx={{ backgroundColor: '#398870'}}>
+        <AppBar sx={{ backgroundColor: '#398870' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography
                         variant="h6"
                         noWrap
@@ -94,7 +93,6 @@ export default function Navbar() {
                             ))}
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
                         noWrap
@@ -103,6 +101,7 @@ export default function Navbar() {
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
+                            justifyContent: 'center',
                             flexGrow: 1,
                             fontFamily: 'monospace',
                             fontWeight: 700,
@@ -113,31 +112,114 @@ export default function Navbar() {
                     >
                         PARABELO
                     </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    <Box
+                        sx={{
+                            flexGrow: 1,
+                            display: {
+                                xs: 'flex',
+                                md: 'none'
+                            },
+                            justifyContent: 'flex-end'
+                        }}>
+                        <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleOpenNavMenu}
+                            color="inherit"
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorElNav}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                            }}
+                            open={Boolean(anchorElNav)}
+                            onClose={handleCloseNavMenu}
+                            sx={{
+                                display: { xs: 'block', md: 'none' },
+                            }}
+                        >
+                            <MenuItem
+                                key="0"
+                                onClick={handleCloseNavMenu}>
+                                <Typography
+                                    textAlign="center"
+                                    onClick={logIn}>
+                                    Log In
+                                </Typography>
+                            </MenuItem>
+                            <MenuItem
+                                key="1"
+                                onClick={handleCloseNavMenu}>
+                                <Typography
+                                    textAlign="center"
+                                    onClick={signUp}>
+                                    Sign Up
+                                </Typography>
+                            </MenuItem>
+                        </Menu>
+                    </Box>
+                    <Box
+                        sx={{
+                            flexGrow: 1,
+                            display: {
+                                xs: 'none',
+                                md: 'flex'
+                            }
+                        }}>
                         {pages.map((page) => (
                             <Button
                                 key={page[1]}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                sx={{
+                                    my: 2,
+                                    color: 'white',
+                                    display: 'block'
+                                }}
                             >
-                                <Link to={`/${page[1]}`} style={{ textDecoration: 'none', color: "white" }}>
+                                <Link
+                                    to={`/${page[1]}`}
+                                    style={{
+                                        textDecoration: 'none',
+                                        color: "white"
+                                    }}>
                                     {page[0]}
                                 </Link>
                             </Button>
                         ))}
                     </Box>
 
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Button variant="text" size="large" onClick={logIn} color="inherit">
+                    <Box
+                        sx={{
+                            flexGrow: 0,
+                            display: {
+                                xs: 'none',
+                                md: 'flex'
+                            }
+                        }}>
+                        <Button
+                            variant="text"
+                            size="large"
+                            onClick={logIn}
+                            color="inherit"
+                            sx={{ mr: 2 }}>
                             Log In
                         </Button>
-                    </Box>
-
-                    <Box sx={{ marginLeft: 2, flexGrow: 0 }}>
-                        <Button variant="contained" 
-                        size="large" 
-                        onClick={signUp}
-                        color="secondary"
+                        <Button
+                            variant="contained"
+                            size="large"
+                            onClick={signUp}
+                            color="secondary"
                         >
                             Get Started!
                         </Button>
