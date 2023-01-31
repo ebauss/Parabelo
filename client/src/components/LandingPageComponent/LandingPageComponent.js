@@ -30,7 +30,10 @@ export default function LandingPageComponent() {
                     component="img"
                     src={landingPageHero}
                     sx={{
-                        height: 700
+                        height: {
+                            xs: 300,
+                            sm: 700
+                        }
                     }}
                 />
                 <Box sx={{
@@ -40,7 +43,10 @@ export default function LandingPageComponent() {
                         variant="h3"
                         sx={{
                             color: 'white',
-                            width: 500,
+                            width: {
+                                xs: 200,
+                                sm: 500
+                            },
                         }} >
                         Unlock the Power of Parabelo
                     </Typography>
@@ -49,7 +55,10 @@ export default function LandingPageComponent() {
                         variant="h6"
                         sx={{
                             color: 'white',
-                            width: 500
+                            width: {
+                                xs: 200,
+                                sm: 500
+                            }
                         }}>
                         Create unique content quickly and easily! Generate high-quality text tailored to your needs with our powerful AI technology. Save time and money with automated generation of content for marketing, SEO, and more. Get started now!
                     </Typography>
@@ -254,7 +263,10 @@ export default function LandingPageComponent() {
             >
                 <Box
                     sx={{
-                        width: 500
+                        width: {
+                            xs: 200,
+                            sm: 500
+                        }
                     }}
                 >
                     <Typography
