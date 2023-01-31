@@ -5,7 +5,6 @@ import landingPageHero from '../../assets/happy-landing-page-hero-no-background.
 import { Paper, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import { red } from '@mui/material/colors';
 
 export default function LandingPageComponent() {
     const { loginWithRedirect } = useAuth0();
