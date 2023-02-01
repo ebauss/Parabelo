@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.b6d3f23d.css",
-    "main.js": "/static/js/main.bd2c34f4.js",
+    "main.js": "/static/js/main.71a7b2bf.js",
     "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
     "static/media/happy-landing-page-hero-no-background.png": "/static/media/happy-landing-page-hero-no-background.93fd0b71c605cb231d07.png",
     "index.html": "/index.html",
     "main.b6d3f23d.css.map": "/static/css/main.b6d3f23d.css.map",
-    "main.bd2c34f4.js.map": "/static/js/main.bd2c34f4.js.map",
+    "main.71a7b2bf.js.map": "/static/js/main.71a7b2bf.js.map",
     "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b6d3f23d.css",
-    "static/js/main.bd2c34f4.js"
+    "static/js/main.71a7b2bf.js"
   ]
 }
