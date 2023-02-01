@@ -43,8 +43,6 @@ export default function CopyWriter() {
      * Send the prompt to the server; the server will then send the request to OpenAi.
      */
     const handleClick = async () => {
-        setLoading(true); // Starts the loading animation on the button.
-
         const apiKeyResponse = await fetch("http://localhost:8000/getOpenAIApiKey",{
             method: "Get",
             credentials: "include",
@@ -68,27 +66,39 @@ export default function CopyWriter() {
             modifiedPrompt = 'Write ad copy for ' + promptValue;
         }
 
-        console.log(modifiedPrompt);
-
         const openai = new OpenAIApi(configuration);
 
-        const aiApiResponse = await openai.createCompletion({
-            model: "text-davinci-003",
-            prompt: modifiedPrompt,
-            temperature: 0.9,
-            max_tokens: 1000,
-            top_p: 1,
-            frequency_penalty: 0,
-            presence_penalty: 0,
-        });
+        // Check if prompt follows OpenAi usage policies using the OpenAi moderation endpoint.
+        const moderationResponse = await openai.createModeration({
+            input: modifiedPrompt
+        })
 
-        const aiApiData = await aiApiResponse.data.choices[0].text;
+        // Value of either true or false.
+        const isPromptNotSafe = await moderationResponse.data.results[0].flagged;
 
-        if (aiApiData) {
-            setResultValue(aiApiData.trim());
+        if (!isPromptNotSafe) {
+            setLoading(true); // Starts the loading animation on the button.
+            
+            const aiApiResponse = await openai.createCompletion({
+                model: "text-davinci-003",
+                prompt: modifiedPrompt,
+                temperature: 0.9,
+                max_tokens: 1000,
+                top_p: 1,
+                frequency_penalty: 0,
+                presence_penalty: 0,
+            });
+    
+            const aiApiData = await aiApiResponse.data.choices[0].text;
+    
+            if (aiApiData) {
+                setResultValue(aiApiData.trim());
+            }
+    
+            setLoading(false); // Ends the loading animation on the button.
+        } else {
+            window.alert("Your prompt does not follow our usage guidelines.");
         }
-
-        setLoading(false); // Ends the loading animation on the button.
     }
 
     return (
