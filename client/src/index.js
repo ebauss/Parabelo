@@ -25,8 +25,8 @@ root.render(
             <BrowserRouter>
                 {/* TODO: Add these files to a .env so that they are secret. */}
                 <Auth0Provider
-                    domain="parabelodev.us.auth0.com"
-                    clientId="K4k4iNdge0leB643mx5ZOgxxQxhbAkfV"
+                    domain="dev-qw5gqp8rnisenpl3.us.auth0.com"
+                    clientId="bukP5d3CKsrkfxfKlaWYN5AtifcCi522"
                     redirectUri={window.location.origin + "/app/"}
                 >
                     <App />
