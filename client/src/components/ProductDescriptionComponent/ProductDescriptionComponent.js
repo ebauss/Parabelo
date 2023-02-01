@@ -111,7 +111,7 @@ export default function ProductDescriptionComponent() {
             <br />
             <div>
                 <TextField id="outlined-basic"
-                    label="What product description would you like me to write for you?"
+                    label="What is your product?"
                     variant="outlined"
                     fullWidth
                     onChange={handlePromptChange}

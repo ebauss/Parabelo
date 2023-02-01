@@ -110,7 +110,7 @@ export default function CopyWriter() {
             <br/>
             <div>
                 <TextField id="outlined-basic"
-                           label="What ad would you like me to write for you?"
+                           label="What do you want your ad to be about?"
                            variant="outlined"
                            fullWidth
                            onChange={handlePromptChange}

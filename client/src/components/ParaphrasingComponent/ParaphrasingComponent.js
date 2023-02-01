@@ -119,7 +119,7 @@ export default function ParaphrasingComponent() {
                 <TextField id="outlined-basic"
                     multiline
                     rows={20}
-                    label="What do you want me to paraphrase?"
+                    label="What would you like to have rephrased?"
                     variant="outlined"
                     fullWidth
                     onChange={handleChange}

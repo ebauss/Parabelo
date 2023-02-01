@@ -78,7 +78,7 @@ export default function EmailMarketingComponent() {
 
         if (!isPromptNotSafe) {
             setLoading(true); // Starts the loading animation on the button.
-            
+
             const aiApiResponse = await openai.createCompletion({
                 model: "text-davinci-003",
                 prompt: modifiedPrompt,
@@ -110,7 +110,7 @@ export default function EmailMarketingComponent() {
             <br/>
             <div>
                 <TextField id="outlined-basic"
-                           label="What marketing email would you like me to write for you?"
+                           label="What do you want your email to be about?"
                            variant="outlined"
                            fullWidth
                            onChange={handlePromptChange}
