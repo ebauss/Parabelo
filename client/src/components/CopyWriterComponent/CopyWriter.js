@@ -43,7 +43,7 @@ export default function CopyWriter() {
      * Send the prompt to the server; the server will then send the request to OpenAi.
      */
     const handleClick = async () => {
-        const apiKeyResponse = await fetch("http://localhost:8000/getOpenAIApiKey",{
+        const apiKeyResponse = await fetch("https://parabelo.herokuapp.com/getOpenAIApiKey",{
             method: "Get",
             credentials: "include",
             headers: {
