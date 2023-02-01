@@ -4,7 +4,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
 import Typography from "@mui/material/Typography";
 
-const {Configuration, OpenAIApi} = require("openai");
+const { Configuration, OpenAIApi } = require("openai");
 
 export default function ProductDescriptionComponent() {
     /* Stores the string entered in the prompt text field. */
@@ -43,9 +43,7 @@ export default function ProductDescriptionComponent() {
      * Send the prompt to the server; the server will then send the request to OpenAi.
      */
     const handleClick = async () => {
-        setLoading(true); // Starts the loading animation on the button.
-
-        const apiKeyResponse = await fetch("https://parabelo.herokuapp.com/getOpenAIApiKey",{
+        const apiKeyResponse = await fetch("http://localhost:8000/getOpenAIApiKey", {
             method: "Get",
             credentials: "include",
             headers: {
@@ -70,54 +68,69 @@ export default function ProductDescriptionComponent() {
 
         const openai = new OpenAIApi(configuration);
 
-        const aiApiResponse = await openai.createCompletion({
-            model: "text-davinci-003",
-            prompt: modifiedPrompt,
-            temperature: 0.9,
-            max_tokens: 1000,
-            top_p: 1,
-            frequency_penalty: 0,
-            presence_penalty: 0,
-        });
+        // Check if prompt follows OpenAi usage policies using the OpenAi moderation endpoint.
+        const moderationResponse = await openai.createModeration({
+            input: modifiedPrompt
+        })
 
-        const aiApiData = await aiApiResponse.data.choices[0].text;
+        // Value of either true or false.
+        const isPromptNotSafe = await moderationResponse.data.results[0].flagged;
 
-        if (aiApiData) {
-            setResultValue(aiApiData.trim());
+        if (!isPromptNotSafe) {
+            setLoading(true); // Starts the loading animation on the button.
+
+            const aiApiResponse = await openai.createCompletion({
+                model: "text-davinci-003",
+                prompt: modifiedPrompt,
+                temperature: 0.9,
+                max_tokens: 1000,
+                top_p: 1,
+                frequency_penalty: 0,
+                presence_penalty: 0,
+            });
+
+            const aiApiData = await aiApiResponse.data.choices[0].text;
+
+            if (aiApiData) {
+                setResultValue(aiApiData.trim());
+            }
+
+            setLoading(false); // Ends the loading animation on the button.
+        } else {
+            window.alert("Your prompt does not follow our usage guidelines.");
         }
 
-        setLoading(false); // Ends the loading animation on the button.
     }
 
     return (
         <div>
-            <br/>
+            <br />
             <Typography variant="h5" gutterBottom>
                 Product Description Writer
             </Typography>
-            <br/>
+            <br />
             <div>
                 <TextField id="outlined-basic"
-                           label="What product description would you like me to write for you?"
-                           variant="outlined"
-                           fullWidth
-                           onChange={handlePromptChange}
-                           sx={{width: 600}}
+                    label="What is your product?"
+                    variant="outlined"
+                    fullWidth
+                    onChange={handlePromptChange}
+                    sx={{ width: 600 }}
                 />
             </div>
-            <br/>
+            <br />
             <div>
                 <TextField id="outlined-basic"
-                           label='Things to mention (Separate entries with a ",")'
-                           variant="outlined"
-                           multiline
-                           rows={4}
-                           fullWidth
-                           onChange={handleThingsToMentionChange}
-                           sx={{width: 600}}
+                    label='Things to mention (Separate entries with a ",")'
+                    variant="outlined"
+                    multiline
+                    rows={4}
+                    fullWidth
+                    onChange={handleThingsToMentionChange}
+                    sx={{ width: 600 }}
                 />
             </div>
-            <br/>
+            <br />
             <div>
                 <LoadingButton
                     size="small"
@@ -130,7 +143,7 @@ export default function ProductDescriptionComponent() {
                     Go
                 </LoadingButton>
             </div>
-            <br/>
+            <br />
             <TextField
                 id="outlined-multiline-static"
                 label="Result"
@@ -138,8 +151,8 @@ export default function ProductDescriptionComponent() {
                 rows={20}
                 placeholder="Your blog will appear here."
                 value={resultValue}
-                sx={{width: 600}}
-                InputLabelProps={{shrink: true}}
+                sx={{ width: 600 }}
+                InputLabelProps={{ shrink: true }}
                 InputProps={{
                     readOnly: true,
                 }}

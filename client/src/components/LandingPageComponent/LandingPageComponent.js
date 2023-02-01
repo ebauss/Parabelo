@@ -1,10 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { useAuth0 } from "@auth0/auth0-react";
-import landingPageHero from '../../assets/landing-page-hero.png';
-import { Typography } from '@mui/material';
+import landingPageHero from '../../assets/happy-landing-page-hero-no-background.png';
+import { Paper, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 
 export default function LandingPageComponent() {
@@ -13,26 +12,28 @@ export default function LandingPageComponent() {
 
     return (
         <div>
-            <br />
-            <br />
-            <br />
             {/* Start of hero banner section. */}
-            <Box sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-evenly',
-                flexWrap: 'wrap-reverse',
-                alignItems: 'center',
-                backgroundColor: '#07767f',
-                paddingLeft: 10,
-                paddingRight: 10,
-                paddingTop: 5
-            }}>
+            <Box
+                bgcolor="primary.main"
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-evenly',
+                    flexWrap: 'wrap-reverse',
+                    alignItems: 'center',
+                    paddingLeft: 10,
+                    paddingRight: 10,
+                    paddingTop: 5,
+                    marginTop: 7
+                }}>
                 <Box
                     component="img"
                     src={landingPageHero}
                     sx={{
-                        height: 700
+                        height: {
+                            xs: 300,
+                            sm: 700
+                        }
                     }}
                 />
                 <Box sx={{
@@ -42,7 +43,10 @@ export default function LandingPageComponent() {
                         variant="h3"
                         sx={{
                             color: 'white',
-                            width: 500,
+                            width: {
+                                xs: 200,
+                                sm: 500
+                            },
                         }} >
                         Unlock the Power of Parabelo
                     </Typography>
@@ -51,7 +55,10 @@ export default function LandingPageComponent() {
                         variant="h6"
                         sx={{
                             color: 'white',
-                            width: 500
+                            width: {
+                                xs: 200,
+                                sm: 500
+                            }
                         }}>
                         Create unique content quickly and easily! Generate high-quality text tailored to your needs with our powerful AI technology. Save time and money with automated generation of content for marketing, SEO, and more. Get started now!
                     </Typography>
@@ -59,9 +66,7 @@ export default function LandingPageComponent() {
                     <Button variant="contained"
                         size="large"
                         onClick={signUp}
-                        sx={{
-                            backgroundColor: '#ff5c4c'
-                        }}
+                        color="secondary"
                     >
                         Try Now!
                     </Button>
@@ -80,7 +85,11 @@ export default function LandingPageComponent() {
                 <br />
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Card variant="outlined">
+                        <Paper elevation={3} sx={{
+                            "&:hover": {
+                                transform: "scale3d(1.05, 1.05, 1.05)",
+                            }
+                        }}>
                             <br />
                             <Typography variant="h5"
                                 sx={{
@@ -100,10 +109,14 @@ export default function LandingPageComponent() {
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             </Typography>
                             <br />
-                        </Card>
+                        </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Card variant="outlined">
+                        <Paper elevation={3} sx={{
+                            "&:hover": {
+                                transform: "scale3d(1.05, 1.05, 1.05)",
+                            }
+                        }}>
                             <br />
                             <Typography variant="h5"
                                 sx={{
@@ -123,10 +136,14 @@ export default function LandingPageComponent() {
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             </Typography>
                             <br />
-                        </Card>
+                        </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Card variant="outlined">
+                        <Paper elevation={3} sx={{
+                            "&:hover": {
+                                transform: "scale3d(1.05, 1.05, 1.05)",
+                            }
+                        }}>
                             <br />
                             <Typography variant="h5"
                                 sx={{
@@ -146,10 +163,14 @@ export default function LandingPageComponent() {
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             </Typography>
                             <br />
-                        </Card>
+                        </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Card variant="outlined">
+                        <Paper elevation={3} sx={{
+                            "&:hover": {
+                                transform: "scale3d(1.05, 1.05, 1.05)",
+                            }
+                        }}>
                             <br />
                             <Typography variant="h5"
                                 sx={{
@@ -169,10 +190,14 @@ export default function LandingPageComponent() {
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             </Typography>
                             <br />
-                        </Card>
+                        </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Card variant="outlined">
+                        <Paper elevation={3} sx={{
+                            "&:hover": {
+                                transform: "scale3d(1.05, 1.05, 1.05)",
+                            }
+                        }}>
                             <br />
                             <Typography variant="h5"
                                 sx={{
@@ -192,10 +217,14 @@ export default function LandingPageComponent() {
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             </Typography>
                             <br />
-                        </Card>
+                        </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Card variant="outlined">
+                        <Paper elevation={3} sx={{
+                            "&:hover": {
+                                transform: "scale3d(1.05, 1.05, 1.05)",
+                            }
+                        }}>
                             <br />
                             <Typography variant="h5"
                                 sx={{
@@ -215,7 +244,7 @@ export default function LandingPageComponent() {
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             </Typography>
                             <br />
-                        </Card>
+                        </Paper>
                     </Grid>
                 </Grid>
             </Box>
@@ -234,7 +263,10 @@ export default function LandingPageComponent() {
             >
                 <Box
                     sx={{
-                        width: 500
+                        width: {
+                            xs: 200,
+                            sm: 500
+                        }
                     }}
                 >
                     <Typography
@@ -252,9 +284,7 @@ export default function LandingPageComponent() {
                     <Button variant="contained"
                         size="large"
                         onClick={signUp}
-                        sx={{
-                            backgroundColor: '#ff5c4c'
-                        }}
+                        color="secondary"
                     >
                         Get Started Now!
                     </Button>

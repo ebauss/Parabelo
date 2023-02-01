@@ -5,19 +5,34 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: "#398870"
+        },
+        secondary: {
+            main: "#ec6226"
+        }
+    }
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <Auth0Provider
-                domain="dev-qw5gqp8rnisenpl3.us.auth0.com"
-                clientId="bukP5d3CKsrkfxfKlaWYN5AtifcCi522"
-                redirectUri={window.location.origin + "/app/"}
-            >
-                <App />
-            </Auth0Provider>
-        </BrowserRouter>
+        <ThemeProvider theme={theme}>
+            <BrowserRouter>
+                {/* TODO: Add these files to a .env so that they are secret. */}
+                <Auth0Provider
+                    domain="parabelodev.us.auth0.com"
+                    clientId="K4k4iNdge0leB643mx5ZOgxxQxhbAkfV"
+                    redirectUri={window.location.origin + "/app/"}
+                >
+                    <App />
+                </Auth0Provider>
+            </BrowserRouter>
+        </ThemeProvider>
     </React.StrictMode>
 );
 

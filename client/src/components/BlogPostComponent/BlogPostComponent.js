@@ -10,6 +10,9 @@ export default function BlogPostComponent() {
     /* Stores the string entered in the prompt text field. */
     const [promptValue, setPromptValue] = React.useState('');
 
+    /* Stores the string stored in the things to mention text field. */
+    const [keywordsValue, setKeywordsValue] = React.useState('');
+
     /* Stores the result string obtained from OpenAi. */
     const [resultValue, setResultValue] = React.useState('');
 
@@ -17,12 +20,21 @@ export default function BlogPostComponent() {
     const [loading, setLoading] = React.useState(false);
 
     /**
-     * Handles the text changes in the text box.
+     * Handles the text changes in the prompt text box.
      *
      * @param event contains data of the event
      */
-    const handleChange = (event) => {
+    const handlePromptChange = (event) => {
         setPromptValue(event.target.value);
+    }
+
+    /**
+     * Handles the text changes in the things to mention text box.
+     *
+     * @param event
+     */
+    const handleThingsToMentionChange = (event) => {
+        setKeywordsValue(event.target.value);
     }
 
     /**
@@ -31,9 +43,7 @@ export default function BlogPostComponent() {
      * Send the prompt to the server; the server will then send the request to OpenAi.
      */
     const handleClick = async () => {
-        setLoading(true); // Starts the loading animation on the button.
-
-        const apiKeyResponse = await fetch("https://parabelo.herokuapp.com/getOpenAIApiKey",{
+        const apiKeyResponse = await fetch("http://localhost:8000/getOpenAIApiKey",{
             method: "Get",
             credentials: "include",
             headers: {
@@ -47,27 +57,48 @@ export default function BlogPostComponent() {
             apiKey: apiKeyData,
         });
 
-        const modifiedPrompt = 'Write a super long blog post about ' + promptValue;
+        let modifiedPrompt;
+
+        // TODO change this into a switch of some sort. Like and if statement chain with string concatenation.
+        if (keywordsValue) {
+            modifiedPrompt = 'Write a super long blog post about ' + promptValue + '. ' + 'Add the following keywords: ' + keywordsValue;
+        } else {
+            modifiedPrompt = 'Write a super long blog post about ' + promptValue;
+        }
 
         const openai = new OpenAIApi(configuration);
 
-        const aiApiResponse = await openai.createCompletion({
-            model: "text-davinci-003",
-            prompt: modifiedPrompt,
-            temperature: 0.9,
-            max_tokens: 3000,
-            top_p: 1,
-            frequency_penalty: 0,
-            presence_penalty: 0,
-        });
+        // Check if prompt follows OpenAi usage policies using the OpenAi moderation endpoint.
+        const moderationResponse = await openai.createModeration({
+            input: modifiedPrompt
+        })
 
-        const aiApiData = await aiApiResponse.data.choices[0].text;
+        // Value of either true or false.
+        const isPromptNotSafe = await moderationResponse.data.results[0].flagged;
 
-        if (aiApiData) {
-            setResultValue(aiApiData.trim());
+        if (!isPromptNotSafe) {
+            setLoading(true); // Starts the loading animation on the button.
+
+            const aiApiResponse = await openai.createCompletion({
+                model: "text-davinci-003",
+                prompt: modifiedPrompt,
+                temperature: 0.9,
+                max_tokens: 3000,
+                top_p: 1,
+                frequency_penalty: 0,
+                presence_penalty: 0,
+            });
+    
+            const aiApiData = await aiApiResponse.data.choices[0].text;
+    
+            if (aiApiData) {
+                setResultValue(aiApiData.trim());
+            }
+    
+            setLoading(false); // Ends the loading animation on the button.
+        } else {
+            window.alert("Your prompt does not follow our usage guidelines.");
         }
-
-        setLoading(false); // Ends the loading animation on the button.
     }
 
     return (
@@ -79,11 +110,23 @@ export default function BlogPostComponent() {
             <br/>
             <div>
                 <TextField id="outlined-basic"
-                           label="What blog would you like me to write for you?"
+                           label="What topic would you like to be written about in a blog?"
                            placeholder="Example: How to learn how to code"
                            variant="outlined"
                            fullWidth
-                           onChange={handleChange}
+                           onChange={handlePromptChange}
+                           sx={{width: 600}}
+                />
+            </div>
+            <br/>
+            <div>
+                <TextField id="outlined-basic"
+                           label='Keywords to add (Separate entries with a ",")'
+                           variant="outlined"
+                           multiline
+                           rows={4}
+                           fullWidth
+                           onChange={handleThingsToMentionChange}
                            sx={{width: 600}}
                 />
             </div>

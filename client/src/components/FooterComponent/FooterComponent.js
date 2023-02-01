@@ -6,11 +6,11 @@ import { Typography } from '@mui/material';
 export default function FooterComponent() {
     return (
         <Box
+            bgcolor="primary.main"
             sx={{
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'space-around',
-                backgroundColor: '#07767f',
                 paddingTop: 2,
                 paddingBottom: 2
             }}
