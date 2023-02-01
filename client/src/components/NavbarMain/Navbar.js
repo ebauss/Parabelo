@@ -90,6 +90,24 @@ export default function Navbar() {
                                     </Typography>
                                 </MenuItem>
                             ))}
+                            <MenuItem
+                                key="0"
+                                onClick={handleCloseNavMenu}>
+                                <Typography
+                                    textAlign="center"
+                                    onClick={logIn}>
+                                    Log In
+                                </Typography>
+                            </MenuItem>
+                            <MenuItem
+                                key="1"
+                                onClick={handleCloseNavMenu}>
+                                <Typography
+                                    textAlign="center"
+                                    onClick={signUp}>
+                                    Sign Up
+                                </Typography>
+                            </MenuItem>
                         </Menu>
                     </Box>
                     <Typography
@@ -122,51 +140,8 @@ export default function Navbar() {
                         }}>
                         <IconButton
                             size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: { xs: 'block', md: 'none' },
-                            }}
-                        >
-                            <MenuItem
-                                key="0"
-                                onClick={handleCloseNavMenu}>
-                                <Typography
-                                    textAlign="center"
-                                    onClick={logIn}>
-                                    Log In
-                                </Typography>
-                            </MenuItem>
-                            <MenuItem
-                                key="1"
-                                onClick={handleCloseNavMenu}>
-                                <Typography
-                                    textAlign="center"
-                                    onClick={signUp}>
-                                    Sign Up
-                                </Typography>
-                            </MenuItem>
-                        </Menu>
+                            color="primary"
+                        ></IconButton>
                     </Box>
                     <Box
                         sx={{
