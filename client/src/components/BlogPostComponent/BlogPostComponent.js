@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 
 const {Configuration, OpenAIApi} = require("openai");
 
-export default function BlogPostComponent() {
+export default function BlogPostComponent(props) {
     /* Stores the string entered in the prompt text field. */
     const [promptValue, setPromptValue] = React.useState('');
 
@@ -35,6 +35,35 @@ export default function BlogPostComponent() {
      */
     const handleThingsToMentionChange = (event) => {
         setKeywordsValue(event.target.value);
+    }
+
+    /**
+     * saves the result to the database.
+     */
+    const saveToDatabase = async () => {
+        // for the id, use props.userDetails.sub.
+        const response = await fetch("http://localhost:8000/saveBlogPostToDb", {
+            method: "Post",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                type: "BlogPost",
+                owner: props.userDetails.sub,
+                prompt: promptValue,
+                keywords: keywordsValue,
+                result: resultValue
+            })
+        })
+
+        const data = await response.text();
+
+        if (data) {
+            console.log("Result was successfully stored in the database.");
+        } else {
+            console.log("Result failed to store into the database.");
+        }
     }
 
     /**
@@ -96,6 +125,8 @@ export default function BlogPostComponent() {
             }
     
             setLoading(false); // Ends the loading animation on the button.
+
+            saveToDatabase();
         } else {
             window.alert("Your prompt does not follow our usage guidelines.");
         }

@@ -29,11 +29,11 @@ export default function WebApplication() {
             <div>
                 <NavbarWebApp></NavbarWebApp>
                 <Routes>
-                    <Route path="/blogpost" element={<BlogPostComponent />} />
-                    <Route path="/copyWriter" element={<CopyWriter />} />
-                    <Route path="/emailMarketingWriter" element={<EmailMarketingComponent />} />
+                    <Route path="/blogpost" element={<BlogPostComponent userDetails={user} />} />
+                    <Route path="/copyWriter" element={<CopyWriter userDetails={user} />} />
+                    <Route path="/emailMarketingWriter" element={<EmailMarketingComponent userDetails={user} />} />
                     <Route path="/paraphrasing" element={<ParaphrasingComponent userDetails={user} />} />
-                    <Route path="/productDescriptionWriter" element={<ProductDescriptionComponent />} />
+                    <Route path="/productDescriptionWriter" element={<ProductDescriptionComponent userDetails={user} />} />
                     <Route path="/" element={<AppMainPageComponent />} />
                 </Routes>
             </div>

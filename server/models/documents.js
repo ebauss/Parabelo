@@ -7,7 +7,7 @@ const documentSchema = new Schema({
     owner: String, // This is the id that "owns" this document. Use this like a foreign key
     prompt: String,
     thingsToMention: String,
-    contents: String,
+    result: String,
     writingStyle: String,
     tone: String,
     keywords: String

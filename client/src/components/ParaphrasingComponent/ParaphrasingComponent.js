@@ -67,7 +67,7 @@ export default function ParaphrasingComponent(props) {
                 prompt: promptValue,
                 writingStyle: styleValue,
                 tone: toneValue,
-                contents: resultValue
+                result: resultValue
             })
         })
 

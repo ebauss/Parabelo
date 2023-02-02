@@ -18,14 +18,29 @@ router.post('/saveParaphrasingToDb', (req, res) => {
         prompt: req.body.prompt,
         writingStyle: req.body.writingStyle,
         tone: req.body.tone,
-        contents: req.body.contents
+        result: req.body.result
     }, (err, data) => {
         if (err) {
             console.log(err);
             res.send(false);
         }
 
-        console.log(data);
+        res.send(data);
+    })
+})
+
+router.post('/saveBlogPostToDb', (req, res) => {
+    documents.create({
+        type: req.body.type,
+        owner: req.body.owner,
+        prompt: req.body.prompt,
+        keywords: req.body.keywords,
+        result: req.body.result
+    }, (err, data) => {
+        if (err) {
+            console.log(err);
+            res.send(false);
+        }
 
         res.send(data);
     })
