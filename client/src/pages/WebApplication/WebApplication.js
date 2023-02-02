@@ -26,7 +26,7 @@ export default function WebApplication() {
 
     if (isAuthenticated) {
         console.log(user.name); // user name. This must be put inside isAuthenticated condition.
-        console.log(user.sub); // This is how you get the user id.
+        console.log(user.sub); // This is how you get the user id. Delete this if you don't need it anymore.
 
         return (
             <div>
