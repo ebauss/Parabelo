@@ -53,7 +53,7 @@ export default function ParaphrasingComponent(props) {
     /**
      * saves the result to the database.
      */
-    const saveToDatabase = async () => {
+    const saveToDatabase = async (result) => {
         // for the id, use props.userDetails.sub.
         const response = await fetch("http://localhost:8000/saveParaphrasingToDb", {
             method: "Post",
@@ -67,7 +67,7 @@ export default function ParaphrasingComponent(props) {
                 prompt: promptValue,
                 writingStyle: styleValue,
                 tone: toneValue,
-                result: resultValue
+                result: result
             })
         })
 
@@ -130,11 +130,10 @@ export default function ParaphrasingComponent(props) {
 
             if (aiApiData) {
                 setResultValue(aiApiData.trim());
+                saveToDatabase(aiApiData.trim());
             }
 
             setLoading(false); // Ends the loading animation on the button.
-
-            saveToDatabase();
         } else {
             window.alert("Your prompt does not follow our usage guidelines.");
         }

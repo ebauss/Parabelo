@@ -40,7 +40,7 @@ export default function BlogPostComponent(props) {
     /**
      * saves the result to the database.
      */
-    const saveToDatabase = async () => {
+    const saveToDatabase = async (result) => {
         // for the id, use props.userDetails.sub.
         const response = await fetch("http://localhost:8000/saveBlogPostToDb", {
             method: "Post",
@@ -53,7 +53,7 @@ export default function BlogPostComponent(props) {
                 owner: props.userDetails.sub,
                 prompt: promptValue,
                 keywords: keywordsValue,
-                result: resultValue
+                result: result
             })
         })
 
@@ -122,11 +122,10 @@ export default function BlogPostComponent(props) {
     
             if (aiApiData) {
                 setResultValue(aiApiData.trim());
+                saveToDatabase(aiApiData.trim());
             }
     
             setLoading(false); // Ends the loading animation on the button.
-
-            saveToDatabase();
         } else {
             window.alert("Your prompt does not follow our usage guidelines.");
         }
