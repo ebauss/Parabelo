@@ -11,4 +11,24 @@ router.get('/getOpenAIApiKey', (req, res) => {
     res.send(process.env.OPENAI_API_KEY);
 })
 
+router.post('/saveParaphrasingToDb', (req, res) => {
+    documents.create({
+        type: req.body.type,
+        owner: req.body.owner,
+        prompt: req.body.prompt,
+        writingStyle: req.body.writingStyle,
+        tone: req.body.tone,
+        contents: req.body.contents
+    }, (err, data) => {
+        if (err) {
+            console.log(err);
+            res.send(false);
+        }
+
+        console.log(data);
+
+        res.send(data);
+    })
+})
+
 module.exports = router;

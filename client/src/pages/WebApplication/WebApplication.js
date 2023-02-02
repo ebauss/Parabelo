@@ -25,9 +25,6 @@ export default function WebApplication() {
     }
 
     if (isAuthenticated) {
-        console.log(user.name); // user name. This must be put inside isAuthenticated condition.
-        console.log(user.sub); // This is how you get the user id. Delete this if you don't need it anymore.
-
         return (
             <div>
                 <NavbarWebApp></NavbarWebApp>
@@ -35,7 +32,7 @@ export default function WebApplication() {
                     <Route path="/blogpost" element={<BlogPostComponent />} />
                     <Route path="/copyWriter" element={<CopyWriter />} />
                     <Route path="/emailMarketingWriter" element={<EmailMarketingComponent />} />
-                    <Route path="/paraphrasing" element={<ParaphrasingComponent />} />
+                    <Route path="/paraphrasing" element={<ParaphrasingComponent userDetails={user} />} />
                     <Route path="/productDescriptionWriter" element={<ProductDescriptionComponent />} />
                     <Route path="/" element={<AppMainPageComponent />} />
                 </Routes>

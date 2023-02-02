@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 
 const { Configuration, OpenAIApi } = require("openai");
 
-export default function ParaphrasingComponent() {
+export default function ParaphrasingComponent(props) {
     /* Stores the string entered in the prompt text field. */
     const [promptValue, setPromptValue] = React.useState('');
 
@@ -48,6 +48,36 @@ export default function ParaphrasingComponent() {
      */
     const handleToneButtonGroupChange = (event) => {
         setToneValue(event.target.value);
+    }
+
+    /**
+     * saves the result to the database.
+     */
+    const saveToDatabase = async () => {
+        // for the id, use props.userDetails.sub.
+        const response = await fetch("http://localhost:8000/saveParaphrasingToDb", {
+            method: "Post",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                type: "Paraphrasing",
+                owner: props.userDetails.sub,
+                prompt: promptValue,
+                writingStyle: styleValue,
+                tone: toneValue,
+                contents: resultValue
+            })
+        })
+
+        const data = await response.text();
+
+        if (data) {
+            console.log("Result was successfully stored in the database.");
+        } else {
+            console.log("Result failed to store into the database.");
+        }
     }
 
     /**
@@ -103,6 +133,8 @@ export default function ParaphrasingComponent() {
             }
 
             setLoading(false); // Ends the loading animation on the button.
+
+            saveToDatabase();
         } else {
             window.alert("Your prompt does not follow our usage guidelines.");
         }
