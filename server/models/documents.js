@@ -9,7 +9,8 @@ const documentSchema = new Schema({
     thingsToMention: String,
     contents: String,
     writingStyle: String,
-    tone: String
+    tone: String,
+    keywords: String
 })
 
 const documentModel = mongoose.model("documents", documentSchema);
