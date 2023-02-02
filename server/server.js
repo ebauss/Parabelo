@@ -5,6 +5,7 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const routes = require('./routes/api');
+const mongoose = require('mongoose');
 // const mongoDBConnection = require('./database/connection');
 /* ------------------------------------ */
 
@@ -21,6 +22,22 @@ app.use(cors({
     credentials: true,
     origin: "http://localhost:3000"
 }));
+
+// Connect to the database
+mongoose
+    .connect(process.env.ATLAS_URI, {
+        useNewUrlParser: true
+    })
+    .then(() => console.log(`Database connected successfully`))
+    .catch((err) => console.log(err));
+
+// DeprecationWarning: Mongoose: the `strictQuery` option will be switched back to `false` 
+// by default in Mongoose 7. Use `mongoose.set('strictQuery', false);` if you want to prepare 
+// for this change. Or use `mongoose.set('strictQuery', true);` to suppress this warning.
+mongoose.set('strictQuery', false);
+
+// Since mongoose's Promise is deprecated, we override it with Node's Promise
+mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
 
