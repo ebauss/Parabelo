@@ -63,4 +63,21 @@ router.post('/saveCopyWritingToDb', (req, res) => {
     })
 })
 
+router.post('/saveProductDescriptionToDb', (req, res) => {
+    documents.create({
+        type: req.body.type,
+        owner: req.body.owner,
+        prompt: req.body.prompt,
+        thingsToMention: req.body.thingsToMention,
+        result: req.body.result
+    }, (err, data) => {
+        if (err) {
+            console.log(err);
+            res.send(false);
+        }
+
+        res.send(data);
+    })
+})
+
 module.exports = router;
