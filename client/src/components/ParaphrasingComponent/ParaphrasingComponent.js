@@ -100,8 +100,7 @@ export default function ParaphrasingComponent(props) {
             apiKey: apiKeyData,
         });
 
-        const modifiedPrompt = 'Rewrite the following in a ' + styleValue +
-            ' writing style and in a ' + toneValue + ' tone of voice: ' + promptValue;
+        const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it.";
 
         const openai = new OpenAIApi(configuration);
 
@@ -119,8 +118,8 @@ export default function ParaphrasingComponent(props) {
             const aiApiResponse = await openai.createCompletion({
                 model: "text-davinci-003",
                 prompt: modifiedPrompt,
-                temperature: 0.9,
-                max_tokens: 3000,
+                temperature: 0.76,
+                max_tokens: 3500,
                 top_p: 1,
                 frequency_penalty: 0,
                 presence_penalty: 0,
@@ -149,7 +148,7 @@ export default function ParaphrasingComponent(props) {
             <div>
                 <TextField id="outlined-basic"
                     multiline
-                    rows={20}
+                    rows={10}
                     label="What would you like to have rephrased?"
                     variant="outlined"
                     fullWidth
@@ -211,7 +210,7 @@ export default function ParaphrasingComponent(props) {
                 id="outlined-multiline-static"
                 label="Result"
                 multiline
-                rows={20}
+                rows={10}
                 placeholder="Your text will appear here"
                 value={resultValue}
                 sx={{ width: 600 }}
