@@ -42,7 +42,7 @@ export default function CopyWriter(props) {
      */
     const saveToDatabase = async (result) => {
         // for the id, use props.userDetails.sub.
-        const response = await fetch("http://localhost:8000/saveParaphrasingToDb", {
+        const response = await fetch("http://localhost:8000/saveCopyWritingToDb", {
             method: "Post",
             credentials: "include",
             headers: {
