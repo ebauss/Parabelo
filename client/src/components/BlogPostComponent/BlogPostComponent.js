@@ -49,7 +49,7 @@ export default function BlogPostComponent(props) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                type: "BlogPost",
+                type: "Blog Post",
                 owner: props.userDetails.sub,
                 prompt: promptValue,
                 keywords: keywordsValue,
