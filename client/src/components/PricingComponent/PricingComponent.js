@@ -19,34 +19,37 @@ export default function PricingComponent() {
                         paddingTop: 2,
                         paddingBottom: 2
                     }}>
-                        <Typography variant="h5">
+                        <Typography variant="h4"
+                            sx={{
+                                fontWeight: 'bold'
+                            }}>
                             Basic
                         </Typography>
                         <br />
                         <Box
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            justifyContent: 'center'
-                        }}
-                        >
-                            <Typography variant="h2">
-                                $9.99
-                            </Typography>
-                            <Box
                             sx={{
                                 display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'flex-start',
-                                justifyContent:'center',
-                                marginLeft: 1
-                            }}>
-                            <Typography variant="h6" sx={{ lineHeight: 1 }}>
-                                Per
+                                flexDirection: 'row',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            <Typography variant="h2" sx={{ fontWeight: 'bold' }}>
+                                CA $9.99
                             </Typography>
-                            <Typography variant="h6" sx={{ lineHeight: 1 }}>
-                                Month
-                            </Typography>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'flex-start',
+                                    justifyContent: 'center',
+                                    marginLeft: 1
+                                }}>
+                                <Typography variant="h6" sx={{ lineHeight: 1 }}>
+                                    Per
+                                </Typography>
+                                <Typography variant="h6" sx={{ lineHeight: 1 }}>
+                                    Month
+                                </Typography>
                             </Box>
                         </Box>
                         <br />
