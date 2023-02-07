@@ -1,4 +1,3 @@
-import { List, ListItem, ListItemAvatar, ListItemText, Paper, Typography } from '@mui/material';
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import PricingCard from './PricingCard';
