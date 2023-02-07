@@ -15,7 +15,7 @@ export default function PricingComponent() {
                 paddingLeft: 10,
                 paddingRight: 10
             }}>
-                <Grid item xs={12} md={4}>
+                <Grid item xs={12} sm={12} md={12} lg={4}>
                     <Paper elevation={3} sx={{
                         paddingTop: 2,
                         paddingBottom: 2,
@@ -38,7 +38,7 @@ export default function PricingComponent() {
                             }}
                         >
                             <Typography variant="h2" sx={{ fontWeight: 'bold' }}>
-                                CA $9.99
+                                $9.99
                             </Typography>
                             <Box
                                 sx={{
@@ -99,7 +99,7 @@ export default function PricingComponent() {
                         </Box>
                     </Paper>
                 </Grid>
-                <Grid item xs={12} md={4}>
+                <Grid item xs={12} sm={12} md={12} lg={4}>
                     <Paper elevation={3} sx={{
                         paddingTop: 2,
                         paddingBottom: 2,
@@ -122,7 +122,7 @@ export default function PricingComponent() {
                             }}
                         >
                             <Typography variant="h2" sx={{ fontWeight: 'bold' }}>
-                                CA $29.99
+                                $29.99
                             </Typography>
                             <Box
                                 sx={{
@@ -183,7 +183,7 @@ export default function PricingComponent() {
                         </Box>
                     </Paper>
                 </Grid>
-                <Grid item xs={12} md={4}>
+                <Grid item xs={12} sm={12} md={12} lg={4}>
                     <Paper elevation={3} sx={{
                         paddingTop: 2,
                         paddingBottom: 2,
@@ -206,7 +206,7 @@ export default function PricingComponent() {
                             }}
                         >
                             <Typography variant="h2" sx={{ fontWeight: 'bold' }}>
-                                CA $49.99
+                                $49.99
                             </Typography>
                             <Box
                                 sx={{
