@@ -17,7 +17,10 @@ export default function PricingComponent() {
                 <Grid item xs={12} md={4}>
                     <Paper elevation={3} sx={{
                         paddingTop: 2,
-                        paddingBottom: 2
+                        paddingBottom: 2,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center'
                     }}>
                         <Typography variant="h4"
                             sx={{
@@ -60,24 +63,75 @@ export default function PricingComponent() {
                         >
                             Subscribe
                         </Button>
+                        <br />
+                        <br />
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'flex-start',
+                                width: 200
+                            }}
+                        >
+                            <Typography variant="h6">
+                                This Includes:
+                            </Typography>
+                            <Typography variant="h6">
+                                Feature 1
+                            </Typography>
+                            <Typography variant="h6">
+                                Test feature
+                            </Typography>
+                            <Typography variant="h6">
+                                Some other feature
+                            </Typography>
+                            <Typography variant="h6">
+                                A random feature
+                            </Typography>
+                        </Box>
                     </Paper>
                 </Grid>
                 <Grid item xs={12} md={4}>
                     <Paper elevation={3} sx={{
                         paddingTop: 2,
-                        paddingBottom: 2
+                        paddingBottom: 2,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center'
                     }}>
-                        <Typography variant="h5">
-                            Enthusiast
+                        <Typography variant="h4"
+                            sx={{
+                                fontWeight: 'bold'
+                            }}>
+                            Plus
                         </Typography>
                         <br />
-                        <Typography variant="h2">
-                            $29.99
-                        </Typography>
-                        <br />
-                        <Typography variant="h6">
-                            Billed monthly
-                        </Typography>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            <Typography variant="h2" sx={{ fontWeight: 'bold' }}>
+                                CA $29.99
+                            </Typography>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'flex-start',
+                                    justifyContent: 'center',
+                                    marginLeft: 1
+                                }}>
+                                <Typography variant="h6" sx={{ lineHeight: 1 }}>
+                                    Per
+                                </Typography>
+                                <Typography variant="h6" sx={{ lineHeight: 1 }}>
+                                    Month
+                                </Typography>
+                            </Box>
+                        </Box>
                         <br />
                         <Button
                             variant="contained"
@@ -86,24 +140,75 @@ export default function PricingComponent() {
                         >
                             Subscribe
                         </Button>
+                        <br />
+                        <br />
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'flex-start',
+                                width: 200
+                            }}
+                        >
+                            <Typography variant="h6">
+                                This Includes:
+                            </Typography>
+                            <Typography variant="h6">
+                                Feature 1
+                            </Typography>
+                            <Typography variant="h6">
+                                Test feature
+                            </Typography>
+                            <Typography variant="h6">
+                                Some other feature
+                            </Typography>
+                            <Typography variant="h6">
+                                A random feature
+                            </Typography>
+                        </Box>
                     </Paper>
                 </Grid>
                 <Grid item xs={12} md={4}>
                     <Paper elevation={3} sx={{
                         paddingTop: 2,
-                        paddingBottom: 2
+                        paddingBottom: 2,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center'
                     }}>
-                        <Typography variant="h5">
-                            Professional
+                        <Typography variant="h4"
+                            sx={{
+                                fontWeight: 'bold'
+                            }}>
+                            Premium
                         </Typography>
                         <br />
-                        <Typography variant="h2">
-                            $49.99
-                        </Typography>
-                        <br />
-                        <Typography variant="h6">
-                            Billed monthly
-                        </Typography>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            <Typography variant="h2" sx={{ fontWeight: 'bold' }}>
+                                CA $49.99
+                            </Typography>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'flex-start',
+                                    justifyContent: 'center',
+                                    marginLeft: 1
+                                }}>
+                                <Typography variant="h6" sx={{ lineHeight: 1 }}>
+                                    Per
+                                </Typography>
+                                <Typography variant="h6" sx={{ lineHeight: 1 }}>
+                                    Month
+                                </Typography>
+                            </Box>
+                        </Box>
                         <br />
                         <Button
                             variant="contained"
@@ -112,6 +217,32 @@ export default function PricingComponent() {
                         >
                             Subscribe
                         </Button>
+                        <br />
+                        <br />
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'flex-start',
+                                width: 200
+                            }}
+                        >
+                            <Typography variant="h6">
+                                This Includes:
+                            </Typography>
+                            <Typography variant="h6">
+                                Feature 1
+                            </Typography>
+                            <Typography variant="h6">
+                                Test feature
+                            </Typography>
+                            <Typography variant="h6">
+                                Some other feature
+                            </Typography>
+                            <Typography variant="h6">
+                                A random feature
+                            </Typography>
+                        </Box>
                     </Paper>
                 </Grid>
             </Grid>
