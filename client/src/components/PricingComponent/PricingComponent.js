@@ -16,7 +16,7 @@ export default function PricingComponent() {
                     <PricingCard 
                     productName="Regular"
                     productPrice="9.99"
-                    ctaText="Subscribe"
+                    ctaText="Try For Free"
                     featureOne="First feature"
                     featureTwo="Some random fun feature"
                     featureThree="Another feature"
@@ -27,7 +27,7 @@ export default function PricingComponent() {
                     <PricingCard 
                     productName="Plus"
                     productPrice="29.99"
-                    ctaText="Subscribe"
+                    ctaText="Try For Free"
                     featureOne="First feature"
                     featureTwo="Some random fun feature"
                     featureThree="Another feature"
@@ -38,7 +38,7 @@ export default function PricingComponent() {
                     <PricingCard 
                     productName="Premium"
                     productPrice="49.99"
-                    ctaText="Subscribe"
+                    ctaText="Try For Free"
                     featureOne="First feature"
                     featureTwo="Some random fun feature"
                     featureThree="Another feature"
