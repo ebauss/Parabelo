@@ -1,8 +1,9 @@
-import { Paper, Typography } from '@mui/material';
+import { List, ListItem, ListItemAvatar, ListItemText, Paper, Typography } from '@mui/material';
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import CheckIcon from '@mui/icons-material/Check';
 
 export default function PricingComponent() {
     return (
@@ -65,29 +66,36 @@ export default function PricingComponent() {
                         </Button>
                         <br />
                         <br />
-                        <Box
-                            sx={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'flex-start',
-                                width: 200
-                            }}
-                        >
+                        <Box>
                             <Typography variant="h6">
                                 This Includes:
                             </Typography>
-                            <Typography variant="h6">
-                                Feature 1
-                            </Typography>
-                            <Typography variant="h6">
-                                Test feature
-                            </Typography>
-                            <Typography variant="h6">
-                                Some other feature
-                            </Typography>
-                            <Typography variant="h6">
-                                A random feature
-                            </Typography>
+                            <List dense={true} >
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <CheckIcon />
+                                    </ListItemAvatar>
+                                    <ListItemText primary="Feature 1" />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <CheckIcon />
+                                    </ListItemAvatar>
+                                    <ListItemText primary="Test feature" />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <CheckIcon />
+                                    </ListItemAvatar>
+                                    <ListItemText primary="Some other feature" />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <CheckIcon />
+                                    </ListItemAvatar>
+                                    <ListItemText primary="A random feature" />
+                                </ListItem>
+                            </List>
                         </Box>
                     </Paper>
                 </Grid>
@@ -142,29 +150,36 @@ export default function PricingComponent() {
                         </Button>
                         <br />
                         <br />
-                        <Box
-                            sx={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'flex-start',
-                                width: 200
-                            }}
-                        >
+                        <Box>
                             <Typography variant="h6">
                                 This Includes:
                             </Typography>
-                            <Typography variant="h6">
-                                Feature 1
-                            </Typography>
-                            <Typography variant="h6">
-                                Test feature
-                            </Typography>
-                            <Typography variant="h6">
-                                Some other feature
-                            </Typography>
-                            <Typography variant="h6">
-                                A random feature
-                            </Typography>
+                            <List dense={true} >
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <CheckIcon />
+                                    </ListItemAvatar>
+                                    <ListItemText primary="Feature 1" />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <CheckIcon />
+                                    </ListItemAvatar>
+                                    <ListItemText primary="Test feature" />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <CheckIcon />
+                                    </ListItemAvatar>
+                                    <ListItemText primary="Some other feature" />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <CheckIcon />
+                                    </ListItemAvatar>
+                                    <ListItemText primary="A random feature" />
+                                </ListItem>
+                            </List>
                         </Box>
                     </Paper>
                 </Grid>
@@ -219,29 +234,36 @@ export default function PricingComponent() {
                         </Button>
                         <br />
                         <br />
-                        <Box
-                            sx={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'flex-start',
-                                width: 200
-                            }}
-                        >
+                        <Box>
                             <Typography variant="h6">
                                 This Includes:
                             </Typography>
-                            <Typography variant="h6">
-                                Feature 1
-                            </Typography>
-                            <Typography variant="h6">
-                                Test feature
-                            </Typography>
-                            <Typography variant="h6">
-                                Some other feature
-                            </Typography>
-                            <Typography variant="h6">
-                                A random feature
-                            </Typography>
+                            <List dense={true} >
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <CheckIcon />
+                                    </ListItemAvatar>
+                                    <ListItemText primary="Feature 1" />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <CheckIcon />
+                                    </ListItemAvatar>
+                                    <ListItemText primary="Test feature" />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <CheckIcon />
+                                    </ListItemAvatar>
+                                    <ListItemText primary="Some other feature" />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <CheckIcon />
+                                    </ListItemAvatar>
+                                    <ListItemText primary="A random feature" />
+                                </ListItem>
+                            </List>
                         </Box>
                     </Paper>
                 </Grid>
