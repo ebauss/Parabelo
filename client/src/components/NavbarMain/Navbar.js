@@ -195,7 +195,7 @@ export default function Navbar() {
                             onClick={signUp}
                             color="secondary"
                         >
-                            Get Started!
+                            Get Started For Free!
                         </Button>
                     </Box>
                 </Toolbar>
