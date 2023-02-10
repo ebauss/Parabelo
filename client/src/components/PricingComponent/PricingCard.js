@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import CheckIcon from '@mui/icons-material/Check';
 
-// Ensure you have filled out the following props:
+// Ensure you have filled out the following props from the parent:
 // productName
 // productPrice
 // ctaText
