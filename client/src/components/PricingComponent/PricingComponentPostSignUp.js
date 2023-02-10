@@ -16,7 +16,7 @@ export default function PricingComponentPostSignUp() {
                     <PricingCard 
                     productName="Regular"
                     productPrice="9.99"
-                    ctaText="Try For Free"
+                    ctaText="Get After Trial"
                     featureOne="First feature"
                     featureTwo="Some random fun feature"
                     featureThree="Another feature"
@@ -27,7 +27,7 @@ export default function PricingComponentPostSignUp() {
                     <PricingCard 
                     productName="Plus"
                     productPrice="29.99"
-                    ctaText="Try For Free"
+                    ctaText="Get After Trial"
                     featureOne="First feature"
                     featureTwo="Some random fun feature"
                     featureThree="Another feature"
@@ -38,7 +38,7 @@ export default function PricingComponentPostSignUp() {
                     <PricingCard 
                     productName="Premium"
                     productPrice="49.99"
-                    ctaText="Try For Free"
+                    ctaText="Get After Trial"
                     featureOne="First feature"
                     featureTwo="Some random fun feature"
                     featureThree="Another feature"
