@@ -60,6 +60,7 @@ export default function PricingCard(props) {
                     variant="contained"
                     size="large"
                     color="secondary"
+                    onClick={props.buttonAction}
                 >
                     {props.ctaText}
                 </Button>
