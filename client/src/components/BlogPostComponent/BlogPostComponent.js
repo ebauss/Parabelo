@@ -59,8 +59,6 @@ export default function BlogPostComponent(props) {
 
         const data = await response.text();
 
-        console.log(data);
-
         if (data !== "false") {
             console.log("Result was successfully stored in the database.");
         } else {
