@@ -3,7 +3,8 @@
  */
 const express = require('express');
 const router = express.Router();
-const documents = require('../models/documents'); // run documents.js which contains the users database model.
+const documents = require('../models/documents'); // run documents.js which contains the documents database model.
+const users = require('../models/users'); // run users.js which contains the users database model.
 /* ------------------------------------ */
 
 router.get('/getOpenAIApiKey', (req, res) => {
