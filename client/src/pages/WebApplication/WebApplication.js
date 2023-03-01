@@ -17,8 +17,6 @@ import PricingComponentPostSignUp from '../../components/PricingComponent/Pricin
 
 export default function WebApplication() {
     const { user, isAuthenticated, isLoading } = useAuth0();
-
-    console.log(user);
     
     if (isLoading) {
         return (
