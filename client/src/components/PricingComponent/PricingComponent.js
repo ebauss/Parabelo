@@ -57,6 +57,5 @@ export default function PricingComponent() {
                 </Grid>
             </Grid>
         </div>
-
     )
 }
