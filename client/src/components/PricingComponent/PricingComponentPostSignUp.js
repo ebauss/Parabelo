@@ -1,6 +1,4 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
-import PricingCard from './PricingCard';
 
 export default function PricingComponentPostSignUp() {
     return (
