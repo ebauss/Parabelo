@@ -27,7 +27,7 @@ export default function WebApplication() {
     }
 
     if (isAuthenticated) {
-        if (user.userNeedsSubscription) {
+        if (user.newUserNeedsSubscription) {
             return (
                 <div>
                     <NavbarWebApp></NavbarWebApp>
