@@ -21,7 +21,7 @@ router.post('/checkoutRegular', async (req, res) => {
         mode: 'subscription',
         success_url: 'http://localhost:3000/app',
         cancel_url: 'http://localhost:3000',
-        customer: 'cus_NTpmaEV72lMmCk'
+        customer: req.body.customerId
     });
 
     res.json({url: session.url}) // Need to do it this way instead of what is in Stripe docs because of some CORS policy thing.
