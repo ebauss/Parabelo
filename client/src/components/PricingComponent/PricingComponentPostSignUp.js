@@ -14,7 +14,7 @@ export default function PricingComponentPostSignUp(props) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                user: user
+                customerId: user.stripeCustomerId
             })
         })
 
