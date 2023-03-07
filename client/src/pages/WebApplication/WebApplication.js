@@ -54,7 +54,8 @@ export default function WebApplication() {
             )
         }
 
-    } else {
+    } 
+    else {
         return (
             <Navigate to="/" />
         )

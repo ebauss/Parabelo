@@ -1,7 +1,7 @@
 /**
  * Require node dependencies.
  */
-const stripe = require('stripe')('sk_test_51MXHVMBEpnOVMkQ6mkaaPMADYBibzwyQfhlalzZc4TDPoIrLlqy4TDyomgP2sNnR2Mf8ZuFB1Kgsmhpa4ppmOLZP00ZFN5vIJg');
+const stripe = require('stripe')('rk_test_51MXHVMBEpnOVMkQ6LT9w8zOiIXzixvWO8j0gAOX5cLqmqKGe9uj0U9qm4rPDus8dePluGnKE6z21vA9pCpQwnF9u009ad6LZhk');
 const express = require('express');
 const router = express.Router();
 /* ------------------------------------ */
@@ -19,8 +19,8 @@ router.post('/checkoutRegular', async (req, res) => {
             },
         ],
         mode: 'subscription',
-        success_url: 'http://localhost:3000/app',
-        cancel_url: 'http://localhost:3000',
+        success_url: "http://localhost:3000/",
+        cancel_url: 'http://localhost:3000/',
         customer: req.body.customerId
     });
 
