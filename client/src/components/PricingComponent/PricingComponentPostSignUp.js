@@ -5,6 +5,7 @@ import PricingCard from './PricingCard';
 export default function PricingComponentPostSignUp(props) {
     const user = props.userDetails;
 
+    // TODO: Change the name of this function. There should be three functions.
     const testFunction = async () => {
         // for the id, use props.userDetails.sub.
         const response = await fetch("http://localhost:8000/checkoutRegular", {
