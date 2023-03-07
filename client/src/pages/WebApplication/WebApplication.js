@@ -26,12 +26,14 @@ export default function WebApplication() {
         )
     }
 
+    console.log(user);
+
     if (isAuthenticated) {
         if (user.newUserNeedsSubscription) {
             return (
                 <div>
                     <NavbarWebApp></NavbarWebApp>
-                    <PricingComponentPostSignUp />
+                    <PricingComponentPostSignUp userDetails={user} />
                 </div>
             )
         } else {
