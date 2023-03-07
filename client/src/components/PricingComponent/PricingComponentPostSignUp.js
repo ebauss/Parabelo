@@ -19,6 +19,8 @@ export default function PricingComponentPostSignUp(props) {
         })
 
         const data = await response.json()
+
+        // Redirect to Stripe checkout page.
         window.location.href = data.url
     }
 
