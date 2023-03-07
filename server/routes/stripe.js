@@ -19,7 +19,7 @@ router.post('/checkoutRegular', async (req, res) => {
             },
         ],
         mode: 'subscription',
-        success_url: "http://localhost:3000/",
+        success_url: "http://localhost:3000/app/",
         cancel_url: 'http://localhost:3000/',
         customer: req.body.customerId
     });
