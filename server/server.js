@@ -5,6 +5,7 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const routes = require('./routes/api');
+const stripe = require('./routes/stripe');
 const mongoose = require('mongoose');
 // const mongoDBConnection = require('./database/connection');
 /* ------------------------------------ */
@@ -18,10 +19,13 @@ const port = process.env.PORT || 8000;
 
 app.use(express.static(path.join(__dirname, "build")));
 
-app.use(cors({
-    credentials: true,
-    origin: "http://localhost:3000"
-}));
+var corsOptions = {
+    origin: ["http://localhost:3000", "https://checkout.stripe.com"],
+    optionsSuccessStatus: 200, // For legacy browser support
+    credentials: true
+}
+
+app.use(cors(corsOptions)); 
 
 // Connect to the database
 mongoose
@@ -43,6 +47,8 @@ app.use(bodyParser.json());
 
 // api URL is https://<domain>/<route>. When running locally, it is http://localhost:<port>/<route>
 app.use('/', routes);
+
+app.use('/', stripe);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

@@ -5,8 +5,21 @@ import PricingCard from './PricingCard';
 export default function PricingComponentPostSignUp(props) {
     const user = props.userDetails;
 
-    const testFunction = () => {
-        console.log("Button Clicked");
+    const testFunction = async () => {
+        // for the id, use props.userDetails.sub.
+        const response = await fetch("http://localhost:8000/checkoutRegular", {
+            method: "Post",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                user: user
+            })
+        })
+
+        const data = await response.json()
+        window.location.href = data.url
     }
 
     return (
@@ -19,39 +32,39 @@ export default function PricingComponentPostSignUp(props) {
                 paddingRight: 10
             }}>
                 <Grid item xs={12} sm={12} md={12} lg={4}>
-                    <PricingCard 
-                    productName="Regular"
-                    productPrice="9.99"
-                    ctaText="Try For Free"
-                    featureOne="First feature"
-                    featureTwo="Some random fun feature"
-                    featureThree="Another feature"
-                    featureFour="The best feature"
-                    buttonAction={testFunction} 
+                    <PricingCard
+                        productName="Regular"
+                        productPrice="9.99"
+                        ctaText="Try For Free"
+                        featureOne="First feature"
+                        featureTwo="Some random fun feature"
+                        featureThree="Another feature"
+                        featureFour="The best feature"
+                        buttonAction={testFunction}
                     />
                 </Grid>
                 <Grid item xs={12} sm={12} md={12} lg={4}>
-                    <PricingCard 
-                    productName="Plus"
-                    productPrice="29.99"
-                    ctaText="Try For Free"
-                    featureOne="First feature"
-                    featureTwo="Some random fun feature"
-                    featureThree="Another feature"
-                    featureFour="The best feature"
-                    buttonAction={testFunction}  
+                    <PricingCard
+                        productName="Plus"
+                        productPrice="29.99"
+                        ctaText="Try For Free"
+                        featureOne="First feature"
+                        featureTwo="Some random fun feature"
+                        featureThree="Another feature"
+                        featureFour="The best feature"
+                        buttonAction={testFunction}
                     />
                 </Grid>
                 <Grid item xs={12} sm={12} md={12} lg={4}>
-                    <PricingCard 
-                    productName="Premium"
-                    productPrice="49.99"
-                    ctaText="Try For Free"
-                    featureOne="First feature"
-                    featureTwo="Some random fun feature"
-                    featureThree="Another feature"
-                    featureFour="The best feature"
-                    buttonAction={testFunction}  
+                    <PricingCard
+                        productName="Premium"
+                        productPrice="49.99"
+                        ctaText="Try For Free"
+                        featureOne="First feature"
+                        featureTwo="Some random fun feature"
+                        featureThree="Another feature"
+                        featureFour="The best feature"
+                        buttonAction={testFunction}
                     />
                 </Grid>
             </Grid>
