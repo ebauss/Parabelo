@@ -12,7 +12,6 @@ import ProductDescriptionComponent from '../../components/ProductDescriptionComp
 import EmailMarketingComponent from '../../components/EmailMarketingComponent/EmailMarketingComponent';
 import AppMainPageComponent from '../../components/AppMainPageComponent/AppMainPageComponent';
 import { useAuth0 } from "@auth0/auth0-react";
-import FreeTrialPostSignUp from '../../components/FreeTrialComponent/FreeTrialPostSignUp';
 import PricingComponentPostSignUp from '../../components/PricingComponent/PricingComponentPostSignUp';
 
 export default function WebApplication() {
@@ -44,7 +43,6 @@ export default function WebApplication() {
                         <Route path="/blogpost" element={<BlogPostComponent userDetails={user} />} />
                         <Route path="/copyWriter" element={<CopyWriter userDetails={user} />} />
                         <Route path="/emailMarketingWriter" element={<EmailMarketingComponent userDetails={user} />} />
-                        <Route path="/freeTrial" element={<FreeTrialPostSignUp userDetails={user} />} />
                         <Route path="/paraphrasing" element={<ParaphrasingComponent userDetails={user} />} />
                         <Route path="/pricingPostSignUp" element={<PricingComponentPostSignUp userDetails={user} />} />
                         <Route path="/productDescriptionWriter" element={<ProductDescriptionComponent userDetails={user} />} />
