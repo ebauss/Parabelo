@@ -13,22 +13,42 @@ import EmailMarketingComponent from '../../components/EmailMarketingComponent/Em
 import AppMainPageComponent from '../../components/AppMainPageComponent/AppMainPageComponent';
 import { useAuth0 } from "@auth0/auth0-react";
 import PricingComponentPostSignUp from '../../components/PricingComponent/PricingComponentPostSignUp';
+import SuccessCheckoutComponent from '../../components/SuccessCheckoutComponent/SuccessCheckoutComponent';
 
 export default function WebApplication() {
     const { user, isAuthenticated, isLoading } = useAuth0();
 
+    const [hasActiveSubscription, setHasActiveSubscription] = React.useState();
+
+    const checkForActiveSubscription = async () => {
+        fetch("http://localhost:8000/checkUserActiveSubscription", {
+            method: "Post",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                customerId: user.stripeCustomerId
+            })
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(typeof data);
+            setHasActiveSubscription(data);
+        })
+    }
+
     if (isLoading) {
         return (
             <div>
-                Is Loading...
             </div>
         )
     }
 
-    console.log(user);
-
     if (isAuthenticated) {
-        if (user.newUserNeedsSubscription) {
+        checkForActiveSubscription();
+        
+        if (!hasActiveSubscription) {
             return (
                 <div>
                     <NavbarWebApp></NavbarWebApp>
@@ -44,8 +64,8 @@ export default function WebApplication() {
                         <Route path="/copyWriter" element={<CopyWriter userDetails={user} />} />
                         <Route path="/emailMarketingWriter" element={<EmailMarketingComponent userDetails={user} />} />
                         <Route path="/paraphrasing" element={<ParaphrasingComponent userDetails={user} />} />
-                        <Route path="/pricingPostSignUp" element={<PricingComponentPostSignUp userDetails={user} />} />
                         <Route path="/productDescriptionWriter" element={<ProductDescriptionComponent userDetails={user} />} />
+                        <Route path="/checkoutSuccess" element={<SuccessCheckoutComponent userDetails={user} />} />
                         <Route path="/" element={<AppMainPageComponent />} />
                     </Routes>
                 </div>
