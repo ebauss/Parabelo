@@ -34,6 +34,7 @@ router.post('/checkUserActiveSubscription', async (req, res) => {
     const subscriptions = await stripe.subscriptions.list({
         customer: req.body.customerId,
         status: 'active',
+        limit: 1
     });
 
     res.send(subscriptions.data[0] != undefined);

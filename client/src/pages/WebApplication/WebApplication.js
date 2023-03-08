@@ -18,7 +18,7 @@ import SuccessCheckoutComponent from '../../components/SuccessCheckoutComponent/
 export default function WebApplication() {
     const { user, isAuthenticated, isLoading } = useAuth0();
 
-    const [hasActiveSubscription, setHasActiveSubscription] = React.useState();
+    const [hasActiveSubscription, setHasActiveSubscription] = React.useState(true);
 
     const checkForActiveSubscription = async () => {
         fetch("http://localhost:8000/checkUserActiveSubscription", {
