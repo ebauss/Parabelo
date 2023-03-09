@@ -30,7 +30,7 @@ export default function SuccessCheckoutComponent(props) {
                     }}
                 />
                 <Typography variant="h3" sx={{ marginTop: 1, marginBottom: 1 }}>
-                    Thank you for subscribing {user.given_name}!
+                    Thank you for subscribing!
                 </Typography>
                 <Typography variant="h5" sx={{ marginTop: 1, marginBottom: 1 }}>
                     Get ready to jumpstart your writing with us.

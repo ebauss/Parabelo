@@ -13,6 +13,8 @@ export default function SettingsComponent(props) {
                 Settings
             </Typography>
             <br />
+            <Typography variant="h6">Your registered email address is {props.userDetails.email}</Typography>
+            <br />
             <Button variant="outlined" onClick={sendToStripCustomerPortal}>Manage Subscription</Button>
             <br />
         </div>
