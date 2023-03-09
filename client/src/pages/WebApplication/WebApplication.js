@@ -33,7 +33,6 @@ export default function WebApplication() {
         })
         .then((response) => response.json())
         .then((data) => {
-            console.log(typeof data);
             setHasActiveSubscription(data);
         })
     }
