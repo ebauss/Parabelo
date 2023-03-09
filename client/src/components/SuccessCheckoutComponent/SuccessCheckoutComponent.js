@@ -26,7 +26,7 @@ export default function SuccessCheckoutComponent(props) {
                     component="img"
                     src={heartGraphic}
                     sx={{
-                        height: 300
+                        height: 400
                     }}
                 />
                 <Typography variant="h3" sx={{ marginTop: 1, marginBottom: 1 }}>
