@@ -2,6 +2,10 @@ import { Button, Typography } from "@mui/material";
 import React from "react";
 
 export default function SettingsComponent(props) {
+    const sendToStripCustomerPortal = () => {
+        window.open('https://billing.stripe.com/p/login/test_aEUbJafn2diR6ZO5kk', '_blank');
+    }
+
     return (
         <div>
             <br />
@@ -9,7 +13,7 @@ export default function SettingsComponent(props) {
                 Settings
             </Typography>
             <br />
-            <Button variant="outlined">Manage Subscription</Button>
+            <Button variant="outlined" onClick={sendToStripCustomerPortal}>Manage Subscription</Button>
             <br />
         </div>
     )
