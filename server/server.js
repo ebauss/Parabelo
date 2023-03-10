@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const routes = require('./routes/api');
 const stripe = require('./routes/stripe');
+const auth0 = require('./routes/auth0');
 const mongoose = require('mongoose');
 // const mongoDBConnection = require('./database/connection');
 /* ------------------------------------ */
@@ -49,6 +50,8 @@ app.use(bodyParser.json());
 app.use('/', routes);
 
 app.use('/', stripe);
+
+app.use('/', auth0);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
