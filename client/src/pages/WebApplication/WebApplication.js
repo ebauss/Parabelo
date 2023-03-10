@@ -50,10 +50,7 @@ export default function WebApplication() {
         
         if (!hasActiveSubscription) {
             return (
-                <div>
-                    <NavbarWebApp></NavbarWebApp>
                     <PricingComponentPostSignUp userDetails={user} />
-                </div>
             )
         } else {
             return (

@@ -1,9 +1,11 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
 import PricingCard from './PricingCard';
+import { useAuth0 } from "@auth0/auth0-react";
+import { Button, Box, Grid } from "@mui/material";
 
 export default function PricingComponentPostSignUp(props) {
     const user = props.userDetails;
+    const { logout } = useAuth0();
 
     // TODO: Change the name of this function. There should be three functions.
     const testFunction = async () => {
@@ -27,6 +29,11 @@ export default function PricingComponentPostSignUp(props) {
 
     return (
         <div>
+            <Box sx={{marginTop: 5}}>
+                <Button variant="outlined" size="large" onClick={logout} color="inherit" >
+                    Log Out
+                </Button>
+            </Box>
             <Grid container spacing={4} sx={{
                 marginTop: 7,
                 paddingTop: 5,
