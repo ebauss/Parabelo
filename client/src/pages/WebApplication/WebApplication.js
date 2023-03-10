@@ -15,6 +15,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import PricingComponentPostSignUp from '../../components/PricingComponent/PricingComponentPostSignUp';
 import SuccessCheckoutComponent from '../../components/SuccessCheckoutComponent/SuccessCheckoutComponent';
 import SettingsComponent from '../../components/SettingsComponent/SettingsComponent';
+import EmailVerificationComponent from '../../components/EmailVerificationComponent/EmailVerificationComponent';
 
 export default function WebApplication() {
     const { user, isAuthenticated, isLoading } = useAuth0();
@@ -47,6 +48,12 @@ export default function WebApplication() {
 
     if (isAuthenticated) {
         checkForActiveSubscription();
+
+        if (!user.email_verified) {
+            return (
+                <EmailVerificationComponent />
+            )
+        }
         
         if (!hasActiveSubscription) {
             return (

@@ -30,7 +30,7 @@ export default function PricingComponentPostSignUp(props) {
     return (
         <div>
             <Box sx={{marginTop: 5}}>
-                <Button variant="outlined" size="large" onClick={logout} color="inherit" >
+                <Button variant="outlined" size="large" onClick={logout}>
                     Log Out
                 </Button>
             </Box>
