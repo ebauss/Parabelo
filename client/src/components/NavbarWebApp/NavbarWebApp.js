@@ -25,6 +25,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "@mui/material";
 import MailIcon from '@mui/icons-material/Mail';
 import SettingsIcon from '@mui/icons-material/Settings';
+import HomeIcon from '@mui/icons-material/Home';
 
 const drawerWidth = 280;
 
@@ -150,6 +151,28 @@ export default function NavbarWebApp() {
                 </DrawerHeader>
                 <Divider />
                 <List>
+                    <ListItem key='home' disablePadding sx={{ display: 'block' }}>
+                        <Link to='/app/' style={{ textDecoration: 'none', color: "black" }}>
+                            <ListItemButton
+                                sx={{
+                                    minHeight: 48,
+                                    justifyContent: open ? 'initial' : 'center',
+                                    px: 2.5,
+                                }}
+                            >
+                                <ListItemIcon
+                                    sx={{
+                                        minWidth: 0,
+                                        mr: open ? 3 : 'auto',
+                                        justifyContent: 'center',
+                                    }}
+                                >
+                                    <HomeIcon />
+                                </ListItemIcon>
+                                <ListItemText primary='Home' sx={{ opacity: open ? 1 : 0 }} />
+                            </ListItemButton>
+                        </Link>
+                    </ListItem>
                     <ListItem key='paraphrasing' disablePadding sx={{ display: 'block' }}>
                         <Link to='/app/paraphrasing' style={{ textDecoration: 'none', color: "black" }}>
                             <ListItemButton
