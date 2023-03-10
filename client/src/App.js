@@ -5,13 +5,15 @@ import {
     Route
 } from "react-router-dom";
 import LandingPage from './pages/LandingPage/LandingPage';
+import EmailVerificationComponent from './components/EmailVerificationComponent/EmailVerificationComponent';
 
 function App() {
     return (
         <div className="App">
             <Routes>
-                <Route path="/app/*" element={<WebApplication/>}/>
-                <Route path="*" element={<LandingPage/>}/>
+                <Route path="/app/*" element={<WebApplication/>} />
+                <Route path="/emailVerification" element={<EmailVerificationComponent />} />
+                <Route path="*" element={<LandingPage/>} />
             </Routes>
         </div>
     );
