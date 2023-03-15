@@ -28,6 +28,7 @@ root.render(
                     domain="parabelodev.us.auth0.com"
                     clientId="K4k4iNdge0leB643mx5ZOgxxQxhbAkfV"
                     redirectUri={window.location.origin + "/app/"}
+                    cacheLocation="localstorage"
                 >
                     <App />
                 </Auth0Provider>
