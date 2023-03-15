@@ -28,7 +28,9 @@ root.render(
                     domain="parabelodev.us.auth0.com"
                     clientId="K4k4iNdge0leB643mx5ZOgxxQxhbAkfV"
                     redirectUri={window.location.origin + "/app/"}
-                    cacheLocation="localstorage"
+
+                    // Ensures that it works for Safari with their ITP stuff. Before when refreshing on a logged in user, it will redirect back to the landing page.
+                    cacheLocation="localstorage" 
                 >
                     <App />
                 </Auth0Provider>
