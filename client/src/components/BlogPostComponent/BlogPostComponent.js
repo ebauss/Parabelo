@@ -126,7 +126,7 @@ export default function BlogPostComponent(props) {
             <br />
             <div>
                 <TextField id="outlined-basic"
-                    label='Keywords to add (Separate entries with a ",")'
+                    label='Keywords to add (Separate entries with a ";")'
                     variant="outlined"
                     multiline
                     rows={4}

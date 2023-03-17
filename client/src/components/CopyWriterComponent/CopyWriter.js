@@ -125,7 +125,7 @@ export default function CopyWriter(props) {
             <br/>
             <div>
                 <TextField id="outlined-basic"
-                           label='Things to mention (Separate entries with a ",")'
+                           label='Things to mention (Separate entries with a ";")'
                            variant="outlined"
                            multiline
                            rows={4}
