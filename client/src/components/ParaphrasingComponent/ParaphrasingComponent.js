@@ -85,7 +85,7 @@ export default function ParaphrasingComponent(props) {
      */
     const handleClick = async () => {
         setLoading(true); // Start loading animation of button
-        const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it.";
+        const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it. Thank you.";
 
         const aiApiResponse = await fetch('http://localhost:8000/requestTextResponse', {
             method: "Post",

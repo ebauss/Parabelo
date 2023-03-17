@@ -74,9 +74,9 @@ export default function EmailMarketingComponent(props) {
         let modifiedPrompt;
         
         if (thingsToMentionValue) {
-            modifiedPrompt = 'Write a marketing email for ' + promptValue + '. ' + 'Things to mention: ' + thingsToMentionValue;
+            modifiedPrompt = 'Write a marketing email for ' + promptValue + '. ' + 'Things to mention: ' + thingsToMentionValue + ". Thank you.";
         } else {
-            modifiedPrompt = 'Write a marketing email for ' + promptValue;
+            modifiedPrompt = 'Write a marketing email for ' + promptValue + ". Thank you.";
         }
 
         const aiApiResponse = await fetch('http://localhost:8000/requestTextResponse', {
@@ -125,7 +125,7 @@ export default function EmailMarketingComponent(props) {
             <br/>
             <div>
                 <TextField id="outlined-basic"
-                           label='Things to mention (Separate entries with a ";")'
+                           label='Things to mention (Separate entries with a ",")'
                            variant="outlined"
                            multiline
                            rows={4}

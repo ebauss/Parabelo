@@ -74,9 +74,9 @@ export default function BlogPostComponent(props) {
         let modifiedPrompt;
 
         if (keywordsValue) {
-            modifiedPrompt = 'Write a super long blog post about ' + promptValue + '. ' + 'Things to mention: ' + keywordsValue;
+            modifiedPrompt = 'Write a super long blog post about ' + promptValue + '. ' + 'Things to mention: ' + keywordsValue + '. Thank you.';
         } else {
-            modifiedPrompt = 'Write a super long blog post about ' + promptValue;
+            modifiedPrompt = 'Write a super long blog post about ' + promptValue + '. Thank you.';
         }
 
         const aiApiResponse = await fetch('http://localhost:8000/requestTextResponse', {
@@ -126,7 +126,7 @@ export default function BlogPostComponent(props) {
             <br />
             <div>
                 <TextField id="outlined-basic"
-                    label='Keywords to add (Separate entries with a ";")'
+                    label='Keywords to add (Separate entries with a ",")'
                     variant="outlined"
                     multiline
                     rows={4}

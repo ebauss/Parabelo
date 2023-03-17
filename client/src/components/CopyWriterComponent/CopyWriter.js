@@ -74,9 +74,9 @@ export default function CopyWriter(props) {
         let modifiedPrompt;
 
         if (thingsToMentionValue) {
-            modifiedPrompt = 'Write ad copy for ' + promptValue + '. ' + 'Things to mention: ' + thingsToMentionValue;
+            modifiedPrompt = 'Write ad copy for ' + promptValue + '. ' + 'Things to mention: ' + thingsToMentionValue + ". Thank you.";
         } else {
-            modifiedPrompt = 'Write ad copy for ' + promptValue;
+            modifiedPrompt = 'Write ad copy for ' + promptValue + ". Thank you.";
         }
 
         const aiApiResponse = await fetch('http://localhost:8000/requestTextResponse', {
@@ -125,7 +125,7 @@ export default function CopyWriter(props) {
             <br/>
             <div>
                 <TextField id="outlined-basic"
-                           label='Things to mention (Separate entries with a ";")'
+                           label='Things to mention (Separate entries with a ",")'
                            variant="outlined"
                            multiline
                            rows={4}
