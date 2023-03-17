@@ -7,11 +7,6 @@ const documents = require('../models/documents'); // run documents.js which cont
 const users = require('../models/users'); // run users.js which contains the users database model.
 /* ------------------------------------ */
 
-router.get('/getOpenAIApiKey', (req, res) => {
-    console.log("Api Key requested");
-    res.send(process.env.OPENAI_API_KEY);
-})
-
 router.post('/saveParaphrasingToDb', (req, res) => {
     documents.create({
         type: req.body.type,
