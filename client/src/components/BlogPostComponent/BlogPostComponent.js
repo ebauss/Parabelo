@@ -4,8 +4,6 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
 import Typography from "@mui/material/Typography";
 
-// const { Configuration, OpenAIApi } = require("openai");
-
 export default function BlogPostComponent(props) {
     /* Stores the string entered in the prompt text field. */
     const [promptValue, setPromptValue] = React.useState('');
@@ -76,7 +74,7 @@ export default function BlogPostComponent(props) {
         let modifiedPrompt;
 
         if (keywordsValue) {
-            modifiedPrompt = 'Write a super long blog post about ' + promptValue + '. ' + 'Add the following keywords: ' + keywordsValue;
+            modifiedPrompt = 'Write a super long blog post about ' + promptValue + '. ' + 'Things to mention: ' + keywordsValue;
         } else {
             modifiedPrompt = 'Write a super long blog post about ' + promptValue;
         }
@@ -158,7 +156,7 @@ export default function BlogPostComponent(props) {
                 rows={20}
                 placeholder="Your blog will appear here."
                 value={resultValue}
-                sx={{ width: 600 }}
+                sx={{ width: 600, marginBottom: 10 }}
                 InputLabelProps={{ shrink: true }}
                 InputProps={{
                     readOnly: true,

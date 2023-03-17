@@ -5,8 +5,6 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import SendIcon from "@mui/icons-material/Send";
 import Typography from "@mui/material/Typography";
 
-const { Configuration, OpenAIApi } = require("openai");
-
 export default function ParaphrasingComponent(props) {
     /* Stores the string entered in the prompt text field. */
     const [promptValue, setPromptValue] = React.useState('');
@@ -86,56 +84,34 @@ export default function ParaphrasingComponent(props) {
      * Send the prompt to the server; the server will then send the request to OpenAi.
      */
     const handleClick = async () => {
-        const apiKeyResponse = await fetch("http://localhost:8000/getOpenAIApiKey", {
-            method: "Get",
+        setLoading(true); // Start loading animation of button
+        const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it.";
+
+        const aiApiResponse = await fetch('http://localhost:8000/requestTextResponse', {
+            method: "Post",
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
-            }
-        })
-
-        const apiKeyData = await apiKeyResponse.text();
-
-        const configuration = new Configuration({
-            apiKey: apiKeyData,
-        });
-
-        const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it.";
-
-        const openai = new OpenAIApi(configuration);
-
-        // Check if prompt follows OpenAi usage policies using the OpenAi moderation endpoint.
-        const moderationResponse = await openai.createModeration({
-            input: modifiedPrompt
-        })
-
-        // Value of either true or false.
-        const isPromptNotSafe = await moderationResponse.data.results[0].flagged;
-
-        if (!isPromptNotSafe) {
-            setLoading(true); // Starts the loading animation on the button.
-
-            const aiApiResponse = await openai.createCompletion({
-                model: "text-davinci-003",
+            },
+            body: JSON.stringify({
                 prompt: modifiedPrompt,
                 temperature: 0.76,
                 max_tokens: 3500,
                 top_p: 1,
                 frequency_penalty: 0,
                 presence_penalty: 0,
-            });
+            })
+        })
 
-            const aiApiData = await aiApiResponse.data.choices[0].text;
+        const aiApiData = await aiApiResponse.text();
 
-            if (aiApiData) {
-                setResultValue(aiApiData.trim());
-                saveToDatabase(aiApiData.trim());
-            }
-
-            setLoading(false); // Ends the loading animation on the button.
-        } else {
+        if (aiApiData === "Prompt is flagged") {
             window.alert("Your prompt does not follow our usage guidelines.");
+        } else {
+            setResultValue(aiApiData.trim());
+            saveToDatabase(aiApiData.trim());
         }
+        setLoading(false); // Ends the loading animation on the button.
     }
 
     return (
@@ -213,7 +189,7 @@ export default function ParaphrasingComponent(props) {
                 rows={10}
                 placeholder="Your text will appear here"
                 value={resultValue}
-                sx={{ width: 600 }}
+                sx={{ width: 600, marginBottom: 10 }}
                 InputLabelProps={{ shrink: true }}
                 InputProps={{
                     readOnly: true,
