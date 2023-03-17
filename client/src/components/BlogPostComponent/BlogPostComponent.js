@@ -4,7 +4,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
 import Typography from "@mui/material/Typography";
 
-const {Configuration, OpenAIApi} = require("openai");
+// const { Configuration, OpenAIApi } = require("openai");
 
 export default function BlogPostComponent(props) {
     /* Stores the string entered in the prompt text field. */
@@ -72,95 +72,72 @@ export default function BlogPostComponent(props) {
      * Send the prompt to the server; the server will then send the request to OpenAi.
      */
     const handleClick = async () => {
-        const apiKeyResponse = await fetch("http://localhost:8000/getOpenAIApiKey",{
-            method: "Get",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        })
-
-        const apiKeyData = await apiKeyResponse.text();
-
-        const configuration = new Configuration({
-            apiKey: apiKeyData,
-        });
-
+        setLoading(true); // Start loading animation of button
         let modifiedPrompt;
 
-        // TODO change this into a switch of some sort. Like and if statement chain with string concatenation.
         if (keywordsValue) {
             modifiedPrompt = 'Write a super long blog post about ' + promptValue + '. ' + 'Add the following keywords: ' + keywordsValue;
         } else {
             modifiedPrompt = 'Write a super long blog post about ' + promptValue;
         }
 
-        const openai = new OpenAIApi(configuration);
-
-        // Check if prompt follows OpenAi usage policies using the OpenAi moderation endpoint.
-        const moderationResponse = await openai.createModeration({
-            input: modifiedPrompt
-        })
-
-        // Value of either true or false.
-        const isPromptNotSafe = await moderationResponse.data.results[0].flagged;
-
-        if (!isPromptNotSafe) {
-            setLoading(true); // Starts the loading animation on the button.
-
-            const aiApiResponse = await openai.createCompletion({
-                model: "text-davinci-003",
+        const aiApiResponse = await fetch('http://localhost:8000/requestTextResponse', {
+            method: "Post",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
                 prompt: modifiedPrompt,
                 temperature: 0.9,
                 max_tokens: 3000,
                 top_p: 1,
                 frequency_penalty: 0,
-                presence_penalty: 0,
-            });
-    
-            const aiApiData = await aiApiResponse.data.choices[0].text;
-    
-            if (aiApiData) {
-                setResultValue(aiApiData.trim());
-                saveToDatabase(aiApiData.trim());
-            }
-    
-            setLoading(false); // Ends the loading animation on the button.
-        } else {
+                presence_penalty: 0
+            })
+        })
+
+        const aiApiData = await aiApiResponse.text();
+
+        if (aiApiData === "Prompt is flagged") {
             window.alert("Your prompt does not follow our usage guidelines.");
+        } else {
+            setResultValue(aiApiData.trim());
+            saveToDatabase(aiApiData.trim());
         }
+        setLoading(false); // Ends the loading animation on the button.
     }
 
     return (
         <div>
-            <br/>
+            <br />
             <Typography variant="h5" gutterBottom>
                 Blog Post Writer
             </Typography>
-            <br/>
+            <br />
             <div>
                 <TextField id="outlined-basic"
-                           label="What topic would you like to be written about in a blog?"
-                           placeholder="Example: How to learn how to code"
-                           variant="outlined"
-                           fullWidth
-                           onChange={handlePromptChange}
-                           sx={{width: 600}}
+                    label="What topic would you like to be written about in a blog?"
+                    placeholder="Example: How to learn how to code"
+                    variant="outlined"
+                    fullWidth
+                    onChange={handlePromptChange}
+                    sx={{ width: 600 }}
                 />
             </div>
-            <br/>
+            <br />
             <div>
                 <TextField id="outlined-basic"
-                           label='Keywords to add (Separate entries with a ",")'
-                           variant="outlined"
-                           multiline
-                           rows={4}
-                           fullWidth
-                           onChange={handleThingsToMentionChange}
-                           sx={{width: 600}}
+                    label='Keywords to add (Separate entries with a ",")'
+                    variant="outlined"
+                    multiline
+                    rows={4}
+                    fullWidth
+                    onChange={handleThingsToMentionChange}
+                    sx={{ width: 600 }}
                 />
             </div>
-            <br/>
+            <br />
             <div>
                 <LoadingButton
                     size="small"
@@ -173,7 +150,7 @@ export default function BlogPostComponent(props) {
                     Go
                 </LoadingButton>
             </div>
-            <br/>
+            <br />
             <TextField
                 id="outlined-multiline-static"
                 label="Result"
@@ -181,8 +158,8 @@ export default function BlogPostComponent(props) {
                 rows={20}
                 placeholder="Your blog will appear here."
                 value={resultValue}
-                sx={{width: 600}}
-                InputLabelProps={{shrink: true}}
+                sx={{ width: 600 }}
+                InputLabelProps={{ shrink: true }}
                 InputProps={{
                     readOnly: true,
                 }}
