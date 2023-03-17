@@ -3,6 +3,7 @@ import React from "react";
 
 export default function SettingsComponent(props) {
     const sendToStripCustomerPortal = () => {
+        // Redirect user to Stripe Customer Portal with prefilled email field.
         window.open(`https://billing.stripe.com/p/login/test_aEUbJafn2diR6ZO5kk?prefilled_email=${props.userDetails.email}`, '_blank');
     }
 
