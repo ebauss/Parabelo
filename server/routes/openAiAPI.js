@@ -21,6 +21,8 @@ router.post('/requestTextResponse', async (req, res) => {
 
     const openai = new OpenAIApi(configuration);
 
+    console.log(`Prompt: ${prompt}`);
+
     const moderationResponse = await openai.createModeration({
         input: prompt
     })
@@ -29,6 +31,8 @@ router.post('/requestTextResponse', async (req, res) => {
     const isPromptFlagged = await moderationResponse.data.results[0].flagged;
 
     if (!isPromptFlagged) {
+        console.log("Waiting for OpenAI API response");
+
         const response = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: prompt,
@@ -38,8 +42,13 @@ router.post('/requestTextResponse', async (req, res) => {
             frequency_penalty: frequency_penalty,
             presence_penalty: presence_penalty,
         });
-        console.log(response);
+
+        console.log("Response was received. Sending data to client now.");
+
+        const data = response.data.choices[0].text;
+        res.send(data);
     } else {
+        console.log("Prompt is flagged");
         res.send("Prompt is flagged");
     }
 })
