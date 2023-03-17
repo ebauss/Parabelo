@@ -137,7 +137,7 @@ export default function CopyWriter(props) {
             <br/>
             <div>
                 <LoadingButton
-                    size="small"
+                    size="large"
                     onClick={handleClick}
                     endIcon={<SendIcon />}
                     loading={loading}
