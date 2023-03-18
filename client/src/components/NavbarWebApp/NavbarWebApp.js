@@ -26,6 +26,7 @@ import { Button } from "@mui/material";
 import MailIcon from '@mui/icons-material/Mail';
 import SettingsIcon from '@mui/icons-material/Settings';
 import HomeIcon from '@mui/icons-material/Home';
+import { LinearProgress } from '@mui/material';
 
 const drawerWidth = 280;
 
@@ -130,6 +131,10 @@ export default function NavbarWebApp() {
                                 Parabelo
                             </Typography>
                         </Link>
+                    </Box>
+                    <Box sx={{ display: "flex", flexDirection: 'column', alignItems: "center" }}>
+                        <Typography variant="p">Word Count</Typography>
+                        <LinearProgress variant="determinate" value={50} sx={{ width: {xs: 100, md: 300} }} color="secondary" />
                     </Box>
                     <Box>
                         <Link to="/app/settings" style={{ textDecoration: 'none', color: "white" }}>
