@@ -21,8 +21,14 @@ export default function LandingPageComponent() {
                     justifyContent: 'space-evenly',
                     flexWrap: 'wrap-reverse',
                     alignItems: 'center',
-                    paddingLeft: 10,
-                    paddingRight: 10,
+                    paddingLeft: {
+                        xs: 1,
+                        // sm: 10
+                    },
+                    paddingRight: {
+                        xs: 1,
+                        // sm: 10
+                    },
                     paddingTop: 5,
                     marginTop: 7
                 }}>
@@ -53,6 +59,7 @@ export default function LandingPageComponent() {
                     <br />
                     <Typography
                         variant="h6"
+                        align="left"
                         sx={{
                             color: 'white',
                             width: {
@@ -60,15 +67,18 @@ export default function LandingPageComponent() {
                                 sm: 500
                             }
                         }}>
-                        Create unique content quickly and easily! Generate high-quality text tailored to your needs with our powerful AI technology. Save time and money with automated generation of content for marketing, SEO, and more. Get started now!
+                        Parabelo brings the powerful performance of AI to your business to help create content that is tailored to your brand within minutes. From social media content, to advertising, SEO, and more, Parabelo is here to help you and your team save time and money.
                     </Typography>
                     <br />
                     <Button variant="contained"
                         size="large"
                         onClick={signUp}
                         color="secondary"
+                        sx={{
+                            width: 250
+                        }}
                     >
-                        Try Now!
+                        Get started with a 7 day free trial!
                     </Button>
                 </Box>
             </Box>

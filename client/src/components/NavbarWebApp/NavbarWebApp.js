@@ -132,10 +132,10 @@ export default function NavbarWebApp() {
                             </Typography>
                         </Link>
                     </Box>
-                    <Box sx={{ display: "flex", flexDirection: 'column', alignItems: "center" }}>
+                    {/* <Box sx={{ display: "flex", flexDirection: 'column', alignItems: "center" }}>
                         <Typography variant="p">Word Count</Typography>
                         <LinearProgress variant="determinate" value={50} sx={{ width: {xs: 100, md: 300} }} color="secondary" />
-                    </Box>
+                    </Box> */}
                     <Box>
                         <Link to="/app/settings" style={{ textDecoration: 'none', color: "white" }}>
                             <IconButton color="inherit">
