@@ -19,8 +19,8 @@ router.post('/checkoutRegular', async (req, res) => {
             },
         ],
         mode: 'subscription',
-        success_url: "http://localhost:3000/app/checkoutSuccess",
-        cancel_url: 'http://localhost:3000/',
+        success_url: "https://parabelo-staging.herokuapp.com/app/checkoutSuccess",
+        cancel_url: 'https://parabelo-staging.herokuapp.com/',
         customer: req.body.customerId
     });
 

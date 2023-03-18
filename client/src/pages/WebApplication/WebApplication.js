@@ -23,7 +23,7 @@ export default function WebApplication() {
     const [hasActiveSubscription, setHasActiveSubscription] = React.useState(true);
 
     const checkForActiveSubscription = async () => {
-        fetch("http://localhost:8000/checkUserActiveSubscription", {
+        fetch("https://parabelo-staging.herokuapp.com/checkUserActiveSubscription", {
             method: "Post",
             credentials: "include",
             headers: {

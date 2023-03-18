@@ -22,7 +22,7 @@ const port = process.env.PORT || 8000;
 app.use(express.static(path.join(__dirname, "build")));
 
 var corsOptions = {
-    origin: ["http://localhost:3000", "https://checkout.stripe.com"],
+    origin: ["https://parabelo-staging.herokuapp.com", "https://checkout.stripe.com"],
     optionsSuccessStatus: 200, // For legacy browser support
     credentials: true
 }
