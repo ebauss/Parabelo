@@ -22,12 +22,12 @@ export default function LandingPageComponent() {
                     flexWrap: 'wrap-reverse',
                     alignItems: 'center',
                     paddingLeft: {
-                        xs: 1,
-                        // sm: 10
+                        xs: 3,
+                        sm: 10
                     },
                     paddingRight: {
-                        xs: 1,
-                        // sm: 10
+                        xs: 3,
+                        sm: 10
                     },
                     paddingTop: 5,
                     marginTop: 7
@@ -50,7 +50,7 @@ export default function LandingPageComponent() {
                         sx={{
                             color: 'white',
                             width: {
-                                xs: 200,
+                                xs: "100%",
                                 sm: 500
                             },
                         }} >
@@ -63,7 +63,7 @@ export default function LandingPageComponent() {
                         sx={{
                             color: 'white',
                             width: {
-                                xs: 200,
+                                xs: "100%",
                                 sm: 500
                             }
                         }}>
@@ -86,8 +86,8 @@ export default function LandingPageComponent() {
             <br />
             {/* Start of section. */}
             <Box sx={{
-                marginLeft: 5,
-                marginRight: 5
+                marginLeft: 3,
+                marginRight: 3
             }}>
                 <Typography variant="h4">
                     Parabelo helps you with...
@@ -265,6 +265,8 @@ export default function LandingPageComponent() {
                 sx={{
                     paddingTop: 10,
                     paddingBottom: 10,
+                    paddingLeft: 3,
+                    paddingRight: 3,
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
@@ -274,7 +276,7 @@ export default function LandingPageComponent() {
                 <Box
                     sx={{
                         width: {
-                            xs: 200,
+                            xs: "100%",
                             sm: 500
                         }
                     }}
