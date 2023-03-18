@@ -4,9 +4,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
 import Typography from "@mui/material/Typography";
 
-const {Configuration, OpenAIApi} = require("openai");
-
-export default function EmailMarketingComponent() {
+export default function EmailMarketingComponent(props) {
     /* Stores the string entered in the prompt text field. */
     const [promptValue, setPromptValue] = React.useState('');
 
@@ -38,67 +36,74 @@ export default function EmailMarketingComponent() {
     }
 
     /**
+     * saves the result to the database.
+     */
+    const saveToDatabase = async (result) => {
+        // for the id, use props.userDetails.sub.
+        const response = await fetch("http://localhost:8000/saveEmailMarketingToDb", {
+            method: "Post",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                type: "Email Marketing",
+                owner: props.userDetails.sub,
+                prompt: promptValue,
+                thingsToMention: thingsToMentionValue,
+                result: result
+            })
+        })
+
+        const data = await response.text();
+
+        if (data !== "false") {
+            console.log("Result was successfully stored in the database.");
+        } else {
+            console.log("Result failed to store into the database.");
+        }
+    }
+
+    /**
      * handles the generate button click.
      *
      * Send the prompt to the server; the server will then send the request to OpenAi.
      */
     const handleClick = async () => {
-        const apiKeyResponse = await fetch("https://parabelo.herokuapp.com/getOpenAIApiKey",{
-            method: "Get",
+        setLoading(true); // Start loading animation of button
+        let modifiedPrompt;
+        
+        if (thingsToMentionValue) {
+            modifiedPrompt = 'Write a marketing email for ' + promptValue + '. ' + 'Things to mention: ' + thingsToMentionValue + ". Thank you.";
+        } else {
+            modifiedPrompt = 'Write a marketing email for ' + promptValue + ". Thank you.";
+        }
+
+        const aiApiResponse = await fetch('http://localhost:8000/requestTextResponse', {
+            method: "Post",
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
-            }
-        })
-
-        const apiKeyData = await apiKeyResponse.text();
-
-        const configuration = new Configuration({
-            apiKey: apiKeyData,
-        });
-
-        let modifiedPrompt;
-
-        // TODO change this into a switch of some sort. Like and if statement chain with string concatenation.
-        if (thingsToMentionValue) {
-            modifiedPrompt = 'Write a marketing email for ' + promptValue + '. ' + 'Things to mention: ' + thingsToMentionValue;
-        } else {
-            modifiedPrompt = 'Write a marketing email for ' + promptValue;
-        }
-
-        const openai = new OpenAIApi(configuration);
-
-        // Check if prompt follows OpenAi usage policies using the OpenAi moderation endpoint.
-        const moderationResponse = await openai.createModeration({
-            input: modifiedPrompt
-        })
-
-        // Value of either true or false.
-        const isPromptNotSafe = await moderationResponse.data.results[0].flagged;
-
-        if (!isPromptNotSafe) {
-            setLoading(true); // Starts the loading animation on the button.
-
-            const aiApiResponse = await openai.createCompletion({
-                model: "text-davinci-003",
+            },
+            body: JSON.stringify({
                 prompt: modifiedPrompt,
                 temperature: 0.9,
                 max_tokens: 1000,
                 top_p: 1,
                 frequency_penalty: 0,
                 presence_penalty: 0,
-            });
-    
-            const aiApiData = await aiApiResponse.data.choices[0].text;
-    
-            if (aiApiData) {
-                setResultValue(aiApiData.trim());
-            }
-    
-            setLoading(false); // Ends the loading animation on the button.
-        } else {
+            })
+        })
+
+        const aiApiData = await aiApiResponse.text();
+
+        if (aiApiData === "Prompt is flagged") {
             window.alert("Your prompt does not follow our usage guidelines.");
+        } else {
+            setResultValue(aiApiData.trim());
+            saveToDatabase(aiApiData.trim());
         }
+        setLoading(false); // Ends the loading animation on the button.
     }
 
     return (
@@ -132,7 +137,7 @@ export default function EmailMarketingComponent() {
             <br/>
             <div>
                 <LoadingButton
-                    size="small"
+                    size="large"
                     onClick={handleClick}
                     endIcon={<SendIcon />}
                     loading={loading}
@@ -150,7 +155,7 @@ export default function EmailMarketingComponent() {
                 rows={20}
                 placeholder="Your blog will appear here."
                 value={resultValue}
-                sx={{width: 600}}
+                sx={{width: 600, marginBottom: 10}}
                 InputLabelProps={{shrink: true}}
                 InputProps={{
                     readOnly: true,

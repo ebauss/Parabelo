@@ -12,33 +12,73 @@ import ProductDescriptionComponent from '../../components/ProductDescriptionComp
 import EmailMarketingComponent from '../../components/EmailMarketingComponent/EmailMarketingComponent';
 import AppMainPageComponent from '../../components/AppMainPageComponent/AppMainPageComponent';
 import { useAuth0 } from "@auth0/auth0-react";
+import PricingComponentPostSignUp from '../../components/PricingComponent/PricingComponentPostSignUp';
+import SuccessCheckoutComponent from '../../components/SuccessCheckoutComponent/SuccessCheckoutComponent';
+import SettingsComponent from '../../components/SettingsComponent/SettingsComponent';
+import EmailVerificationComponent from '../../components/EmailVerificationComponent/EmailVerificationComponent';
 
 export default function WebApplication() {
     const { user, isAuthenticated, isLoading } = useAuth0();
-    
+
+    const [hasActiveSubscription, setHasActiveSubscription] = React.useState(true);
+
+    const checkForActiveSubscription = async () => {
+        fetch("http://localhost:8000/checkUserActiveSubscription", {
+            method: "Post",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                customerId: user.stripeCustomerId
+            })
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            setHasActiveSubscription(data);
+        })
+    }
+
     if (isLoading) {
         return (
             <div>
-                Is Loading...
             </div>
         )
     }
 
     if (isAuthenticated) {
-        return (
-            <div>
-                <NavbarWebApp></NavbarWebApp>
-                <Routes>
-                    <Route path="/blogpost" element={<BlogPostComponent />} />
-                    <Route path="/copyWriter" element={<CopyWriter />} />
-                    <Route path="/emailMarketingWriter" element={<EmailMarketingComponent />} />
-                    <Route path="/paraphrasing" element={<ParaphrasingComponent />} />
-                    <Route path="/productDescriptionWriter" element={<ProductDescriptionComponent />} />
-                    <Route path="/" element={<AppMainPageComponent />} />
-                </Routes>
-            </div>
-        )
-    } else {
+        checkForActiveSubscription();
+
+        if (!user.email_verified) {
+            return (
+                <EmailVerificationComponent />
+            )
+        }
+        
+        if (!hasActiveSubscription) {
+            return (
+                    <PricingComponentPostSignUp userDetails={user} />
+            )
+        } else {
+            return (
+                <div>
+                    <NavbarWebApp></NavbarWebApp>
+                    <Routes>
+                        <Route path="/blogpost" element={<BlogPostComponent userDetails={user} />} />
+                        <Route path="/checkoutSuccess" element={<SuccessCheckoutComponent userDetails={user} />} />
+                        <Route path="/copyWriter" element={<CopyWriter userDetails={user} />} />
+                        <Route path="/emailMarketingWriter" element={<EmailMarketingComponent userDetails={user} />} />
+                        <Route path="/paraphrasing" element={<ParaphrasingComponent userDetails={user} />} />
+                        <Route path="/productDescriptionWriter" element={<ProductDescriptionComponent userDetails={user} />} />
+                        <Route path="/settings" element={<SettingsComponent userDetails={user} />} />
+                        <Route path="/" element={<AppMainPageComponent />} />
+                    </Routes>
+                </div>
+            )
+        }
+
+    } 
+    else {
         return (
             <Navigate to="/" />
         )

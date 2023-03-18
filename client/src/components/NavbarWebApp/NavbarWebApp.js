@@ -24,6 +24,9 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "@mui/material";
 import MailIcon from '@mui/icons-material/Mail';
+import SettingsIcon from '@mui/icons-material/Settings';
+import HomeIcon from '@mui/icons-material/Home';
+import { LinearProgress } from '@mui/material';
 
 const drawerWidth = 280;
 
@@ -110,26 +113,39 @@ export default function NavbarWebApp() {
             <CssBaseline />
             <AppBar position="fixed" open={open}>
                 <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        sx={{
-                            marginRight: 5,
-                            ...(open && { display: 'none' }),
-                        }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Link to='/app' style={{ textDecoration: 'none', color: "white" }}>
-                        <Typography variant="h6" noWrap component="div">
-                            Parabelo
-                        </Typography>
-                    </Link>
-                    <Button variant="text" size="large" onClick={logout} color="inherit">
-                        Log Out
-                    </Button>
+                    <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            onClick={handleDrawerOpen}
+                            edge="start"
+                            sx={{
+                                marginRight: 5,
+                                ...(open && { display: 'none' }),
+                            }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Link to='/app' style={{ textDecoration: 'none', color: "white" }}>
+                            <Typography variant="h6" noWrap component="div">
+                                Parabelo
+                            </Typography>
+                        </Link>
+                    </Box>
+                    <Box sx={{ display: "flex", flexDirection: 'column', alignItems: "center" }}>
+                        <Typography variant="p">Word Count</Typography>
+                        <LinearProgress variant="determinate" value={50} sx={{ width: {xs: 100, md: 300} }} color="secondary" />
+                    </Box>
+                    <Box>
+                        <Link to="/app/settings" style={{ textDecoration: 'none', color: "white" }}>
+                            <IconButton color="inherit">
+                                <SettingsIcon />
+                            </IconButton>
+                        </Link>
+                        <Button variant="text" size="large" onClick={logout} color="inherit">
+                            Log Out
+                        </Button>
+                    </Box>
                 </Toolbar>
             </AppBar>
             <Drawer variant="permanent" open={open}>
@@ -140,6 +156,28 @@ export default function NavbarWebApp() {
                 </DrawerHeader>
                 <Divider />
                 <List>
+                    <ListItem key='home' disablePadding sx={{ display: 'block' }}>
+                        <Link to='/app/' style={{ textDecoration: 'none', color: "black" }}>
+                            <ListItemButton
+                                sx={{
+                                    minHeight: 48,
+                                    justifyContent: open ? 'initial' : 'center',
+                                    px: 2.5,
+                                }}
+                            >
+                                <ListItemIcon
+                                    sx={{
+                                        minWidth: 0,
+                                        mr: open ? 3 : 'auto',
+                                        justifyContent: 'center',
+                                    }}
+                                >
+                                    <HomeIcon />
+                                </ListItemIcon>
+                                <ListItemText primary='Home' sx={{ opacity: open ? 1 : 0 }} />
+                            </ListItemButton>
+                        </Link>
+                    </ListItem>
                     <ListItem key='paraphrasing' disablePadding sx={{ display: 'block' }}>
                         <Link to='/app/paraphrasing' style={{ textDecoration: 'none', color: "black" }}>
                             <ListItemButton
