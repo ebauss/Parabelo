@@ -27,8 +27,9 @@ import MailIcon from '@mui/icons-material/Mail';
 import SettingsIcon from '@mui/icons-material/Settings';
 import HomeIcon from '@mui/icons-material/Home';
 import { LinearProgress } from '@mui/material';
+import TagIcon from '@mui/icons-material/Tag';
 
-const drawerWidth = 280;
+const drawerWidth = 250;
 
 const openedMixin = (theme) => ({
     width: drawerWidth,
@@ -218,7 +219,7 @@ export default function NavbarWebApp() {
                                 >
                                     <NotesIcon />
                                 </ListItemIcon>
-                                <ListItemText primary='Blog Post Writer' sx={{ opacity: open ? 1 : 0 }} />
+                                <ListItemText primary='Blog Post' sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </Link>
                     </ListItem>
@@ -240,7 +241,7 @@ export default function NavbarWebApp() {
                                 >
                                     <CopyrightIcon />
                                 </ListItemIcon>
-                                <ListItemText primary='Copy Writer' sx={{ opacity: open ? 1 : 0 }} />
+                                <ListItemText primary='Ad Copy' sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </Link>
                     </ListItem>
@@ -262,7 +263,7 @@ export default function NavbarWebApp() {
                                 >
                                     <DescriptionIcon />
                                 </ListItemIcon>
-                                <ListItemText primary='Product Description Writer' sx={{ opacity: open ? 1 : 0 }} />
+                                <ListItemText primary='Product Description' sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </Link>
                     </ListItem>
@@ -284,7 +285,29 @@ export default function NavbarWebApp() {
                                 >
                                     <MailIcon />
                                 </ListItemIcon>
-                                <ListItemText primary='Email Marketing Writer' sx={{ opacity: open ? 1 : 0 }} />
+                                <ListItemText primary='Email Marketing' sx={{ opacity: open ? 1 : 0 }} />
+                            </ListItemButton>
+                        </Link>
+                    </ListItem>
+                    <ListItem key='socialMediaCaptionsWriter' disablePadding sx={{ display: 'block' }}>
+                        <Link to='/app/socialMediaCaptions' style={{ textDecoration: 'none', color: "black" }}>
+                            <ListItemButton
+                                sx={{
+                                    minHeight: 48,
+                                    justifyContent: open ? 'initial' : 'center',
+                                    px: 2.5,
+                                }}
+                            >
+                                <ListItemIcon
+                                    sx={{
+                                        minWidth: 0,
+                                        mr: open ? 3 : 'auto',
+                                        justifyContent: 'center',
+                                    }}
+                                >
+                                    <TagIcon />
+                                </ListItemIcon>
+                                <ListItemText primary='Social Media Captions' sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </Link>
                     </ListItem>

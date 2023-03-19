@@ -16,6 +16,7 @@ import PricingComponentPostSignUp from '../../components/PricingComponent/Pricin
 import SuccessCheckoutComponent from '../../components/SuccessCheckoutComponent/SuccessCheckoutComponent';
 import SettingsComponent from '../../components/SettingsComponent/SettingsComponent';
 import EmailVerificationComponent from '../../components/EmailVerificationComponent/EmailVerificationComponent';
+import SocialMediaCaptionComponent from '../../components/SocialMediaCaptionComponent/SocialMediaCaptionComponent';
 
 export default function WebApplication() {
     const { user, isAuthenticated, isLoading } = useAuth0();
@@ -71,6 +72,7 @@ export default function WebApplication() {
                         <Route path="/paraphrasing" element={<ParaphrasingComponent userDetails={user} />} />
                         <Route path="/productDescriptionWriter" element={<ProductDescriptionComponent userDetails={user} />} />
                         <Route path="/settings" element={<SettingsComponent userDetails={user} />} />
+                        <Route path="/socialMediaCaptions" element={<SocialMediaCaptionComponent userDetails={user} />} />
                         <Route path="/" element={<AppMainPageComponent />} />
                     </Routes>
                 </div>
