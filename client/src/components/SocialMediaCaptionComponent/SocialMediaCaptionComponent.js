@@ -8,7 +8,7 @@ import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 export default function SocialMediaCaptionComponent(props) {
     const [lengthValue, setLengthValue] = React.useState('medium');
     const [imageContentsValue, setImageContentsValue] = React.useState('');
-    const [styleValue, setStyleValue] = React.useState('');
+    const [styleValue, setStyleValue] = React.useState('creative');
     const [additionsValue, setAdditionsValue] = React.useState('');
     const [resultValue, setResultValue] = React.useState('');
     const [loading, setLoading] = React.useState(false);
@@ -41,7 +41,7 @@ export default function SocialMediaCaptionComponent(props) {
             },
             body: JSON.stringify({
                 prompt: modifiedPrompt,
-                temperature: 0.76,
+                temperature: 0.85,
                 max_tokens: 3500,
                 top_p: 1,
                 frequency_penalty: 0,
@@ -117,8 +117,8 @@ export default function SocialMediaCaptionComponent(props) {
                     onChange={handleStyleChange}
                     aria-label="Platform"
                 >
-                    <ToggleButton value="creative">Creative</ToggleButton>
                     <ToggleButton value="funny">Funny</ToggleButton>
+                    <ToggleButton value="creative">Creative</ToggleButton>
                     <ToggleButton value="professional">Professional</ToggleButton>
                 </ToggleButtonGroup>
             </div>

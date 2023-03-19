@@ -101,7 +101,7 @@ export default function BlogPostComponent(props) {
             window.alert("Your prompt does not follow our usage guidelines.");
         } else {
             setResultValue(aiApiData.trim());
-            saveToDatabase(aiApiData.trim());
+            // saveToDatabase(aiApiData.trim());
         }
         setLoading(false); // Ends the loading animation on the button.
     }
