@@ -302,7 +302,8 @@ export default function LandingPageComponent() {
                         <Typography variant="body2" align="left">
                             Parabelo AI will create content within minutes that will get clicks by using the current trends to help convert.
                         </Typography>
-                        <br />
+                    </Grid>
+                    <Grid item sm={12} md={6}>
                         <Typography variant="h5" align="left">
                             Optimize your work output
                         </Typography>
@@ -317,7 +318,8 @@ export default function LandingPageComponent() {
                         <Typography variant="body2" align="left">
                             From emails, blogs, captions to a personal letter to a family or friend, Parabelo is here to create the perfect written message within seconds for you.
                         </Typography>
-                        <br />
+                    </Grid>
+                    <Grid item xs={12} md={6}>
                         <Typography variant="h5" align="left">
                             Scale your business through AI
                         </Typography>
