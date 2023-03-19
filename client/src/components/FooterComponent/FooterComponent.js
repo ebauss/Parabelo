@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { Typography } from '@mui/material';
+import { Typography, Link } from '@mui/material';
 
 
 export default function FooterComponent() {
@@ -10,7 +10,7 @@ export default function FooterComponent() {
             sx={{
                 display: 'flex',
                 flexDirection: 'row',
-                justifyContent: 'space-around',
+                justifyContent: 'space-evenly',
                 paddingTop: 2,
                 paddingBottom: 2
             }}
@@ -22,18 +22,15 @@ export default function FooterComponent() {
                     alignItems: 'flex-start'
                 }}
             >
-                <Typography variant="h6">
-                    Link Header One
-                </Typography>
-                <Typography variant="h6">
-                    Lorem
-                </Typography>
-                <Typography variant="h6">
-                    Ipsum
-                </Typography>
-                <Typography variant="h6">
-                    Lipsum
-                </Typography>
+                <Link href="#" color="#ffffff" underline="hover">
+                    About Us
+                </Link>
+                <Link href="#" color="#ffffff" underline="hover">
+                    Support
+                </Link>
+                <Link href="#" color="#ffffff" underline="hover">
+                    FAQ
+                </Link>
             </Box>
             <Box
                 sx={{
@@ -42,32 +39,15 @@ export default function FooterComponent() {
                     alignItems: 'flex-start'
                 }}
             >
-                <Typography variant="h6">
-                    Link Header Two
-                </Typography>
-                <Typography variant="h6">
-                    Test Link
-                </Typography>
-                <Typography variant="h6">
-                    Some Link
-                </Typography>
-                <Typography variant="h6">
-                    Linkage
-                </Typography>
-            </Box>
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'flex-start'
-                }}
-            >
-                <Typography variant="h6">
-                    Link Header 3
-                </Typography>
-                <Typography variant="h6">
-                    Test Link
-                </Typography>
+                <Link href="#" color="#ffffff" underline="hover">
+                    Privacy Policy
+                </Link>
+                <Link href="#" color="#ffffff" underline="hover">
+                    Terms Of Service
+                </Link>
+                <Link href="#" color="#ffffff" underline="hover">
+                    Usage Guidelines
+                </Link>
             </Box>
         </Box>
     )
