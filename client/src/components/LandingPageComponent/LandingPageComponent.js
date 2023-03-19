@@ -282,8 +282,8 @@ export default function LandingPageComponent() {
             {/* Start of section */}
             <Box sx={{
                 marginTop: 10,
-                marginLeft: 3,
-                marginRight: 3,
+                marginLeft: 6,
+                marginRight: 6,
                 display: 'flex',
                 flexDirection:'column',
                 alignItems: 'center'
