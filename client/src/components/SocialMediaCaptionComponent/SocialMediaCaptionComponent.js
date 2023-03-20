@@ -92,7 +92,7 @@ export default function SocialMediaCaptionComponent(props) {
         <div>
             <br />
             <Typography variant="h5" gutterBottom>
-                Social Media Captions Writer
+                Social Media Caption Writer
             </Typography>
             <br />
             <div>

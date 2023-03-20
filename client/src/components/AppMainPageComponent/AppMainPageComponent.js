@@ -68,6 +68,16 @@ export default function AppMainPageComponent() {
                         >Email Marketing Writer</Button>
                     </Link>
                 </Grid>
+                <Grid item xs={12} md={6} >
+                    <Link to='/app/socialMediaCaption' style={{ textDecoration: 'none', color: "black" }}>
+                        <Button variant="outlined" size="large"
+                            sx={{
+                                height: 200,
+                                width: 300
+                            }}
+                        >Social Media Caption</Button>
+                    </Link>
+                </Grid>
             </Grid>
         </div>
     )

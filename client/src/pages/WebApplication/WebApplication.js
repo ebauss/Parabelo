@@ -72,7 +72,7 @@ export default function WebApplication() {
                         <Route path="/paraphrasing" element={<ParaphrasingComponent userDetails={user} />} />
                         <Route path="/productDescriptionWriter" element={<ProductDescriptionComponent userDetails={user} />} />
                         <Route path="/settings" element={<SettingsComponent userDetails={user} />} />
-                        <Route path="/socialMediaCaptions" element={<SocialMediaCaptionComponent userDetails={user} />} />
+                        <Route path="/socialMediaCaption" element={<SocialMediaCaptionComponent userDetails={user} />} />
                         <Route path="/" element={<AppMainPageComponent />} />
                     </Routes>
                 </div>

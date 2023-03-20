@@ -302,7 +302,7 @@ export default function NavbarWebApp() {
                         </Link>
                     </ListItem>
                     <ListItem key='socialMediaCaptionsWriter' disablePadding sx={{ display: 'block' }}>
-                        <Link to='/app/socialMediaCaptions' style={{ textDecoration: 'none', color: "black" }}>
+                        <Link to='/app/socialMediaCaption' style={{ textDecoration: 'none', color: "black" }}>
                             <ListItemButton
                                 sx={{
                                     minHeight: 48,
@@ -317,11 +317,11 @@ export default function NavbarWebApp() {
                                         justifyContent: 'center',
                                     }}
                                 >
-                                    <Tooltip title="Social Media Captions" placement='right'>
+                                    <Tooltip title="Social Media Caption" placement='right'>
                                         <TagIcon />
                                     </Tooltip>
                                 </ListItemIcon>
-                                <ListItemText primary='Social Media Captions' sx={{ opacity: open ? 1 : 0 }} />
+                                <ListItemText primary='Social Media Caption' sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </Link>
                     </ListItem>
