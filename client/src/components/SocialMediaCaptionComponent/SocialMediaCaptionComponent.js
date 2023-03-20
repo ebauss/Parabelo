@@ -29,6 +29,34 @@ export default function SocialMediaCaptionComponent(props) {
         setAdditionsValue(event.target.value);
     }
 
+    const saveToDatabase = async (result) => {
+        // for the id, use props.userDetails.sub.
+        const response = await fetch("http://localhost:8000/saveSocialCaptionToDB", {
+            method: "Post",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                type: "Social Media Caption",
+                owner: props.userDetails.sub,
+                length: lengthValue,
+                imageContents: imageContentsValue,
+                writingStyle: styleValue,
+                additions: additionsValue,
+                result: result
+            })
+        })
+
+        const data = await response.text();
+
+        if (data !== "false") {
+            console.log("Result was successfully stored in the database.");
+        } else {
+            console.log("Result failed to store into the database.");
+        }
+    }
+
     const handleClick = async () => {
         setLoading(true); // Start loading animation of button
         const modifiedPrompt = 'Write a social media post. Length: ' + lengthValue + '. Image Contents: ' + imageContentsValue + '. Tone: ' + styleValue + '. ' + additionsValue + '. Thank you.';

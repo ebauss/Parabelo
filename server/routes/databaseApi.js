@@ -93,4 +93,23 @@ router.post('/saveEmailMarketingToDb', (req, res) => {
     })
 })
 
+router.post('/saveSocialCaptionToDB', (req, res) => {
+    documents.create({
+        type: req.body.type,
+        owner: req.body.owner,
+        length: req.body.length,
+        imageContents: req.body.imageContents,
+        writingStyle: req.body.writingStyle,
+        additions: req.body.additions,
+        result: req.body.result
+    }, (err, data) => {
+        if (err) {
+            console.log(err);
+
+            res.send(false);
+        }
+        res.send(data);
+    })
+})
+
 module.exports = router;
