@@ -58,6 +58,7 @@ export default function SocialMediaCaptionComponent(props) {
     }
 
     const handleClick = async () => {
+        setResultValue('');
         setLoading(true); // Start loading animation of button
         const modifiedPrompt = 'Write a social media post. Length: ' + lengthValue + '. Image Contents: ' + imageContentsValue + '. Tone: ' + styleValue + '. ' + additionsValue + '. Thank you.';
 

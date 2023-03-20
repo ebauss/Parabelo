@@ -70,6 +70,7 @@ export default function CopyWriter(props) {
      * Send the prompt to the server; the server will then send the request to OpenAi.
      */
     const handleClick = async () => {
+        setResultValue('');
         setLoading(true); // Start loading animation of button
         let modifiedPrompt;
 
