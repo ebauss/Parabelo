@@ -11,7 +11,8 @@ export default function PricingCardComingSoon(props) {
             paddingRight: 3,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center'
+            alignItems: 'center',
+            height: 470
         }}>
             <Typography variant="h4"
                 sx={{
@@ -26,6 +27,7 @@ export default function PricingCardComingSoon(props) {
             <Typography variant="h3">
                 Coming Soon! Hold tight for more details!
             </Typography>
+            <br />
             <br />
             <br />
             <Typography variant="h5">

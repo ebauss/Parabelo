@@ -15,13 +15,13 @@ export default function PricingComponent() {
         <div>
             <Grid container spacing={4} sx={{
                 marginTop: 7,
-                marginBottom: 5,
+                marginBottom: 4,
                 paddingTop: 5,
                 paddingBottom: 5,
                 paddingLeft: 10,
                 paddingRight: 10
             }}>
-                <Grid item xs={12} sm={12} md={6} lg={6}>
+                <Grid item xs={12} sm={12} md={6}>
                     <PricingCard
                         productName="Elite"
                         productPrice="30"
@@ -36,11 +36,11 @@ export default function PricingComponent() {
                         buttonAction={goToSignUp}
                     />
                 </Grid>
-                <Grid item xs={12} sm={12} md={6} lg={6}>
-                    {/* <PricingCardComingSoon 
+                <Grid item xs={12} sm={12} md={6}>
+                    <PricingCardComingSoon 
                         productName="Premium"
-                    /> */}
-                    <PricingCard
+                    />
+                    {/* <PricingCard
                         productName="Elite"
                         productPrice="30"
                         ctaText="Sign Up & Try For Free"
@@ -52,7 +52,7 @@ export default function PricingComponent() {
                             'Scale your business through AI'
                         ]}
                         buttonAction={goToSignUp}
-                    />
+                    /> */}
                 </Grid>
             </Grid>
         </div>
