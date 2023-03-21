@@ -9,10 +9,7 @@ import CheckIcon from '@mui/icons-material/Check';
 // productPrice
 // ctaText
 // ctaAction
-// featureOne
-// featureTwo
-// featureThree
-// featureFour
+// features (as an array of strings)
 export default function PricingCard(props) {
     return (
         <Paper elevation={3} sx={{
@@ -20,8 +17,7 @@ export default function PricingCard(props) {
             paddingBottom: 2,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
-            height: '100%'
+            alignItems: 'center'
         }}>
             <Typography variant="h4"
                 sx={{
