@@ -19,41 +19,23 @@ export default function PricingComponent() {
                 paddingLeft: 10,
                 paddingRight: 10
             }}>
-                <Grid item xs={12} sm={12} md={12} lg={4}>
+                <Grid item xs={12} sm={12} md={6} lg={6}>
                     <PricingCard 
-                    productName="Regular"
-                    productPrice="9.99"
-                    ctaText="Try For Free"
-                    featureOne="First feature"
-                    featureTwo="Some random fun feature"
-                    featureThree="Another feature"
-                    featureFour="The best feature"
+                    productName="Elite"
+                    productPrice="30"
+                    ctaText="Sign Up & Try For Free"
+                    features={[
+                        'Unlimited word count',
+                        'Create content that is relevant & converts',
+                        'Optimize your work output',
+                        'Better writing',
+                        'Scale your business through AI'
+                    ]}
                     buttonAction={goToSignUp} 
                     />
                 </Grid>
-                <Grid item xs={12} sm={12} md={12} lg={4}>
-                    <PricingCard 
-                    productName="Plus"
-                    productPrice="29.99"
-                    ctaText="Try For Free"
-                    featureOne="First feature"
-                    featureTwo="Some random fun feature"
-                    featureThree="Another feature"
-                    featureFour="The best feature"
-                    buttonAction={goToSignUp}  
-                    />
-                </Grid>
-                <Grid item xs={12} sm={12} md={12} lg={4}>
-                    <PricingCard 
-                    productName="Premium"
-                    productPrice="49.99"
-                    ctaText="Try For Free"
-                    featureOne="First feature"
-                    featureTwo="Some random fun feature"
-                    featureThree="Another feature"
-                    featureFour="The best feature"
-                    buttonAction={goToSignUp}  
-                    />
+                <Grid item xs={12} sm={12} md={12} lg={6}>
+
                 </Grid>
             </Grid>
         </div>
