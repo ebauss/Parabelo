@@ -24,14 +24,21 @@ export default function PricingCardComingSoon(props) {
             <br />
             <br />
             <br />
-            <Typography variant="h3">
-                Coming Soon! Hold tight for more details!
+            <br />
+            <br />
+            <Typography variant="h3" sx={{
+                    fontWeight: 'bold'
+                }}>
+                COMING SOON!
             </Typography>
             <br />
             <br />
             <br />
+            <br />
+            <br />
+            <br />
             <Typography variant="h5">
-                Expect more features!
+                Includes expanded features that are still in development.
             </Typography>
         </Paper >
     )

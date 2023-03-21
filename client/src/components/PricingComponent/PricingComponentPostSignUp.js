@@ -9,9 +9,9 @@ export default function PricingComponentPostSignUp(props) {
     const { logout } = useAuth0();
 
     // TODO: Change the name of this function. There should be three functions.
-    const testFunction = async () => {
+    const checkoutElite = async () => {
         // for the id, use props.userDetails.sub.
-        const response = await fetch("http://localhost:8000/checkoutRegular", {
+        const response = await fetch("http://localhost:8000/checkoutElite", {
             method: "Post",
             credentials: "include",
             headers: {
@@ -29,7 +29,11 @@ export default function PricingComponentPostSignUp(props) {
     }
 
     return (
-        <div>
+        <Box sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+        }}>
             <Box sx={{ marginTop: 5 }}>
                 <Button variant="outlined" size="large" onClick={logout}>
                     Log Out
@@ -41,7 +45,8 @@ export default function PricingComponentPostSignUp(props) {
                 paddingTop: 5,
                 paddingBottom: 5,
                 paddingLeft: 10,
-                paddingRight: 10
+                paddingRight: 10,
+                width: { xl: 1500 }
             }}>
                 <Grid item xs={12} sm={12} md={6}>
                     <PricingCard
@@ -55,7 +60,7 @@ export default function PricingComponentPostSignUp(props) {
                             'Better writing',
                             'Scale your business through AI'
                         ]}
-                        buttonAction={testFunction}
+                        buttonAction={checkoutElite}
                     />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
@@ -64,6 +69,6 @@ export default function PricingComponentPostSignUp(props) {
                     />
                 </Grid>
             </Grid>
-        </div>
+        </Box>
     )
 }
