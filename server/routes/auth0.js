@@ -9,6 +9,8 @@ var request = require('request');
 
 /**
  * Will return either true or false as a bool.
+ * 
+ * This makes a request to the Auth0 Management API.
  */
 router.post('/checkIfEmailVerified', (req, res) => {
     var optionsToken = {
