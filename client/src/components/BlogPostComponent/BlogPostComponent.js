@@ -121,7 +121,9 @@ export default function BlogPostComponent(props) {
                     variant="outlined"
                     fullWidth
                     onChange={handlePromptChange}
-                    sx={{ width: 600 }}
+                    sx={{ width: {
+                        md: 600
+                    }}}
                     inputProps={{ maxLength: 1020 }}
                 />
             </div>
@@ -134,7 +136,9 @@ export default function BlogPostComponent(props) {
                     rows={4}
                     fullWidth
                     onChange={handleThingsToMentionChange}
-                    sx={{ width: 600 }}
+                    sx={{ width: {
+                        md: 600
+                    }}}
                     inputProps={{ maxLength: 1020 }}
                 />
             </div>
@@ -159,7 +163,8 @@ export default function BlogPostComponent(props) {
                 rows={20}
                 placeholder="Your blog will appear here."
                 value={resultValue}
-                sx={{ width: 600, marginBottom: 10 }}
+                fullWidth
+                sx={{ width: {md: 600}, marginBottom: 10 }}
                 InputLabelProps={{ shrink: true }}
                 InputProps={{
                     readOnly: true,

@@ -102,7 +102,7 @@ export default function SocialMediaCaptionComponent(props) {
                     variant="outlined"
                     fullWidth
                     onChange={handleContentsChange}
-                    sx={{ width: 600 }}
+                    sx={{ width: { md: 600 } }}
                     inputProps={{ maxLength: 1020 }}
                 />
             </div>
@@ -115,7 +115,7 @@ export default function SocialMediaCaptionComponent(props) {
                     rows={4}
                     fullWidth
                     onChange={handleAdditionsChange}
-                    sx={{ width: 600 }}
+                    sx={{ width: { md: 600 } }}
                     inputProps={{ maxLength: 1020 }}
                 />
             </div>
@@ -174,7 +174,8 @@ export default function SocialMediaCaptionComponent(props) {
                 rows={20}
                 placeholder="Your blog will appear here."
                 value={resultValue}
-                sx={{ width: 600, marginBottom: 10 }}
+                fullWidth
+                sx={{ width: { md: 600 }, marginBottom: 10 }}
                 InputLabelProps={{ shrink: true }}
                 InputProps={{
                     readOnly: true,

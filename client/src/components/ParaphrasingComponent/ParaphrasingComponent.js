@@ -130,7 +130,7 @@ export default function ParaphrasingComponent(props) {
                     variant="outlined"
                     fullWidth
                     onChange={handleChange}
-                    sx={{ width: 600 }}
+                    sx={{ width: { md: 600 }}}
                     inputProps={{ maxLength: 2500 }}
                 />
             </div>
@@ -191,7 +191,8 @@ export default function ParaphrasingComponent(props) {
                 rows={10}
                 placeholder="Your text will appear here"
                 value={resultValue}
-                sx={{ width: 600, marginBottom: 10 }}
+                fullWidth
+                sx={{ width: {md: 600}, marginBottom: 10 }}
                 InputLabelProps={{ shrink: true }}
                 InputProps={{
                     readOnly: true,
