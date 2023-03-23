@@ -7,20 +7,24 @@ var postmark = require('postmark');
 const axios = require('axios');
 /* ------------------------------------ */
 
-router.get('/sendEmailToSupport', (req, res) => {
+router.post('/sendEmailToSupport', (req, res) => {
     // Send an email:
     var client = new postmark.ServerClient("ab38c227-fd47-41e4-8d6f-887dd88df6a8");
 
+    const subject = `Support message from ${req.body.firstName} ${req.body.lastName} ${req.body.email}`;
+
+    console.log(subject);
+
     client.sendEmail({
-        "From": "evon@parabelo.com",
-        "To": "evon@parabelo.com",
-        "Subject": "Hello from Postmark",
-        "HtmlBody": "<strong>Hello</strong> dear Postmark user.",
+        "From": 'evon@parabelo.com',
+        "To": "support@parabelo.com", // Put this in the env.
+        "Subject": subject,
+        "HtmlBody": req.body.emailBody,
         "TextBody": "Hello from Postmark!",
         "MessageStream": "outbound"
     });
 
-    console.log("email sent?")
+    console.log("Email has been sent.");
 })
 
 module.exports = router;

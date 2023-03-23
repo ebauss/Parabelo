@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
 import TextField from '@mui/material/TextField';
@@ -25,7 +25,20 @@ export default function SupportComponent(props) {
         setEmailBodyValue(event.target.value);
     }
 
-    const sendEmail = async () => {
+    const sendEmail = () => {
+        fetch("http://localhost:8000/sendEmailToSupport", {
+            method: "Post",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: emailValue,
+                emailBody: emailBodyValue,
+                firstName: firstNameValue,
+                lastName: lastNameValue
+            })
+        })
 
         window.alert("Thank you for sending us a message! We will get back to you as soon as we can.");
     }
