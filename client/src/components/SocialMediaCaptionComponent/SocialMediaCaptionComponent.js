@@ -103,6 +103,7 @@ export default function SocialMediaCaptionComponent(props) {
                     fullWidth
                     onChange={handleContentsChange}
                     sx={{ width: 600 }}
+                    inputProps={{ maxLength: 1020 }}
                 />
             </div>
             <br />
@@ -115,6 +116,7 @@ export default function SocialMediaCaptionComponent(props) {
                     fullWidth
                     onChange={handleAdditionsChange}
                     sx={{ width: 600 }}
+                    inputProps={{ maxLength: 1020 }}
                 />
             </div>
             <br />

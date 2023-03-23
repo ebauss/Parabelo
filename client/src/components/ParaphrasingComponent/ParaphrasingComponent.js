@@ -131,6 +131,7 @@ export default function ParaphrasingComponent(props) {
                     fullWidth
                     onChange={handleChange}
                     sx={{ width: 600 }}
+                    inputProps={{ maxLength: 2500 }}
                 />
             </div>
             <br />

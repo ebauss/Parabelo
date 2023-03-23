@@ -121,6 +121,7 @@ export default function EmailMarketingComponent(props) {
                            fullWidth
                            onChange={handlePromptChange}
                            sx={{width: 600}}
+                           inputProps={{ maxLength: 1020 }}
                 />
             </div>
             <br/>
@@ -133,6 +134,7 @@ export default function EmailMarketingComponent(props) {
                            fullWidth
                            onChange={handleThingsToMentionChange}
                            sx={{width: 600}}
+                           inputProps={{ maxLength: 1020 }}
                 />
             </div>
             <br/>
