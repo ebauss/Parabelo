@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { Typography, Link } from '@mui/material';
+import { Link } from "react-router-dom";
 
 
 export default function FooterComponent() {
@@ -22,13 +22,13 @@ export default function FooterComponent() {
                     alignItems: 'flex-start'
                 }}
             >
-                <Link href="#" color="#ffffff" underline="hover">
+                <Link to="/aboutUs" style={{ textDecoration: 'none', color: "white" }}>
                     About Us
                 </Link>
-                <Link href="#" color="#ffffff" underline="hover">
+                <Link to="/support" style={{ textDecoration: 'none', color: "white" }}>
                     Support
                 </Link>
-                <Link href="#" color="#ffffff" underline="hover">
+                <Link to="/faq" style={{ textDecoration: 'none', color: "white" }}>
                     FAQ
                 </Link>
             </Box>
@@ -39,13 +39,13 @@ export default function FooterComponent() {
                     alignItems: 'flex-start'
                 }}
             >
-                <Link href="#" color="#ffffff" underline="hover">
+                <Link to="/privacyPolicy" style={{ textDecoration: 'none', color: "white" }}>
                     Privacy Policy
                 </Link>
-                <Link href="#" color="#ffffff" underline="hover">
+                <Link to="/termsOfService" style={{ textDecoration: 'none', color: "white" }}>
                     Terms Of Service
                 </Link>
-                <Link href="#" color="#ffffff" underline="hover">
+                <Link to="/usageGuidelines" style={{ textDecoration: 'none', color: "white" }}>
                     Usage Guidelines
                 </Link>
             </Box>
