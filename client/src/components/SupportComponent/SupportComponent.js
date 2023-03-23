@@ -26,7 +26,7 @@ export default function SupportComponent(props) {
     }
 
     const sendEmail = async () => {
-
+        window.alert("Thank you for sending us a message! We will get back to you as soon as we can.");
     }
 
     return (
@@ -34,7 +34,6 @@ export default function SupportComponent(props) {
             paddingTop: 12,
             paddingBottom: 10
         }}>
-            
             <Typography variant="h4" gutterBottom>
                 Support
             </Typography>
@@ -43,7 +42,7 @@ export default function SupportComponent(props) {
                 Please send us an email via this form if you have any questions.
             </Typography>
             <br />
-            <Button variant="contained" onChange={sendEmail} >
+            <Button variant="contained" onClick={sendEmail} >
                 Send Email
             </Button>
             <br />
