@@ -8,6 +8,7 @@ const routes = require('./routes/databaseApi');
 const stripe = require('./routes/stripe');
 const auth0 = require('./routes/auth0');
 const openAiAPI = require('./routes/openAiAPI');
+const email = require('./routes/email');
 const mongoose = require('mongoose');
 // const mongoDBConnection = require('./database/connection');
 /* ------------------------------------ */
@@ -55,6 +56,8 @@ app.use('/', stripe);
 app.use('/', auth0);
 
 app.use('/', openAiAPI);
+
+app.use('/', email);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

@@ -26,6 +26,7 @@ export default function SupportComponent(props) {
     }
 
     const sendEmail = async () => {
+
         window.alert("Thank you for sending us a message! We will get back to you as soon as we can.");
     }
 
@@ -66,10 +67,12 @@ export default function SupportComponent(props) {
                 label="Email"
                 variant="outlined"
                 onChange={handleEmailChange}
-                sx={{ width: {
-                    sm: 632
-                }, 
-                margin: 2 }}
+                sx={{
+                    width: {
+                        sm: 632
+                    },
+                    margin: 2
+                }}
                 inputProps={{ maxLength: 255 }}
             />
             <br />
