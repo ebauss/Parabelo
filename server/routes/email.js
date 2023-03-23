@@ -13,10 +13,10 @@ router.post('/sendEmailToSupport', (req, res) => {
 
     const subject = `Support message from ${req.body.firstName} ${req.body.lastName} ${req.body.email}`;
 
-    console.log(subject);
+    const email = req.body.email;
 
     client.sendEmail({
-        "From": 'evon@parabelo.com',
+        "From": email,
         "To": "support@parabelo.com", // Put this in the env.
         "Subject": subject,
         "HtmlBody": req.body.emailBody,
