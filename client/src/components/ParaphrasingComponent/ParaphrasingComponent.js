@@ -118,14 +118,19 @@ export default function ParaphrasingComponent(props) {
     }
 
     const fetchDataStream = () => {
-        const events = new EventSource('http://localhost:8000/streamTest')
+        const events = new EventSource('http://localhost:8000/streamTest');
 
-        events.onopen = e => {
-            console.log(e);
-        }
+        events.onmessage = event => {
+            if (event.data == "[DONE]") {
+                events.close();
+            } else {
+                console.log(event.data);
 
-        events.onmessage = e => {
-            console.log(e.data)
+                const appendedText = resultValue + event.data;
+                console.log(`Before: ${resultValue}`);
+                setResultValue(appendedText);
+                console.log(`After: ${resultValue}`);
+            }
         }
     }
 

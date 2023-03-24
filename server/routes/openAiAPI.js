@@ -77,7 +77,7 @@ router.get('/streamTest', async (req, res) => {
             method: "POST",
             body: JSON.stringify({
                 model: "gpt-3.5-turbo",
-                messages: generatePrompt("Write a super long blog post about bugatti chiron. Thank you."),
+                messages: generatePrompt("say hello"),
                 temperature: 0.75,
                 top_p: 0.95,
                 frequency_penalty: 0,
@@ -110,7 +110,7 @@ router.get('/streamTest', async (req, res) => {
                 res.write('\n\n');
             } else {
                 res.write('event: message\n');  // message event
-                res.write('[DONE]');
+                res.write('data: [DONE]');
                 res.write('\n\n');
                 res.end();
             }
