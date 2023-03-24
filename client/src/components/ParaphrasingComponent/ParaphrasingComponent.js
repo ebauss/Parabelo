@@ -21,6 +21,8 @@ export default function ParaphrasingComponent(props) {
     /* Determines whether the loading animation is activated or not. */
     const [loading, setLoading] = React.useState(false);
 
+    const [listening, setListening] = React.useState(false);
+
     /**
      * Handles the text changes in the text box.
      *
@@ -115,6 +117,18 @@ export default function ParaphrasingComponent(props) {
         setLoading(false); // Ends the loading animation on the button.
     }
 
+    const fetchDataStream = () => {
+        const events = new EventSource('http://localhost:8000/streamTest')
+
+        events.onopen = e => {
+            console.log(e);
+        }
+
+        events.onmessage = e => {
+            console.log(e.data)
+        }
+    }
+
     return (
         <div>
             <br />
@@ -130,7 +144,7 @@ export default function ParaphrasingComponent(props) {
                     variant="outlined"
                     fullWidth
                     onChange={handleChange}
-                    sx={{ width: { md: 600 }}}
+                    sx={{ width: { md: 600 } }}
                     inputProps={{ maxLength: 2500 }}
                 />
             </div>
@@ -174,7 +188,7 @@ export default function ParaphrasingComponent(props) {
             <div>
                 <LoadingButton
                     size="large"
-                    onClick={handleClick}
+                    onClick={fetchDataStream}
                     endIcon={<SendIcon />}
                     loading={loading}
                     loadingPosition="end"
@@ -192,7 +206,7 @@ export default function ParaphrasingComponent(props) {
                 placeholder="Your text will appear here"
                 value={resultValue}
                 fullWidth
-                sx={{ width: {md: 600}, marginBottom: 10 }}
+                sx={{ width: { md: 600 }, marginBottom: 10 }}
                 InputLabelProps={{ shrink: true }}
                 InputProps={{
                     readOnly: true,
