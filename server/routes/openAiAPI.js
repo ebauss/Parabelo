@@ -103,7 +103,8 @@ router.get('/streamResponse', async (req, res) => {
     // Generate a chat completion prompt.
     function generatePrompt(prompt) {
         return [
-            { "role": "user", "content": `${prompt}` },
+                {"role": "system", "content": "Please act like a text completion model."},
+                {"role": "user", "content": `${prompt}`}
         ]
     }
 
