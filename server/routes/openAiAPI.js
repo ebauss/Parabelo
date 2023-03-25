@@ -8,6 +8,8 @@ const router = express.Router();
 router.post('/requestTextResponse', async (req, res) => {
     const { Configuration, OpenAIApi } = require("openai");
 
+    // const model = "gpt-3.5-turbo";
+    const model = "text-davinci-003";
     const prompt = req.body.prompt;
     const temperature = req.body.temperature;
     const max_tokens = req.body.max_tokens;
@@ -31,14 +33,15 @@ router.post('/requestTextResponse', async (req, res) => {
     const isPromptFlagged = moderationResponse.data.results[0].flagged;
 
     if (!isPromptFlagged) {
-        console.log("Waiting for OpenAI API response");
+        console.log(`Waiting for OpenAI API response. Model used is ${model}.`);
 
         const response = await openai.createChatCompletion({
-            model: "gpt-3.5-turbo",
-            messages: [
-                {"role": "system", "content": "Please act like a text completion model."},
-                {"role": "user", "content": `${prompt}`}
-            ],
+            model: model,
+            // messages: [
+            //     {"role": "system", "content": "Please act like a text completion model."},
+            //     {"role": "user", "content": `${prompt}`}
+            // ],
+            prompt: prompt,
             temperature: temperature,
             max_tokens: max_tokens,
             top_p: top_p,
