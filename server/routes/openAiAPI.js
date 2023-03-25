@@ -35,7 +35,7 @@ router.post('/requestTextResponse', async (req, res) => {
     if (!isPromptFlagged) {
         console.log(`Waiting for OpenAI API response. Model used is ${model}.`);
 
-        const response = await openai.createChatCompletion({
+        const response = await openai.createCompletion({
             model: model,
             // messages: [
             //     {"role": "system", "content": "Please act like a text completion model."},
@@ -53,7 +53,8 @@ router.post('/requestTextResponse', async (req, res) => {
 
         console.log(response.data.usage);
 
-        const data = response.data.choices[0].message.content;
+        // const data = response.data.choices[0].message.content;
+        const data = response.data.choices[0].text;
         res.send(data);
     } else {
         console.log("Prompt is flagged");
