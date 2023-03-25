@@ -12,6 +12,29 @@ router.get('/getOpenAIApiKey', (req, res) => {
     res.send(process.env.OPENAI_API_KEY);
 })
 
+var prompt;
+var temperature;
+var max_tokens;
+var top_p;
+var frequency_penalty;
+var presence_penalty;
+
+// /**
+//  * Load the global variables to be used by OpenAI.
+//  */
+router.post('/loadOptions', (req, res) => {
+    prompt = req.body.prompt;
+    temperature = req.body.temperature;
+    max_tokens = req.body.max_tokens;
+    top_p = req.body.top_p;
+    frequency_penalty = req.body.frequency_penalty;
+    presence_penalty = req.body.presence_penalty;
+
+    console.log('attempting to load options.');
+
+    res.send("true");
+})
+
 /**
  * Checks if the prompt meets the user guidelines.
  * 
@@ -36,27 +59,11 @@ router.post('/moderation', async (req, res) => {
 })
 
 router.get('/streamResponse', async (req, res) => {
+    console.log(prompt);
 
-    // let prompt;
-    let temperature;
-    let max_tokens;
-    let top_p;
-    let frequency_penalty;
-    let presence_penalty;
-
-    // /**
-    //  * Load the global variables to be used by OpenAI.
-    //  */
-    // router.post('/loadOptions', (req, res) => {
-    //     prompt = req.body.prompt;
-    //     temperature = req.body.temperature;
-    //     max_tokens = req.body.max_tokens;
-    //     top_p = req.body.top_p;
-    //     frequency_penalty = req.body.frequency_penalty;
-    //     presence_penalty = req.body.presence_penalty;
-
-    //     res.send("true");
-    // })
+    // while (!(prompt && temperature && max_tokens && top_p && frequency_penalty && presence_penalty)) {
+    //     // Do nothing. Until these are loaded.
+    // }
     
     res.writeHead(200, {
         'Content-Type': 'text/event-stream',
@@ -64,7 +71,7 @@ router.get('/streamResponse', async (req, res) => {
         'Cache-Control': 'no-cache'
     });
 
-    console.log(`Request is sent to OpenAI. Prompt: ${req.body.prompt}`);
+    console.log(`Request is sent to OpenAI. Prompt: ${prompt}`);
 
     let response = await fetch(
         "https://api.openai.com/v1/chat/completions",
@@ -76,7 +83,7 @@ router.get('/streamResponse', async (req, res) => {
             method: "POST",
             body: JSON.stringify({
                 model: "gpt-3.5-turbo",
-                messages: generatePrompt(req.body.prompt),
+                messages: generatePrompt(prompt),
                 temperature: temperature,
                 top_p: top_p,
                 frequency_penalty: frequency_penalty,

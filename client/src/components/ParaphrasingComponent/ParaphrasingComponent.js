@@ -179,25 +179,26 @@ export default function ParaphrasingComponent(props) {
         // })
 
         // const url = `http://localhost:8000/streamResponse/${modifiedPrompt}/${temperature}/${max_tokens}/${top_p}/${frequency_penalty}/${presence_penalty}`;
-        const url = "http://localhost:8000/streamTest"
+
+        fetch('http://localhost:8000/loadOptions', {
+            method: "Post",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                prompt: modifiedPrompt,
+                temperature: 0.76,
+                max_tokens: 3500,
+                top_p: 1,
+                frequency_penalty: 0,
+                presence_penalty: 0,
+            })
+        })
+
+        const url = "http://localhost:8000/streamResponse"
 
         const events = new EventSource(url);
-
-        // fetch('http://localhost:8000/loadOptions', {
-        //     method: "Post",
-        //     credentials: "include",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //         prompt: modifiedPrompt,
-        //         temperature: 0.76,
-        //         max_tokens: 3500,
-        //         top_p: 1,
-        //         frequency_penalty: 0,
-        //         presence_penalty: 0,
-        //     })
-        // })
 
         events.onmessage = event => {
             if (event.data === "[DONE]") {
