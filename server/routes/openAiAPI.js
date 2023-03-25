@@ -28,14 +28,17 @@ router.post('/requestTextResponse', async (req, res) => {
     })
 
     // Check if prompt follows OpenAi usage policies using the OpenAi moderation endpoint.
-    const isPromptFlagged = await moderationResponse.data.results[0].flagged;
+    const isPromptFlagged = moderationResponse.data.results[0].flagged;
 
     if (!isPromptFlagged) {
         console.log("Waiting for OpenAI API response");
 
-        const response = await openai.createCompletion({
-            model: "text-davinci-003",
-            prompt: prompt,
+        const response = await openai.createChatCompletion({
+            model: "gpt-4",
+            messages: [
+                {"role": "system", "content": "Please act like a text completion model."},
+                {"role": "user", "content": `${prompt}`}
+            ],
             temperature: temperature,
             max_tokens: max_tokens,
             top_p: top_p,
@@ -45,7 +48,7 @@ router.post('/requestTextResponse', async (req, res) => {
 
         console.log("Response was received. Sending data to client now.");
 
-        const data = response.data.choices[0].text;
+        const data = response.data.choices[0].message.content;
         res.send(data);
     } else {
         console.log("Prompt is flagged");
