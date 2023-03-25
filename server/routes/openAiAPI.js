@@ -4,6 +4,7 @@
 const express = require('express');
 const router = express.Router();
 const eventParser = require('eventsource-parser');
+const { Configuration, OpenAIApi } = require("openai");
 /* ------------------------------------ */
 
 router.get('/getOpenAIApiKey', (req, res) => {
@@ -11,51 +12,120 @@ router.get('/getOpenAIApiKey', (req, res) => {
     res.send(process.env.OPENAI_API_KEY);
 })
 
-router.post('/requestTextResponse', async (req, res) => {
-    const { Configuration, OpenAIApi } = require("openai");
-
-    const prompt = req.body.prompt;
-    const temperature = req.body.temperature;
-    const max_tokens = req.body.max_tokens;
-    const top_p = req.body.top_p;
-    const frequency_penalty = req.body.frequency_penalty;
-    const presence_penalty = req.body.presence_penalty;
-
+/**
+ * Checks if the prompt meets the user guidelines.
+ * 
+ * Sends either a true or false boolean.
+ */
+router.post('/moderation', async (req, res) => {
+    console.log('Moderation requested for prompt');
     const configuration = new Configuration({
         apiKey: process.env.OPENAI_API_KEY,
     });
 
     const openai = new OpenAIApi(configuration);
 
-    console.log(`Prompt: ${prompt}`);
-
     const moderationResponse = await openai.createModeration({
-        input: prompt
+        input: req.body.prompt
     })
 
     // Check if prompt follows OpenAi usage policies using the OpenAi moderation endpoint.
-    const isPromptFlagged = await moderationResponse.data.results[0].flagged;
+    const isPromptFlagged = moderationResponse.data.results[0].flagged;
 
-    if (!isPromptFlagged) {
-        console.log("Waiting for OpenAI API response");
+    res.send(isPromptFlagged);
+})
 
-        const response = await openai.createCompletion({
-            model: "text-davinci-003",
-            prompt: prompt,
-            temperature: temperature,
-            max_tokens: max_tokens,
-            top_p: top_p,
-            frequency_penalty: frequency_penalty,
-            presence_penalty: presence_penalty,
-        });
+router.get('/streamResponse', async (req, res) => {
 
-        console.log("Response was received. Sending data to client now.");
+    // let prompt;
+    let temperature;
+    let max_tokens;
+    let top_p;
+    let frequency_penalty;
+    let presence_penalty;
 
-        const data = response.data.choices[0].text;
-        res.send(data);
-    } else {
-        console.log("Prompt is flagged");
-        res.send("Prompt is flagged");
+    // /**
+    //  * Load the global variables to be used by OpenAI.
+    //  */
+    // router.post('/loadOptions', (req, res) => {
+    //     prompt = req.body.prompt;
+    //     temperature = req.body.temperature;
+    //     max_tokens = req.body.max_tokens;
+    //     top_p = req.body.top_p;
+    //     frequency_penalty = req.body.frequency_penalty;
+    //     presence_penalty = req.body.presence_penalty;
+
+    //     res.send("true");
+    // })
+    
+    res.writeHead(200, {
+        'Content-Type': 'text/event-stream',
+        'Connection': 'keep-alive',
+        'Cache-Control': 'no-cache'
+    });
+
+    console.log(`Request is sent to OpenAI. Prompt: ${req.body.prompt}`);
+
+    let response = await fetch(
+        "https://api.openai.com/v1/chat/completions",
+        {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+            },
+            method: "POST",
+            body: JSON.stringify({
+                model: "gpt-3.5-turbo",
+                messages: generatePrompt(req.body.prompt),
+                temperature: temperature,
+                top_p: top_p,
+                frequency_penalty: frequency_penalty,
+                presence_penalty: presence_penalty,
+                max_tokens: max_tokens,
+                stream: true
+            }),
+        }
+    );
+
+    const parser = eventParser.createParser(onParse);
+
+    for await (const value of response.body?.pipeThrough(new TextDecoderStream())) {
+        parser.feed(value);
+    }
+
+    // Generate a chat completion prompt.
+    function generatePrompt(prompt) {
+        return [
+            { "role": "user", "content": `${prompt}` },
+        ]
+    }
+
+    function onParse(event) {
+        if (event.type === 'event') {
+            if (event.data !== "[DONE]") {
+                const content = JSON.parse(event.data).choices[0].delta?.content || "";
+                const escapedText = content.replace(/\n/g, "NEWLINE");
+
+                // It's interesting, the data has to be sent in this format for the client-side onmessage event to work.
+                res.write('event: message\n');  // message event
+                res.write(`data: ${escapedText}`);
+                res.write('\n\n');
+            } else {
+                res.write('event: message\n');  // message event
+                res.write('data: [DONE]');
+                res.write('\n\n');
+                res.end();
+            }
+        } else if (event.type === 'reconnect-interval') {
+            console.log('We should set reconnect interval to %d milliseconds', event.value);
+        }
+
+        // Detect if the client closes the connection.
+        req.on('close', () => {
+            console.log("Client closed connection.");
+            // Close the SSE stream.
+            res.end();
+        })
     }
 })
 
@@ -77,7 +147,7 @@ router.get('/streamTest', async (req, res) => {
             method: "POST",
             body: JSON.stringify({
                 model: "gpt-3.5-turbo",
-                messages: generatePrompt("say hello"),
+                messages: generatePrompt("Write an email marketing newsletter of an upcoming sale."),
                 temperature: 0.75,
                 top_p: 0.95,
                 frequency_penalty: 0,
@@ -104,9 +174,12 @@ router.get('/streamTest', async (req, res) => {
     function onParse(event) {
         if (event.type === 'event') {
             if (event.data !== "[DONE]") {
+                const content = JSON.parse(event.data).choices[0].delta?.content || "";
+                const escapedText = content.replace(/\n/g, "NEWLINE");
+
                 // It's interesting, the data has to be sent in this format for the client-side onmessage event to work.
                 res.write('event: message\n');  // message event
-                res.write(`data: ${JSON.parse(event.data).choices[0].delta?.content || ""}`);
+                res.write(`data: ${escapedText}`);
                 res.write('\n\n');
             } else {
                 res.write('event: message\n');  // message event
@@ -117,6 +190,13 @@ router.get('/streamTest', async (req, res) => {
         } else if (event.type === 'reconnect-interval') {
             console.log('We should set reconnect interval to %d milliseconds', event.value);
         }
+
+        // Detect if the client closes the connection.
+        req.on('close', () => {
+            console.log("Client closed connection.");
+            // Close the SSE stream.
+            res.end();
+        })
     }
 })
 

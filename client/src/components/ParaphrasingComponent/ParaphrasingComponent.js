@@ -20,8 +20,12 @@ export default function ParaphrasingComponent(props) {
 
     /* Determines whether the loading animation is activated or not. */
     const [loading, setLoading] = React.useState(false);
+    
+    const resultValueRef = React.useRef();
 
-    const [listening, setListening] = React.useState(false);
+    React.useEffect(() => {
+        resultValueRef.current = resultValue;
+    }, [resultValue]);
 
     /**
      * Handles the text changes in the text box.
@@ -90,7 +94,7 @@ export default function ParaphrasingComponent(props) {
         setLoading(true); // Start loading animation of button
         const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it. Thank you.";
 
-        const aiApiResponse = await fetch('http://localhost:8000/requestTextResponse', {
+        const response = await fetch('http://localhost:8000/api/completion', {
             method: "Post",
             credentials: "include",
             headers: {
@@ -106,31 +110,122 @@ export default function ParaphrasingComponent(props) {
             })
         })
 
-        const aiApiData = await aiApiResponse.text();
+        const stream = new EventSource('/api/completion/stream');
 
-        if (aiApiData === "Prompt is flagged") {
-            window.alert("Your prompt does not follow our usage guidelines.");
-        } else {
-            setResultValue(aiApiData.trim());
-            // saveToDatabase(aiApiData.trim());
-        }
-        setLoading(false); // Ends the loading animation on the button.
+        stream.onmessage = event => {
+            const data = JSON.parse(event.data);
+            setResultValue(output => output + data.choices[0].text);
+        };
+
+        stream.onerror = () => {
+            console.error('Error occurred in stream');
+        };
+
+        response.on('end', () => {
+            stream.close();
+            setLoading(false);
+        });
     }
 
-    const fetchDataStream = () => {
-        const events = new EventSource('http://localhost:8000/streamTest');
+    // Generate a chat completion prompt.
+    function generatePrompt(prompt) {
+        return [
+            { "role": "user", "content": `${prompt}` },
+        ]
+    }
 
-        events.onmessage = event => {
-            if (event.data == "[DONE]") {
-                events.close();
-            } else {
-                console.log(event.data);
+    const fetchDataStream = async () => {
+        const eventParser = require('eventsource-parser');
 
-                const appendedText = resultValue + event.data;
-                console.log(`Before: ${resultValue}`);
-                setResultValue(appendedText);
-                console.log(`After: ${resultValue}`);
+        setResultValue('');
+        setLoading(true); // Start loading animation of button
+        const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it. Thank you.";
+
+        let response = await fetch(
+            "https://api.openai.com/v1/chat/completions",
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+                },
+                method: "POST",
+                body: JSON.stringify({
+                    model: "gpt-3.5-turbo",
+                    messages: generatePrompt(modifiedPrompt),
+                    temperature: 0.76,
+                    max_tokens: 3500,
+                    top_p: 1,
+                    frequency_penalty: 0,
+                    presence_penalty: 0,
+                }),
             }
+        );
+
+        const parser = eventParser.createParser(onParse);
+
+        for await (const value of response.body?.pipeThrough(new TextDecoderStream())) {
+            parser.feed(value);
+        }
+
+        // const isPromptFlaggedResponse = await fetch('http://localhost:8000/moderation', {
+        //     method: "Post",
+        //     credentials: "include",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //         prompt: modifiedPrompt
+        //     })
+        // })
+
+        // const url = `http://localhost:8000/streamResponse/${modifiedPrompt}/${temperature}/${max_tokens}/${top_p}/${frequency_penalty}/${presence_penalty}`;
+        // const url = "http://localhost:8000/streamResponse"
+
+        // const events = new EventSource(url, {
+        //     payload: {
+        //         prompt: "prompt"
+        //     }
+        // });
+
+        // fetch('http://localhost:8000/loadOptions', {
+        //     method: "Post",
+        //     credentials: "include",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //         prompt: modifiedPrompt,
+        //         temperature: 0.76,
+        //         max_tokens: 3500,
+        //         top_p: 1,
+        //         frequency_penalty: 0,
+        //         presence_penalty: 0,
+        //     })
+        // })
+
+        // events.onmessage = event => {
+        //     if (event.data === "[DONE]") {
+        //         events.close();
+        //         setLoading(false);
+        //     } else {
+        //         const text = event.data.replace(new RegExp("NEWLINE", 'g'), '\n');
+        //         resultValueRef.current += text;
+        //         setResultValue(resultValueRef.current);
+        //     }
+        // }
+    }
+
+    function onParse(event) {
+        if (event.type === 'event') {
+            if (event.data !== "[DONE]") {
+                const content = JSON.parse(event.data).choices[0].delta?.content || "";
+                resultValueRef.current += content;
+                setResultValue(resultValueRef.current);
+            } else {
+                setLoading(false);
+            }
+        } else if (event.type === 'reconnect-interval') {
+            console.log('We should set reconnect interval to %d milliseconds', event.value);
         }
     }
 
