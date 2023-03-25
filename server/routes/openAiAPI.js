@@ -48,6 +48,8 @@ router.post('/requestTextResponse', async (req, res) => {
 
         console.log("Response was received. Sending data to client now.");
 
+        console.log(response.data.usage);
+
         const data = response.data.choices[0].message.content;
         res.send(data);
     } else {
