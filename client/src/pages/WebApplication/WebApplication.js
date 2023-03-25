@@ -45,7 +45,7 @@ export default function WebApplication() {
 
      // NOTE: JWT does not update when email is verified. So the Auth0 Management API needs to be called directly to check if email is verified.
     const checkIfEmailVerified = async () => {
-        fetch("http://localhost:8000/checkIfEmailVerified", {
+        fetch("https://parabelo-staging.herokuapp.com/checkIfEmailVerified", {
             method: "Post",
             credentials: "include",
             headers: {

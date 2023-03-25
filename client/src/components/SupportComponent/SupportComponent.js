@@ -26,7 +26,7 @@ export default function SupportComponent(props) {
     }
 
     const sendEmail = () => {
-        fetch("http://localhost:8000/sendEmailToSupport", {
+        fetch("https://parabelo-staging.herokuapp.com/sendEmailToSupport", {
             method: "Post",
             credentials: "include",
             headers: {
