@@ -17,6 +17,12 @@ export default function ProductDescriptionComponent(props) {
     /* Determines whether the loading animation is activated or not. */
     const [loading, setLoading] = React.useState(false);
 
+    const resultValueRef = React.useRef();
+
+    React.useEffect(() => {
+        resultValueRef.current = resultValue;
+    }, [resultValue]);
+
     /**
      * Handles the text changes in the prompt text box.
      *
@@ -69,7 +75,44 @@ export default function ProductDescriptionComponent(props) {
      *
      * Send the prompt to the server; the server will then send the request to OpenAi.
      */
-    const handleClick = async () => {
+    // const handleClick = async () => {
+    //     setResultValue('');
+    //     setLoading(true); // Start loading animation of button
+    //     let modifiedPrompt;
+    //     if (thingsToMentionValue) {
+    //         modifiedPrompt = 'Write a product description for ' + promptValue + '. ' + 'Things to mention: ' + thingsToMentionValue + ". Thank you.";
+    //     } else {
+    //         modifiedPrompt = 'Write a product description for ' + promptValue + ". Thank you.";
+    //     }
+
+    //     const aiApiResponse = await fetch('http://localhost:8000/requestTextResponse', {
+    //         method: "Post",
+    //         credentials: "include",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify({
+    //             prompt: modifiedPrompt,
+    //             temperature: 0.9,
+    //             max_tokens: 1000,
+    //             top_p: 1,
+    //             frequency_penalty: 0,
+    //             presence_penalty: 0,
+    //         })
+    //     })
+
+    //     const aiApiData = await aiApiResponse.text();
+
+    //     if (aiApiData === "Prompt is flagged") {
+    //         window.alert("Your prompt does not follow our usage guidelines.");
+    //     } else {
+    //         setResultValue(aiApiData.trim());
+    //         // saveToDatabase(aiApiData.trim());
+    //     }
+    //     setLoading(false); // Ends the loading animation on the button.
+    // }
+
+    const fetchDataStream = async () => {
         setResultValue('');
         setLoading(true); // Start loading animation of button
         let modifiedPrompt;
@@ -79,7 +122,7 @@ export default function ProductDescriptionComponent(props) {
             modifiedPrompt = 'Write a product description for ' + promptValue + ". Thank you.";
         }
 
-        const aiApiResponse = await fetch('https://parabelo-staging.herokuapp.com/requestTextResponse', {
+        fetch('http://localhost:8000/loadOptions', {
             method: "Post",
             credentials: "include",
             headers: {
@@ -95,15 +138,20 @@ export default function ProductDescriptionComponent(props) {
             })
         })
 
-        const aiApiData = await aiApiResponse.text();
+        const url = "http://localhost:8000/streamResponse"
 
-        if (aiApiData === "Prompt is flagged") {
-            window.alert("Your prompt does not follow our usage guidelines.");
-        } else {
-            setResultValue(aiApiData.trim());
-            // saveToDatabase(aiApiData.trim());
+        const events = new EventSource(url);
+
+        events.onmessage = event => {
+            if (event.data === "[DONE]") {
+                events.close();
+                setLoading(false);
+            } else {
+                const text = event.data.replace(new RegExp("NEWLINE", 'g'), '\n');
+                resultValueRef.current += text;
+                setResultValue(resultValueRef.current);
+            }
         }
-        setLoading(false); // Ends the loading animation on the button.
     }
 
     return (
@@ -140,7 +188,7 @@ export default function ProductDescriptionComponent(props) {
             <div>
                 <LoadingButton
                     size="large"
-                    onClick={handleClick}
+                    onClick={fetchDataStream}
                     endIcon={<SendIcon />}
                     loading={loading}
                     loadingPosition="end"
