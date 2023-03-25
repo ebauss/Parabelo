@@ -94,7 +94,7 @@ export default function ParaphrasingComponent(props) {
     //     setLoading(true); // Start loading animation of button
     //     const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it. Thank you.";
 
-    //     const response = await fetch('http://localhost:8000/api/completion', {
+    //     const response = await fetch('https://parabelo-staging.herokuapp.com/api/completion', {
     //         method: "Post",
     //         credentials: "include",
     //         headers: {
@@ -132,7 +132,7 @@ export default function ParaphrasingComponent(props) {
         setLoading(true); // Start loading animation of button
         const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it. Thank you.";
 
-        fetch('http://localhost:8000/loadOptions', {
+        fetch('https://parabelo-staging.herokuapp.com/loadOptions', {
             method: "Post",
             credentials: "include",
             headers: {
@@ -148,7 +148,7 @@ export default function ParaphrasingComponent(props) {
             })
         })
 
-        const url = "http://localhost:8000/streamResponse"
+        const url = "https://parabelo-staging.herokuapp.com/streamResponse"
 
         const events = new EventSource(url);
 

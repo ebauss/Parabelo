@@ -86,7 +86,7 @@ export default function CopyWriter(props) {
     //         modifiedPrompt = 'Write ad copy for ' + promptValue + ". Thank you.";
     //     }
 
-    //     const aiApiResponse = await fetch('http://localhost:8000/requestTextResponse', {
+    //     const aiApiResponse = await fetch('https://parabelo-staging.herokuapp.com/requestTextResponse', {
     //         method: "Post",
     //         credentials: "include",
     //         headers: {
@@ -124,7 +124,7 @@ export default function CopyWriter(props) {
             modifiedPrompt = 'Write ad copy for ' + promptValue + ". Thank you.";
         }
 
-        fetch('http://localhost:8000/loadOptions', {
+        fetch('https://parabelo-staging.herokuapp.com/loadOptions', {
             method: "Post",
             credentials: "include",
             headers: {
@@ -140,7 +140,7 @@ export default function CopyWriter(props) {
             })
         })
 
-        const url = "http://localhost:8000/streamResponse"
+        const url = "https://parabelo-staging.herokuapp.com/streamResponse"
 
         const events = new EventSource(url);
 
