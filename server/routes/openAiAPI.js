@@ -34,7 +34,7 @@ router.post('/requestTextResponse', async (req, res) => {
         console.log("Waiting for OpenAI API response");
 
         const response = await openai.createChatCompletion({
-            model: "gpt-4",
+            model: "gpt-3.5-turbo",
             messages: [
                 {"role": "system", "content": "Please act like a text completion model."},
                 {"role": "user", "content": `${prompt}`}
