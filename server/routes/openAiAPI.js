@@ -54,7 +54,7 @@ router.post('/requestTextResponse', async (req, res) => {
         console.log(response.data.usage);
 
         // const data = response.data.choices[0].message.content;
-        // const data = response.data.choices[0].text;
+        const data = response.data.choices[0].text;
         res.send(data);
     } else {
         console.log("Prompt is flagged");
