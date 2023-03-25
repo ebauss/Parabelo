@@ -70,6 +70,7 @@ export default function ProductDescriptionComponent(props) {
      * Send the prompt to the server; the server will then send the request to OpenAi.
      */
     const handleClick = async () => {
+        setResultValue('');
         setLoading(true); // Start loading animation of button
         let modifiedPrompt;
         if (thingsToMentionValue) {
@@ -100,7 +101,7 @@ export default function ProductDescriptionComponent(props) {
             window.alert("Your prompt does not follow our usage guidelines.");
         } else {
             setResultValue(aiApiData.trim());
-            saveToDatabase(aiApiData.trim());
+            // saveToDatabase(aiApiData.trim());
         }
         setLoading(false); // Ends the loading animation on the button.
     }
@@ -118,7 +119,8 @@ export default function ProductDescriptionComponent(props) {
                     variant="outlined"
                     fullWidth
                     onChange={handlePromptChange}
-                    sx={{ width: 600 }}
+                    sx={{ width: { md: 600 } }}
+                    inputProps={{ maxLength: 1020 }}
                 />
             </div>
             <br />
@@ -130,7 +132,8 @@ export default function ProductDescriptionComponent(props) {
                     rows={4}
                     fullWidth
                     onChange={handleThingsToMentionChange}
-                    sx={{ width: 600 }}
+                    sx={{ width: { md: 600 } }}
+                    inputProps={{ maxLength: 1020 }}
                 />
             </div>
             <br />
@@ -154,7 +157,8 @@ export default function ProductDescriptionComponent(props) {
                 rows={20}
                 placeholder="Your blog will appear here."
                 value={resultValue}
-                sx={{ width: 600, marginBottom: 10 }}
+                fullWidth
+                sx={{ width: { md: 600 }, marginBottom: 10 }}
                 InputLabelProps={{ shrink: true }}
                 InputProps={{
                     readOnly: true,

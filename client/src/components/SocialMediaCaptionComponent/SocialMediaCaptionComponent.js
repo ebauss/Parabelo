@@ -3,54 +3,47 @@ import TextField from '@mui/material/TextField';
 import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
 import Typography from "@mui/material/Typography";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
-export default function BlogPostComponent(props) {
-    /* Stores the string entered in the prompt text field. */
-    const [promptValue, setPromptValue] = React.useState('');
-
-    /* Stores the string stored in the things to mention text field. */
-    const [keywordsValue, setKeywordsValue] = React.useState('');
-
-    /* Stores the result string obtained from OpenAi. */
+export default function SocialMediaCaptionComponent(props) {
+    const [lengthValue, setLengthValue] = React.useState('medium');
+    const [imageContentsValue, setImageContentsValue] = React.useState('');
+    const [styleValue, setStyleValue] = React.useState('creative');
+    const [additionsValue, setAdditionsValue] = React.useState('');
     const [resultValue, setResultValue] = React.useState('');
-
-    /* Determines whether the loading animation is activated or not. */
     const [loading, setLoading] = React.useState(false);
 
-    /**
-     * Handles the text changes in the prompt text box.
-     *
-     * @param event contains data of the event
-     */
-    const handlePromptChange = (event) => {
-        setPromptValue(event.target.value);
+    const handleContentsChange = (event) => {
+        setImageContentsValue(event.target.value);
     }
 
-    /**
-     * Handles the text changes in the things to mention text box.
-     *
-     * @param event
-     */
-    const handleThingsToMentionChange = (event) => {
-        setKeywordsValue(event.target.value);
+    const handleLengthChange = (event) => {
+        setLengthValue(event.target.value);
     }
 
-    /**
-     * saves the result to the database.
-     */
+    const handleStyleChange = (event) => {
+        setStyleValue(event.target.value);
+    }
+
+    const handleAdditionsChange = (event) => {
+        setAdditionsValue(event.target.value);
+    }
+
     const saveToDatabase = async (result) => {
         // for the id, use props.userDetails.sub.
-        const response = await fetch("https://parabelo-staging.herokuapp.com/saveBlogPostToDb", {
+        const response = await fetch("http://localhost:8000/saveSocialCaptionToDB", {
             method: "Post",
             credentials: "include",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                type: "Blog Post",
+                type: "Social Media Caption",
                 owner: props.userDetails.sub,
-                prompt: promptValue,
-                keywords: keywordsValue,
+                length: lengthValue,
+                imageContents: imageContentsValue,
+                writingStyle: styleValue,
+                additions: additionsValue,
                 result: result
             })
         })
@@ -64,23 +57,12 @@ export default function BlogPostComponent(props) {
         }
     }
 
-    /**
-     * handles the generate button click.
-     *
-     * Send the prompt to the server; the server will then send the request to OpenAi.
-     */
     const handleClick = async () => {
         setResultValue('');
         setLoading(true); // Start loading animation of button
-        let modifiedPrompt;
+        const modifiedPrompt = 'Write a social media post. Length: ' + lengthValue + '. Image Contents: ' + imageContentsValue + '. Tone: ' + styleValue + '. ' + additionsValue + '. Thank you.';
 
-        if (keywordsValue) {
-            modifiedPrompt = 'Write a super long blog post about ' + promptValue + '. ' + 'Things to mention: ' + keywordsValue + '. Thank you.';
-        } else {
-            modifiedPrompt = 'Write a super long blog post about ' + promptValue + '. Thank you.';
-        }
-
-        const aiApiResponse = await fetch('https://parabelo-staging.herokuapp.com/requestTextResponse', {
+        const aiApiResponse = await fetch('http://localhost:8000/requestTextResponse', {
             method: "Post",
             credentials: "include",
             headers: {
@@ -88,11 +70,11 @@ export default function BlogPostComponent(props) {
             },
             body: JSON.stringify({
                 prompt: modifiedPrompt,
-                temperature: 0.9,
-                max_tokens: 3000,
+                temperature: 0.85,
+                max_tokens: 3500,
                 top_p: 1,
                 frequency_penalty: 0,
-                presence_penalty: 0
+                presence_penalty: 0,
             })
         })
 
@@ -111,36 +93,65 @@ export default function BlogPostComponent(props) {
         <div>
             <br />
             <Typography variant="h5" gutterBottom>
-                Blog Post Writer
+                Social Media Caption Writer
             </Typography>
             <br />
             <div>
                 <TextField id="outlined-basic"
-                    label="What topic would you like to be written about in a blog?"
-                    placeholder="Example: How to learn how to code"
+                    label="What are the contents of the image?"
                     variant="outlined"
                     fullWidth
-                    onChange={handlePromptChange}
-                    sx={{ width: {
-                        md: 600
-                    }}}
+                    onChange={handleContentsChange}
+                    sx={{ width: { md: 600 } }}
                     inputProps={{ maxLength: 1020 }}
                 />
             </div>
             <br />
             <div>
                 <TextField id="outlined-basic"
-                    label='Keywords to add (Separate entries with a ",")'
+                    label='Add anything else about the image here.'
                     variant="outlined"
                     multiline
                     rows={4}
                     fullWidth
-                    onChange={handleThingsToMentionChange}
-                    sx={{ width: {
-                        md: 600
-                    }}}
+                    onChange={handleAdditionsChange}
+                    sx={{ width: { md: 600 } }}
                     inputProps={{ maxLength: 1020 }}
                 />
+            </div>
+            <br />
+            <div>
+                <Typography variant="subtitle1" gutterBottom>
+                    Length
+                </Typography>
+                <ToggleButtonGroup
+                    color="primary"
+                    value={lengthValue}
+                    exclusive
+                    onChange={handleLengthChange}
+                    aria-label="Platform"
+                >
+                    <ToggleButton value="short">Short</ToggleButton>
+                    <ToggleButton value="medium">Medium</ToggleButton>
+                    <ToggleButton value="long">Long</ToggleButton>
+                </ToggleButtonGroup>
+            </div>
+            <br />
+            <div>
+                <Typography variant="subtitle1" gutterBottom>
+                    Writing Style
+                </Typography>
+                <ToggleButtonGroup
+                    color="primary"
+                    value={styleValue}
+                    exclusive
+                    onChange={handleStyleChange}
+                    aria-label="Platform"
+                >
+                    <ToggleButton value="funny">Funny</ToggleButton>
+                    <ToggleButton value="creative">Creative</ToggleButton>
+                    <ToggleButton value="professional">Professional</ToggleButton>
+                </ToggleButtonGroup>
             </div>
             <br />
             <div>
@@ -164,13 +175,12 @@ export default function BlogPostComponent(props) {
                 placeholder="Your blog will appear here."
                 value={resultValue}
                 fullWidth
-                sx={{ width: {md: 600}, marginBottom: 10 }}
+                sx={{ width: { md: 600 }, marginBottom: 10 }}
                 InputLabelProps={{ shrink: true }}
                 InputProps={{
                     readOnly: true,
                 }}
             />
         </div>
-
     )
 }

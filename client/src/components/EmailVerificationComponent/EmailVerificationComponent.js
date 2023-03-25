@@ -5,8 +5,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 export default function EmailVerificationComponent() {
     const { user, logout } = useAuth0();
 
-    console.log(user);
-
     // const resendVerificationEmail = async () => {
     //     const response = await fetch("https://parabelo-staging.herokuapp.com/api/v2/jobs/verification-email", {
     //         method: "Post",

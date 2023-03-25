@@ -9,12 +9,12 @@ const router = express.Router();
 /**
  * Stripe checkout for the Regular Plan.
  */
-router.post('/checkoutRegular', async (req, res) => {
+router.post('/checkoutElite', async (req, res) => {
     const session = await stripe.checkout.sessions.create({
         line_items: [
             {
                 // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-                price: 'price_1MXIeeBEpnOVMkQ6stKZ3GSh',
+                price: 'price_1MnxXGBEpnOVMkQ6ApgHSUjR',
                 quantity: 1,
             },
         ],

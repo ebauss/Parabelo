@@ -2,13 +2,14 @@ import * as React from 'react';
 import PricingCard from './PricingCard';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Box, Grid } from "@mui/material";
+import PricingCardComingSoon from './PricingCardComingSoon';
 
 export default function PricingComponentPostSignUp(props) {
     const user = props.userDetails;
     const { logout } = useAuth0();
 
     // TODO: Change the name of this function. There should be three functions.
-    const testFunction = async () => {
+    const checkoutElite = async () => {
         // for the id, use props.userDetails.sub.
         const response = await fetch("https://parabelo-staging.herokuapp.com/checkoutRegular", {
             method: "Post",
@@ -28,56 +29,46 @@ export default function PricingComponentPostSignUp(props) {
     }
 
     return (
-        <div>
-            <Box sx={{marginTop: 5}}>
+        <Box sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+        }}>
+            <Box sx={{ marginTop: 5 }}>
                 <Button variant="outlined" size="large" onClick={logout}>
                     Log Out
                 </Button>
             </Box>
             <Grid container spacing={4} sx={{
                 marginTop: 7,
+                marginBottom: 4,
                 paddingTop: 5,
                 paddingBottom: 5,
                 paddingLeft: 10,
-                paddingRight: 10
+                paddingRight: 10,
+                width: { xl: 1500 }
             }}>
-                <Grid item xs={12} sm={12} md={12} lg={4}>
+                <Grid item xs={12} sm={12} md={6}>
                     <PricingCard
-                        productName="Regular"
-                        productPrice="9.99"
-                        ctaText="Try For Free"
-                        featureOne="First feature"
-                        featureTwo="Some random fun feature"
-                        featureThree="Another feature"
-                        featureFour="The best feature"
-                        buttonAction={testFunction}
+                        productName="Elite"
+                        productPrice="30"
+                        ctaText="Sign Up & Try For Free"
+                        features={[
+                            'Unlimited word count',
+                            'Create content that is relevant & converts',
+                            'Optimize your work output',
+                            'Better writing',
+                            'Scale your business through AI'
+                        ]}
+                        buttonAction={checkoutElite}
                     />
                 </Grid>
-                <Grid item xs={12} sm={12} md={12} lg={4}>
-                    <PricingCard
-                        productName="Plus"
-                        productPrice="29.99"
-                        ctaText="Try For Free"
-                        featureOne="First feature"
-                        featureTwo="Some random fun feature"
-                        featureThree="Another feature"
-                        featureFour="The best feature"
-                        buttonAction={testFunction}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={12} md={12} lg={4}>
-                    <PricingCard
+                <Grid item xs={12} sm={12} md={6}>
+                    <PricingCardComingSoon
                         productName="Premium"
-                        productPrice="49.99"
-                        ctaText="Try For Free"
-                        featureOne="First feature"
-                        featureTwo="Some random fun feature"
-                        featureThree="Another feature"
-                        featureFour="The best feature"
-                        buttonAction={testFunction}
                     />
                 </Grid>
             </Grid>
-        </div>
+        </Box>
     )
 }

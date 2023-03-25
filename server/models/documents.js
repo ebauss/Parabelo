@@ -10,7 +10,10 @@ const documentSchema = new Schema({
     result: String,
     writingStyle: String,
     tone: String,
-    keywords: String
+    keywords: String,
+    imageContents: String,
+    additions: String,
+    length: String
 })
 
 const documentModel = mongoose.model("documents", documentSchema);

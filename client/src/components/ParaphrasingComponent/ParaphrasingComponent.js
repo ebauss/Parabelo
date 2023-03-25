@@ -84,6 +84,7 @@ export default function ParaphrasingComponent(props) {
      * Send the prompt to the server; the server will then send the request to OpenAi.
      */
     const handleClick = async () => {
+        setResultValue('');
         setLoading(true); // Start loading animation of button
         const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it. Thank you.";
 
@@ -109,7 +110,7 @@ export default function ParaphrasingComponent(props) {
             window.alert("Your prompt does not follow our usage guidelines.");
         } else {
             setResultValue(aiApiData.trim());
-            saveToDatabase(aiApiData.trim());
+            // saveToDatabase(aiApiData.trim());
         }
         setLoading(false); // Ends the loading animation on the button.
     }
@@ -129,7 +130,8 @@ export default function ParaphrasingComponent(props) {
                     variant="outlined"
                     fullWidth
                     onChange={handleChange}
-                    sx={{ width: 600 }}
+                    sx={{ width: { md: 600 }}}
+                    inputProps={{ maxLength: 2500 }}
                 />
             </div>
             <br />
@@ -189,7 +191,8 @@ export default function ParaphrasingComponent(props) {
                 rows={10}
                 placeholder="Your text will appear here"
                 value={resultValue}
-                sx={{ width: 600, marginBottom: 10 }}
+                fullWidth
+                sx={{ width: {md: 600}, marginBottom: 10 }}
                 InputLabelProps={{ shrink: true }}
                 InputProps={{
                     readOnly: true,

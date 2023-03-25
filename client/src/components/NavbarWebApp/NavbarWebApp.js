@@ -22,13 +22,14 @@ import EditIcon from '@mui/icons-material/Edit';
 import CopyrightIcon from '@mui/icons-material/Copyright';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { useAuth0 } from "@auth0/auth0-react";
-import { Button } from "@mui/material";
+import { Button, Tooltip } from "@mui/material";
 import MailIcon from '@mui/icons-material/Mail';
 import SettingsIcon from '@mui/icons-material/Settings';
 import HomeIcon from '@mui/icons-material/Home';
 import { LinearProgress } from '@mui/material';
+import TagIcon from '@mui/icons-material/Tag';
 
-const drawerWidth = 280;
+const drawerWidth = 250;
 
 const openedMixin = (theme) => ({
     width: drawerWidth,
@@ -132,10 +133,10 @@ export default function NavbarWebApp() {
                             </Typography>
                         </Link>
                     </Box>
-                    <Box sx={{ display: "flex", flexDirection: 'column', alignItems: "center" }}>
+                    {/* <Box sx={{ display: "flex", flexDirection: 'column', alignItems: "center" }}>
                         <Typography variant="p">Word Count</Typography>
                         <LinearProgress variant="determinate" value={50} sx={{ width: {xs: 100, md: 300} }} color="secondary" />
-                    </Box>
+                    </Box> */}
                     <Box>
                         <Link to="/app/settings" style={{ textDecoration: 'none', color: "white" }}>
                             <IconButton color="inherit">
@@ -172,7 +173,9 @@ export default function NavbarWebApp() {
                                         justifyContent: 'center',
                                     }}
                                 >
-                                    <HomeIcon />
+                                    <Tooltip title="Home" placement='right'>
+                                        <HomeIcon />
+                                    </Tooltip>
                                 </ListItemIcon>
                                 <ListItemText primary='Home' sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
@@ -194,7 +197,9 @@ export default function NavbarWebApp() {
                                         justifyContent: 'center',
                                     }}
                                 >
-                                    <EditIcon />
+                                    <Tooltip title="Paraphrasing Tool" placement='right'>
+                                        <EditIcon />
+                                    </Tooltip>
                                 </ListItemIcon>
                                 <ListItemText primary='Paraphrasing Tool' sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
@@ -216,9 +221,11 @@ export default function NavbarWebApp() {
                                         justifyContent: 'center',
                                     }}
                                 >
-                                    <NotesIcon />
+                                    <Tooltip title="Blog Post" placement='right'>
+                                        <NotesIcon />
+                                    </Tooltip>
                                 </ListItemIcon>
-                                <ListItemText primary='Blog Post Writer' sx={{ opacity: open ? 1 : 0 }} />
+                                <ListItemText primary='Blog Post' sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </Link>
                     </ListItem>
@@ -238,9 +245,11 @@ export default function NavbarWebApp() {
                                         justifyContent: 'center',
                                     }}
                                 >
-                                    <CopyrightIcon />
+                                    <Tooltip title="Ad Copy" placement='right'>
+                                        <CopyrightIcon />
+                                    </Tooltip>
                                 </ListItemIcon>
-                                <ListItemText primary='Copy Writer' sx={{ opacity: open ? 1 : 0 }} />
+                                <ListItemText primary='Ad Copy' sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </Link>
                     </ListItem>
@@ -260,9 +269,11 @@ export default function NavbarWebApp() {
                                         justifyContent: 'center',
                                     }}
                                 >
-                                    <DescriptionIcon />
+                                    <Tooltip title="Product Description" placement='right'>
+                                        <DescriptionIcon />
+                                    </Tooltip>
                                 </ListItemIcon>
-                                <ListItemText primary='Product Description Writer' sx={{ opacity: open ? 1 : 0 }} />
+                                <ListItemText primary='Product Description' sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </Link>
                     </ListItem>
@@ -282,9 +293,35 @@ export default function NavbarWebApp() {
                                         justifyContent: 'center',
                                     }}
                                 >
-                                    <MailIcon />
+                                    <Tooltip title="Email Marketing" placement='right'>
+                                        <MailIcon />
+                                    </Tooltip>
                                 </ListItemIcon>
-                                <ListItemText primary='Email Marketing Writer' sx={{ opacity: open ? 1 : 0 }} />
+                                <ListItemText primary='Email Marketing' sx={{ opacity: open ? 1 : 0 }} />
+                            </ListItemButton>
+                        </Link>
+                    </ListItem>
+                    <ListItem key='socialMediaCaptionsWriter' disablePadding sx={{ display: 'block' }}>
+                        <Link to='/app/socialMediaCaption' style={{ textDecoration: 'none', color: "black" }}>
+                            <ListItemButton
+                                sx={{
+                                    minHeight: 48,
+                                    justifyContent: open ? 'initial' : 'center',
+                                    px: 2.5,
+                                }}
+                            >
+                                <ListItemIcon
+                                    sx={{
+                                        minWidth: 0,
+                                        mr: open ? 3 : 'auto',
+                                        justifyContent: 'center',
+                                    }}
+                                >
+                                    <Tooltip title="Social Media Caption" placement='right'>
+                                        <TagIcon />
+                                    </Tooltip>
+                                </ListItemIcon>
+                                <ListItemText primary='Social Media Caption' sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </Link>
                     </ListItem>
