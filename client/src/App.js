@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import WebApplication from "./pages/WebApplication/WebApplication";
 import {
     Routes,
