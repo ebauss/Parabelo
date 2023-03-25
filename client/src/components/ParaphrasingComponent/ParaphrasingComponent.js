@@ -89,96 +89,48 @@ export default function ParaphrasingComponent(props) {
      *
      * Send the prompt to the server; the server will then send the request to OpenAi.
      */
-    const handleClick = async () => {
-        setResultValue('');
-        setLoading(true); // Start loading animation of button
-        const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it. Thank you.";
+    // const handleClick = async () => {
+    //     setResultValue('');
+    //     setLoading(true); // Start loading animation of button
+    //     const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it. Thank you.";
 
-        const response = await fetch('http://localhost:8000/api/completion', {
-            method: "Post",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                prompt: modifiedPrompt,
-                temperature: 0.76,
-                max_tokens: 3500,
-                top_p: 1,
-                frequency_penalty: 0,
-                presence_penalty: 0,
-            })
-        })
+    //     const response = await fetch('http://localhost:8000/api/completion', {
+    //         method: "Post",
+    //         credentials: "include",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify({
+    //             prompt: modifiedPrompt,
+    //             temperature: 0.76,
+    //             max_tokens: 3500,
+    //             top_p: 1,
+    //             frequency_penalty: 0,
+    //             presence_penalty: 0,
+    //         })
+    //     })
 
-        const stream = new EventSource('/api/completion/stream');
+    //     const stream = new EventSource('/api/completion/stream');
 
-        stream.onmessage = event => {
-            const data = JSON.parse(event.data);
-            setResultValue(output => output + data.choices[0].text);
-        };
+    //     stream.onmessage = event => {
+    //         const data = JSON.parse(event.data);
+    //         setResultValue(output => output + data.choices[0].text);
+    //     };
 
-        stream.onerror = () => {
-            console.error('Error occurred in stream');
-        };
+    //     stream.onerror = () => {
+    //         console.error('Error occurred in stream');
+    //     };
 
-        response.on('end', () => {
-            stream.close();
-            setLoading(false);
-        });
-    }
-
-    // Generate a chat completion prompt.
-    function generatePrompt(prompt) {
-        return [
-            { "role": "user", "content": `${prompt}` },
-        ]
-    }
+    //     response.on('end', () => {
+    //         stream.close();
+    //         setLoading(false);
+    //     });
+    // }
 
     const fetchDataStream = async () => {
-        const eventParser = require('eventsource-parser');
-
         setResultValue('');
         setLoading(true); // Start loading animation of button
         const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it. Thank you.";
-
-        // let response = await fetch(
-        //     "https://api.openai.com/v1/chat/completions",
-        //     {
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //             "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
-        //         },
-        //         method: "POST",
-        //         body: JSON.stringify({
-        //             model: "gpt-3.5-turbo",
-        //             messages: generatePrompt(modifiedPrompt),
-        //             temperature: 0.76,
-        //             max_tokens: 3500,
-        //             top_p: 1,
-        //             frequency_penalty: 0,
-        //             presence_penalty: 0,
-        //         }),
-        //     }
-        // );
-
-        // const parser = eventParser.createParser(onParse);
-
-        // for await (const value of response.body?.pipeThrough(new TextDecoderStream())) {
-        //     parser.feed(value);
-        // }
-
-        // const isPromptFlaggedResponse = await fetch('http://localhost:8000/moderation', {
-        //     method: "Post",
-        //     credentials: "include",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //         prompt: modifiedPrompt
-        //     })
-        // })
-
-        // const url = `http://localhost:8000/streamResponse/${modifiedPrompt}/${temperature}/${max_tokens}/${top_p}/${frequency_penalty}/${presence_penalty}`;
 
         fetch('http://localhost:8000/loadOptions', {
             method: "Post",
@@ -211,20 +163,6 @@ export default function ParaphrasingComponent(props) {
             }
         }
     }
-
-    // function onParse(event) {
-    //     if (event.type === 'event') {
-    //         if (event.data !== "[DONE]") {
-    //             const content = JSON.parse(event.data).choices[0].delta?.content || "";
-    //             resultValueRef.current += content;
-    //             setResultValue(resultValueRef.current);
-    //         } else {
-    //             setLoading(false);
-    //         }
-    //     } else if (event.type === 'reconnect-interval') {
-    //         console.log('We should set reconnect interval to %d milliseconds', event.value);
-    //     }
-    // }
 
     return (
         <div>

@@ -60,10 +60,6 @@ router.post('/moderation', async (req, res) => {
 
 router.get('/streamResponse', async (req, res) => {
     console.log(prompt);
-
-    // while (!(prompt && temperature && max_tokens && top_p && frequency_penalty && presence_penalty)) {
-    //     // Do nothing. Until these are loaded.
-    // }
     
     res.writeHead(200, {
         'Content-Type': 'text/event-stream',
@@ -138,74 +134,74 @@ router.get('/streamResponse', async (req, res) => {
 })
 
 // This works!
-router.get('/streamTest', async (req, res) => {
-    res.writeHead(200, {
-        'Content-Type': 'text/event-stream',
-        'Connection': 'keep-alive',
-        'Cache-Control': 'no-cache'
-    })
+// router.get('/streamTest', async (req, res) => {
+//     res.writeHead(200, {
+//         'Content-Type': 'text/event-stream',
+//         'Connection': 'keep-alive',
+//         'Cache-Control': 'no-cache'
+//     })
 
-    let response = await fetch(
-        "https://api.openai.com/v1/chat/completions",
-        {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
-            },
-            method: "POST",
-            body: JSON.stringify({
-                model: "gpt-3.5-turbo",
-                messages: generatePrompt("Write an email marketing newsletter of an upcoming sale."),
-                temperature: 0.75,
-                top_p: 0.95,
-                frequency_penalty: 0,
-                presence_penalty: 0,
-                max_tokens: 4000,
-                stream: true,
-                n: 1,
-            }),
-        }
-    );
+//     let response = await fetch(
+//         "https://api.openai.com/v1/chat/completions",
+//         {
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+//             },
+//             method: "POST",
+//             body: JSON.stringify({
+//                 model: "gpt-3.5-turbo",
+//                 messages: generatePrompt("Write an email marketing newsletter of an upcoming sale."),
+//                 temperature: 0.75,
+//                 top_p: 0.95,
+//                 frequency_penalty: 0,
+//                 presence_penalty: 0,
+//                 max_tokens: 4000,
+//                 stream: true,
+//                 n: 1,
+//             }),
+//         }
+//     );
 
-    const parser = eventParser.createParser(onParse);
+//     const parser = eventParser.createParser(onParse);
 
-    for await (const value of response.body?.pipeThrough(new TextDecoderStream())) {
-        parser.feed(value);
-    }
+//     for await (const value of response.body?.pipeThrough(new TextDecoderStream())) {
+//         parser.feed(value);
+//     }
 
-    function generatePrompt(prompt) {
-        return [
-            { "role": "user", "content": `${prompt}` },
-        ]
-    }
+//     function generatePrompt(prompt) {
+//         return [
+//             { "role": "user", "content": `${prompt}` },
+//         ]
+//     }
 
-    function onParse(event) {
-        if (event.type === 'event') {
-            if (event.data !== "[DONE]") {
-                const content = JSON.parse(event.data).choices[0].delta?.content || "";
-                const escapedText = content.replace(/\n/g, "NEWLINE");
+//     function onParse(event) {
+//         if (event.type === 'event') {
+//             if (event.data !== "[DONE]") {
+//                 const content = JSON.parse(event.data).choices[0].delta?.content || "";
+//                 const escapedText = content.replace(/\n/g, "NEWLINE");
 
-                // It's interesting, the data has to be sent in this format for the client-side onmessage event to work.
-                res.write('event: message\n');  // message event
-                res.write(`data: ${escapedText}`);
-                res.write('\n\n');
-            } else {
-                res.write('event: message\n');  // message event
-                res.write('data: [DONE]');
-                res.write('\n\n');
-                res.end();
-            }
-        } else if (event.type === 'reconnect-interval') {
-            console.log('We should set reconnect interval to %d milliseconds', event.value);
-        }
+//                 // It's interesting, the data has to be sent in this format for the client-side onmessage event to work.
+//                 res.write('event: message\n');  // message event
+//                 res.write(`data: ${escapedText}`);
+//                 res.write('\n\n');
+//             } else {
+//                 res.write('event: message\n');  // message event
+//                 res.write('data: [DONE]');
+//                 res.write('\n\n');
+//                 res.end();
+//             }
+//         } else if (event.type === 'reconnect-interval') {
+//             console.log('We should set reconnect interval to %d milliseconds', event.value);
+//         }
 
-        // Detect if the client closes the connection.
-        req.on('close', () => {
-            console.log("Client closed connection.");
-            // Close the SSE stream.
-            res.end();
-        })
-    }
-})
+//         // Detect if the client closes the connection.
+//         req.on('close', () => {
+//             console.log("Client closed connection.");
+//             // Close the SSE stream.
+//             res.end();
+//         })
+//     }
+// })
 
 module.exports = router;
