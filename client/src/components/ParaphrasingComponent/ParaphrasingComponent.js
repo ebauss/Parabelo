@@ -141,31 +141,31 @@ export default function ParaphrasingComponent(props) {
         setLoading(true); // Start loading animation of button
         const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it. Thank you.";
 
-        let response = await fetch(
-            "https://api.openai.com/v1/chat/completions",
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
-                },
-                method: "POST",
-                body: JSON.stringify({
-                    model: "gpt-3.5-turbo",
-                    messages: generatePrompt(modifiedPrompt),
-                    temperature: 0.76,
-                    max_tokens: 3500,
-                    top_p: 1,
-                    frequency_penalty: 0,
-                    presence_penalty: 0,
-                }),
-            }
-        );
+        // let response = await fetch(
+        //     "https://api.openai.com/v1/chat/completions",
+        //     {
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //             "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+        //         },
+        //         method: "POST",
+        //         body: JSON.stringify({
+        //             model: "gpt-3.5-turbo",
+        //             messages: generatePrompt(modifiedPrompt),
+        //             temperature: 0.76,
+        //             max_tokens: 3500,
+        //             top_p: 1,
+        //             frequency_penalty: 0,
+        //             presence_penalty: 0,
+        //         }),
+        //     }
+        // );
 
-        const parser = eventParser.createParser(onParse);
+        // const parser = eventParser.createParser(onParse);
 
-        for await (const value of response.body?.pipeThrough(new TextDecoderStream())) {
-            parser.feed(value);
-        }
+        // for await (const value of response.body?.pipeThrough(new TextDecoderStream())) {
+        //     parser.feed(value);
+        // }
 
         // const isPromptFlaggedResponse = await fetch('http://localhost:8000/moderation', {
         //     method: "Post",
@@ -179,13 +179,9 @@ export default function ParaphrasingComponent(props) {
         // })
 
         // const url = `http://localhost:8000/streamResponse/${modifiedPrompt}/${temperature}/${max_tokens}/${top_p}/${frequency_penalty}/${presence_penalty}`;
-        // const url = "http://localhost:8000/streamResponse"
+        const url = "http://localhost:8000/streamTest"
 
-        // const events = new EventSource(url, {
-        //     payload: {
-        //         prompt: "prompt"
-        //     }
-        // });
+        const events = new EventSource(url);
 
         // fetch('http://localhost:8000/loadOptions', {
         //     method: "Post",
@@ -203,31 +199,31 @@ export default function ParaphrasingComponent(props) {
         //     })
         // })
 
-        // events.onmessage = event => {
-        //     if (event.data === "[DONE]") {
-        //         events.close();
-        //         setLoading(false);
-        //     } else {
-        //         const text = event.data.replace(new RegExp("NEWLINE", 'g'), '\n');
-        //         resultValueRef.current += text;
-        //         setResultValue(resultValueRef.current);
-        //     }
-        // }
-    }
-
-    function onParse(event) {
-        if (event.type === 'event') {
-            if (event.data !== "[DONE]") {
-                const content = JSON.parse(event.data).choices[0].delta?.content || "";
-                resultValueRef.current += content;
-                setResultValue(resultValueRef.current);
-            } else {
+        events.onmessage = event => {
+            if (event.data === "[DONE]") {
+                events.close();
                 setLoading(false);
+            } else {
+                const text = event.data.replace(new RegExp("NEWLINE", 'g'), '\n');
+                resultValueRef.current += text;
+                setResultValue(resultValueRef.current);
             }
-        } else if (event.type === 'reconnect-interval') {
-            console.log('We should set reconnect interval to %d milliseconds', event.value);
         }
     }
+
+    // function onParse(event) {
+    //     if (event.type === 'event') {
+    //         if (event.data !== "[DONE]") {
+    //             const content = JSON.parse(event.data).choices[0].delta?.content || "";
+    //             resultValueRef.current += content;
+    //             setResultValue(resultValueRef.current);
+    //         } else {
+    //             setLoading(false);
+    //         }
+    //     } else if (event.type === 'reconnect-interval') {
+    //         console.log('We should set reconnect interval to %d milliseconds', event.value);
+    //     }
+    // }
 
     return (
         <div>
