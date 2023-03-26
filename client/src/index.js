@@ -27,7 +27,7 @@ root.render(
                 <Auth0Provider
                     domain="parabelo-staging.us.auth0.com"
                     clientId="u08av9Obvtx6tR4sskAj7UjHFz4hmwlw"
-                    redirectUri={window.location.origin + "/app/"}
+                    redirectUri="https://parabelo-staging.netlify.app/app/"
 
                     // Ensures that it works for Safari with their ITP stuff. Before when refreshing on a logged in user, it will redirect back to the landing page.
                     cacheLocation="localstorage" 
