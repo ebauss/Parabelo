@@ -42,9 +42,6 @@ export default function SupportComponent(props) {
 
         const data = await response.text();
 
-        console.log(data);
-        console.log(typeof data);
-
         if (data == "true") {
             window.alert("Thank you for sending us a message! We will get back to you as soon as we can.");
             window.location.href = window.location.origin + "/app/";
