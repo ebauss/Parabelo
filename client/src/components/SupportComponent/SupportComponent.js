@@ -25,8 +25,8 @@ export default function SupportComponent(props) {
         setEmailBodyValue(event.target.value);
     }
 
-    const sendEmail = () => {
-        fetch("http://localhost:8000/sendEmailToSupport", {
+    const sendEmail = async () => {
+        const response = await fetch("http://localhost:8000/sendEmailToSupport", {
             method: "Post",
             credentials: "include",
             headers: {
@@ -40,7 +40,18 @@ export default function SupportComponent(props) {
             })
         })
 
-        window.alert("Thank you for sending us a message! We will get back to you as soon as we can.");
+        const data = await response.text();
+
+        console.log(data);
+        console.log(typeof data);
+
+        if (data == "true") {
+            window.alert("Thank you for sending us a message! We will get back to you as soon as we can.");
+            window.location.href = window.location.origin + "/app/";
+        } else {
+            window.alert(data);
+        }
+
     }
 
     return (
@@ -90,7 +101,7 @@ export default function SupportComponent(props) {
             />
             <br />
             <TextField id="outlined-basic"
-                label="Email Body"
+                label="If you have any questions or concerns, please type them here."
                 variant="outlined"
                 onChange={handleEmailBodyChange}
                 multiline
