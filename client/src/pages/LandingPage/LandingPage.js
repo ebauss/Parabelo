@@ -3,6 +3,7 @@ import {
     Route,
     Routes
 } from "react-router-dom";
+import FAQComponent from '../../components/FAQComponent/FAQComponent';
 import FooterComponent from '../../components/FooterComponent/FooterComponent';
 import LandingPageComponent from '../../components/LandingPageComponent/LandingPageComponent';
 import Navbar from '../../components/NavbarMain/Navbar'; 
@@ -17,6 +18,7 @@ export default function LandingPage() {
         <div>
             <Navbar />
             <Routes>
+                <Route path="/frequentlyAskedQuestions" element={<FAQComponent />} />
                 <Route path="/pricing" element={<PricingComponent />} />
                 <Route path="/privacyPolicy" element={<PrivacyPolicyComponent />} />
                 <Route path="/support" element={<SupportComponent />} />

@@ -25,7 +25,7 @@ export default function FooterComponent() {
                 <Link to="/support" style={{ textDecoration: 'none', color: "white" }}>
                     Support
                 </Link>
-                <Link to="/faq" style={{ textDecoration: 'none', color: "white" }}>
+                <Link to="/frequentlyAskedQuestions" style={{ textDecoration: 'none', color: "white" }}>
                     FAQ
                 </Link>
             </Box>
