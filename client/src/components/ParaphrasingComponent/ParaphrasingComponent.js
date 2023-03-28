@@ -130,7 +130,8 @@ export default function ParaphrasingComponent(props) {
     const fetchDataStream = async () => {
         setResultValue('');
         setLoading(true); // Start loading animation of button
-        const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it. Thank you.";
+        // const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it. Thank you.";
+        const modifiedPrompt = `Please rewrite the following without expanding it: ${promptValue}. Write it with the following writing style: ${styleValue}. Write it with the following tone ${toneValue}. `;
 
         fetch('http://localhost:8000/loadOptions', {
             method: "Post",
