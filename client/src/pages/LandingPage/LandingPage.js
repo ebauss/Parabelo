@@ -7,6 +7,7 @@ import FooterComponent from '../../components/FooterComponent/FooterComponent';
 import LandingPageComponent from '../../components/LandingPageComponent/LandingPageComponent';
 import Navbar from '../../components/NavbarMain/Navbar'; 
 import PricingComponent from '../../components/PricingComponent/PricingComponent';
+import PrivacyPolicyComponent from '../../components/PrivacyPolicyComponent/PrivacyPolicyComponent';
 import SupportComponent from '../../components/SupportComponent/SupportComponent';
 import TermsOfServiceComponent from '../../components/TermsOfServiceComponent/TermsOfServiceComponent';
 
@@ -17,6 +18,7 @@ export default function LandingPage() {
             <Navbar />
             <Routes>
                 <Route path="/pricing" element={<PricingComponent />} />
+                <Route path="/privacyPolicy" element={<PrivacyPolicyComponent />} />
                 <Route path="/support" element={<SupportComponent />} />
                 <Route path="/termsOfService" element={<TermsOfServiceComponent />} />
                 <Route path="/"  element={<LandingPageComponent />} />
