@@ -22,9 +22,6 @@ export default function FooterComponent() {
                     alignItems: 'flex-start'
                 }}
             >
-                <Link to="/aboutUs" style={{ textDecoration: 'none', color: "white" }}>
-                    About Us
-                </Link>
                 <Link to="/support" style={{ textDecoration: 'none', color: "white" }}>
                     Support
                 </Link>
@@ -45,9 +42,7 @@ export default function FooterComponent() {
                 <Link to="/termsOfService" style={{ textDecoration: 'none', color: "white" }}>
                     Terms Of Service
                 </Link>
-                <Link to="/usageGuidelines" style={{ textDecoration: 'none', color: "white" }}>
-                    Usage Guidelines
-                </Link>
+                
             </Box>
         </Box>
     )
