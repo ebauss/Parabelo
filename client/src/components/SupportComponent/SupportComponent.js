@@ -2,12 +2,14 @@ import { Button, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
 import TextField from '@mui/material/TextField';
+import { useNavigate } from 'react-router-dom';
 
 export default function SupportComponent(props) {
     const [firstNameValue, setFirstNameValue] = React.useState(props.userDetails ? props.userDetails.given_name : '');
     const [lastNameValue, setLastNameValue] = React.useState(props.userDetails ? props.userDetails.first_name : '');
     const [emailValue, setEmailValue] = React.useState(props.userDetails ? props.userDetails.email : '');
     const [emailBodyValue, setEmailBodyValue] = React.useState('');
+    const navigate = useNavigate(); 
 
     const handleFirstNameChange = (event) => {
         setFirstNameValue(event.target.value);
@@ -44,7 +46,7 @@ export default function SupportComponent(props) {
 
         if (data == "true") {
             window.alert("Thank you for sending us a message! We will get back to you as soon as we can.");
-            window.location.href = window.location.origin + "/app/";
+            navigate('/app/');
         } else {
             window.alert(data);
         }
