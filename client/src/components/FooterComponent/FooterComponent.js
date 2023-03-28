@@ -42,7 +42,6 @@ export default function FooterComponent() {
                 <Link to="/termsOfService" style={{ textDecoration: 'none', color: "white" }}>
                     Terms Of Service
                 </Link>
-                
             </Box>
         </Box>
     )
