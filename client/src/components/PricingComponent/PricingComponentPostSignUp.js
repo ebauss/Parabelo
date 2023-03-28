@@ -52,7 +52,7 @@ export default function PricingComponentPostSignUp(props) {
                     <PricingCard
                         productName="Elite"
                         productPrice="40"
-                        ctaText="Sign Up & Try For Free"
+                        ctaText="Try For Free For 7 Days"
                         features={[
                             'Unlimited word count',
                             'Create content that is relevant & converts',
