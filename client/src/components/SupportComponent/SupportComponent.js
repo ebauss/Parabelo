@@ -62,10 +62,13 @@ export default function SupportComponent(props) {
                 Support
             </Typography>
             <br />
-            <Typography variant="body1" gutterBottom>
-                Please send us an email via this form if you have any questions.
+            <Typography variant="h6" gutterBottom>
+                If you have any questions, concerns, or even any suggestions, please don't hesitate to contact us at: 
             </Typography>
-            <br />
+            <Typography variant="h4" gutterBottom>
+                Email: support@parabelo.com
+            </Typography>
+            {/* <br />
             <Button variant="contained" onClick={sendEmail} >
                 Send Email
             </Button>
@@ -107,7 +110,7 @@ export default function SupportComponent(props) {
                 rows={20}
                 sx={{ width: 632, margin: 2 }}
                 inputProps={{ maxLength: 300000 }}
-            />
+            /> */}
         </Box>
     )
 }

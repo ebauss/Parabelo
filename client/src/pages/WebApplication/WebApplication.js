@@ -18,6 +18,7 @@ import SettingsComponent from '../../components/SettingsComponent/SettingsCompon
 import EmailVerificationComponent from '../../components/EmailVerificationComponent/EmailVerificationComponent';
 import SocialMediaCaptionComponent from '../../components/SocialMediaCaptionComponent/SocialMediaCaptionComponent';
 import { Box } from '@mui/material';
+import SupportComponent from '../../components/SupportComponent/SupportComponent';
 
 export default function WebApplication() {
     const { user, isAuthenticated, isLoading } = useAuth0();
@@ -84,7 +85,7 @@ export default function WebApplication() {
             )
         } else {
             return (
-                <Box sx={{marginLeft: 9, marginRight: 9}}>
+                <Box sx={{marginLeft: 8, marginRight: 2}}>
                     <NavbarWebApp></NavbarWebApp>
                     <Routes>
                         <Route path="/blogpost" element={<BlogPostComponent userDetails={user} />} />
@@ -95,6 +96,7 @@ export default function WebApplication() {
                         <Route path="/productDescriptionWriter" element={<ProductDescriptionComponent userDetails={user} />} />
                         <Route path="/settings" element={<SettingsComponent userDetails={user} />} />
                         <Route path="/socialMediaCaption" element={<SocialMediaCaptionComponent userDetails={user} />} />
+                        <Route path="/support" element={<SupportComponent />} />
                         <Route path="/" element={<AppMainPageComponent />} />
                     </Routes>
                 </Box>

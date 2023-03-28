@@ -259,7 +259,7 @@ export default function TermsOfServiceComponent() {
             </Typography>
             <br />
             <Typography variant="body2" align="left" gutterBottom>
-                Questions about the Terms of Service should be sent to us at evon@parabelo.com.
+                Questions about the Terms of Service should be sent to us at support@parabelo.com.
             </Typography>
             <br />
         </Box>

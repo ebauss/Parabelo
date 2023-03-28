@@ -12,10 +12,7 @@ export default function AppMainPageComponent() {
                 Writing Tools
             </Typography>
             <br />
-            <Grid container spacing={4} sx={{
-                paddingLeft: 10,
-                paddingRight: 10
-            }}>
+            <Grid container spacing={4}>
                 <Grid item xs={12} md={6} >
                     <Link to='/app/paraphrasing' style={{ textDecoration: 'none', color: "black" }}>
                         <Button variant="outlined" size="large"
