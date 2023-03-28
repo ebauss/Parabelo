@@ -96,7 +96,7 @@ export default function PrivacyPolicyComponent() {
             </Typography>
             <br />
             <Typography variant="body1" align="left" gutterBottom>
-                For more information about how targeted advertising works, you can visit the Network Advertising Initiative’s (“NAI”) educational page at:
+                For more information about how targeted advertising works, you can visit the Network Advertising Initiative's (“NAI”) educational page at:
             </Typography>
             <br />
             <Link href="https://www.networkadvertising.org/understanding-online-advertising/how-does-it-work">
@@ -137,7 +137,7 @@ export default function PrivacyPolicyComponent() {
             </Typography>
             <br />
             <Typography variant="body1" align="left" gutterBottom>
-                A cookie is a small amount of information that’s downloaded to your computer or device when you visit our Site. We use a number of different cookies, including functional, performance, advertising, and social media or content cookies. Cookies make your browsing experience better by allowing the website to remember your actions and preferences (such as login and region selection). This means you don’t have to re-enter this information each time you return to the site or browse from one page to another. Cookies also provide information on how people use the website, for instance whether it’s their first time visiting or if they are a frequent visitor.
+                A cookie is a small amount of information that's downloaded to your computer or device when you visit our Site. We use a number of different cookies, including functional, performance, advertising, and social media or content cookies. Cookies make your browsing experience better by allowing the website to remember your actions and preferences (such as login and region selection). This means you don't have to re-enter this information each time you return to the site or browse from one page to another. Cookies also provide information on how people use the website, for instance whether it's their first time visiting or if they are a frequent visitor.
             </Typography>
             <br />
             <Typography variant="body1" align="left" gutterBottom>
