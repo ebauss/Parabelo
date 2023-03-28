@@ -21,7 +21,10 @@ router.post('/checkoutElite', async (req, res) => {
         mode: 'subscription',
         success_url: "http://localhost:3000/app/checkoutSuccess",
         cancel_url: 'http://localhost:3000/',
-        customer: req.body.customerId
+        customer: req.body.customerId,
+        subscription_data: {
+            trial_period_days: 7
+        }
     });
 
     res.json({ url: session.url }) // Need to do it this way instead of what is in Stripe docs because of some CORS policy thing.
@@ -31,13 +34,19 @@ router.post('/checkoutElite', async (req, res) => {
  * Check if user has a subscription.
  */
 router.post('/checkUserActiveSubscription', async (req, res) => {
-    const subscriptions = await stripe.subscriptions.list({
+    const subscriptionsActive = await stripe.subscriptions.list({
         customer: req.body.customerId,
         status: 'active',
         limit: 1
     });
 
-    res.send(subscriptions.data[0] != undefined);
+    const subscriptionsTrial = await stripe.subscriptions.list({
+        customer: req.body.customerId,
+        status: 'trialing',
+        limit: 1
+    });
+
+    res.send(subscriptionsActive.data[0] != undefined || subscriptionsTrial.data[0] != undefined);
 })
 
 module.exports = router;
