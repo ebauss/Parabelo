@@ -48,6 +48,13 @@ mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
 
+app.use((req, res, next) => {
+    if (req.header('x-forwarded-proto') !== 'https')
+        res.redirect(`https://${req.header('host')}${req.url}`)
+    else
+        next()
+})
+
 // api URL is https://<domain>/<route>. When running locally, it is http://localhost:<port>/<route>
 app.use('/', routes);
 
