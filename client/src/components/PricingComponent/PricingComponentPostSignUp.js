@@ -13,7 +13,7 @@ export default function PricingComponentPostSignUp(props) {
         // for the id, use props.userDetails.sub.
         fetch("https://parabelo.herokuapp.com/checkoutElite", {
             method: "Post",
-            // credentials: "include",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json"
             },

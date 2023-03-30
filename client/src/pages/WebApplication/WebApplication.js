@@ -30,7 +30,7 @@ export default function WebApplication() {
     const checkForActiveSubscription = async () => {
         fetch("https://parabelo.herokuapp.com/checkUserActiveSubscription", {
             method: "Post",
-            // credentials: "include",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -48,7 +48,7 @@ export default function WebApplication() {
     const checkIfEmailVerified = async () => {
         fetch("https://parabelo.herokuapp.com/checkIfEmailVerified", {
             method: "Post",
-            // credentials: "include",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json"
             },
