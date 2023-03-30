@@ -25,6 +25,7 @@ app.use(express.static(path.join(__dirname, "build")));
 var corsOptions = {
     origin: ["https://parabelo.netlify.app/", "https://checkout.stripe.com"],
     optionsSuccessStatus: 200, // For legacy browser support
+    allowedHeaders: 'Content-Type,Authorization',
     credentials: true
 }
 
@@ -62,12 +63,6 @@ app.use('/', email);
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 })
-
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
 
 // This is there to fix the refresh issue. Without this, everytime the page is refreshed, the page will crash.
 // Got the solution from this article. https://ui.dev/react-router-cannot-get-url-refresh
