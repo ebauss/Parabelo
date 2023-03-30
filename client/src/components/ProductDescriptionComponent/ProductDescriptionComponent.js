@@ -136,22 +136,22 @@ export default function ProductDescriptionComponent(props) {
                 frequency_penalty: 0,
                 presence_penalty: 0,
             })
-        })
+        }).then(() => {
+            const url = "https://parabelo.herokuapp.com/streamResponse"
 
-        const url = "https://parabelo.herokuapp.com/streamResponse"
-
-        const events = new EventSource(url);
-
-        events.onmessage = event => {
-            if (event.data === "[DONE]") {
-                events.close();
-                setLoading(false);
-            } else {
-                const text = event.data.replace(new RegExp("NEWLINE", 'g'), '\n');
-                resultValueRef.current += text;
-                setResultValue(resultValueRef.current);
+            const events = new EventSource(url);
+    
+            events.onmessage = event => {
+                if (event.data === "[DONE]") {
+                    events.close();
+                    setLoading(false);
+                } else {
+                    const text = event.data.replace(new RegExp("NEWLINE", 'g'), '\n');
+                    resultValueRef.current += text;
+                    setResultValue(resultValueRef.current);
+                }
             }
-        }
+        })
     }
 
     return (

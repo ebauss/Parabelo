@@ -79,7 +79,7 @@ export default function EmailMarketingComponent(props) {
     //     setResultValue('');
     //     setLoading(true); // Start loading animation of button
     //     let modifiedPrompt;
-        
+
     //     if (thingsToMentionValue) {
     //         modifiedPrompt = 'Write a marketing email for ' + promptValue + '. ' + 'Things to mention: ' + thingsToMentionValue + ". Thank you.";
     //     } else {
@@ -117,7 +117,7 @@ export default function EmailMarketingComponent(props) {
         setResultValue('');
         setLoading(true); // Start loading animation of button
         let modifiedPrompt;
-        
+
         if (thingsToMentionValue) {
             modifiedPrompt = 'Write a marketing email for ' + promptValue + '. ' + 'Things to mention: ' + thingsToMentionValue + ". Thank you.";
         } else {
@@ -138,55 +138,55 @@ export default function EmailMarketingComponent(props) {
                 frequency_penalty: 0,
                 presence_penalty: 0,
             })
-        })
+        }).then(() => {
+            const url = "https://parabelo.herokuapp.com/streamResponse"
 
-        const url = "https://parabelo.herokuapp.com/streamResponse"
+            const events = new EventSource(url);
 
-        const events = new EventSource(url);
-
-        events.onmessage = event => {
-            if (event.data === "[DONE]") {
-                events.close();
-                setLoading(false);
-            } else {
-                const text = event.data.replace(new RegExp("NEWLINE", 'g'), '\n');
-                resultValueRef.current += text;
-                setResultValue(resultValueRef.current);
+            events.onmessage = event => {
+                if (event.data === "[DONE]") {
+                    events.close();
+                    setLoading(false);
+                } else {
+                    const text = event.data.replace(new RegExp("NEWLINE", 'g'), '\n');
+                    resultValueRef.current += text;
+                    setResultValue(resultValueRef.current);
+                }
             }
-        }
+        })
     }
 
     return (
         <div>
-            <br/>
+            <br />
             <Typography variant="h5" gutterBottom>
                 Email Marketing Writer
             </Typography>
-            <br/>
+            <br />
             <div>
                 <TextField id="outlined-basic"
-                           label="What do you want your email to be about?"
-                           variant="outlined"
-                           fullWidth
-                           onChange={handlePromptChange}
-                           sx={{width: { md: 600 }}}
-                           inputProps={{ maxLength: 1020 }}
+                    label="What do you want your email to be about?"
+                    variant="outlined"
+                    fullWidth
+                    onChange={handlePromptChange}
+                    sx={{ width: { md: 600 } }}
+                    inputProps={{ maxLength: 1020 }}
                 />
             </div>
-            <br/>
+            <br />
             <div>
                 <TextField id="outlined-basic"
-                           label='Things to mention (Separate entries with a ",")'
-                           variant="outlined"
-                           multiline
-                           rows={4}
-                           fullWidth
-                           onChange={handleThingsToMentionChange}
-                           sx={{width: { md: 600 }}}
-                           inputProps={{ maxLength: 1020 }}
+                    label='Things to mention (Separate entries with a ",")'
+                    variant="outlined"
+                    multiline
+                    rows={4}
+                    fullWidth
+                    onChange={handleThingsToMentionChange}
+                    sx={{ width: { md: 600 } }}
+                    inputProps={{ maxLength: 1020 }}
                 />
             </div>
-            <br/>
+            <br />
             <div>
                 <LoadingButton
                     size="large"
@@ -199,7 +199,7 @@ export default function EmailMarketingComponent(props) {
                     Go
                 </LoadingButton>
             </div>
-            <br/>
+            <br />
             <TextField
                 id="outlined-multiline-static"
                 label="Result"
@@ -208,8 +208,8 @@ export default function EmailMarketingComponent(props) {
                 placeholder="Your blog will appear here."
                 value={resultValue}
                 fullWidth
-                sx={{width: { md: 600 }, marginBottom: 10}}
-                InputLabelProps={{shrink: true}}
+                sx={{ width: { md: 600 }, marginBottom: 10 }}
+                InputLabelProps={{ shrink: true }}
                 InputProps={{
                     readOnly: true,
                 }}
