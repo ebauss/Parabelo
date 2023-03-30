@@ -59,7 +59,7 @@ export default function ParaphrasingComponent(props) {
      */
     const saveToDatabase = async (result) => {
         // for the id, use props.userDetails.sub.
-        const response = await fetch("https://parabelo-staging.herokuapp.com/saveParaphrasingToDb", {
+        const response = await fetch("https://parabelo.herokuapp.com/saveParaphrasingToDb", {
             method: "Post",
             credentials: "include",
             headers: {
@@ -94,7 +94,7 @@ export default function ParaphrasingComponent(props) {
     //     setLoading(true); // Start loading animation of button
     //     const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it. Thank you.";
 
-    //     const response = await fetch('https://parabelo-staging.herokuapp.com/api/completion', {
+    //     const response = await fetch('https://parabelo.herokuapp.com/api/completion', {
     //         method: "Post",
     //         credentials: "include",
     //         headers: {
@@ -133,7 +133,7 @@ export default function ParaphrasingComponent(props) {
         // const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it. Thank you.";
         const modifiedPrompt = `Please rewrite the following without expanding it: ${promptValue}. Write it with the following writing style: ${styleValue}. Write it with the following tone ${toneValue}. `;
 
-        fetch('https://parabelo-staging.herokuapp.com/loadOptions', {
+        fetch('https://parabelo.herokuapp.com/loadOptions', {
             method: "Post",
             credentials: "include",
             headers: {
@@ -149,7 +149,7 @@ export default function ParaphrasingComponent(props) {
             })
         })
 
-        const url = "https://parabelo-staging.herokuapp.com/streamResponse"
+        const url = "https://parabelo.herokuapp.com/streamResponse"
 
         const events = new EventSource(url);
 

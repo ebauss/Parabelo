@@ -23,7 +23,7 @@ const port = process.env.PORT || 8000;
 app.use(express.static(path.join(__dirname, "build")));
 
 var corsOptions = {
-    origin: ["https://parabelo-staging.herokuapp.com", "https://checkout.stripe.com", "https://parabelo-staging.netlify.app/"],
+    origin: ["https://parabelo.herokuapp.com", "https://checkout.stripe.com", "https://parabelo-staging.netlify.app/"],
     optionsSuccessStatus: 200, // For legacy browser support
     credentials: true
 }
