@@ -15,15 +15,15 @@ const mongoose = require('mongoose');
 
 require('dotenv').config();
 
-const path = require("path");
+// const path = require("path");
 
 const app = express(); // Initiate express.
 const port = process.env.PORT || 8000;
 
-app.use(express.static(path.join(__dirname, "build")));
+// app.use(express.static(path.join(__dirname, "build")));
 
 var corsOptions = {
-    origin: ["https://parabelo.netlify.app", "https://checkout.stripe.com"],
+    origin: ["https://parabelo.netlify.app", "https://checkout.stripe.com", "https://parabelo.herokuapp.com"],
     optionsSuccessStatus: 200, // For legacy browser support
     credentials: true
 }

@@ -84,7 +84,7 @@ export default function WebApplication() {
             return (
                     <PricingComponentPostSignUp userDetails={user} />
             )
-        } else {
+        } else if (hasActiveSubscription && emailVerified) {
             return (
                 <Box sx={{marginLeft: 8, marginRight: 2}}>
                     <NavbarWebApp></NavbarWebApp>
