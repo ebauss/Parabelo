@@ -59,7 +59,6 @@ export default function WebApplication() {
         .then((response) => response.json())
         .then((data) => {
             setEmailVerified(data);
-            checkForActiveSubscription();
         })
     }
 
@@ -72,6 +71,7 @@ export default function WebApplication() {
 
     if (isAuthenticated) {
         checkIfEmailVerified();
+        checkForActiveSubscription();
 
         if (!emailVerified) {
             return (
