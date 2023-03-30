@@ -4,6 +4,7 @@ import PricingCard from './PricingCard';
 import { useAuth0 } from "@auth0/auth0-react";
 import PricingCardComingSoon from './PricingCardComingSoon';
 import { Box } from '@mui/material';
+import FAQComponent from '../FAQComponent/FAQComponent';
 
 export default function PricingComponent() {
     const { loginWithRedirect } = useAuth0();
@@ -20,7 +21,6 @@ export default function PricingComponent() {
         }}>
             <Grid container spacing={4} sx={{
                 marginTop: 7,
-                marginBottom: 4,
                 paddingTop: 5,
                 paddingBottom: 5,
                 paddingLeft: 10,
@@ -30,7 +30,7 @@ export default function PricingComponent() {
                 <Grid item xs={12} sm={12} md={6}>
                     <PricingCard
                         productName="Elite"
-                        productPrice="30"
+                        productPrice="40"
                         ctaText="Sign Up & Try For Free"
                         features={[
                             'Unlimited word count',
@@ -48,6 +48,7 @@ export default function PricingComponent() {
                     />
                 </Grid>
             </Grid>
+            <FAQComponent />
         </Box>
     )
 }

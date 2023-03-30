@@ -51,8 +51,8 @@ export default function PricingComponentPostSignUp(props) {
                 <Grid item xs={12} sm={12} md={6}>
                     <PricingCard
                         productName="Elite"
-                        productPrice="30"
-                        ctaText="Sign Up & Try For Free"
+                        productPrice="40"
+                        ctaText="Try For Free For 7 Days"
                         features={[
                             'Unlimited word count',
                             'Create content that is relevant & converts',
@@ -69,6 +69,11 @@ export default function PricingComponentPostSignUp(props) {
                     />
                 </Grid>
             </Grid>
+            {/* <stripe-pricing-table pricing-table-id="prctbl_1MXIgABEpnOVMkQ6PsmYO05R"
+                publishable-key="pk_test_51MXHVMBEpnOVMkQ6UrWxPzQR8ZYR6gQI6M8LBYOZwGwcmSrwoKOqnXPJP2s27xHRX4lFbEr3Hpk836nx2l1IL5wA00r5XyEqfj"
+                customer-email={user.email}
+                >
+            </stripe-pricing-table> */}
         </Box>
     )
 }

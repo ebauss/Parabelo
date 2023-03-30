@@ -28,6 +28,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import HomeIcon from '@mui/icons-material/Home';
 import { LinearProgress } from '@mui/material';
 import TagIcon from '@mui/icons-material/Tag';
+import HelpIcon from '@mui/icons-material/Help';
 
 const drawerWidth = 250;
 
@@ -322,6 +323,30 @@ export default function NavbarWebApp() {
                                     </Tooltip>
                                 </ListItemIcon>
                                 <ListItemText primary='Social Media Caption' sx={{ opacity: open ? 1 : 0 }} />
+                            </ListItemButton>
+                        </Link>
+                    </ListItem>
+                    <ListItem key='support' disablePadding sx={{ display: 'block' }}>
+                        <Link to='/app/support' style={{ textDecoration: 'none', color: "black" }}>
+                            <ListItemButton
+                                sx={{
+                                    minHeight: 48,
+                                    justifyContent: open ? 'initial' : 'center',
+                                    px: 2.5,
+                                }}
+                            >
+                                <ListItemIcon
+                                    sx={{
+                                        minWidth: 0,
+                                        mr: open ? 3 : 'auto',
+                                        justifyContent: 'center',
+                                    }}
+                                >
+                                    <Tooltip title="Support" placement='right'>
+                                        <HelpIcon />
+                                    </Tooltip>
+                                </ListItemIcon>
+                                <ListItemText primary='Support' sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </Link>
                     </ListItem>

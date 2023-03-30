@@ -2,12 +2,14 @@ import { Button, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
 import TextField from '@mui/material/TextField';
+import { useNavigate } from 'react-router-dom';
 
 export default function SupportComponent(props) {
     const [firstNameValue, setFirstNameValue] = React.useState(props.userDetails ? props.userDetails.given_name : '');
     const [lastNameValue, setLastNameValue] = React.useState(props.userDetails ? props.userDetails.first_name : '');
     const [emailValue, setEmailValue] = React.useState(props.userDetails ? props.userDetails.email : '');
     const [emailBodyValue, setEmailBodyValue] = React.useState('');
+    const navigate = useNavigate(); 
 
     const handleFirstNameChange = (event) => {
         setFirstNameValue(event.target.value);
@@ -25,7 +27,7 @@ export default function SupportComponent(props) {
         setEmailBodyValue(event.target.value);
     }
 
-    const sendEmail = () => {
+    const sendEmail = async () => {
         fetch("https://parabelo-staging.herokuapp.com/sendEmailToSupport", {
             method: "Post",
             credentials: "include",
@@ -40,7 +42,15 @@ export default function SupportComponent(props) {
             })
         })
 
-        window.alert("Thank you for sending us a message! We will get back to you as soon as we can.");
+        const data = await response.text();
+
+        if (data == "true") {
+            window.alert("Thank you for sending us a message! We will get back to you as soon as we can.");
+            navigate('/app/');
+        } else {
+            window.alert(data);
+        }
+
     }
 
     return (
@@ -52,10 +62,13 @@ export default function SupportComponent(props) {
                 Support
             </Typography>
             <br />
-            <Typography variant="body1" gutterBottom>
-                Please send us an email via this form if you have any questions.
+            <Typography variant="h6" gutterBottom>
+                If you have any questions, concerns, or even any suggestions, please don't hesitate to contact us at: 
             </Typography>
-            <br />
+            <Typography variant="h4" gutterBottom>
+                Email: support@parabelo.com
+            </Typography>
+            {/* <br />
             <Button variant="contained" onClick={sendEmail} >
                 Send Email
             </Button>
@@ -90,14 +103,14 @@ export default function SupportComponent(props) {
             />
             <br />
             <TextField id="outlined-basic"
-                label="Email Body"
+                label="If you have any questions or concerns, please type them here."
                 variant="outlined"
                 onChange={handleEmailBodyChange}
                 multiline
                 rows={20}
                 sx={{ width: 632, margin: 2 }}
                 inputProps={{ maxLength: 300000 }}
-            />
+            /> */}
         </Box>
     )
 }
