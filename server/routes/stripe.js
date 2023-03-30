@@ -14,7 +14,7 @@ router.post('/checkoutElite', async (req, res) => {
         line_items: [
             {
                 // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-                price: 'prod_NbfUBhSg7P7vKS',
+                price: 'price_1MqS93BEpnOVMkQ6kQirvzpp',
                 quantity: 1,
             },
         ],
