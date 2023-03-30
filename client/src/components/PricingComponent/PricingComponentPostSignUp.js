@@ -11,21 +11,20 @@ export default function PricingComponentPostSignUp(props) {
     // TODO: Change the name of this function. There should be three functions.
     const checkoutElite = async () => {
         // for the id, use props.userDetails.sub.
-        const response = await fetch("https://parabelo.herokuapp.com/checkoutElite", {
+        fetch("https://parabelo.herokuapp.com/checkoutElite", {
             method: "Post",
-            credentials: "include",
+            // credentials: "include",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 customerId: user.stripeCustomerId
             })
+        }).then(response => {
+            response.json();
+        }).then(data => {
+            window.location.href = data.url;
         })
-
-        const data = await response.json()
-
-        // Redirect to Stripe checkout page.
-        window.location.href = data.url
     }
 
     return (
