@@ -77,9 +77,7 @@ export default function WebApplication() {
             return (
                 <EmailVerificationComponent />
             )
-        }
-        
-        if (!hasActiveSubscription) {
+        } else if (!hasActiveSubscription) {
             return (
                     <PricingComponentPostSignUp userDetails={user} />
             )
