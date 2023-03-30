@@ -23,7 +23,8 @@ const port = process.env.PORT || 8000;
 app.use(express.static(path.join(__dirname, "build")));
 
 var corsOptions = {
-    origin: ["https://parabelo.netlify.app/", "https://checkout.stripe.com"],
+    // origin: ["https://parabelo.netlify.app/", "https://checkout.stripe.com"],
+    origin: "*",
     optionsSuccessStatus: 200, // For legacy browser support
     allowedHeaders: 'Content-Type,Authorization',
     credentials: true
@@ -48,12 +49,6 @@ mongoose.set('strictQuery', false);
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
-
-app.all('/*', function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
-});
 
 // api URL is https://<domain>/<route>. When running locally, it is http://localhost:<port>/<route>
 app.use('/', routes);
