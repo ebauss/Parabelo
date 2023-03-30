@@ -28,7 +28,7 @@ var corsOptions = {
     credentials: true
 }
 
-app.use(cors(corsOptions)); 
+app.use(cors(corsOptions));
 
 // Connect to the database
 mongoose
@@ -63,8 +63,14 @@ app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 })
 
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 // This is there to fix the refresh issue. Without this, everytime the page is refreshed, the page will crash.
 // Got the solution from this article. https://ui.dev/react-router-cannot-get-url-refresh
-app.get("/*", (req, res) => {
-    res.sendFile(path.join(__dirname, 'build/index.html'));
-});
+// app.get("/*", (req, res) => {
+//     res.sendFile(path.join(__dirname, 'build/index.html'));
+// });
