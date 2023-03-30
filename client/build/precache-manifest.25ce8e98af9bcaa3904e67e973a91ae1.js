@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "9a2528ac754811a84a78",
+    "revision": "4bd90189e1e43b8c236a",
     "url": "/static/css/main.0b78a858.chunk.css"
   },
   {
-    "revision": "9a2528ac754811a84a78",
-    "url": "/static/js/main.9a2528ac.chunk.js"
+    "revision": "4bd90189e1e43b8c236a",
+    "url": "/static/js/main.4bd90189.chunk.js"
   },
   {
     "revision": "c375fc145b8def53aacc",
@@ -28,7 +28,7 @@ self.__precacheManifest = [
     "url": "/static/media/happy-landing-page-hero-no-background.b3ba733d.png"
   },
   {
-    "revision": "33ef19c2433a4fc56a163bd03e2bff57",
+    "revision": "0fcfd43ce071e21623de9852371dcb87",
     "url": "/index.html"
   }
 ];
