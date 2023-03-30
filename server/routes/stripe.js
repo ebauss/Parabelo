@@ -1,20 +1,20 @@
 /**
  * Require node dependencies.
  */
-const stripe = require('stripe')('sk_test_51MXHVMBEpnOVMkQ6mkaaPMADYBibzwyQfhlalzZc4TDPoIrLlqy4TDyomgP2sNnR2Mf8ZuFB1Kgsmhpa4ppmOLZP00ZFN5vIJg');
+const stripe = require('stripe')('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');
 const express = require('express');
 const router = express.Router();
 /* ------------------------------------ */
 
 /**
- * Stripe checkout for the Regular Plan.
+ * Stripe checkout for the Elite Plan.
  */
 router.post('/checkoutElite', async (req, res) => {
     const session = await stripe.checkout.sessions.create({
         line_items: [
             {
                 // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-                price: 'price_1MnxXGBEpnOVMkQ6ApgHSUjR',
+                price: 'prod_NbfUBhSg7P7vKS',
                 quantity: 1,
             },
         ],
