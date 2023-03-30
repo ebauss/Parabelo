@@ -17,7 +17,7 @@ router.post('/checkIfEmailVerified', (req, res) => {
         method: 'POST',
         url: 'https://dev-qw5gqp8rnisenpl3.us.auth0.com/oauth/token',
         headers: { 'content-type': 'application/json' },
-        body: '{"client_id":"Kc70cTFwQV04zjXSviFdyc0MFh6fAuqB","client_secret":"TLgBSoumLK9Hz1Z_VcUCbFbXi7XXysjaY58w7t8aZhAE80Jp2J0hDL9iw3mXF_bM","audience":"https://dev-qw5gqp8rnisenpl3.us.auth0.com/api/v2/","grant_type":"client_credentials"}'
+        body: '{"client_id":"fIr9uZdzmMG127IqqDe76MgAyYSQa2Pt","client_secret":"DfY7O-kAkvP5m1s7Yw-q-IhljIPIH16_KA4RxMg_aX3hTvcjvq28MY60L6Q2XPMN","audience":"https://dev-qw5gqp8rnisenpl3.us.auth0.com/api/v2/","grant_type":"client_credentials"}'
     };
 
     request(optionsToken, function (error, response, body) {
