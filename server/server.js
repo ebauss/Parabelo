@@ -10,10 +10,13 @@ const auth0 = require('./routes/auth0');
 const openAiAPI = require('./routes/openAiAPI');
 const email = require('./routes/email');
 const mongoose = require('mongoose');
+var enforce = require('express-sslify');
 // const mongoDBConnection = require('./database/connection');
 /* ------------------------------------ */
 
 require('dotenv').config();
+
+app.use(enforce.HTTPS({ trustProtoHeader: true }))
 
 const path = require("path");
 
@@ -47,13 +50,6 @@ mongoose.set('strictQuery', false);
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
-
-app.use((req, res, next) => {
-    if (req.header('x-forwarded-proto') !== 'https')
-        res.redirect(`https://${req.header('host')}${req.url}`)
-    else
-        next()
-})
 
 // api URL is https://<domain>/<route>. When running locally, it is http://localhost:<port>/<route>
 app.use('/', routes);
