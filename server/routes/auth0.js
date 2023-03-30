@@ -29,7 +29,7 @@ router.post('/checkIfEmailVerified', (req, res) => {
 
         const optionsRequest = {
             method: "GET",
-            url: `https://parabelodev.us.auth0.com/api/v2/users-by-email?email=${urlEmail}`,
+            url: `https://dev-qw5gqp8rnisenpl3.us.auth0.com/api/v2/users-by-email?email=${urlEmail}`,
             headers: { authorization: 'Bearer ' + token }
         };
 
