@@ -70,8 +70,8 @@ export default function WebApplication() {
     }
 
     if (isAuthenticated) {
-        checkForActiveSubscription();
         checkIfEmailVerified();
+        checkForActiveSubscription();
 
         if (!emailVerified) {
             return (
