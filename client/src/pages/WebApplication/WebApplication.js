@@ -72,6 +72,7 @@ export default function WebApplication() {
     if (isAuthenticated) {
         checkIfEmailVerified();
         checkForActiveSubscription();
+        console.log(`Email Verified: ${emailVerified}, Active Subscription: ${hasActiveSubscription}`);
 
         if (!emailVerified) {
             return (

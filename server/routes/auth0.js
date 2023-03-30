@@ -15,9 +15,9 @@ var request = require('request');
 router.post('/checkIfEmailVerified', (req, res) => {
     var optionsToken = {
         method: 'POST',
-        url: 'https://parabelodev.us.auth0.com/oauth/token',
+        url: 'https://dev-qw5gqp8rnisenpl3.us.auth0.com/oauth/token',
         headers: { 'content-type': 'application/json' },
-        body: '{"client_id":"j1RSG97tT1VZl95Vlhx3iYfErh5tT0mN","client_secret":"T6fDXuW1jtbGYjuzzgxykP7WesAUmJJL3zzb9a1jbYVQsSx9knFa1mSNDkdRD0w7","audience":"https://parabelodev.us.auth0.com/api/v2/","grant_type":"client_credentials"}'
+        body: '{"client_id":"Kc70cTFwQV04zjXSviFdyc0MFh6fAuqB","client_secret":"TLgBSoumLK9Hz1Z_VcUCbFbXi7XXysjaY58w7t8aZhAE80Jp2J0hDL9iw3mXF_bM","audience":"https://dev-qw5gqp8rnisenpl3.us.auth0.com/api/v2/","grant_type":"client_credentials"}'
     };
 
     request(optionsToken, function (error, response, body) {
