@@ -26,7 +26,6 @@ var corsOptions = {
     // origin: ["https://parabelo.netlify.app/", "https://checkout.stripe.com"],
     origin: "*",
     optionsSuccessStatus: 200, // For legacy browser support
-    allowedHeaders: 'Content-Type,Authorization',
     credentials: true
 }
 
