@@ -15,16 +15,15 @@ const mongoose = require('mongoose');
 
 require('dotenv').config();
 
-// const path = require("path");
+const path = require("path");
 
 const app = express(); // Initiate express.
 const port = process.env.PORT || 8000;
 
-// app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static(path.join(__dirname, "build")));
 
 var corsOptions = {
-    // origin: ["https://parabelo.netlify.app", "https://checkout.stripe.com"],
-    origin: "*",
+    origin: "https://checkout.stripe.com",
     optionsSuccessStatus: 200, // For legacy browser support
     credentials: true
 }
@@ -66,6 +65,6 @@ app.listen(port, () => {
 
 // This is there to fix the refresh issue. Without this, everytime the page is refreshed, the page will crash.
 // Got the solution from this article. https://ui.dev/react-router-cannot-get-url-refresh
-// app.get("/*", (req, res) => {
-//     res.sendFile(path.join(__dirname, 'build/index.html'));
-// });
+app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname, 'build/index.html'));
+});
