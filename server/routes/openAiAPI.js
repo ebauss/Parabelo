@@ -59,7 +59,8 @@ router.post('/moderation', async (req, res) => {
 })
 
 router.get('/streamResponse', async (req, res) => {
-    console.log(prompt);
+    const model = "gpt-3.5-turbo";
+    console.log(`Model: ${model}`);
     
     res.writeHead(200, {
         'Content-Type': 'text/event-stream',
@@ -78,7 +79,7 @@ router.get('/streamResponse', async (req, res) => {
             },
             method: "POST",
             body: JSON.stringify({
-                model: "gpt-3.5-turbo",
+                model: model,
                 messages: generatePrompt(prompt),
                 temperature: temperature,
                 top_p: top_p,
