@@ -21,7 +21,10 @@ router.post('/checkoutElite', async (req, res) => {
         mode: 'subscription',
         success_url: "https://parabelo.herokuapp.com/app/checkoutSuccess",
         cancel_url: 'https://parabelo.herokuapp.com/',
-        customer: req.body.customerId
+        customer: req.body.customerId,
+        subscription_data: {
+            trial_period_days: 7
+        }
     });
 
     res.json({ url: session.url }) // Need to do it this way instead of what is in Stripe docs because of some CORS policy thing.
