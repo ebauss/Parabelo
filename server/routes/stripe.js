@@ -19,8 +19,8 @@ router.post('/checkoutElite', async (req, res) => {
             },
         ],
         mode: 'subscription',
-        success_url: "https://parabelo.herokuapp.com/app/checkoutSuccess",
-        cancel_url: 'https://parabelo.herokuapp.com/',
+        success_url: "https://www.parabelo.com/app/checkoutSuccess",
+        cancel_url: 'https://www.parabelo.com/',
         customer: req.body.customerId,
         subscription_data: {
             trial_period_days: 7
