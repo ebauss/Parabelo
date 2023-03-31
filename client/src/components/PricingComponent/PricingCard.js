@@ -18,7 +18,7 @@ export default function PricingCard(props) {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            height: 470
+            height: 490
         }}>
             <Typography variant="h4"
                 sx={{
