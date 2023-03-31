@@ -14,9 +14,10 @@ const enforce = require('express-sslify');
 // const mongoDBConnection = require('./database/connection');
 /* ------------------------------------ */
 
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
+
 require('dotenv').config();
 
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
 const path = require("path");
 
