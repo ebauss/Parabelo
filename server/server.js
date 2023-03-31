@@ -16,7 +16,8 @@ var enforce = require('express-sslify');
 
 require('dotenv').config();
 
-app.use(enforce.HTTPS({ trustProtoHeader: true }))
+// app.use(enforce.HTTPS({ trustProtoHeader: true }));
+app.use(enforce.HTTPS());
 
 const path = require("path");
 
