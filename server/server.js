@@ -10,7 +10,7 @@ const auth0 = require('./routes/auth0');
 const openAiAPI = require('./routes/openAiAPI');
 const email = require('./routes/email');
 const mongoose = require('mongoose');
-var enforce = require('express-sslify');
+const enforce = require('express-sslify');
 // const mongoDBConnection = require('./database/connection');
 /* ------------------------------------ */
 
