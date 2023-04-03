@@ -3,7 +3,11 @@ import { Box, Typography, Paper } from "@mui/material";
 
 export default function HistoryComponent() {
     return (
-        <Box>
+        <Box sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+        }}>
             <br />
             <Typography variant="h5" gutterBottom>
                 History
@@ -13,7 +17,11 @@ export default function HistoryComponent() {
                 "&:hover": {
                     transform: "scale3d(1.05, 1.05, 1.05)",
                 },
-                height: "100%"
+                height: "100%",
+                width: {
+                    xs: "90%",
+                    md: 700
+                }
             }}>
                 <br />
                 <Typography variant="h5"
