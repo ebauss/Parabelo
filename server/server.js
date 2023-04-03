@@ -21,9 +21,7 @@ const path = require("path");
 const app = express(); // Initiate express.
 const port = process.env.PORT || 8000;
 
-if (process.env.ENVIRONMENT == "production") {
-    app.use(enforce.HTTPS({ trustProtoHeader: true }));
-}
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
 app.use(express.static(path.join(__dirname, "build")));
 
