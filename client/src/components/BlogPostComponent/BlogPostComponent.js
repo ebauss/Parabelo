@@ -71,49 +71,6 @@ export default function BlogPostComponent(props) {
         }
     }
 
-    /**
-     * handles the generate button click.
-     *
-     * Send the prompt to the server; the server will then send the request to OpenAi.
-     */
-    // const handleClick = async () => {
-    //     setResultValue('');
-    //     setLoading(true); // Start loading animation of button
-    //     let modifiedPrompt;
-
-    //     if (keywordsValue) {
-    //         modifiedPrompt = 'Write a super long blog post about ' + promptValue + '. ' + 'Things to mention: ' + keywordsValue + '. Thank you.';
-    //     } else {
-    //         modifiedPrompt = 'Write a super long blog post about ' + promptValue + '. Thank you.';
-    //     }
-
-    //     const aiApiResponse = await fetch('http://localhost:8000/requestTextResponse', {
-    //         method: "Post",
-    //         credentials: "include",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({
-    //             prompt: modifiedPrompt,
-    //             temperature: 0.9,
-    //             max_tokens: 3000,
-    //             top_p: 1,
-    //             frequency_penalty: 0,
-    //             presence_penalty: 0
-    //         })
-    //     })
-
-    //     const aiApiData = await aiApiResponse.text();
-
-    //     if (aiApiData === "Prompt is flagged") {
-    //         window.alert("Your prompt does not follow our usage guidelines.");
-    //     } else {
-    //         setResultValue(aiApiData.trim());
-    //         // saveToDatabase(aiApiData.trim());
-    //     }
-    //     setLoading(false); // Ends the loading animation on the button.
-    // }
-
     const fetchDataStream = async () => {
         setResultValue('');
         setLoading(true); // Start loading animation of button

@@ -70,49 +70,6 @@ export default function CopyWriter(props) {
         }
     }
 
-    /**
-     * handles the generate button click.
-     *
-     * Send the prompt to the server; the server will then send the request to OpenAi.
-     */
-    // const handleClick = async () => {
-    //     setResultValue('');
-    //     setLoading(true); // Start loading animation of button
-    //     let modifiedPrompt;
-
-    //     if (thingsToMentionValue) {
-    //         modifiedPrompt = 'Write ad copy for ' + promptValue + '. ' + 'Things to mention: ' + thingsToMentionValue + ". Thank you.";
-    //     } else {
-    //         modifiedPrompt = 'Write ad copy for ' + promptValue + ". Thank you.";
-    //     }
-
-    //     const aiApiResponse = await fetch('http://localhost:8000/requestTextResponse', {
-    //         method: "Post",
-    //         credentials: "include",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({
-    //             prompt: modifiedPrompt,
-    //             temperature: 0.9,
-    //             max_tokens: 1000,
-    //             top_p: 1,
-    //             frequency_penalty: 0,
-    //             presence_penalty: 0
-    //         })
-    //     })
-
-    //     const aiApiData = await aiApiResponse.text();
-
-    //     if (aiApiData === "Prompt is flagged") {
-    //         window.alert("Your prompt does not follow our usage guidelines.");
-    //     } else {
-    //         setResultValue(aiApiData.trim());
-    //         // saveToDatabase(aiApiData.trim());
-    //     }
-    //     setLoading(false); // Ends the loading animation on the button.
-    // }
-
     const fetchDataStream = async () => {
         setResultValue('');
         setLoading(true); // Start loading animation of button

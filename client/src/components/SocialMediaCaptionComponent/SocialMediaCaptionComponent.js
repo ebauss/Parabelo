@@ -63,38 +63,6 @@ export default function SocialMediaCaptionComponent(props) {
         }
     }
 
-    // const handleClick = async () => {
-    //     setResultValue('');
-    //     setLoading(true); // Start loading animation of button
-    //     const modifiedPrompt = 'Write a social media post. Length: ' + lengthValue + '. Image Contents: ' + imageContentsValue + '. Tone: ' + styleValue + '. ' + additionsValue + '. Thank you.';
-
-    //     const aiApiResponse = await fetch('http://localhost:8000/requestTextResponse', {
-    //         method: "Post",
-    //         credentials: "include",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({
-    //             prompt: modifiedPrompt,
-    //             temperature: 0.85,
-    //             max_tokens: 3500,
-    //             top_p: 1,
-    //             frequency_penalty: 0,
-    //             presence_penalty: 0,
-    //         })
-    //     })
-
-    //     const aiApiData = await aiApiResponse.text();
-
-    //     if (aiApiData === "Prompt is flagged") {
-    //         window.alert("Your prompt does not follow our usage guidelines.");
-    //     } else {
-    //         setResultValue(aiApiData.trim());
-    //         // saveToDatabase(aiApiData.trim());
-    //     }
-    //     setLoading(false); // Ends the loading animation on the button.
-    // }
-
     const fetchDataStream = async () => {
         setResultValue('');
         setLoading(true); // Start loading animation of button
