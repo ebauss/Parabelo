@@ -46,7 +46,7 @@ export default function ProductDescriptionComponent(props) {
      */
     const saveToDatabase = async (result) => {
         // for the id, use props.userDetails.sub.
-        const response = await fetch("http://localhost:8000/saveProductDescriptionToDb", {
+        const response = await fetch("https://parabelo-staging.herokuapp.com/saveProductDescriptionToDb", {
             method: "Post",
             credentials: "include",
             headers: {
@@ -85,7 +85,7 @@ export default function ProductDescriptionComponent(props) {
     //         modifiedPrompt = 'Write a product description for ' + promptValue + ". Thank you.";
     //     }
 
-    //     const aiApiResponse = await fetch('http://localhost:8000/requestTextResponse', {
+    //     const aiApiResponse = await fetch('https://parabelo-staging.herokuapp.com/requestTextResponse', {
     //         method: "Post",
     //         credentials: "include",
     //         headers: {
@@ -122,7 +122,7 @@ export default function ProductDescriptionComponent(props) {
             modifiedPrompt = 'Write a product description for ' + promptValue + ". Thank you.";
         }
 
-        fetch('http://localhost:8000/loadOptions', {
+        fetch('https://parabelo-staging.herokuapp.com/loadOptions', {
             method: "Post",
             credentials: "include",
             headers: {
@@ -137,7 +137,7 @@ export default function ProductDescriptionComponent(props) {
                 presence_penalty: 0,
             })
         }).then(() => {
-            const url = "http://localhost:8000/streamResponse"
+            const url = "https://parabelo-staging.herokuapp.com/streamResponse"
 
             const events = new EventSource(url);
     

@@ -25,9 +25,9 @@ root.render(
             <BrowserRouter>
                 {/* TODO: Add these files to a .env so that they are secret. */}
                 <Auth0Provider
-                    domain="parabelodev.us.auth0.com"
-                    clientId="K4k4iNdge0leB643mx5ZOgxxQxhbAkfV"
-                    redirectUri="http://localhost:3000/app/"
+                    domain="dev-qw5gqp8rnisenpl3.us.auth0.com"
+                    clientId="bukP5d3CKsrkfxfKlaWYN5AtifcCi522"
+                    redirectUri="https://parabelo-staging.herokuapp.com/app/"
 
                     // Ensures that it works for Safari with their ITP stuff. Before when refreshing on a logged in user, it will redirect back to the landing page.
                     cacheLocation="localstorage" 

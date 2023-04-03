@@ -6,7 +6,7 @@ export default function EmailVerificationComponent() {
     const { user, logout } = useAuth0();
 
     // const resendVerificationEmail = async () => {
-    //     const response = await fetch("http://localhost:8000/api/v2/jobs/verification-email", {
+    //     const response = await fetch("https://parabelo-staging.herokuapp.com/api/v2/jobs/verification-email", {
     //         method: "Post",
     //         credentials: "include",
     //         headers: {
