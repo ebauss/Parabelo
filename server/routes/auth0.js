@@ -1,6 +1,8 @@
 /**
  * Require node dependencies.
  */
+require('dotenv').config();
+
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
@@ -17,7 +19,7 @@ router.post('/checkIfEmailVerified', (req, res) => {
         method: 'POST',
         url: `https://${process.env.AUTH0_MANAGEMENT_DOMAIN}/oauth/token`,
         headers: { 'content-type': 'application/json' },
-        body: `{"client_id":"https://${process.env.AUTH0_MANAGEMENT_CLIENT_ID}","client_secret":"${process.env.AUTH0_MANAGEMENT_CLIENT_SECRET}","audience":"https://${process.env.AUTH0_MANAGEMENT_DOMAIN}/api/v2/","grant_type":"client_credentials"}`
+        body: `{"client_id":"${process.env.AUTH0_MANAGEMENT_CLIENT_ID}","client_secret":"${process.env.AUTH0_MANAGEMENT_CLIENT_SECRET}","audience":"https://${process.env.AUTH0_MANAGEMENT_DOMAIN}/api/v2/","grant_type":"client_credentials"}`
     };
 
     request(optionsToken, function (error, response, body) {
