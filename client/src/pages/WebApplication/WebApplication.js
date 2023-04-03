@@ -28,7 +28,7 @@ export default function WebApplication() {
     const [emailVerified, setEmailVerified] = React.useState(true);
 
     const checkForActiveSubscription = async () => {
-        fetch("http://localhost:3000/checkUserActiveSubscription", {
+        fetch("http://localhost:8000/checkUserActiveSubscription", {
             method: "Post",
             credentials: "include",
             headers: {
@@ -46,7 +46,7 @@ export default function WebApplication() {
 
      // NOTE: JWT does not update when email is verified. So the Auth0 Management API needs to be called directly to check if email is verified.
     const checkIfEmailVerified = async () => {
-        fetch("http://localhost:3000/checkIfEmailVerified", {
+        fetch("http://localhost:8000/checkIfEmailVerified", {
             method: "Post",
             credentials: "include",
             headers: {

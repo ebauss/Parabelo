@@ -46,7 +46,7 @@ export default function EmailMarketingComponent(props) {
      */
     const saveToDatabase = async (result) => {
         // for the id, use props.userDetails.sub.
-        const response = await fetch("http://localhost:3000/saveEmailMarketingToDb", {
+        const response = await fetch("http://localhost:8000/saveEmailMarketingToDb", {
             method: "Post",
             credentials: "include",
             headers: {
@@ -86,7 +86,7 @@ export default function EmailMarketingComponent(props) {
     //         modifiedPrompt = 'Write a marketing email for ' + promptValue + ". Thank you.";
     //     }
 
-    //     const aiApiResponse = await fetch('http://localhost:3000/requestTextResponse', {
+    //     const aiApiResponse = await fetch('http://localhost:8000/requestTextResponse', {
     //         method: "Post",
     //         credentials: "include",
     //         headers: {
@@ -124,7 +124,7 @@ export default function EmailMarketingComponent(props) {
             modifiedPrompt = 'Write a marketing email for ' + promptValue + ". Thank you.";
         }
 
-        fetch('http://localhost:3000/loadOptions', {
+        fetch('http://localhost:8000/loadOptions', {
             method: "Post",
             credentials: "include",
             headers: {
@@ -139,7 +139,7 @@ export default function EmailMarketingComponent(props) {
                 presence_penalty: 0,
             })
         }).then(() => {
-            const url = "http://localhost:3000/streamResponse"
+            const url = "http://localhost:8000/streamResponse"
 
             const events = new EventSource(url);
 

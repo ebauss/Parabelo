@@ -28,7 +28,7 @@ export default function SupportComponent(props) {
     }
 
     const sendEmail = async () => {
-        const response = fetch("http://localhost:3000/sendEmailToSupport", {
+        const response = fetch("http://localhost:8000/sendEmailToSupport", {
             method: "Post",
             credentials: "include",
             headers: {

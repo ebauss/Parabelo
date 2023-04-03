@@ -59,7 +59,7 @@ export default function ParaphrasingComponent(props) {
      */
     const saveToDatabase = async (result) => {
         // for the id, use props.userDetails.sub.
-        const response = await fetch("http://localhost:3000/saveParaphrasingToDb", {
+        const response = await fetch("http://localhost:8000/saveParaphrasingToDb", {
             method: "Post",
             credentials: "include",
             headers: {
@@ -94,7 +94,7 @@ export default function ParaphrasingComponent(props) {
     //     setLoading(true); // Start loading animation of button
     //     const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it. Thank you.";
 
-    //     const response = await fetch('http://localhost:3000/api/completion', {
+    //     const response = await fetch('http://localhost:8000/api/completion', {
     //         method: "Post",
     //         credentials: "include",
     //         headers: {
@@ -133,7 +133,7 @@ export default function ParaphrasingComponent(props) {
         // const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it. Thank you.";
         const modifiedPrompt = `Please rewrite the following without expanding it: ${promptValue}. Write it with the following writing style: ${styleValue}. Write it with the following tone ${toneValue}. `;
 
-        fetch('http://localhost:3000/loadOptions', {
+        fetch('http://localhost:8000/loadOptions', {
             method: "Post",
             credentials: "include",
             headers: {
@@ -148,7 +148,7 @@ export default function ParaphrasingComponent(props) {
                 presence_penalty: 0,
             })
         }).then(() => {
-            const url = "http://localhost:3000/streamResponse"
+            const url = "http://localhost:8000/streamResponse"
 
             const events = new EventSource(url);
     
