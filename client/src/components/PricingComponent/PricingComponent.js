@@ -30,7 +30,7 @@ export default function PricingComponent() {
                 <Grid item xs={12} sm={12} md={6}>
                     <PricingCard
                         productName="Elite"
-                        productPrice="40"
+                        productPrice="30"
                         ctaText="Sign Up & Try For Free"
                         features={[
                             'Unlimited word count',

@@ -51,7 +51,7 @@ export default function PricingComponentPostSignUp(props) {
                 <Grid item xs={12} sm={12} md={6}>
                     <PricingCard
                         productName="Elite"
-                        productPrice="40"
+                        productPrice="30"
                         ctaText="Try For Free For 7 Days"
                         features={[
                             'Unlimited word count',
