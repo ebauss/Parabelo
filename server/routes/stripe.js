@@ -1,7 +1,7 @@
 /**
  * Require node dependencies.
  */
-const stripe = require('stripe')('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');
+const stripe = require('stripe')(process.env.STRIPE_CHECKOUT_KEY);
 const express = require('express');
 const router = express.Router();
 /* ------------------------------------ */
@@ -14,13 +14,13 @@ router.post('/checkoutElite', async (req, res) => {
         line_items: [
             {
                 // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-                price: 'price_1MqS93BEpnOVMkQ6kQirvzpp',
+                price: process.env.ELITE_PRICE_ID,
                 quantity: 1,
             },
         ],
         mode: 'subscription',
-        success_url: "https://www.parabelo.com/app/checkoutSuccess",
-        cancel_url: 'https://www.parabelo.com/',
+        success_url: `${process.env.DOMAIN}/app/checkoutSuccess`,
+        cancel_url: `${process.env.DOMAIN}/`,
         customer: req.body.customerId,
         subscription_data: {
             trial_period_days: 7

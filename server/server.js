@@ -28,7 +28,7 @@ app.use(enforce.HTTPS({ trustProtoHeader: true }));
 app.use(express.static(path.join(__dirname, "build")));
 
 var corsOptions = {
-    origin: "https://checkout.stripe.com",
+    origin: ["https://checkout.stripe.com", process.env.DOMAIN],
     optionsSuccessStatus: 200, // For legacy browser support
     credentials: true
 }
