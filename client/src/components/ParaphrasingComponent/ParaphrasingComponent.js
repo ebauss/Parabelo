@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { ToggleButton, ToggleButtonGroup, Select, MenuItem } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import SendIcon from "@mui/icons-material/Send";
 import Typography from "@mui/material/Typography";
@@ -195,6 +195,13 @@ export default function ParaphrasingComponent(props) {
                     exclusive
                     onChange={handleStyleButtonGroupChange}
                     aria-label="Platform"
+                    sx={{
+                        display: {
+                            xs: 'none',
+                            sm: 'flex'
+                        },
+                        justifyContent: 'center'
+                    }}
                 >
                     <ToggleButton value="professional">Professional</ToggleButton>
                     <ToggleButton value="fun">Fun</ToggleButton>
@@ -203,6 +210,20 @@ export default function ParaphrasingComponent(props) {
                     <ToggleButton value="persuasive">Persuasive</ToggleButton>
                     <ToggleButton value="polite">Polite</ToggleButton>
                 </ToggleButtonGroup>
+                <Select value={styleValue} onChange={handleStyleButtonGroupChange} sx={{
+                    display: {
+                        xs: 'flex',
+                        sm: 'none'
+                    },
+                    justifyContent: 'center'
+                }}>
+                    <MenuItem value="professional">Professional</MenuItem>
+                    <MenuItem value="fun">Fun</MenuItem>
+                    <MenuItem value="technical">Technical</MenuItem>
+                    <MenuItem value="creative">Creative</MenuItem>
+                    <MenuItem value="persuasive">Persuasive</MenuItem>
+                    <MenuItem value="polite">Polite</MenuItem>
+                </Select>
             </div>
             <br />
             <div>
