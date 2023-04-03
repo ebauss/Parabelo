@@ -123,6 +123,7 @@ export default function SocialMediaCaptionComponent(props) {
                 if (event.data === "[DONE]") {
                     events.close();
                     setLoading(false);
+                    saveToDatabase(resultValue);
                 } else {
                     const text = event.data.replace(new RegExp("NEWLINE", 'g'), '\n');
                     resultValueRef.current += text;
