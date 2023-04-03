@@ -15,9 +15,9 @@ var request = require('request');
 router.post('/checkIfEmailVerified', (req, res) => {
     var optionsToken = {
         method: 'POST',
-        url: 'https://dev-qw5gqp8rnisenpl3.us.auth0.com/oauth/token',
+        url: `https://${process.env.AUTH0_MANAGEMENT_DOMAIN}/oauth/token`,
         headers: { 'content-type': 'application/json' },
-        body: '{"client_id":"fIr9uZdzmMG127IqqDe76MgAyYSQa2Pt","client_secret":"DfY7O-kAkvP5m1s7Yw-q-IhljIPIH16_KA4RxMg_aX3hTvcjvq28MY60L6Q2XPMN","audience":"https://dev-qw5gqp8rnisenpl3.us.auth0.com/api/v2/","grant_type":"client_credentials"}'
+        body: `{"client_id":"https://${process.env.AUTH0_MANAGEMENT_CLIENT_ID}","client_secret":"${process.env.AUTH0_MANAGEMENT_CLIENT_SECRET}","audience":"https://${process.env.AUTH0_MANAGEMENT_DOMAIN}/api/v2/","grant_type":"client_credentials"}`
     };
 
     request(optionsToken, function (error, response, body) {
@@ -29,7 +29,7 @@ router.post('/checkIfEmailVerified', (req, res) => {
 
         const optionsRequest = {
             method: "GET",
-            url: `https://dev-qw5gqp8rnisenpl3.us.auth0.com/api/v2/users-by-email?email=${urlEmail}`,
+            url: `https://${process.env.AUTH0_MANAGEMENT_DOMAIN}/api/v2/users-by-email?email=${urlEmail}`,
             headers: { authorization: 'Bearer ' + token }
         };
 

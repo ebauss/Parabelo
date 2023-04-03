@@ -16,8 +16,6 @@ const enforce = require('express-sslify');
 
 require('dotenv').config();
 
-
-
 const path = require("path");
 
 const app = express(); // Initiate express.
@@ -27,8 +25,9 @@ app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
 app.use(express.static(path.join(__dirname, "build")));
 
+
 var corsOptions = {
-    origin: ["https://checkout.stripe.com", process.env.DOMAIN],
+    origin: [`${process.env.DOMAIN}` ,"https://checkout.stripe.com"],
     optionsSuccessStatus: 200, // For legacy browser support
     credentials: true
 }
@@ -40,7 +39,9 @@ mongoose
     .connect(process.env.ATLAS_URI, {
         useNewUrlParser: true
     })
-    .then(() => console.log(`Database connected successfully`))
+    .then(() => {
+        console.log(`Database connected successfully`)
+    })
     .catch((err) => console.log(err));
 
 // DeprecationWarning: Mongoose: the `strictQuery` option will be switched back to `false` 

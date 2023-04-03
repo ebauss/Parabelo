@@ -1,7 +1,7 @@
 /**
  * Require node dependencies.
  */
-const stripe = require('stripe')(process.env.STRIPE_CHECKOUT_KEY);
+const stripe = require('stripe')(`${process.env.STRIPE_CHECKOUT_KEY}`);
 const express = require('express');
 const router = express.Router();
 /* ------------------------------------ */
