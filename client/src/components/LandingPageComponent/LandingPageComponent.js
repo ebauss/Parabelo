@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { useAuth0 } from "@auth0/auth0-react";
-import landingPageHero from '../../assets/happy-landing-page-hero-no-background.png';
+import landingPageHero from '../../assets/Parabelo-logo.png';
 import { List, ListItem, ListItemAvatar, ListItemText, Paper, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';

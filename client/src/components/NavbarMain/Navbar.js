@@ -42,7 +42,7 @@ export default function Navbar() {
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
+                            fontFamily: ['monospace'],
                             fontWeight: 700,
                             letterSpacing: '.3rem',
                             color: 'inherit',
