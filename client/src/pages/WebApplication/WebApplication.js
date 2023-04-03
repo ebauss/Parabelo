@@ -94,7 +94,7 @@ export default function WebApplication() {
                         <Route path="/checkoutSuccess" element={<SuccessCheckoutComponent userDetails={user} />} />
                         <Route path="/copyWriter" element={<CopyWriter userDetails={user} />} />
                         <Route path="/emailMarketingWriter" element={<EmailMarketingComponent userDetails={user} />} />
-                        <Route path="/history" element={<HistoryComponent />} />
+                        <Route path="/history" element={<HistoryComponent userDetails={user} />} />
                         <Route path="/paraphrasing" element={<ParaphrasingComponent userDetails={user} />} />
                         <Route path="/productDescriptionWriter" element={<ProductDescriptionComponent userDetails={user} />} />
                         <Route path="/settings" element={<SettingsComponent userDetails={user} />} />
