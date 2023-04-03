@@ -37,7 +37,7 @@ export default function SocialMediaCaptionComponent(props) {
 
     const saveToDatabase = async (result) => {
         // for the id, use props.userDetails.sub.
-        const response = await fetch("https://www.parabelo.com/saveSocialCaptionToDB", {
+        const response = await fetch("http://localhost:3000/saveSocialCaptionToDB", {
             method: "Post",
             credentials: "include",
             headers: {
@@ -68,7 +68,7 @@ export default function SocialMediaCaptionComponent(props) {
     //     setLoading(true); // Start loading animation of button
     //     const modifiedPrompt = 'Write a social media post. Length: ' + lengthValue + '. Image Contents: ' + imageContentsValue + '. Tone: ' + styleValue + '. ' + additionsValue + '. Thank you.';
 
-    //     const aiApiResponse = await fetch('https://www.parabelo.com/requestTextResponse', {
+    //     const aiApiResponse = await fetch('http://localhost:3000/requestTextResponse', {
     //         method: "Post",
     //         credentials: "include",
     //         headers: {
@@ -100,7 +100,7 @@ export default function SocialMediaCaptionComponent(props) {
         setLoading(true); // Start loading animation of button
         const modifiedPrompt = 'Write a social media post. Length: ' + lengthValue + '. Image Contents: ' + imageContentsValue + '. Tone: ' + styleValue + '. ' + additionsValue + '. Thank you.';
 
-        fetch('https://www.parabelo.com/loadOptions', {
+        fetch('http://localhost:3000/loadOptions', {
             method: "Post",
             credentials: "include",
             headers: {
@@ -115,7 +115,7 @@ export default function SocialMediaCaptionComponent(props) {
                 presence_penalty: 0,
             })
         }).then(() => {
-            const url = "https://www.parabelo.com/streamResponse"
+            const url = "http://localhost:3000/streamResponse"
 
             const events = new EventSource(url);
     
