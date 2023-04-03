@@ -104,7 +104,7 @@ export default function EmailMarketingComponent(props) {
                 if (event.data === "[DONE]") {
                     events.close();
                     setLoading(false);
-                    saveToDatabase(resultValue);
+                    saveToDatabase(resultValueRef.current);
                 } else {
                     const text = event.data.replace(new RegExp("NEWLINE", 'g'), '\n');
                     resultValueRef.current += text;

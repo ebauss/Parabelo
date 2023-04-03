@@ -6,20 +6,20 @@ export default function HistoryComponent(props) {
     const user = props.userDetails;
 
     const loadDocuments = () => {
-        // fetch("http://localhost:8000/loadDocuments", {
-        //     method: "Post",
-        //     credentials: "include",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({
-        //         owner: user.sub
-        //     })
-        // })
-        //     .then((response) => response.json())
-        //     .then((data) => {
-        //         console.log(data);
-        //     })
+        fetch("http://localhost:8000/loadDocuments", {
+            method: "Post",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                owner: user.sub
+            })
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            })
     }
 
     React.useEffect(() => {
