@@ -205,7 +205,7 @@ export default function EmailMarketingComponent(props) {
                 label="Result"
                 multiline
                 rows={20}
-                placeholder="Your blog will appear here."
+                placeholder="Your email will appear here."
                 value={resultValue}
                 fullWidth
                 sx={{ width: { md: 600 }, marginBottom: 10 }}

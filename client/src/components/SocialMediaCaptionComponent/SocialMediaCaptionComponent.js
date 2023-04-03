@@ -215,7 +215,7 @@ export default function SocialMediaCaptionComponent(props) {
                 label="Result"
                 multiline
                 rows={20}
-                placeholder="Your blog will appear here."
+                placeholder="Your caption will appear here."
                 value={resultValue}
                 fullWidth
                 sx={{ width: { md: 600 }, marginBottom: 10 }}
