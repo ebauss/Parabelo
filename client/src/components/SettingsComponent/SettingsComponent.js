@@ -2,7 +2,7 @@ import { Button, Typography } from "@mui/material";
 import React from "react";
 
 export default function SettingsComponent(props) {
-    const stripeCustomerPortalURL = "https://billing.stripe.com/p/login/aEU2bCfAy1Ea69a8ww"; // change this URL when switching to production.
+    const stripeCustomerPortalURL = "https://billing.stripe.com/p/login/test_aEUbJafn2diR6ZO5kk"; // change this URL when switching to production.
     const sendToStripCustomerPortal = () => {
         // Redirect user to Stripe Customer Portal with prefilled email field.
         window.open(`${stripeCustomerPortalURL}?prefilled_email=${props.userDetails.email}`, '_blank');
