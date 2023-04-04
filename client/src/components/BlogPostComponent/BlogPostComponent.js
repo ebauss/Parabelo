@@ -41,7 +41,10 @@ export default function BlogPostComponent(props) {
     }
 
     const handlePromptTypeChange = (event) => {
-        setPromptType(event.target.value);
+        if (!loading) {
+            setPromptType(event.target.value);
+        }
+        
     }
 
     /**
