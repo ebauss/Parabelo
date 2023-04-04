@@ -57,29 +57,57 @@ export default function BlogPostComponent(props) {
      * saves the result to the database.
      */
     const saveToDatabase = async (result) => {
-        // for the id, use props.userDetails.sub.
-        const response = await fetch("http://localhost:8000/saveBlogPostToDb", {
-            method: "Post",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                type: "Blog Post",
-                owner: props.userDetails.sub,
-                prompt: promptValue,
-                keywords: keywordsValue,
-                result: result
+
+        if (promptType == "standard") {
+            // for the id, use props.userDetails.sub.
+            const response = await fetch("http://localhost:8000/saveBlogPostToDb", {
+                method: "Post",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    type: "Blog Post",
+                    owner: props.userDetails.sub,
+                    prompt: promptValue,
+                    keywords: keywordsValue,
+                    result: result
+                })
             })
-        })
 
-        const data = await response.text();
+            const data = await response.text();
 
-        if (data !== "false") {
-            console.log("Result was successfully stored in the database.");
-        } else {
-            console.log("Result failed to store into the database.");
+            if (data !== "false") {
+                console.log("Result was successfully stored in the database.");
+            } else {
+                console.log("Result failed to store into the database.");
+            }
+        } else if (promptType == "notes") {
+            const response = await fetch("http://localhost:8000/saveBlogPostToDb", {
+                method: "Post",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    type: "Blog Post",
+                    owner: props.userDetails.sub,
+                    prompt: notes,
+                    keywords: keywordsValue,
+                    result: result
+                })
+            })
+
+            const data = await response.text();
+
+            if (data !== "false") {
+                console.log("Result was successfully stored in the database.");
+            } else {
+                console.log("Result failed to store into the database.");
+            }
         }
+
+
     }
 
     const getPrompt = () => {
@@ -107,7 +135,7 @@ export default function BlogPostComponent(props) {
         setLoading(true); // Start loading animation of button
         let modifiedPrompt = getPrompt();
 
-        
+
 
         fetch('http://localhost:8000/loadOptions', {
             method: "Post",
