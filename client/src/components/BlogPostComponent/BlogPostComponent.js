@@ -87,18 +87,17 @@ export default function BlogPostComponent(props) {
 
         if (promptType == "standard") {
             if (keywordsValue) {
-                prompt = 'Write a super long blog post about "' + promptValue + '". ' + 'Things to mention: ' + keywordsValue + '. Thank you.';
+                prompt = 'Write a super long blog post (750 words) about "' + promptValue + '". ' + 'Things to mention: ' + keywordsValue + '. Thank you.';
             } else {
-                prompt = 'Write a super long blog post about "' + promptValue + '". Thank you.';
+                prompt = 'Write a super long blog post (750 words) about "' + promptValue + '". Thank you.';
             }
         } else if (promptType == "notes") {
             if (keywordsValue) {
-                prompt = 'Please write a super long blog post based on the notes "' + notes + '". ' + 'Things to mention: ' + keywordsValue + '. Thank you.';
+                prompt = 'Please write a super long blog post (750 words) based on the notes "' + notes + '". ' + 'Things to mention: ' + keywordsValue + '. Thank you.';
             } else {
-                prompt = 'Please write a super long blog post based on the notes "' + notes + '". Thank you.';
+                prompt = 'Please write a super long blog post (750 words) based on the notes "' + notes + '". Thank you.';
             }
         }
-        
 
         return prompt
     }
@@ -119,7 +118,7 @@ export default function BlogPostComponent(props) {
             body: JSON.stringify({
                 prompt: modifiedPrompt,
                 temperature: 0.9,
-                max_tokens: 3700,
+                max_tokens: 3800,
                 top_p: 1,
                 frequency_penalty: 0,
                 presence_penalty: 0
