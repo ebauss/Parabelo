@@ -12,22 +12,21 @@ export default function HistoryCardComponent(props) {
     }
 
     const deleteDocument = () => {
-        // fetch("http://localhost:8000/deleteDocument", {
-        //     method: "Post",
-        //     credentials: "include",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({
-        //         documentId: props.documentId,
-        //         owner: user.sub
-        //     })
-        // })
-        //     .then((response) => response.json())
-        //     .then((data) => {
-        //         console.log(data);
-        //     })
-        window.alert(props.documentId);
+        fetch("http://localhost:8000/deleteDocument", {
+            method: "Post",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                documentId: props.documentId,
+                owner: user.sub
+            })
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("Document has been deleted");
+            })
     }
 
     return (
