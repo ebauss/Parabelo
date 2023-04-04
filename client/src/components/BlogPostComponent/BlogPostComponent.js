@@ -1,8 +1,7 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import LoadingButton from '@mui/lab/LoadingButton';
-import SendIcon from '@mui/icons-material/Send';
-import Typography from "@mui/material/Typography";
+import { TextField, Typography, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import SendIcon from "@mui/icons-material/Send";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 export default function BlogPostComponent(props) {
     /* Stores the string entered in the prompt text field. */
@@ -13,6 +12,8 @@ export default function BlogPostComponent(props) {
 
     /* Stores the result string obtained from OpenAi. */
     const [resultValue, setResultValue] = React.useState('');
+
+    const [promptType, setPromptType] = React.useState('standard')
 
     /* Determines whether the loading animation is activated or not. */
     const [loading, setLoading] = React.useState(false);
@@ -31,6 +32,10 @@ export default function BlogPostComponent(props) {
      */
     const handlePromptChange = (event) => {
         setPromptValue(event.target.value);
+    }
+
+    const handlePromptTypeChange = (event) => {
+        setPromptType(event.target.value);
     }
 
     /**
@@ -100,7 +105,7 @@ export default function BlogPostComponent(props) {
             const url = "http://localhost:8000/streamResponse"
 
             const events = new EventSource(url);
-    
+
             events.onmessage = event => {
                 if (event.data === "[DONE]") {
                     events.close();
@@ -115,6 +120,43 @@ export default function BlogPostComponent(props) {
         })
     }
 
+    const renderPromptTextBox = () => {
+        if (promptType == "standard") {
+            return (
+                <TextField id="outlined-basic"
+                    label="What topic would you like to be written about in a blog?"
+                    variant="outlined"
+                    fullWidth
+                    onChange={handlePromptChange}
+                    sx={{
+                        width: {
+                            md: 600
+                        }
+                    }}
+                    inputProps={{ maxLength: 1020 }}
+                />
+            )
+        } else if (promptType == "notes") {
+            return (
+                <TextField id="outlined-basic"
+                    label="Please copy and paste your notes here."
+                    variant="outlined"
+                    fullWidth
+                    multiline
+                    rows={20}
+                    onChange={handlePromptChange}
+                    sx={{
+                        width: {
+                            md: 600
+                        }
+                    }}
+                    inputProps={{ maxLength: 1020 }}
+                />
+            )
+        }
+
+    }
+
     return (
         <div>
             <br />
@@ -122,18 +164,29 @@ export default function BlogPostComponent(props) {
                 Blog Post Writer
             </Typography>
             <br />
+            <Typography variant="subtitle1" gutterBottom>
+                Prompt Type
+            </Typography>
+            <ToggleButtonGroup
+                color="primary"
+                value={promptType}
+                exclusive
+                onChange={handlePromptTypeChange}
+                aria-label="Platform"
+                sx={{
+                    display: {
+                        xs: 'none',
+                        sm: 'flex'
+                    },
+                    justifyContent: 'center'
+                }}
+            >
+                <ToggleButton value="standard">Standard</ToggleButton>
+                <ToggleButton value="notes">Notes</ToggleButton>
+            </ToggleButtonGroup>
+            <br />
             <div>
-                <TextField id="outlined-basic"
-                    label="What topic would you like to be written about in a blog?"
-                    placeholder="Example: How to learn how to code"
-                    variant="outlined"
-                    fullWidth
-                    onChange={handlePromptChange}
-                    sx={{ width: {
-                        md: 600
-                    }}}
-                    inputProps={{ maxLength: 1020 }}
-                />
+                {renderPromptTextBox()}
             </div>
             <br />
             <div>
@@ -144,9 +197,11 @@ export default function BlogPostComponent(props) {
                     rows={4}
                     fullWidth
                     onChange={handleThingsToMentionChange}
-                    sx={{ width: {
-                        md: 600
-                    }}}
+                    sx={{
+                        width: {
+                            md: 600
+                        }
+                    }}
                     inputProps={{ maxLength: 1020 }}
                 />
             </div>
@@ -172,7 +227,7 @@ export default function BlogPostComponent(props) {
                 placeholder="Your blog will appear here."
                 value={resultValue}
                 fullWidth
-                sx={{ width: {md: 600}, marginBottom: 10 }}
+                sx={{ width: { md: 600 }, marginBottom: 10 }}
                 InputLabelProps={{ shrink: true }}
                 InputProps={{
                     readOnly: true,
