@@ -31,9 +31,6 @@ export default function HistoryCardComponent(props) {
 
     return (
         <Paper elevation={3} sx={{
-            "&:hover": {
-                transform: "scale3d(1.05, 1.05, 1.05)",
-            },
             height: "100%",
             width: {
                 xs: "90%",

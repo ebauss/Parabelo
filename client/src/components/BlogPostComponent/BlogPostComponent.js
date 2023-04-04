@@ -7,6 +7,8 @@ export default function BlogPostComponent(props) {
     /* Stores the string entered in the prompt text field. */
     const [promptValue, setPromptValue] = React.useState('');
 
+    const [notes, setNotes] = React.useState('');
+
     /* Stores the string stored in the things to mention text field. */
     const [keywordsValue, setKeywordsValue] = React.useState('');
 
@@ -32,6 +34,10 @@ export default function BlogPostComponent(props) {
      */
     const handlePromptChange = (event) => {
         setPromptValue(event.target.value);
+    }
+
+    const handleNotesChange = (event) => {
+        setNotes(event.target.value);
     }
 
     const handlePromptTypeChange = (event) => {
@@ -76,16 +82,33 @@ export default function BlogPostComponent(props) {
         }
     }
 
+    const getPrompt = () => {
+        let prompt;
+
+        if (promptType == "standard") {
+            if (keywordsValue) {
+                prompt = 'Write a super long blog post about "' + promptValue + '". ' + 'Things to mention: ' + keywordsValue + '. Thank you.';
+            } else {
+                prompt = 'Write a super long blog post about "' + promptValue + '". Thank you.';
+            }
+        } else if (promptType == "notes") {
+            if (keywordsValue) {
+                prompt = 'Please write a super long blog post based on the notes "' + notes + '". ' + 'Things to mention: ' + keywordsValue + '. Thank you.';
+            } else {
+                prompt = 'Please write a super long blog post based on the notes "' + notes + '". Thank you.';
+            }
+        }
+        
+
+        return prompt
+    }
+
     const fetchDataStream = async () => {
         setResultValue('');
         setLoading(true); // Start loading animation of button
-        let modifiedPrompt;
+        let modifiedPrompt = getPrompt();
 
-        if (keywordsValue) {
-            modifiedPrompt = 'Write a super long blog post about ' + promptValue + '. ' + 'Things to mention: ' + keywordsValue + '. Thank you.';
-        } else {
-            modifiedPrompt = 'Write a super long blog post about ' + promptValue + '. Thank you.';
-        }
+        
 
         fetch('http://localhost:8000/loadOptions', {
             method: "Post",
@@ -96,7 +119,7 @@ export default function BlogPostComponent(props) {
             body: JSON.stringify({
                 prompt: modifiedPrompt,
                 temperature: 0.9,
-                max_tokens: 3000,
+                max_tokens: 3700,
                 top_p: 1,
                 frequency_penalty: 0,
                 presence_penalty: 0
@@ -144,7 +167,7 @@ export default function BlogPostComponent(props) {
                     fullWidth
                     multiline
                     rows={20}
-                    onChange={handlePromptChange}
+                    onChange={handleNotesChange}
                     sx={{
                         width: {
                             md: 600
