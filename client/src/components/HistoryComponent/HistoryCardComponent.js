@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, TextField, Button, Modal } from "@mui/material";
+import { Paper, TextField, Button, Typography } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function HistoryCardComponent(props) {
@@ -44,11 +44,17 @@ export default function HistoryCardComponent(props) {
             paddingRight: 3
         }}>
             <br />
+            <Typography variant="body1">
+                Type: {props.type}
+            </Typography>
+            <br />
             <TextField
                 id="outlined-multiline-static"
                 label="Prompt"
                 value={props.promptValue}
                 fullWidth
+                multiline
+                rows={2}
                 sx={{ width: { md: 600 }, marginBottom: 5 }}
                 InputLabelProps={{ shrink: true }}
                 InputProps={{
@@ -60,7 +66,7 @@ export default function HistoryCardComponent(props) {
                 label="Result"
                 multiline
                 rows={5}
-                value={props.ResultValue}
+                value={props.resultValue}
                 fullWidth
                 sx={{ width: { md: 600 }, marginBottom: 5 }}
                 InputLabelProps={{ shrink: true }}

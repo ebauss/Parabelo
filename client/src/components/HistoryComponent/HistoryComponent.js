@@ -3,6 +3,7 @@ import { Box, Typography } from "@mui/material";
 import HistoryCardComponent from './HistoryCardComponent';
 
 export default function HistoryComponent(props) {
+    const [documentsValue, setDocumentsValue] = React.useState([]);
     const user = props.userDetails;
 
     const loadDocuments = () => {
@@ -18,14 +19,25 @@ export default function HistoryComponent(props) {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
+                setDocumentsValue(data);
             })
     }
 
     React.useEffect(() => {
         loadDocuments();
-      });
+    });
+
+    const renderDocumentCards = () => {
+        let documentCards = [];
+
+        documentsValue.forEach((document) => {
+            documentCards.push(<HistoryCardComponent userDetails={user} key={document._id}  documentId={document._id} promptValue={document.prompt} resultValue={document.result}  type={document.type} />)
+            documentCards.push(<br />)
+        }) 
     
+        return documentCards;
+    }
+
     return (
         <Box sx={{
             display: 'flex',
@@ -37,13 +49,7 @@ export default function HistoryComponent(props) {
                 History
             </Typography>
             <br />
-            <HistoryCardComponent userDetails={user} documentId={1} />
-            <br />
-            <HistoryCardComponent userDetails={user} documentId={2} />
-            <br />
-            <HistoryCardComponent userDetails={user} documentId={3} />
-            <br />
-            <HistoryCardComponent userDetails={user} documentId={4} />
+            {renderDocumentCards()}
         </Box>
     )
 }
