@@ -2,6 +2,7 @@ import * as React from 'react';
 import { TextField, Typography, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import SendIcon from "@mui/icons-material/Send";
 import LoadingButton from "@mui/lab/LoadingButton";
+import CopyToClipboardButton from '../CopyToClipboardButton/CopyToClipboardButton';
 
 export default function BlogPostComponent(props) {
     /* Stores the string entered in the prompt text field. */
@@ -270,6 +271,7 @@ export default function BlogPostComponent(props) {
                 >
                     Go
                 </LoadingButton>
+                <CopyToClipboardButton copyText={resultValue} />
             </div>
             <br />
             <TextField

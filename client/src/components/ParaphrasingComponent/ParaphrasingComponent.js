@@ -4,6 +4,7 @@ import { ToggleButton, ToggleButtonGroup, Select, MenuItem } from "@mui/material
 import LoadingButton from "@mui/lab/LoadingButton";
 import SendIcon from "@mui/icons-material/Send";
 import Typography from "@mui/material/Typography";
+import CopyToClipboardButton from '../CopyToClipboardButton/CopyToClipboardButton';
 
 export default function ParaphrasingComponent(props) {
     /* Stores the string entered in the prompt text field. */
@@ -211,6 +212,7 @@ export default function ParaphrasingComponent(props) {
                 >
                     Go
                 </LoadingButton>
+                <CopyToClipboardButton copyText={resultValue} />
             </div>
             <br />
             <TextField

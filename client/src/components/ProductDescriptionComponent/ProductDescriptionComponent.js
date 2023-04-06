@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
 import Typography from "@mui/material/Typography";
+import CopyToClipboardButton from '../CopyToClipboardButton/CopyToClipboardButton';
 
 export default function ProductDescriptionComponent(props) {
     /* Stores the string entered in the prompt text field. */
@@ -155,6 +156,7 @@ export default function ProductDescriptionComponent(props) {
                 >
                     Go
                 </LoadingButton>
+                <CopyToClipboardButton copyText={resultValue} />
             </div>
             <br />
             <TextField

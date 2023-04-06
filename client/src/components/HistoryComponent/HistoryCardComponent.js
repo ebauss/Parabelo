@@ -1,6 +1,7 @@
 import React from 'react';
-import { Paper, TextField, Button, Typography } from "@mui/material";
+import { Paper, TextField, Button, Typography, Box } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
+import CopyToClipboardButton from '../CopyToClipboardButton/CopyToClipboardButton';
 
 export default function HistoryCardComponent(props) {
     const user = props.userDetails;
@@ -71,11 +72,14 @@ export default function HistoryCardComponent(props) {
                 }}
             />
             <br />
-            <Button variant="contained" onClick={confirmDelete} color="error" startIcon={<DeleteIcon />} sx={{
+            <Box sx={{
                 marginBottom: 5
             }}>
-                Delete
-            </Button>
+                <CopyToClipboardButton copyText={props.resultValue} />
+                <Button variant="contained" onClick={confirmDelete} color="error" startIcon={<DeleteIcon />}>
+                    Delete
+                </Button>
+            </Box>
         </Paper>
     )
 }

@@ -4,6 +4,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
 import Typography from "@mui/material/Typography";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import CopyToClipboardButton from '../CopyToClipboardButton/CopyToClipboardButton';
 
 export default function SocialMediaCaptionComponent(props) {
     const [lengthValue, setLengthValue] = React.useState('medium');
@@ -177,6 +178,7 @@ export default function SocialMediaCaptionComponent(props) {
                 >
                     Go
                 </LoadingButton>
+                <CopyToClipboardButton copyText={resultValue} />
             </div>
             <br />
             <TextField
