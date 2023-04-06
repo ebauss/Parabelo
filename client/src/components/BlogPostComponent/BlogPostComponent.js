@@ -64,7 +64,7 @@ export default function BlogPostComponent(props) {
 
         if (promptType == "standard") {
             // for the id, use props.userDetails.sub.
-            const response = await fetch("http://localhost:8000/saveBlogPostToDb", {
+            const response = await fetch("https://parabelo-staging.herokuapp.com/saveBlogPostToDb", {
                 method: "Post",
                 credentials: "include",
                 headers: {
@@ -87,7 +87,7 @@ export default function BlogPostComponent(props) {
                 console.log("Result failed to store into the database.");
             }
         } else if (promptType == "notes") {
-            const response = await fetch("http://localhost:8000/saveBlogPostToDb", {
+            const response = await fetch("https://parabelo-staging.herokuapp.com/saveBlogPostToDb", {
                 method: "Post",
                 credentials: "include",
                 headers: {
