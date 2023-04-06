@@ -4,6 +4,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
 import Typography from "@mui/material/Typography";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import CopyToClipboardButton from '../CopyToClipboardButton/CopyToClipboardButton';
 
 export default function SocialMediaCaptionComponent(props) {
     const [lengthValue, setLengthValue] = React.useState('medium');
@@ -63,38 +64,6 @@ export default function SocialMediaCaptionComponent(props) {
         }
     }
 
-    // const handleClick = async () => {
-    //     setResultValue('');
-    //     setLoading(true); // Start loading animation of button
-    //     const modifiedPrompt = 'Write a social media post. Length: ' + lengthValue + '. Image Contents: ' + imageContentsValue + '. Tone: ' + styleValue + '. ' + additionsValue + '. Thank you.';
-
-    //     const aiApiResponse = await fetch('https://www.parabelo.com/requestTextResponse', {
-    //         method: "Post",
-    //         credentials: "include",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({
-    //             prompt: modifiedPrompt,
-    //             temperature: 0.85,
-    //             max_tokens: 3500,
-    //             top_p: 1,
-    //             frequency_penalty: 0,
-    //             presence_penalty: 0,
-    //         })
-    //     })
-
-    //     const aiApiData = await aiApiResponse.text();
-
-    //     if (aiApiData === "Prompt is flagged") {
-    //         window.alert("Your prompt does not follow our usage guidelines.");
-    //     } else {
-    //         setResultValue(aiApiData.trim());
-    //         // saveToDatabase(aiApiData.trim());
-    //     }
-    //     setLoading(false); // Ends the loading animation on the button.
-    // }
-
     const fetchDataStream = async () => {
         setResultValue('');
         setLoading(true); // Start loading animation of button
@@ -123,6 +92,7 @@ export default function SocialMediaCaptionComponent(props) {
                 if (event.data === "[DONE]") {
                     events.close();
                     setLoading(false);
+                    saveToDatabase(resultValueRef.current);
                 } else {
                     const text = event.data.replace(new RegExp("NEWLINE", 'g'), '\n');
                     resultValueRef.current += text;
@@ -208,6 +178,7 @@ export default function SocialMediaCaptionComponent(props) {
                 >
                     Go
                 </LoadingButton>
+                <CopyToClipboardButton copyText={resultValue} />
             </div>
             <br />
             <TextField
