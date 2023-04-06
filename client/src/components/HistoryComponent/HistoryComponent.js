@@ -31,10 +31,16 @@ export default function HistoryComponent(props) {
         let documentCards = [];
 
         documentsValue.forEach((document) => {
-            documentCards.push(<HistoryCardComponent userDetails={user} key={document._id}  documentId={document._id} promptValue={document.prompt} resultValue={document.result}  type={document.type} />)
-            documentCards.push(<br />)
-        }) 
-    
+            if (document.type == "Social Media Caption") {
+                documentCards.push(<HistoryCardComponent userDetails={user} key={document._id} documentId={document._id} promptValue={document.imageContents} resultValue={document.result} type={document.type} />)
+                documentCards.push(<br />)
+            } else {
+                documentCards.push(<HistoryCardComponent userDetails={user} key={document._id} documentId={document._id} promptValue={document.prompt} resultValue={document.result} type={document.type} />)
+                documentCards.push(<br />)
+            }
+
+        })
+
         return documentCards;
     }
 
