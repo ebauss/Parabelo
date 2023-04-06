@@ -11,7 +11,7 @@ export default function PricingComponentPostSignUp(props) {
     // TODO: Change the name of this function. There should be three functions.
     const checkoutElite = async () => {
         // for the id, use props.userDetails.sub.
-        const response = await fetch("https://www.parabelo.com/checkoutElite", {
+        const response = await fetch("https://parabelo-staging.herokuapp.com/checkoutElite", {
             method: "Post",
             credentials: "include",
             headers: {

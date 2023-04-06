@@ -139,7 +139,7 @@ export default function BlogPostComponent(props) {
         setLoading(true); // Start loading animation of button
         let modifiedPrompt = getPrompt();
 
-        fetch('https://www.parabelo.com/loadOptions', {
+        fetch('https://parabelo-staging.herokuapp.com/loadOptions', {
             method: "Post",
             credentials: "include",
             headers: {
@@ -154,7 +154,7 @@ export default function BlogPostComponent(props) {
                 presence_penalty: 0
             })
         }).then(() => {
-            const url = "https://www.parabelo.com/streamResponse"
+            const url = "https://parabelo-staging.herokuapp.com/streamResponse"
 
             const events = new EventSource(url);
 
