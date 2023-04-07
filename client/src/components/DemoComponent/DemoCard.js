@@ -31,13 +31,12 @@ export default function DemoCard(props) {
                     marginRight: 5
                 }} />
             <Typography sx={{
-                fontWeight: 'bold',
-                width: { sm: 500 },
+                width: { sm: 400 },
                 marginTop: 2,
                 marginBottom: 2,
                 marginLeft: 5,
                 marginRight: 5
-            }} variant="h3" align='left'>
+            }} variant="h4" align='left'>
                 {props.copyText}
             </Typography>
         </Paper>
