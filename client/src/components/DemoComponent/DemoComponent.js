@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import DemoCard from "./DemoCard";
 import BlogPostDemoVideo from "../../assets/BlogPostDemo.mp4";
 import DemoCardAlternate from "./DemoCardAlternate";
@@ -14,6 +14,10 @@ export default function DemoComponent() {
             alignItems: 'center',
             justifyContent: 'center'
         }}>
+            <br />
+            <Typography variant="h3">
+                A glimpse of Parabelo AI
+            </Typography>
             <DemoCard videoPath={BlogPostDemoVideo} copyText="Create engaging blog posts within seconds" />
             <DemoCardAlternate videoPath={EmailDemoVideo} copyText="Craft compelling marketing emails effortlessly" />
             <DemoCard videoPath={ParaphrasingDemoVideo} copyText="Transform your writing with a single click" />
