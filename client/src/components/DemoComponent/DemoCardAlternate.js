@@ -1,7 +1,7 @@
 import { Paper, CardMedia, Typography } from '@mui/material';
 import * as React from 'react';
 
-export default function DemoCard(props) {
+export default function DemoCardAlternate(props) {
     return (
         <Paper elevation={3} sx={{
             height: "100%",
@@ -16,20 +16,6 @@ export default function DemoCard(props) {
                 lg: 1000
             }
         }}>
-            <CardMedia
-                component="video"
-                // controls
-                muted
-                autoPlay
-                loop
-                src={props.videoPath}
-                sx={{
-                    width: 300,
-                    marginTop: 2,
-                    marginBottom: 2,
-                    marginLeft: 5,
-                    marginRight: 5
-                }} />
             <Typography sx={{
                 fontWeight: 'bold',
                 width: { sm: 500 },
@@ -40,6 +26,20 @@ export default function DemoCard(props) {
             }} variant="h3" align='left'>
                 {props.copyText}
             </Typography>
+            <CardMedia
+                component="video"
+                // controls
+                loop
+                muted
+                autoPlay
+                src={props.videoPath}
+                sx={{
+                    width: 300,
+                    marginTop: 2,
+                    marginBottom: 2,
+                    marginLeft: 5,
+                    marginRight: 5
+                }} />
         </Paper>
     )
 }
