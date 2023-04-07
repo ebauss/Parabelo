@@ -113,7 +113,6 @@ router.post('/saveSocialCaptionToDB', (req, res) => {
 })
 
 router.post('/loadDocuments', (req, res) => {
-
     documents
         .find({ owner: req.body.owner })
         .sort('-_id')
@@ -125,18 +124,6 @@ router.post('/loadDocuments', (req, res) => {
             }
             res.send(data);
         })
-
-    // documents.find({
-    //     owner: req.body.owner
-    // }, (err, data) => {
-    //     if (err) {
-    //         console.log(err);
-
-    //         res.send(false);
-    //     }
-    //     res.send(data);
-    // }
-    // )
 })
 
 router.post('/deleteDocument', (req, res) => {
