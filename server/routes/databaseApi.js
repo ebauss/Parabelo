@@ -14,7 +14,8 @@ router.post('/saveParaphrasingToDb', (req, res) => {
         prompt: req.body.prompt,
         writingStyle: req.body.writingStyle,
         tone: req.body.tone,
-        result: req.body.result
+        result: req.body.result,
+        creationTime: Date.now()
     }, (err, data) => {
         if (err) {
             console.log(err);
@@ -31,7 +32,8 @@ router.post('/saveBlogPostToDb', (req, res) => {
         owner: req.body.owner,
         prompt: req.body.prompt,
         keywords: req.body.keywords,
-        result: req.body.result
+        result: req.body.result,
+        creationTime: Date.now()
     }, (err, data) => {
         if (err) {
             console.log(err);
@@ -48,7 +50,8 @@ router.post('/saveCopyWritingToDb', (req, res) => {
         owner: req.body.owner,
         prompt: req.body.prompt,
         thingsToMention: req.body.thingsToMention,
-        result: req.body.result
+        result: req.body.result,
+        creationTime: Date.now()
     }, (err, data) => {
         if (err) {
             console.log(err);
@@ -65,7 +68,8 @@ router.post('/saveProductDescriptionToDb', (req, res) => {
         owner: req.body.owner,
         prompt: req.body.prompt,
         thingsToMention: req.body.thingsToMention,
-        result: req.body.result
+        result: req.body.result,
+        creationTime: Date.now()
     }, (err, data) => {
         if (err) {
             console.log(err);
@@ -82,7 +86,8 @@ router.post('/saveEmailMarketingToDb', (req, res) => {
         owner: req.body.owner,
         prompt: req.body.prompt,
         thingsToMention: req.body.thingsToMention,
-        result: req.body.result
+        result: req.body.result,
+        creationTime: Date.now()
     }, (err, data) => {
         if (err) {
             console.log(err);
@@ -101,7 +106,8 @@ router.post('/saveSocialCaptionToDB', (req, res) => {
         imageContents: req.body.imageContents,
         writingStyle: req.body.writingStyle,
         additions: req.body.additions,
-        result: req.body.result
+        result: req.body.result,
+        creationTime: Date.now()
     }, (err, data) => {
         if (err) {
             console.log(err);
@@ -115,7 +121,7 @@ router.post('/saveSocialCaptionToDB', (req, res) => {
 router.post('/loadDocuments', (req, res) => {
     documents
         .find({ owner: req.body.owner })
-        .sort('-_id')
+        .sort('-creationTime')
         .exec((err, data) => {
             if (err) {
                 console.log(err);
