@@ -7,7 +7,7 @@ export default function HistoryComponent(props) {
     const user = props.userDetails;
 
     const loadDocuments = () => {
-        fetch("https://www.parabelo.com/loadDocuments", {
+        fetch("https://parabelo-staging.herokuapp.com/loadDocuments", {
             method: "Post",
             credentials: "include",
             headers: {

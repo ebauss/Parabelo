@@ -13,7 +13,7 @@ export default function HistoryCardComponent(props) {
     }
 
     const deleteDocument = () => {
-        fetch("https://www.parabelo.com/deleteDocument", {
+        fetch("https://parabelo-staging.herokuapp.com/deleteDocument", {
             method: "Post",
             credentials: "include",
             headers: {
