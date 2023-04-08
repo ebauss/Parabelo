@@ -13,7 +13,8 @@ const documentSchema = new Schema({
     keywords: String,
     imageContents: String,
     additions: String,
-    length: String
+    length: String,
+    creationTime: Number
 })
 
 const documentModel = mongoose.model("documents", documentSchema);

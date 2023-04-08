@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 // [{Name of Button}, {path}]
-const pages = [['Pricing', 'pricing']];
+const pages = [['Pricing', 'pricing'], ['Demo', 'demo']];
 
 export default function Navbar() {
     const { loginWithRedirect } = useAuth0();
