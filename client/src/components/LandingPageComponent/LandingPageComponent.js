@@ -6,6 +6,7 @@ import { List, ListItem, ListItemAvatar, ListItemText, Paper, Typography } from 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import DemoComponent from '../DemoComponent/DemoComponent';
 
 export default function LandingPageComponent() {
     const { loginWithRedirect } = useAuth0();
@@ -279,6 +280,9 @@ export default function LandingPageComponent() {
                 </Grid>
             </Box>
             {/* End of section. */}
+            {/* Start of section */}
+            <DemoComponent />
+            {/* End of section */}
             {/* Start of section */}
             <Box sx={{
                 marginTop: 10,
