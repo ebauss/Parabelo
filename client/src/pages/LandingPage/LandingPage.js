@@ -19,7 +19,6 @@ export default function LandingPage() {
         <div>
             <Navbar />
             <Routes>
-                <Route path="/demo" element={<DemoComponent />} />
                 <Route path="/frequentlyAskedQuestions" element={<FAQComponent />} />
                 <Route path="/pricing" element={<PricingComponent />} />
                 <Route path="/privacyPolicy" element={<PrivacyPolicyComponent />} />
