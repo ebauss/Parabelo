@@ -92,10 +92,9 @@ export default function LandingPageComponent() {
                 marginLeft: 3,
                 marginRight: 3
             }}>
-                <Typography variant="h3">
+                <Typography variant="h3" sx={{marginBottom: 5}}>
                     What type of content can you create with Parabelo AI?
                 </Typography>
-                <br />
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={4}>
                         <Paper elevation={3} sx={{
