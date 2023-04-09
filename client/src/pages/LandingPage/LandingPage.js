@@ -11,7 +11,6 @@ import PricingComponent from '../../components/PricingComponent/PricingComponent
 import PrivacyPolicyComponent from '../../components/PrivacyPolicyComponent/PrivacyPolicyComponent';
 import SupportComponent from '../../components/SupportComponent/SupportComponent';
 import TermsOfServiceComponent from '../../components/TermsOfServiceComponent/TermsOfServiceComponent';
-import DemoComponent from '../../components/DemoComponent/DemoComponent';
 
 export default function LandingPage() {
     
