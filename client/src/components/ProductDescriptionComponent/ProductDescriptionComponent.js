@@ -20,9 +20,11 @@ export default function ProductDescriptionComponent(props) {
 
     const [promptType, setPromptType] = useState('standard');
 
+    const [featureList, setFeatureList] = useState('standard');
+
     const resultValueRef = useRef();
 
-     useEffect(() => {
+    useEffect(() => {
         resultValueRef.current = resultValue;
     }, [resultValue]);
 
@@ -48,40 +50,82 @@ export default function ProductDescriptionComponent(props) {
      * saves the result to the database.
      */
     const saveToDatabase = async (result) => {
-        // for the id, use props.userDetails.sub.
-        const response = await fetch("http://localhost:8000/saveProductDescriptionToDb", {
-            method: "Post",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                type: "Product Description",
-                owner: props.userDetails.sub,
-                prompt: promptValue,
-                thingsToMention: thingsToMentionValue,
-                result: result
+        if (promptType === "standard") {
+            // for the id, use props.userDetails.sub.
+            const response = await fetch("http://localhost:8000/saveProductDescriptionToDb", {
+                method: "Post",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    type: "Product Description",
+                    owner: props.userDetails.sub,
+                    prompt: promptValue,
+                    thingsToMention: thingsToMentionValue,
+                    result: result
+                })
             })
-        })
 
-        const data = await response.text();
+            const data = await response.text();
 
-        if (data !== "false") {
-            console.log("Result was successfully stored in the database.");
-        } else {
-            console.log("Result failed to store into the database.");
+            if (data !== "false") {
+                console.log("Result was successfully stored in the database.");
+            } else {
+                console.log("Result failed to store into the database.");
+            }
+        } else if (promptType === "featureList") {
+            const response = await fetch("http://localhost:8000/saveProductDescriptionToDb", {
+                method: "Post",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    type: "Product Description",
+                    owner: props.userDetails.sub,
+                    prompt: featureList,
+                    thingsToMention: thingsToMentionValue,
+                    result: result
+                })
+            })
+
+            const data = await response.text();
+
+            if (data !== "false") {
+                console.log("Result was successfully stored in the database.");
+            } else {
+                console.log("Result failed to store into the database.");
+            }
         }
+
+
+    }
+
+    const getPrompt = () => {
+        let prompt;
+
+        if (promptType === "standard") {
+            if (thingsToMentionValue) {
+                prompt = 'Write a product description for ' + promptValue + '. ' + 'Things to mention: ' + thingsToMentionValue + ". Thank you.";
+            } else {
+                prompt = 'Write a product description for ' + promptValue + ". Thank you.";
+            }
+        } else if (promptType === "featureList") {
+            if (thingsToMentionValue) {
+                prompt = 'Write a product description based on the following feature list "' + featureList + '". ' + 'Things to mention: ' + thingsToMentionValue + ". Thank you.";
+            } else {
+                prompt = 'Write a product description based on the following feature list "' + featureList + ". Thank you.";
+            }
+        }
+
+        return prompt
     }
 
     const fetchDataStream = async () => {
         setResultValue('');
         setLoading(true); // Start loading animation of button
-        let modifiedPrompt;
-        if (thingsToMentionValue) {
-            modifiedPrompt = 'Write a product description for ' + promptValue + '. ' + 'Things to mention: ' + thingsToMentionValue + ". Thank you.";
-        } else {
-            modifiedPrompt = 'Write a product description for ' + promptValue + ". Thank you.";
-        }
+        let modifiedPrompt = getPrompt();
 
         fetch('http://localhost:8000/loadOptions', {
             method: "Post",
@@ -101,7 +145,7 @@ export default function ProductDescriptionComponent(props) {
             const url = "http://localhost:8000/streamResponse"
 
             const events = new EventSource(url);
-    
+
             events.onmessage = event => {
                 if (event.data === "[DONE]") {
                     events.close();
