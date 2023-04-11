@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import {TextField, ToggleButtonGroup, ToggleButton, Typography} from '@mui/material';
+import { TextField, ToggleButtonGroup, ToggleButton, Typography } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
 import CopyToClipboardButton from '../CopyToClipboardButton/CopyToClipboardButton';
@@ -91,7 +91,7 @@ export default function ProductDescriptionComponent(props) {
                 body: JSON.stringify({
                     type: "Product Description",
                     owner: props.userDetails.sub,
-                    prompt: featureList,
+                    prompt: `Product: ${promptValue}.\nFeatures: ${featureList}`,
                     thingsToMention: thingsToMentionValue,
                     result: result
                 })
@@ -120,9 +120,9 @@ export default function ProductDescriptionComponent(props) {
             }
         } else if (promptType === "featureList") {
             if (thingsToMentionValue) {
-                prompt = 'Write a product description based on the following feature list "' + featureList + '". ' + 'Things to mention: ' + thingsToMentionValue + ". Thank you.";
+                prompt = 'Write a product description for "' + promptValue + '" based on the following feature list "' + featureList + '". ' + 'Things to mention: ' + thingsToMentionValue + ". Thank you.";
             } else {
-                prompt = 'Write a product description based on the following feature list "' + featureList + ". Thank you.";
+                prompt = 'Write a product description for "' + promptValue + '" based on the following feature list "' + featureList + ". Thank you.";
             }
         }
 
@@ -168,18 +168,7 @@ export default function ProductDescriptionComponent(props) {
     }
 
     const renderPromptTextBox = () => {
-        if (promptType === "standard") {
-            return (
-                <TextField id="outlined-basic"
-                    label="What is your product?"
-                    variant="outlined"
-                    fullWidth
-                    onChange={handlePromptChange}
-                    sx={{ width: { md: 600 } }}
-                    inputProps={{ maxLength: 1020 }}
-                />
-            )
-        } else if (promptType === "featureList") {
+        if (promptType === "featureList") {
             return (
                 <TextField id="outlined-basic"
                     label="Please copy and paste the product features here."
@@ -227,6 +216,17 @@ export default function ProductDescriptionComponent(props) {
                 <ToggleButton value="standard">Standard</ToggleButton>
                 <ToggleButton value="featureList">Feature List</ToggleButton>
             </ToggleButtonGroup>
+            <br />
+            <div>
+                <TextField id="outlined-basic"
+                    label="What is your product?"
+                    variant="outlined"
+                    fullWidth
+                    onChange={handlePromptChange}
+                    sx={{ width: { md: 600 } }}
+                    inputProps={{ maxLength: 1020 }}
+                />
+            </div>
             <br />
             <div>
                 {renderPromptTextBox()}
