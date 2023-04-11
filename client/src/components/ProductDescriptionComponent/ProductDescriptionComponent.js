@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect, useState, useRef } from 'react';
 import TextField from '@mui/material/TextField';
 import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
@@ -7,20 +7,22 @@ import CopyToClipboardButton from '../CopyToClipboardButton/CopyToClipboardButto
 
 export default function ProductDescriptionComponent(props) {
     /* Stores the string entered in the prompt text field. */
-    const [promptValue, setPromptValue] = React.useState('');
+    const [promptValue, setPromptValue] = useState('');
 
     /* Stores the string stored in the things to mention text field. */
-    const [thingsToMentionValue, setThingsToMentionValue] = React.useState('');
+    const [thingsToMentionValue, setThingsToMentionValue] = useState('');
 
     /* Stores the result string obtained from OpenAi. */
-    const [resultValue, setResultValue] = React.useState('');
+    const [resultValue, setResultValue] = useState('');
 
     /* Determines whether the loading animation is activated or not. */
-    const [loading, setLoading] = React.useState(false);
+    const [loading, setLoading] = useState(false);
 
-    const resultValueRef = React.useRef();
+    const [promptType, setPromptType] = useState('standard');
 
-    React.useEffect(() => {
+    const resultValueRef = useRef();
+
+     useEffect(() => {
         resultValueRef.current = resultValue;
     }, [resultValue]);
 
