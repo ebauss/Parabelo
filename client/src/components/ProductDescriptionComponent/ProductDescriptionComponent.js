@@ -1,8 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
-import TextField from '@mui/material/TextField';
+import {TextField, ToggleButtonGroup, ToggleButton, Typography} from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
-import Typography from "@mui/material/Typography";
 import CopyToClipboardButton from '../CopyToClipboardButton/CopyToClipboardButton';
 
 export default function ProductDescriptionComponent(props) {
@@ -35,6 +34,14 @@ export default function ProductDescriptionComponent(props) {
      */
     const handlePromptChange = (event) => {
         setPromptValue(event.target.value);
+    }
+
+    const handleFeatureListChange = (event) => {
+        setFeatureList(event.target.value);
+    }
+
+    const handlePromptTypeChange = (event) => {
+        setPromptType(event.target.value);
     }
 
     /**
@@ -160,14 +167,9 @@ export default function ProductDescriptionComponent(props) {
         })
     }
 
-    return (
-        <div>
-            <br />
-            <Typography variant="h5" gutterBottom>
-                Product Description Writer
-            </Typography>
-            <br />
-            <div>
+    const renderPromptTextBox = () => {
+        if (promptType === "standard") {
+            return (
                 <TextField id="outlined-basic"
                     label="What is your product?"
                     variant="outlined"
@@ -176,6 +178,58 @@ export default function ProductDescriptionComponent(props) {
                     sx={{ width: { md: 600 } }}
                     inputProps={{ maxLength: 1020 }}
                 />
+            )
+        } else if (promptType === "featureList") {
+            return (
+                <TextField id="outlined-basic"
+                    label="Please copy and paste the product features here."
+                    variant="outlined"
+                    fullWidth
+                    multiline
+                    rows={20}
+                    onChange={handleFeatureListChange}
+                    sx={{
+                        width: {
+                            md: 600
+                        }
+                    }}
+                    inputProps={{ maxLength: 1020 }}
+                />
+            )
+        }
+
+    }
+
+    return (
+        <div>
+            <br />
+            <Typography variant="h5" gutterBottom>
+                Product Description Writer
+            </Typography>
+            <br />
+            <Typography variant="subtitle1" gutterBottom>
+                Prompt Type
+            </Typography>
+            <ToggleButtonGroup
+                color="primary"
+                value={promptType}
+                exclusive
+                onChange={handlePromptTypeChange}
+                aria-label="Platform"
+                sx={{
+                    display: {
+                        xs: 'none',
+                        sm: 'flex'
+                    },
+                    justifyContent: 'center'
+                }}
+            >
+                <ToggleButton value="standard">Standard</ToggleButton>
+                <ToggleButton value="featureList">Feature List</ToggleButton>
+            </ToggleButtonGroup>
+            <br />
+            <div>
+                {renderPromptTextBox()}
             </div>
             <br />
             <div>
