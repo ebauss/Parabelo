@@ -21,7 +21,7 @@ export default function ParaphrasingComponent(props) {
 
     /* Determines whether the loading animation is activated or not. */
     const [loading, setLoading] = React.useState(false);
-    
+
     const resultValueRef = React.useRef();
 
     React.useEffect(() => {
@@ -85,11 +85,25 @@ export default function ParaphrasingComponent(props) {
         }
     }
 
+    const wordCount = (str) => {
+        return str.split(" ").length;
+    }
+
+    const calculateMaxTokens = (prompt) => {
+        const promptWordCount = wordCount(prompt);
+
+        // based on token to word ratio from Auth0. This is an approximation. OpenAI has a tokenizer program that could've been interfaced 
+        // with but was decided against with since an approximation is ideal for this use case.
+        return Math.ceil(promptWordCount * 1.5); 
+    }
+
     const fetchDataStream = async () => {
         setResultValue('');
         setLoading(true); // Start loading animation of button
         // const modifiedPrompt = 'Rewrite: ' + promptValue + '. Style: ' + styleValue + '. Tone: ' + toneValue + ". Don't lengthen it. Thank you.";
-        const modifiedPrompt = `Please rewrite the following without expanding it: ${promptValue}. Write it with the following writing style: ${styleValue}. Write it with the following tone ${toneValue}. `;
+        const modifiedPrompt = `Please rewrite the following without expanding: ${promptValue}. Write it with the following writing style: ${styleValue}. Write it with the following tone ${toneValue}. `;
+        const maxTokens = calculateMaxTokens(modifiedPrompt) + calculateMaxTokens(promptValue);
+        console.log(maxTokens);
 
         fetch('http://localhost:8000/loadOptions', {
             method: "Post",
@@ -99,8 +113,8 @@ export default function ParaphrasingComponent(props) {
             },
             body: JSON.stringify({
                 prompt: modifiedPrompt,
-                temperature: 0.76,
-                max_tokens: 3500,
+                temperature: 0.9,
+                max_tokens: maxTokens,
                 top_p: 1,
                 frequency_penalty: 0,
                 presence_penalty: 0,
@@ -109,7 +123,7 @@ export default function ParaphrasingComponent(props) {
             const url = "http://localhost:8000/streamResponse"
 
             const events = new EventSource(url);
-    
+
             events.onmessage = event => {
                 if (event.data === "[DONE]") {
                     events.close();
