@@ -30,6 +30,7 @@ import { LinearProgress } from '@mui/material';
 import TagIcon from '@mui/icons-material/Tag';
 import HelpIcon from '@mui/icons-material/Help';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
+import logo from '../../assets/Parabelo - Logo.png';
 
 const drawerWidth = 250;
 
@@ -130,9 +131,14 @@ export default function NavbarWebApp() {
                             <MenuIcon />
                         </IconButton>
                         <Link to='/app' style={{ textDecoration: 'none', color: "white" }}>
-                            <Typography variant="h6" noWrap component="div">
-                                Parabelo
-                            </Typography>
+                        <Box
+                            component="img"
+                            src={logo}
+                            sx={{
+                                width: 150,
+                                mt: 1
+                            }}
+                        />
                         </Link>
                     </Box>
                     {/* <Box sx={{ display: "flex", flexDirection: 'column', alignItems: "center" }}>
