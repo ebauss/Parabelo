@@ -1,9 +1,7 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
 import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
-import Typography from "@mui/material/Typography";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { ToggleButton, ToggleButtonGroup, Box, TextField, Typography } from "@mui/material";
 import CopyToClipboardButton from '../CopyToClipboardButton/CopyToClipboardButton';
 
 export default function SocialMediaCaptionComponent(props) {
@@ -104,12 +102,10 @@ export default function SocialMediaCaptionComponent(props) {
 
     return (
         <div>
-            <br />
-            <Typography variant="h5" gutterBottom>
+            <Typography variant="h5" gutterBottom sx={{ mt: 4, mb: 4 }}>
                 Social Media Caption Writer
             </Typography>
-            <br />
-            <div>
+            <Box sx={{ mb: 4 }}>
                 <TextField id="outlined-basic"
                     label="What are the contents of the image?"
                     variant="outlined"
@@ -118,9 +114,8 @@ export default function SocialMediaCaptionComponent(props) {
                     sx={{ width: { md: 600 } }}
                     inputProps={{ maxLength: 1020 }}
                 />
-            </div>
-            <br />
-            <div>
+            </Box>
+            <Box sx={{mb: 4}}>
                 <TextField id="outlined-basic"
                     label='Add anything else about the image here.'
                     variant="outlined"
@@ -131,9 +126,8 @@ export default function SocialMediaCaptionComponent(props) {
                     sx={{ width: { md: 600 } }}
                     inputProps={{ maxLength: 1020 }}
                 />
-            </div>
-            <br />
-            <div>
+            </Box>
+            <Box sx={{mb: 4}}>
                 <Typography variant="subtitle1" gutterBottom>
                     Length
                 </Typography>
@@ -148,9 +142,8 @@ export default function SocialMediaCaptionComponent(props) {
                     <ToggleButton value="medium">Medium</ToggleButton>
                     <ToggleButton value="long">Long</ToggleButton>
                 </ToggleButtonGroup>
-            </div>
-            <br />
-            <div>
+            </Box>
+            <Box sx={{mb: 4}}>
                 <Typography variant="subtitle1" gutterBottom>
                     Writing Style
                 </Typography>
@@ -165,9 +158,8 @@ export default function SocialMediaCaptionComponent(props) {
                     <ToggleButton value="creative">Creative</ToggleButton>
                     <ToggleButton value="professional">Professional</ToggleButton>
                 </ToggleButtonGroup>
-            </div>
-            <br />
-            <div>
+            </Box>
+            <Box sx={{ mb: 4}}>
                 <LoadingButton
                     size="large"
                     onClick={fetchDataStream}
@@ -179,8 +171,7 @@ export default function SocialMediaCaptionComponent(props) {
                     Go
                 </LoadingButton>
                 <CopyToClipboardButton copyText={resultValue} />
-            </div>
-            <br />
+            </Box>
             <TextField
                 id="outlined-multiline-static"
                 label="Result"

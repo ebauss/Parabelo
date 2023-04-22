@@ -38,13 +38,12 @@ export default function HistoryCardComponent(props) {
                 md: 700
             },
             paddingLeft: 3,
-            paddingRight: 3
+            paddingRight: 3,
+            mb: 3
         }}>
-            <br />
-            <Typography variant="body1">
+            <Typography variant="body1" sx={{mb: 3}}>
                 Type: {props.type}
             </Typography>
-            <br />
             <TextField
                 id="outlined-multiline-static"
                 label="Prompt"
@@ -71,7 +70,6 @@ export default function HistoryCardComponent(props) {
                     readOnly: true,
                 }}
             />
-            <br />
             <Box sx={{
                 marginBottom: 5
             }}>

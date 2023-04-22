@@ -1,8 +1,7 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
+import {TextField, Typography, Box} from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
-import Typography from "@mui/material/Typography";
 import CopyToClipboardButton from '../CopyToClipboardButton/CopyToClipboardButton';
 
 export default function EmailMarketingComponent(props) {
@@ -117,12 +116,10 @@ export default function EmailMarketingComponent(props) {
 
     return (
         <div>
-            <br />
-            <Typography variant="h5" gutterBottom>
+            <Typography variant="h5" gutterBottom sx={{mt: 4, mb: 4}}>
                 Email Marketing Writer
             </Typography>
-            <br />
-            <div>
+            <Box sx={{mb: 4}}>
                 <TextField id="outlined-basic"
                     label="What do you want your email to be about?"
                     variant="outlined"
@@ -131,9 +128,9 @@ export default function EmailMarketingComponent(props) {
                     sx={{ width: { md: 600 } }}
                     inputProps={{ maxLength: 1020 }}
                 />
-            </div>
+            </Box>
             <br />
-            <div>
+            <Box sx={{ mb: 4 }}>
                 <TextField id="outlined-basic"
                     label='Things to mention (Separate entries with a ",")'
                     variant="outlined"
@@ -144,9 +141,9 @@ export default function EmailMarketingComponent(props) {
                     sx={{ width: { md: 600 } }}
                     inputProps={{ maxLength: 1020 }}
                 />
-            </div>
+            </Box>
             <br />
-            <div>
+            <Box sx={{mb: 4}}>
                 <LoadingButton
                     size="large"
                     onClick={fetchDataStream}
@@ -158,8 +155,7 @@ export default function EmailMarketingComponent(props) {
                     Go
                 </LoadingButton>
                 <CopyToClipboardButton copyText={resultValue} />
-            </div>
-            <br />
+            </Box>
             <TextField
                 id="outlined-multiline-static"
                 label="Result"

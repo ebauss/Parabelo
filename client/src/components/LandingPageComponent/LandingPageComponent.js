@@ -32,7 +32,8 @@ export default function LandingPageComponent() {
                         sm: 10
                     },
                     paddingTop: 5,
-                    marginTop: 7
+                    marginTop: 7,
+                    mb: 4
                 }}>
                 <Box
                     component="img"
@@ -55,10 +56,10 @@ export default function LandingPageComponent() {
                                 xs: "100%",
                                 sm: 500
                             },
+                            mb: 3
                         }} >
                         Unlock the Power of Parabelo
                     </Typography>
-                    <br />
                     <Typography
                         variant="h6"
                         align="left"
@@ -67,11 +68,11 @@ export default function LandingPageComponent() {
                             width: {
                                 xs: "100%",
                                 sm: 500
-                            }
+                            },
+                            mb: 3
                         }}>
                         Parabelo brings the powerful performance of AI to your business to help create content that is tailored to your brand within minutes. From social media content, to advertising, SEO, and more, Parabelo is here to help you and your team save time and money.
                     </Typography>
-                    <br />
                     <Button variant="contained"
                         size="large"
                         onClick={signUp}
@@ -85,12 +86,11 @@ export default function LandingPageComponent() {
                 </Box>
             </Box>
             {/* End of hero banner section. */}
-            <br />
             {/* Start of section. */}
             <Box sx={{
                 marginTop: 10,
                 marginLeft: 3,
-                marginRight: 3
+                marginRight: 3,
             }}>
                 <Typography variant="h3" sx={{marginBottom: 5}}>
                     What type of content can you create with Parabelo AI?
@@ -107,7 +107,7 @@ export default function LandingPageComponent() {
                             <Typography variant="h5"
                                 sx={{
                                     paddingLeft: 4,
-                                    paddingRight: 4
+                                    paddingRight: 4,
                                 }}
                             >
                                 Social Media

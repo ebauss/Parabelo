@@ -28,10 +28,9 @@ export default function EmailVerificationComponent() {
 
     return (
         <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", paddingTop: 10 }}>
-            <Button variant="outlined" size="large" onClick={logout} >
+            <Button variant="outlined" size="large" onClick={logout} sx={{mb:  3}}>
                 Log Out
             </Button>
-            <br />
             <Typography variant="h1" sx={{ marginBottom: 5 }}>
                 Parabelo Logo
             </Typography>
@@ -48,22 +47,19 @@ export default function EmailVerificationComponent() {
                     md: 450
                 }
             }}>
-                <Typography variant="h6">
+                <Typography variant="h6" sx={{mb: 3}}>
                     Your email needs to be verified.
                 </Typography>
-                <br />
-                <Typography variant="h6">
+                <Typography variant="h6" sx={{ mb: 3}}>
                     Please check your email for a verification link.
                 </Typography>
-                <br />
-                <Typography variant="h6">
+                <Typography variant="h6" sx={{ mb: 3}}>
                     Once your email has been verified, please go back to this tab and click continue.
                 </Typography>
                 {/* <br />
                 <Button variant="outlined" sx={{ width: 350, height: 50 }} onClick={resendVerificationEmail} >
                     Resend Verification Link
                 </Button> */}
-                <br />
                 <Button variant="contained" sx={{ width: 350, height: 50 }} onClick={continueLoginFLow} >
                     Continue
                 </Button>

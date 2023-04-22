@@ -50,11 +50,9 @@ export default function HistoryComponent(props) {
             flexDirection: 'column',
             alignItems: 'center'
         }}>
-            <br />
-            <Typography variant="h5" gutterBottom>
+            <Typography variant="h5" gutterBottom sx={{mb: 4, mt: 4}}>
                 History
             </Typography>
-            <br />
             {renderDocumentCards()}
         </Box>
     )

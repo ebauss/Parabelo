@@ -1,9 +1,8 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
-import { ToggleButton, ToggleButtonGroup, Select, MenuItem } from "@mui/material";
+import { ToggleButton, ToggleButtonGroup, Select, MenuItem, Box, Typography } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import SendIcon from "@mui/icons-material/Send";
-import Typography from "@mui/material/Typography";
 import CopyToClipboardButton from '../CopyToClipboardButton/CopyToClipboardButton';
 
 export default function ParaphrasingComponent(props) {
@@ -140,12 +139,10 @@ export default function ParaphrasingComponent(props) {
 
     return (
         <div>
-            <br />
-            <Typography variant="h5" gutterBottom>
+            <Typography variant="h5" gutterBottom sx={{mt: 4, mb: 4}}>
                 Paraphrasing Tool
             </Typography>
-            <br />
-            <div>
+            <Box sx={{ mb: 4 }}>
                 <TextField id="outlined-basic"
                     multiline
                     rows={10}
@@ -156,9 +153,8 @@ export default function ParaphrasingComponent(props) {
                     sx={{ width: { md: 600 } }}
                     inputProps={{ maxLength: 2500 }}
                 />
-            </div>
-            <br />
-            <div>
+            </Box>
+            <Box sx={{mb: 4}}>
                 <Typography variant="subtitle1" gutterBottom>
                     Style
                 </Typography>
@@ -197,9 +193,8 @@ export default function ParaphrasingComponent(props) {
                     <MenuItem value="persuasive">Persuasive</MenuItem>
                     <MenuItem value="polite">Polite</MenuItem>
                 </Select>
-            </div>
-            <br />
-            <div>
+            </Box>
+            <Box sx={{mb: 4}}>
                 <Typography variant="subtitle1" gutterBottom>
                     Tone
                 </Typography>
@@ -213,9 +208,8 @@ export default function ParaphrasingComponent(props) {
                     <ToggleButton value="positive">Positive</ToggleButton>
                     <ToggleButton value="negative">Negative</ToggleButton>
                 </ToggleButtonGroup>
-            </div>
-            <br />
-            <div>
+            </Box>
+            <Box sx={{mb: 4}}>
                 <LoadingButton
                     size="large"
                     onClick={fetchDataStream}
@@ -227,8 +221,7 @@ export default function ParaphrasingComponent(props) {
                     Go
                 </LoadingButton>
                 <CopyToClipboardButton copyText={resultValue} />
-            </div>
-            <br />
+            </Box>
             <TextField
                 id="outlined-multiline-static"
                 label="Result"

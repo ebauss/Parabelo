@@ -12,9 +12,9 @@ export default function DemoComponent() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            mb: 4
         }}>
-            <br />
             <Typography variant="h3">
                 A glimpse of Parabelo AI
             </Typography>

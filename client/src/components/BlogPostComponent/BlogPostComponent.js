@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TextField, Typography, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { TextField, Typography, ToggleButton, ToggleButtonGroup, Box } from '@mui/material';
 import SendIcon from "@mui/icons-material/Send";
 import LoadingButton from "@mui/lab/LoadingButton";
 import CopyToClipboardButton from '../CopyToClipboardButton/CopyToClipboardButton';
@@ -213,11 +213,9 @@ export default function BlogPostComponent(props) {
 
     return (
         <div>
-            <br />
-            <Typography variant="h5" gutterBottom>
+            <Typography variant="h5" gutterBottom sx={{ mt: 4, mb: 4}}>
                 Blog Post Writer
             </Typography>
-            <br />
             <Typography variant="subtitle1" gutterBottom>
                 Prompt Type
             </Typography>
@@ -232,18 +230,17 @@ export default function BlogPostComponent(props) {
                         xs: 'none',
                         sm: 'flex'
                     },
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    mb: 4
                 }}
             >
                 <ToggleButton value="standard">Standard</ToggleButton>
                 <ToggleButton value="notes">Notes</ToggleButton>
             </ToggleButtonGroup>
-            <br />
-            <div>
+            <Box sx={{mb: 4}}>
                 {renderPromptTextBox()}
-            </div>
-            <br />
-            <div>
+            </Box>
+            <Box sx={{mb: 4}}>
                 <TextField id="outlined-basic"
                     label='Keywords to add (Separate entries with a ",")'
                     variant="outlined"
@@ -258,9 +255,8 @@ export default function BlogPostComponent(props) {
                     }}
                     inputProps={{ maxLength: 1020 }}
                 />
-            </div>
-            <br />
-            <div>
+            </Box>
+            <Box sx={{ mb: 4 }}>
                 <LoadingButton
                     size="large"
                     onClick={fetchDataStream}
@@ -272,8 +268,7 @@ export default function BlogPostComponent(props) {
                     Go
                 </LoadingButton>
                 <CopyToClipboardButton copyText={resultValue} />
-            </div>
-            <br />
+            </Box>
             <TextField
                 id="outlined-multiline-static"
                 label="Result"
