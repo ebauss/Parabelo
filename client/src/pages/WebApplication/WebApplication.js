@@ -20,6 +20,7 @@ import SocialMediaCaptionComponent from '../../components/SocialMediaCaptionComp
 import { Box } from '@mui/material';
 import SupportComponent from '../../components/SupportComponent/SupportComponent';
 import HistoryComponent from '../../components/HistoryComponent/HistoryComponent';
+import TikTokAdComponent from '../../components/TikTokAdComponent/TikTokAdComponent';
 
 export default function WebApplication() {
     const { user, isAuthenticated, isLoading } = useAuth0();
@@ -100,6 +101,7 @@ export default function WebApplication() {
                         <Route path="/settings" element={<SettingsComponent userDetails={user} />} />
                         <Route path="/socialMediaCaption" element={<SocialMediaCaptionComponent userDetails={user} />} />
                         <Route path="/support" element={<SupportComponent />} />
+                        <Route path="/tikTokAd" element={<TikTokAdComponent userDetails={user} />} />
                         <Route path="/" element={<AppMainPageComponent />} />
                     </Routes>
                 </Box>
