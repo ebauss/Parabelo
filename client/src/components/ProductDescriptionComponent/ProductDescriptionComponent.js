@@ -114,15 +114,15 @@ export default function ProductDescriptionComponent(props) {
 
         if (promptType === "standard") {
             if (thingsToMentionValue) {
-                prompt = 'Write a product description for ' + promptValue + '. ' + 'Things to mention: ' + thingsToMentionValue + ". Thank you.";
+                prompt = 'Write a long product description for ' + promptValue + '. ' + 'Things to mention: ' + thingsToMentionValue + ". Thank you.";
             } else {
-                prompt = 'Write a product description for ' + promptValue + ". Thank you.";
+                prompt = 'Write a long product description for ' + promptValue + ". Thank you.";
             }
         } else if (promptType === "featureList") {
             if (thingsToMentionValue) {
-                prompt = 'Write a product description for "' + promptValue + '" based on the following feature list "' + featureList + '". ' + 'Things to mention: ' + thingsToMentionValue + ". Thank you.";
+                prompt = 'Write a long product description for "' + promptValue + '" based on the following feature list "' + featureList + '". ' + 'Things to mention: ' + thingsToMentionValue + ". Thank you.";
             } else {
-                prompt = 'Write a product description for "' + promptValue + '" based on the following feature list "' + featureList + ". Thank you.";
+                prompt = 'Write a long product description for "' + promptValue + '" based on the following feature list "' + featureList + ". Thank you.";
             }
         }
 
