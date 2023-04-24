@@ -31,10 +31,15 @@ export default function HistoryComponent(props) {
         let documentCards = [];
 
         documentsValue.forEach((document) => {
-            if (document.type == "Social Media Caption") {
+            if (document.type === "Social Media Caption") {
                 documentCards.push(<HistoryCardComponent userDetails={user} key={document._id} documentId={document._id} promptValue={document.imageContents} resultValue={document.result} type={document.type} />)
                 documentCards.push(<br />)
-            } else {
+            } 
+            else if (document.type === "Tik Tok Hook") {
+                documentCards.push(<HistoryCardComponent userDetails={user} key={document._id} documentId={document._id} promptValue={`Product: ${document.prompt}\nTarget Customer: ${document.targetCustomer}`} resultValue={document.result} type={document.type} />)
+                documentCards.push(<br />)
+            }
+            else {
                 documentCards.push(<HistoryCardComponent userDetails={user} key={document._id} documentId={document._id} promptValue={document.prompt} resultValue={document.result} type={document.type} />)
                 documentCards.push(<br />)
             }

@@ -57,16 +57,16 @@ export default function TikTokAdComponent(props) {
      * saves the result to the database.
      */
     const saveToDatabase = async (result) => {
-        if (generateType === "standard") {
+        if (generateType === "hook") {
             // for the id, use props.userDetails.sub.
-            const response = await fetch("http://localhost:8000/saveProductDescriptionToDb", {
+            const response = await fetch("http://localhost:8000/saveTikTokToDb", {
                 method: "Post",
                 credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    type: "Product Description",
+                    type: "Tik Tok Hook",
                     owner: props.userDetails.sub,
                     prompt: promptValue,
                     targetCustomer: targetCustomer,
@@ -81,30 +81,31 @@ export default function TikTokAdComponent(props) {
             } else {
                 console.log("Result failed to store into the database.");
             }
-        } else if (generateType === "featureList") {
-            const response = await fetch("http://localhost:8000/saveProductDescriptionToDb", {
-                method: "Post",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    type: "Product Description",
-                    owner: props.userDetails.sub,
-                    prompt: `Product: ${promptValue}.\nFeatures: ${featureList}`,
-                    targetCustomer: targetCustomer,
-                    result: result
-                })
-            })
+        } 
+        // else if (generateType === "featureList") {
+        //     const response = await fetch("http://localhost:8000/saveProductDescriptionToDb", {
+        //         method: "Post",
+        //         credentials: "include",
+        //         headers: {
+        //             "Content-Type": "application/json"
+        //         },
+        //         body: JSON.stringify({
+        //             type: "Product Description",
+        //             owner: props.userDetails.sub,
+        //             prompt: `Product: ${promptValue}.\nFeatures: ${featureList}`,
+        //             targetCustomer: targetCustomer,
+        //             result: result
+        //         })
+        //     })
 
-            const data = await response.text();
+        //     const data = await response.text();
 
-            if (data !== "false") {
-                console.log("Result was successfully stored in the database.");
-            } else {
-                console.log("Result failed to store into the database.");
-            }
-        }
+        //     if (data !== "false") {
+        //         console.log("Result was successfully stored in the database.");
+        //     } else {
+        //         console.log("Result failed to store into the database.");
+        //     }
+        // }
 
 
     }
@@ -161,7 +162,7 @@ export default function TikTokAdComponent(props) {
                 if (event.data === "[DONE]") {
                     events.close();
                     setLoading(false);
-                    // saveToDatabase(resultValueRef.current);
+                    saveToDatabase(resultValueRef.current);
                 } else {
                     const text = event.data.replace(new RegExp("NEWLINE", 'g'), '\n');
                     resultValueRef.current += text;

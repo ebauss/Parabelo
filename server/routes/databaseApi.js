@@ -118,6 +118,24 @@ router.post('/saveSocialCaptionToDB', (req, res) => {
     })
 })
 
+router.post('/saveTikTokToDb', (req, res) => {
+    documents.create({
+        type: req.body.type,
+        owner: req.body.owner,
+        prompt: req.body.prompt,
+        targetCustomer: req.body.targetCustomer,
+        result: req.body.result,
+        creationTime: Date.now()
+    }, (err, data) => {
+        if (err) {
+            console.log(err);
+
+            res.send(false);
+        }
+        res.send(data);
+    })
+})
+
 router.post('/loadDocuments', (req, res) => {
     documents
         .find({ owner: req.body.owner })

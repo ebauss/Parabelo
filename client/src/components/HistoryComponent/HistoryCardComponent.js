@@ -41,7 +41,7 @@ export default function HistoryCardComponent(props) {
             paddingRight: 3,
             mb: 3
         }}>
-            <Typography variant="body1" sx={{mb: 3}}>
+            <Typography variant="body1" sx={{mt: 3, mb: 3}}>
                 Type: {props.type}
             </Typography>
             <TextField
