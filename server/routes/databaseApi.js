@@ -68,6 +68,7 @@ router.post('/saveProductDescriptionToDb', (req, res) => {
         owner: req.body.owner,
         prompt: req.body.prompt,
         thingsToMention: req.body.thingsToMention,
+        featureList: req.body.featureList,
         result: req.body.result,
         creationTime: Date.now()
     }, (err, data) => {

@@ -91,7 +91,8 @@ export default function ProductDescriptionComponent(props) {
                 body: JSON.stringify({
                     type: "Product Description",
                     owner: props.userDetails.sub,
-                    prompt: `Product: ${promptValue}.\nFeatures: ${featureList}`,
+                    prompt: promptValue,
+                    featureList: featureList,
                     thingsToMention: thingsToMentionValue,
                     result: result
                 })
