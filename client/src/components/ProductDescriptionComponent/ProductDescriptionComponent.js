@@ -59,7 +59,7 @@ export default function ProductDescriptionComponent(props) {
     const saveToDatabase = async (result) => {
         if (promptType === "standard") {
             // for the id, use props.userDetails.sub.
-            const response = await fetch("http://localhost:8000/saveProductDescriptionToDb", {
+            const response = await fetch("https://parabelo-staging.herokuapp.com/saveProductDescriptionToDb", {
                 method: "Post",
                 credentials: "include",
                 headers: {
@@ -82,7 +82,7 @@ export default function ProductDescriptionComponent(props) {
                 console.log("Result failed to store into the database.");
             }
         } else if (promptType === "featureList") {
-            const response = await fetch("http://localhost:8000/saveProductDescriptionToDb", {
+            const response = await fetch("https://parabelo-staging.herokuapp.com/saveProductDescriptionToDb", {
                 method: "Post",
                 credentials: "include",
                 headers: {
@@ -135,7 +135,7 @@ export default function ProductDescriptionComponent(props) {
         setLoading(true); // Start loading animation of button
         let modifiedPrompt = getPrompt();
 
-        fetch('https://www.parabelo.com/loadOptions', {
+        fetch('https://parabelo-staging.herokuapp.com/loadOptions', {
             method: "Post",
             credentials: "include",
             headers: {
@@ -150,7 +150,7 @@ export default function ProductDescriptionComponent(props) {
                 presence_penalty: 0,
             })
         }).then(() => {
-            const url = "https://www.parabelo.com/streamResponse"
+            const url = "https://parabelo-staging.herokuapp.com/streamResponse"
 
             const events = new EventSource(url);
 

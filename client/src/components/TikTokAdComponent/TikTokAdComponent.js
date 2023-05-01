@@ -59,7 +59,7 @@ export default function TikTokAdComponent(props) {
     const saveToDatabase = async (result) => {
         if (generateType === "hook") {
             // for the id, use props.userDetails.sub.
-            const response = await fetch("http://localhost:8000/saveTikTokToDb", {
+            const response = await fetch("https://parabelo-staging.herokuapp.com/saveTikTokToDb", {
                 method: "Post",
                 credentials: "include",
                 headers: {
@@ -83,7 +83,7 @@ export default function TikTokAdComponent(props) {
             }
         } 
         // else if (generateType === "featureList") {
-        //     const response = await fetch("http://localhost:8000/saveProductDescriptionToDb", {
+        //     const response = await fetch("https://parabelo-staging.herokuapp.com/saveProductDescriptionToDb", {
         //         method: "Post",
         //         credentials: "include",
         //         headers: {
@@ -139,7 +139,7 @@ export default function TikTokAdComponent(props) {
         setLoading(true); // Start loading animation of button
         let modifiedPrompt = getPrompt();
 
-        fetch('http://localhost:8000/loadOptions', {
+        fetch('https://parabelo-staging.herokuapp.com/loadOptions', {
             method: "Post",
             credentials: "include",
             headers: {
@@ -154,7 +154,7 @@ export default function TikTokAdComponent(props) {
                 presence_penalty: 0,
             })
         }).then(() => {
-            const url = "http://localhost:8000/streamResponse"
+            const url = "https://parabelo-staging.herokuapp.com/streamResponse"
 
             const events = new EventSource(url);
 

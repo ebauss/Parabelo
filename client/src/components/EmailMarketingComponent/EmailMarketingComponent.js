@@ -46,7 +46,7 @@ export default function EmailMarketingComponent(props) {
      */
     const saveToDatabase = async (result) => {
         // for the id, use props.userDetails.sub.
-        const response = await fetch("https://www.parabelo.com/saveEmailMarketingToDb", {
+        const response = await fetch("https://parabelo-staging.herokuapp.com/saveEmailMarketingToDb", {
             method: "Post",
             credentials: "include",
             headers: {
@@ -81,7 +81,7 @@ export default function EmailMarketingComponent(props) {
             modifiedPrompt = 'Write a marketing email for ' + promptValue + ". Thank you.";
         }
 
-        fetch('https://www.parabelo.com/loadOptions', {
+        fetch('https://parabelo-staging.herokuapp.com/loadOptions', {
             method: "Post",
             credentials: "include",
             headers: {
@@ -96,7 +96,7 @@ export default function EmailMarketingComponent(props) {
                 presence_penalty: 0,
             })
         }).then(() => {
-            const url = "https://www.parabelo.com/streamResponse"
+            const url = "https://parabelo-staging.herokuapp.com/streamResponse"
 
             const events = new EventSource(url);
 

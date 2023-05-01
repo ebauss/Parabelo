@@ -7,7 +7,7 @@ export default function HistoryComponent(props) {
     const user = props.userDetails;
 
     const loadDocuments = () => {
-        fetch("https://www.parabelo.com/loadDocuments", {
+        fetch("https://parabelo-staging.herokuapp.com/loadDocuments", {
             method: "Post",
             credentials: "include",
             headers: {
@@ -61,7 +61,7 @@ export default function HistoryComponent(props) {
 
     // Delete all entries for that specific user.
     const deleteHistory = () => {
-        fetch("http://localhost:8000/deleteHistory", {
+        fetch("https://parabelo-staging.herokuapp.com/deleteHistory", {
             method: "Post",
             credentials: "include",
             headers: {

@@ -28,7 +28,7 @@ export default function SupportComponent(props) {
     }
 
     const sendEmail = async () => {
-        const response = fetch("https://www.parabelo.com/sendEmailToSupport", {
+        const response = fetch("https://parabelo-staging.herokuapp.com/sendEmailToSupport", {
             method: "Post",
             credentials: "include",
             headers: {
