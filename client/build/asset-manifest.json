@@ -1,20 +1,21 @@
 {
   "files": {
     "main.css": "/static/css/main.b6d3f23d.css",
-    "main.js": "/static/js/main.aa473665.js",
+    "main.js": "/static/js/main.ace58da1.js",
     "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
     "static/media/ParaphrasingDemo.mp4": "/static/media/ParaphrasingDemo.ec5d86a0469b7ce5b3b2.mp4",
     "static/media/BlogPostDemo.mp4": "/static/media/BlogPostDemo.57477bce3b2e872a1ecd.mp4",
     "static/media/EmailDemo.mp4": "/static/media/EmailDemo.0e19dd85e3a604a4c5f1.mp4",
     "static/media/Parabelo-logo.png": "/static/media/Parabelo-logo.7848d3974bb4a9363814.png",
     "static/media/heart-graphic.png": "/static/media/heart-graphic.3a5365f842c4ba4be8b3.png",
+    "static/media/Parabelo - Logo.png": "/static/media/Parabelo - Logo.941f29ab16b507db71a3.png",
     "index.html": "/index.html",
     "main.b6d3f23d.css.map": "/static/css/main.b6d3f23d.css.map",
-    "main.aa473665.js.map": "/static/js/main.aa473665.js.map",
+    "main.ace58da1.js.map": "/static/js/main.ace58da1.js.map",
     "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b6d3f23d.css",
-    "static/js/main.aa473665.js"
+    "static/js/main.ace58da1.js"
   ]
 }
