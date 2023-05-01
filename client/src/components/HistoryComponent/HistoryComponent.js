@@ -86,7 +86,7 @@ export default function HistoryComponent(props) {
             <Typography variant="h5" gutterBottom sx={{ mb: 4, mt: 4 }}>
                 History
             </Typography>
-            <Button variant="outlined" size="large"sx={{mb: 4}} onClick={confirmDelete} >
+            <Button variant="contained" color="error" size="large" sx={{ mb: 4 }} onClick={confirmDelete} >
                 Clear History
             </Button>
             {renderDocumentCards()}

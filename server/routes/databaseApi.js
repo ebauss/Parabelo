@@ -165,4 +165,17 @@ router.post('/deleteDocument', (req, res) => {
     })
 })
 
+router.post('/deleteHistory', (req, res) => {
+    documents.deleteMany({
+        owner: req.body.owner
+    }, (err, data) => {
+        if (err) {
+            console.log(err);
+
+            res.send(false);
+        }
+        res.send(data);
+    })
+})
+
 module.exports = router;
