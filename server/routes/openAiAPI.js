@@ -4,6 +4,7 @@
 const express = require('express');
 const router = express.Router();
 const eventParser = require('eventsource-parser');
+const retry = require('retry');
 const { Configuration, OpenAIApi } = require("openai");
 /* ------------------------------------ */
 
@@ -58,10 +59,10 @@ router.post('/moderation', async (req, res) => {
     res.send(isPromptFlagged);
 })
 
-router.get('/streamResponse', async (req, res) => {
+router.get('/streamResponse', (req, res) => {
     const model = "gpt-3.5-turbo";
     console.log(`Model: ${model}`);
-    
+
     res.writeHead(200, {
         'Content-Type': 'text/event-stream',
         'Connection': 'keep-alive',
@@ -70,68 +71,95 @@ router.get('/streamResponse', async (req, res) => {
 
     console.log(`Request is sent to OpenAI. Prompt: ${prompt}`);
 
-    let response = await fetch(
-        "https://api.openai.com/v1/chat/completions",
-        {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
-            },
-            method: "POST",
-            body: JSON.stringify({
-                model: model,
-                messages: generatePrompt(prompt),
-                temperature: temperature,
-                top_p: top_p,
-                frequency_penalty: frequency_penalty,
-                presence_penalty: presence_penalty,
-                max_tokens: max_tokens,
-                stream: true
-            }),
-        }
-    );
+    // Used to handle 429 error (Rate limit reached for requests) from OpenAI.
+    const operation = retry.operation({
+        retries: 3, // Number of times to retry the request
+        factor: 2,  // Exponential backoff factor
+        minTimeout: 1000,   // Minimum wait time in milliseconds
+        maxTimeout: 5000,   // Maximum wait time in milliseconds
+        randomize: true // Randomize the wait time to avoid synchronized retries
+    })
 
-    const parser = eventParser.createParser(onParse);
+    operation.attempt(async () => {
+        try {
+            let response = await fetch(
+                "https://api.openai.com/v1/chat/completions",
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+                    },
+                    method: "POST",
+                    body: JSON.stringify({
+                        model: model,
+                        messages: generatePrompt(prompt),
+                        temperature: temperature,
+                        top_p: top_p,
+                        frequency_penalty: frequency_penalty,
+                        presence_penalty: presence_penalty,
+                        max_tokens: max_tokens,
+                        stream: true
+                    }),
+                }
+            );
 
-    for await (const value of response.body?.pipeThrough(new TextDecoderStream())) {
-        parser.feed(value);
-    }
+            const parser = eventParser.createParser(onParse);
 
-    // Generate a chat completion prompt.
-    function generatePrompt(prompt) {
-        return [
-                {"role": "system", "content": "Please act like a text completion model."},
-                {"role": "user", "content": `${prompt}`}
-        ]
-    }
+            for await (const value of response.body?.pipeThrough(new TextDecoderStream())) {
+                parser.feed(value);
+            }
 
-    function onParse(event) {
-        if (event.type === 'event') {
-            if (event.data !== "[DONE]") {
-                const content = JSON.parse(event.data).choices[0].delta?.content || "";
-                const escapedText = content.replace(/\n/g, "NEWLINE");
+            // Generate a chat completion prompt.
+            function generatePrompt(prompt) {
+                return [
+                    { "role": "system", "content": "Please act like a text completion model." },
+                    { "role": "user", "content": `${prompt}` }
+                ]
+            }
 
-                // It's interesting, the data has to be sent in this format for the client-side onmessage event to work.
+            function onParse(event) {
+                if (event.type === 'event') {
+                    if (event.data !== "[DONE]") {
+                        const content = JSON.parse(event.data).choices[0].delta?.content || "";
+                        const escapedText = content.replace(/\n/g, "NEWLINE");
+
+                        // It's interesting, the data has to be sent in this format for the client-side onmessage event to work.
+                        res.write('event: message\n');  // message event
+                        res.write(`data: ${escapedText}`);
+                        res.write('\n\n');
+                    } else {
+                        res.write('event: message\n');  // message event
+                        res.write('data: [DONE]');
+                        res.write('\n\n');
+                        res.end();
+                    }
+                } else if (event.type === 'reconnect-interval') {
+                    console.log('We should set reconnect interval to %d milliseconds', event.value);
+                }
+
+                // Detect if the client closes the connection.
+                req.on('close', () => {
+                    console.log("Client closed connection.");
+                    // Close the SSE stream.
+                    res.end();
+                })
+            }
+        } catch (error) {
+            if (error.response && error.response.status === 429) {
+                if (operation.retry(error)) {
+                    return;
+                }
                 res.write('event: message\n');  // message event
-                res.write(`data: ${escapedText}`);
+                res.write(`data: The server is at capacity at the moment. Please try again later.`);
                 res.write('\n\n');
-            } else {
+
                 res.write('event: message\n');  // message event
                 res.write('data: [DONE]');
                 res.write('\n\n');
                 res.end();
             }
-        } else if (event.type === 'reconnect-interval') {
-            console.log('We should set reconnect interval to %d milliseconds', event.value);
         }
-
-        // Detect if the client closes the connection.
-        req.on('close', () => {
-            console.log("Client closed connection.");
-            // Close the SSE stream.
-            res.end();
-        })
-    }
+    })
 })
 
 module.exports = router;

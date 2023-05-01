@@ -6,7 +6,8 @@ const accordionStyle = {
     width: {
         xs: '80%',
         md: 800
-    }
+    },
+    mb: 4
 }
 
 export default function FAQComponent() {
@@ -18,10 +19,9 @@ export default function FAQComponent() {
             flexDirection: 'column',
             alignItems: 'center'
         }}>
-            <Typography variant="h4" gutterBottom>
+            <Typography variant="h4" gutterBottom sx={{mb: 4}}>
                 FAQ
             </Typography>
-            <br />
             <Accordion sx={accordionStyle}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -36,7 +36,6 @@ export default function FAQComponent() {
                     </Typography>
                 </AccordionDetails>
             </Accordion>
-            <br />
             <Accordion sx={accordionStyle}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -51,7 +50,6 @@ export default function FAQComponent() {
                     </Typography>
                 </AccordionDetails>
             </Accordion>
-            <br />
             <Accordion sx={accordionStyle}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -66,7 +64,6 @@ export default function FAQComponent() {
                     </Typography>
                 </AccordionDetails>
             </Accordion>
-            <br />
         </Box>
     )
 }

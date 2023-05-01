@@ -14,7 +14,9 @@ const documentSchema = new Schema({
     imageContents: String,
     additions: String,
     length: String,
-    creationTime: Number
+    creationTime: Number,
+    targetCustomer: String,
+    featureList: String
 })
 
 const documentModel = mongoose.model("documents", documentSchema);

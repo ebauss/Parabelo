@@ -30,8 +30,23 @@ import { LinearProgress } from '@mui/material';
 import TagIcon from '@mui/icons-material/Tag';
 import HelpIcon from '@mui/icons-material/Help';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
+import logo from '../../assets/Parabelo - Logo.png';
 
 const drawerWidth = 250;
+
+const TikTokIcon = ({ color = "#808080" }) => {
+    return (
+      <svg
+        fill={color}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 50 50"
+        width="25"
+        height="25"
+      >
+        <path d="M41,4H9C6.243,4,4,6.243,4,9v32c0,2.757,2.243,5,5,5h32c2.757,0,5-2.243,5-5V9C46,6.243,43.757,4,41,4z M37.006,22.323 c-0.227,0.021-0.457,0.035-0.69,0.035c-2.623,0-4.928-1.349-6.269-3.388c0,5.349,0,11.435,0,11.537c0,4.709-3.818,8.527-8.527,8.527 s-8.527-3.818-8.527-8.527s3.818-8.527,8.527-8.527c0.178,0,0.352,0.016,0.527,0.027v4.202c-0.175-0.021-0.347-0.053-0.527-0.053 c-2.404,0-4.352,1.948-4.352,4.352s1.948,4.352,4.352,4.352s4.527-1.894,4.527-4.298c0-0.095,0.042-19.594,0.042-19.594h4.016 c0.378,3.591,3.277,6.425,6.901,6.685V22.323z" />
+      </svg>
+    );
+  };
 
 const openedMixin = (theme) => ({
     width: drawerWidth,
@@ -130,9 +145,14 @@ export default function NavbarWebApp() {
                             <MenuIcon />
                         </IconButton>
                         <Link to='/app' style={{ textDecoration: 'none', color: "white" }}>
-                            <Typography variant="h6" noWrap component="div">
-                                Parabelo
-                            </Typography>
+                        <Box
+                            component="img"
+                            src={logo}
+                            sx={{
+                                width: 150,
+                                mt: 1
+                            }}
+                        />
                         </Link>
                     </Box>
                     {/* <Box sx={{ display: "flex", flexDirection: 'column', alignItems: "center" }}>
@@ -228,6 +248,30 @@ export default function NavbarWebApp() {
                                     </Tooltip>
                                 </ListItemIcon>
                                 <ListItemText primary='Paraphrasing Tool' sx={{ opacity: open ? 1 : 0 }} />
+                            </ListItemButton>
+                        </Link>
+                    </ListItem>
+                    <ListItem key='tikTokAd' disablePadding sx={{ display: 'block' }}>
+                        <Link to='/app/tikTokAd' style={{ textDecoration: 'none', color: "black" }}>
+                            <ListItemButton
+                                sx={{
+                                    minHeight: 48,
+                                    justifyContent: open ? 'initial' : 'center',
+                                    px: 2.5,
+                                }}
+                            >
+                                <ListItemIcon
+                                    sx={{
+                                        minWidth: 0,
+                                        mr: open ? 3 : 'auto',
+                                        justifyContent: 'center',
+                                    }}
+                                >
+                                    <Tooltip title="Tik Tok Ad Creative" placement='right'>
+                                        <TikTokIcon />
+                                    </Tooltip>
+                                </ListItemIcon>
+                                <ListItemText primary='Tik Tok Ad Creative' sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </Link>
                     </ListItem>

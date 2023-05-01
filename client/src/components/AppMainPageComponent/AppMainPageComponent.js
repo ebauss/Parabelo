@@ -7,11 +7,9 @@ import { Link } from "react-router-dom";
 export default function AppMainPageComponent() {
     return (
         <div>
-            <br />
-            <Typography variant="h5" gutterBottom>
+            <Typography variant="h5" gutterBottom sx={{ mt: 4, mb: 4 }}>
                 Writing Tools
             </Typography>
-            <br />
             <Grid container spacing={4}>
                 <Grid item xs={12} md={6} >
                     <Link to='/app/paraphrasing' style={{ textDecoration: 'none', color: "black" }}>

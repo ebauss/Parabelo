@@ -11,9 +11,10 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import logo from '../../assets/Parabelo - Logo.png';
 
 // [{Name of Button}, {path}]
-const pages = [['Pricing', 'pricing'], ['Demo', 'demo']];
+const pages = [['Pricing', 'pricing']];
 
 export default function Navbar() {
     const { loginWithRedirect } = useAuth0();
@@ -34,23 +35,18 @@ export default function Navbar() {
         <AppBar sx={{ backgroundColor: '#398870' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="/"
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: ['monospace'],
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        PARABELO
-                    </Typography>
+                    <Link to="/">
+                        <Box
+                            component="img"
+                            src={logo}
+                            sx={{
+                                width: 150,
+                                mr: 2,
+                                display: { xs: 'none', md: 'flex' },
+                            }}
+                        />
+                    </Link>
+
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
@@ -110,25 +106,17 @@ export default function Navbar() {
                             </MenuItem>
                         </Menu>
                     </Box>
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        component="a"
-                        href="/"
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'flex', md: 'none' },
-                            justifyContent: 'center',
-                            flexGrow: 1,
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        PARABELO
-                    </Typography>
+                    <Link to="/">
+                        <Box
+                            component="img"
+                            src={logo}
+                            sx={{
+                                width: 150,
+                                display: { xs: 'flex', md: 'none' },
+                            }}
+                        />
+                    </Link>
+
                     <Box
                         sx={{
                             flexGrow: 1,

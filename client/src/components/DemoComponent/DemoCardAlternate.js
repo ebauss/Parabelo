@@ -9,7 +9,7 @@ export default function DemoCardAlternate(props) {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            flexWrap: 'wrap',
+            flexWrap: 'wrap-reverse',
             paddingTop: 3,
             paddingBottom: 3,
             width: {

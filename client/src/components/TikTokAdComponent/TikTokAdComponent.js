@@ -4,12 +4,12 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
 import CopyToClipboardButton from '../CopyToClipboardButton/CopyToClipboardButton';
 
-export default function ProductDescriptionComponent(props) {
+export default function TikTokAdComponent(props) {
     /* Stores the string entered in the prompt text field. */
     const [promptValue, setPromptValue] = useState('');
 
     /* Stores the string stored in the things to mention text field. */
-    const [thingsToMentionValue, setThingsToMentionValue] = useState('');
+    const [targetCustomer, setTargetCustomer] = useState('');
 
     /* Stores the result string obtained from OpenAi. */
     const [resultValue, setResultValue] = useState('');
@@ -17,7 +17,7 @@ export default function ProductDescriptionComponent(props) {
     /* Determines whether the loading animation is activated or not. */
     const [loading, setLoading] = useState(false);
 
-    const [promptType, setPromptType] = useState('standard');
+    const [generateType, setGenerateType] = useState('hook');
 
     const [featureList, setFeatureList] = useState('standard');
 
@@ -40,8 +40,8 @@ export default function ProductDescriptionComponent(props) {
         setFeatureList(event.target.value);
     }
 
-    const handlePromptTypeChange = (event) => {
-        setPromptType(event.target.value);
+    const handleGenerateTypeChange = (event) => {
+        setGenerateType(event.target.value);
     }
 
     /**
@@ -49,27 +49,27 @@ export default function ProductDescriptionComponent(props) {
      *
      * @param event
      */
-    const handleThingsToMentionChange = (event) => {
-        setThingsToMentionValue(event.target.value);
+    const handleTargetCustomerChange = (event) => {
+        setTargetCustomer(event.target.value);
     }
 
     /**
      * saves the result to the database.
      */
     const saveToDatabase = async (result) => {
-        if (promptType === "standard") {
+        if (generateType === "hook") {
             // for the id, use props.userDetails.sub.
-            const response = await fetch("http://localhost:8000/saveProductDescriptionToDb", {
+            const response = await fetch("http://localhost:8000/saveTikTokToDb", {
                 method: "Post",
                 credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    type: "Product Description",
+                    type: "Tik Tok Hook",
                     owner: props.userDetails.sub,
                     prompt: promptValue,
-                    thingsToMention: thingsToMentionValue,
+                    targetCustomer: targetCustomer,
                     result: result
                 })
             })
@@ -81,31 +81,31 @@ export default function ProductDescriptionComponent(props) {
             } else {
                 console.log("Result failed to store into the database.");
             }
-        } else if (promptType === "featureList") {
-            const response = await fetch("http://localhost:8000/saveProductDescriptionToDb", {
-                method: "Post",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    type: "Product Description",
-                    owner: props.userDetails.sub,
-                    prompt: promptValue,
-                    featureList: featureList,
-                    thingsToMention: thingsToMentionValue,
-                    result: result
-                })
-            })
+        } 
+        // else if (generateType === "featureList") {
+        //     const response = await fetch("http://localhost:8000/saveProductDescriptionToDb", {
+        //         method: "Post",
+        //         credentials: "include",
+        //         headers: {
+        //             "Content-Type": "application/json"
+        //         },
+        //         body: JSON.stringify({
+        //             type: "Product Description",
+        //             owner: props.userDetails.sub,
+        //             prompt: `Product: ${promptValue}.\nFeatures: ${featureList}`,
+        //             targetCustomer: targetCustomer,
+        //             result: result
+        //         })
+        //     })
 
-            const data = await response.text();
+        //     const data = await response.text();
 
-            if (data !== "false") {
-                console.log("Result was successfully stored in the database.");
-            } else {
-                console.log("Result failed to store into the database.");
-            }
-        }
+        //     if (data !== "false") {
+        //         console.log("Result was successfully stored in the database.");
+        //     } else {
+        //         console.log("Result failed to store into the database.");
+        //     }
+        // }
 
 
     }
@@ -113,19 +113,23 @@ export default function ProductDescriptionComponent(props) {
     const getPrompt = () => {
         let prompt;
 
-        if (promptType === "standard") {
-            if (thingsToMentionValue) {
-                prompt = 'Write a long product description for ' + promptValue + '. ' + 'Things to mention: ' + thingsToMentionValue + ". Make it emotionally engaging. Thank you.";
+        // Prompt Example: Write 5 ultra short hooks for this tik tok ad regarding a mini washing machine. It’s aimed at apartment dwellers without in suite laundry. It should sound like a person came across this product randomly and wanted to share it to their friends
+
+        if (generateType === "hook") {
+            if (targetCustomer) {
+                // prompt = 'Write a long product description for ' + promptValue + '. ' + 'Things to mention: ' + targetCustomer + ". Thank you.";
+                prompt = "Write 5 ultra short hooks for this Tik Tok Ad regarding a " + promptValue + ". It's aimed at " + targetCustomer + ". It should sound like a person came across this product randomly and wanted to share it to their friends.";
             } else {
-                prompt = 'Write a long product description for ' + promptValue + ". Make it emotionally engaging. Thank you.";
+                prompt = "Write 5 ultra short hooks for this Tik Tok Ad regarding a " + promptValue + ". It should sound like a person came across this product randomly and wanted to share it to their friends.";
             }
-        } else if (promptType === "featureList") {
-            if (thingsToMentionValue) {
-                prompt = 'Write a long product description for "' + promptValue + '" based on the following feature list "' + featureList + '". Make it emotionally engaging. ' + 'Things to mention: ' + thingsToMentionValue + ". Thank you.";
-            } else {
-                prompt = 'Write a long product description for "' + promptValue + '" based on the following feature list "' + featureList + ". Make it emotionally engaging. Thank you.";
-            }
-        }
+        } 
+        // else if (generateType === "featureList") {
+        //     if (targetCustomer) {
+        //         prompt = 'Write a long product description for "' + promptValue + '" based on the following feature list "' + featureList + '". ' + 'Things to mention: ' + targetCustomer + ". Thank you.";
+        //     } else {
+        //         prompt = 'Write a long product description for "' + promptValue + '" based on the following feature list "' + featureList + ". Thank you.";
+        //     }
+        // }
 
         return prompt
     }
@@ -135,7 +139,7 @@ export default function ProductDescriptionComponent(props) {
         setLoading(true); // Start loading animation of button
         let modifiedPrompt = getPrompt();
 
-        fetch('https://www.parabelo.com/loadOptions', {
+        fetch('http://localhost:8000/loadOptions', {
             method: "Post",
             credentials: "include",
             headers: {
@@ -150,7 +154,7 @@ export default function ProductDescriptionComponent(props) {
                 presence_penalty: 0,
             })
         }).then(() => {
-            const url = "https://www.parabelo.com/streamResponse"
+            const url = "http://localhost:8000/streamResponse"
 
             const events = new EventSource(url);
 
@@ -169,7 +173,7 @@ export default function ProductDescriptionComponent(props) {
     }
 
     const renderPromptTextBox = () => {
-        if (promptType === "featureList") {
+        if (generateType === "featureList") {
             return (
                 <TextField id="outlined-basic"
                     label="Please copy and paste the product features here."
@@ -193,16 +197,16 @@ export default function ProductDescriptionComponent(props) {
     return (
         <div>
             <Typography variant="h5" gutterBottom sx={{mt: 4, mb: 4}}>
-                Product Description Writer
+                Tik Tok Ad Creative
             </Typography>
             <Typography variant="subtitle1" gutterBottom>
-                Prompt Type
+                Text Type
             </Typography>
             <ToggleButtonGroup
                 color="primary"
-                value={promptType}
+                value={generateType}
                 exclusive
-                onChange={handlePromptTypeChange}
+                onChange={handleGenerateTypeChange}
                 aria-label="Platform"
                 sx={{
                     display: {
@@ -213,8 +217,8 @@ export default function ProductDescriptionComponent(props) {
                     mb: 4
                 }}
             >
-                <ToggleButton value="standard">Standard</ToggleButton>
-                <ToggleButton value="featureList">Feature List</ToggleButton>
+                <ToggleButton value="hook">Hook</ToggleButton>
+                {/* <ToggleButton value="featureList">Feature List</ToggleButton> */}
             </ToggleButtonGroup>
             <Box sx={{mb: 4}}>
                 <TextField id="outlined-basic"
@@ -226,17 +230,17 @@ export default function ProductDescriptionComponent(props) {
                     inputProps={{ maxLength: 1020 }}
                 />
             </Box>
-            <Box sx={{ mb: 4}}>
+            {/* <Box sx={{ mb: 4}}>
                 {renderPromptTextBox()}
-            </Box>
+            </Box> */}
             <Box sx={{ mb: 4}}>
                 <TextField id="outlined-basic"
-                    label='Things to mention (Separate entries with a ",")'
+                    label='Who is your target customer?'
                     variant="outlined"
                     multiline
-                    rows={4}
+                    rows={2}
                     fullWidth
-                    onChange={handleThingsToMentionChange}
+                    onChange={handleTargetCustomerChange}
                     sx={{ width: { md: 600 } }}
                     inputProps={{ maxLength: 1020 }}
                 />
