@@ -19,7 +19,7 @@ export default function ProductDescriptionComponent(props) {
 
     const [promptType, setPromptType] = useState('standard');
 
-    const [featureList, setFeatureList] = useState('standard');
+    const [featureList, setFeatureList] = useState('');
 
     const resultValueRef = useRef();
 
@@ -123,7 +123,7 @@ export default function ProductDescriptionComponent(props) {
             if (thingsToMentionValue) {
                 prompt = 'Write a long product description for "' + promptValue + '" based on the following feature list "' + featureList + '". Make it emotionally engaging. ' + 'Things to mention: ' + thingsToMentionValue + ". Thank you.";
             } else {
-                prompt = 'Write a long product description for "' + promptValue + '" based on the following feature list "' + featureList + ". Make it emotionally engaging. Thank you.";
+                prompt = 'Write a long product description for "' + promptValue + '" based on the following feature list "' + featureList + '". Make it emotionally engaging. Thank you.';
             }
         }
 
