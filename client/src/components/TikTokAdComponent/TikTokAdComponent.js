@@ -129,7 +129,7 @@ export default function TikTokAdComponent(props) {
             }
         }
         else if (generateType === "textFromHook") {
-            prompt = "Based on the tik tok ad hook '" + adHook + "', please write 4 more ultra short texts to complete the ad."
+            prompt = "Based on the tik tok ad hook '" + adHook + "', please write 4 more ultra short, emotionally engaging texts to complete the ad."
 
             if (productValue) {
                 prompt += " The product is '" + productValue + "'. Don't mention the product name.";
@@ -143,7 +143,7 @@ export default function TikTokAdComponent(props) {
                 prompt += " The target customer is '" + targetCustomer + "'.";
             }
 
-            prompt += " Ensure the last text is a call to action. Make it emotionally engaging with the goal of converting the reader."
+            prompt += " Ensure the last text is a call to action."
         }
 
         return prompt
