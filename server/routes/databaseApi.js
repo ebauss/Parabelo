@@ -137,6 +137,26 @@ router.post('/saveTikTokToDb', (req, res) => {
     })
 })
 
+router.post('/saveTikTokTextFromHookToDb', (req, res) => {
+    documents.create({
+        type: req.body.type,
+        owner: req.body.owner,
+        prompt: req.body.prompt,
+        targetCustomer: req.body.targetCustomer,
+        featureList: req.body.featureList,
+        hook: req.body.hook,
+        result: req.body.result,
+        creationTime: Date.now()
+    }, (err, data) => {
+        if (err) {
+            console.log(err);
+
+            res.send(false);
+        }
+        res.send(data);
+    })
+})
+
 router.post('/loadDocuments', (req, res) => {
     documents
         .find({ owner: req.body.owner })

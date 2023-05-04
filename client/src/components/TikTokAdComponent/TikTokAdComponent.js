@@ -6,7 +6,7 @@ import CopyToClipboardButton from '../CopyToClipboardButton/CopyToClipboardButto
 
 export default function TikTokAdComponent(props) {
     /* Stores the string entered in the prompt text field. */
-    const [promptValue, setPromptValue] = useState('');
+    const [productValue, setProductValue] = useState('');
 
     /* Stores the string stored in the things to mention text field. */
     const [targetCustomer, setTargetCustomer] = useState('');
@@ -17,9 +17,12 @@ export default function TikTokAdComponent(props) {
     /* Determines whether the loading animation is activated or not. */
     const [loading, setLoading] = useState(false);
 
+    /* This is the mode. */
     const [generateType, setGenerateType] = useState('hook');
 
-    const [featureList, setFeatureList] = useState('standard');
+    const [featureList, setFeatureList] = useState('');
+
+    const [adHook, setAdHook] = useState('');
 
     const resultValueRef = useRef();
 
@@ -32,8 +35,8 @@ export default function TikTokAdComponent(props) {
      *
      * @param event contains data of the event
      */
-    const handlePromptChange = (event) => {
-        setPromptValue(event.target.value);
+    const handleProductChange = (event) => {
+        setProductValue(event.target.value);
     }
 
     const handleFeatureListChange = (event) => {
@@ -42,6 +45,10 @@ export default function TikTokAdComponent(props) {
 
     const handleGenerateTypeChange = (event) => {
         setGenerateType(event.target.value);
+    }
+    
+    const handleHookChange = (event) => {
+        setAdHook(event.target.value);
     }
 
     /**
@@ -68,7 +75,7 @@ export default function TikTokAdComponent(props) {
                 body: JSON.stringify({
                     type: "Tik Tok Hook",
                     owner: props.userDetails.sub,
-                    prompt: promptValue,
+                    prompt: productValue,
                     targetCustomer: targetCustomer,
                     result: result
                 })
@@ -81,55 +88,63 @@ export default function TikTokAdComponent(props) {
             } else {
                 console.log("Result failed to store into the database.");
             }
-        } 
-        // else if (generateType === "featureList") {
-        //     const response = await fetch("http://localhost:8000/saveProductDescriptionToDb", {
-        //         method: "Post",
-        //         credentials: "include",
-        //         headers: {
-        //             "Content-Type": "application/json"
-        //         },
-        //         body: JSON.stringify({
-        //             type: "Product Description",
-        //             owner: props.userDetails.sub,
-        //             prompt: `Product: ${promptValue}.\nFeatures: ${featureList}`,
-        //             targetCustomer: targetCustomer,
-        //             result: result
-        //         })
-        //     })
+        } else if (generateType === "textFromHook") {
+            // for the id, use props.userDetails.sub.
+            const response = await fetch("http://localhost:8000/saveTikTokTextFromHookToDb", {
+                method: "Post",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    type: "Tik Tok Creative Text From Hook",
+                    owner: props.userDetails.sub,
+                    prompt: productValue,
+                    targetCustomer: targetCustomer,
+                    featureList: featureList,
+                    hook: adHook,
+                    result: result
+                })
+            })
 
-        //     const data = await response.text();
+            const data = await response.text();
 
-        //     if (data !== "false") {
-        //         console.log("Result was successfully stored in the database.");
-        //     } else {
-        //         console.log("Result failed to store into the database.");
-        //     }
-        // }
-
-
+            if (data !== "false") {
+                console.log("Result was successfully stored in the database.");
+            } else {
+                console.log("Result failed to store into the database.");
+            }
+        }
     }
 
     const getPrompt = () => {
         let prompt;
 
-        // Prompt Example: Write 5 ultra short hooks for this tik tok ad regarding a mini washing machine. It’s aimed at apartment dwellers without in suite laundry. It should sound like a person came across this product randomly and wanted to share it to their friends
-
         if (generateType === "hook") {
             if (targetCustomer) {
                 // prompt = 'Write a long product description for ' + promptValue + '. ' + 'Things to mention: ' + targetCustomer + ". Thank you.";
-                prompt = "Write 5 ultra short hooks for this Tik Tok Ad regarding a " + promptValue + ". It's aimed at " + targetCustomer + ". It should sound like a person came across this product randomly and wanted to share it to their friends.";
+                prompt = "Write 5 ultra short hooks for this Tik Tok Ad regarding a " + productValue + ". It's aimed at " + targetCustomer + ". It should sound like a person came across this product randomly and wanted to share it to their friends.";
             } else {
-                prompt = "Write 5 ultra short hooks for this Tik Tok Ad regarding a " + promptValue + ". It should sound like a person came across this product randomly and wanted to share it to their friends.";
+                prompt = "Write 5 ultra short hooks for this Tik Tok Ad regarding a " + productValue + ". It should sound like a person came across this product randomly and wanted to share it to their friends.";
             }
-        } 
-        // else if (generateType === "featureList") {
-        //     if (targetCustomer) {
-        //         prompt = 'Write a long product description for "' + promptValue + '" based on the following feature list "' + featureList + '". ' + 'Things to mention: ' + targetCustomer + ". Thank you.";
-        //     } else {
-        //         prompt = 'Write a long product description for "' + promptValue + '" based on the following feature list "' + featureList + ". Thank you.";
-        //     }
-        // }
+        }
+        else if (generateType === "textFromHook") {
+            prompt = "Based on the tik tok ad hook '" + adHook + "', please write 4 more ultra short texts to complete the ad."
+
+            if (productValue) {
+                prompt += " The product is '" + productValue + "'. Don't mention the product name.";
+            }
+
+            if (featureList) {
+                prompt += " These are the product features '" + featureList + "'.";
+            }
+
+            if (targetCustomer) {
+                prompt += " The target customer is '" + targetCustomer + "'.";
+            }
+
+            prompt += " Ensure the last text is a call to action. Make it emotionally engaging with the goal of converting the reader."
+        }
 
         return prompt
     }
@@ -172,23 +187,37 @@ export default function TikTokAdComponent(props) {
         })
     }
 
-    const renderPromptTextBox = () => {
-        if (generateType === "featureList") {
+    const renderAdditionalInputFields = () => {
+        if (generateType === "textFromHook") {
             return (
-                <TextField id="outlined-basic"
-                    label="Please copy and paste the product features here."
-                    variant="outlined"
-                    fullWidth
-                    multiline
-                    rows={20}
-                    onChange={handleFeatureListChange}
-                    sx={{
-                        width: {
-                            md: 600
-                        }
-                    }}
-                    inputProps={{ maxLength: 1020 }}
-                />
+                <>
+                    <Box sx={{ mb: 4 }}>
+                        <TextField id="outlined-basic"
+                            label="What is your hook for the creative?"
+                            variant="outlined"
+                            fullWidth
+                            onChange={handleHookChange}
+                            sx={{ width: { md: 600 } }}
+                            inputProps={{ maxLength: 1020 }}
+                        />
+                    </Box>
+                    <Box sx={{ mb: 4 }}>
+                        <TextField id="outlined-basic"
+                            label="Please copy and paste the product features here."
+                            variant="outlined"
+                            fullWidth
+                            multiline
+                            rows={20}
+                            onChange={handleFeatureListChange}
+                            sx={{
+                                width: {
+                                    md: 600
+                                }
+                            }}
+                            inputProps={{ maxLength: 1020 }}
+                        />
+                    </Box>
+                </>
             )
         }
 
@@ -196,11 +225,11 @@ export default function TikTokAdComponent(props) {
 
     return (
         <div>
-            <Typography variant="h5" gutterBottom sx={{mt: 4, mb: 4}}>
+            <Typography variant="h5" gutterBottom sx={{ mt: 4, mb: 4 }}>
                 Tik Tok Ad Creative
             </Typography>
             <Typography variant="subtitle1" gutterBottom>
-                Text Type
+                Mode
             </Typography>
             <ToggleButtonGroup
                 color="primary"
@@ -218,22 +247,19 @@ export default function TikTokAdComponent(props) {
                 }}
             >
                 <ToggleButton value="hook">Hook</ToggleButton>
-                {/* <ToggleButton value="featureList">Feature List</ToggleButton> */}
+                <ToggleButton value="textFromHook">Text From Hook</ToggleButton>
             </ToggleButtonGroup>
-            <Box sx={{mb: 4}}>
+            <Box sx={{ mb: 4 }}>
                 <TextField id="outlined-basic"
                     label="What is your product?"
                     variant="outlined"
                     fullWidth
-                    onChange={handlePromptChange}
+                    onChange={handleProductChange}
                     sx={{ width: { md: 600 } }}
                     inputProps={{ maxLength: 1020 }}
                 />
             </Box>
-            {/* <Box sx={{ mb: 4}}>
-                {renderPromptTextBox()}
-            </Box> */}
-            <Box sx={{ mb: 4}}>
+            <Box sx={{ mb: 4 }}>
                 <TextField id="outlined-basic"
                     label='Who is your target customer?'
                     variant="outlined"
@@ -245,7 +271,8 @@ export default function TikTokAdComponent(props) {
                     inputProps={{ maxLength: 1020 }}
                 />
             </Box>
-            <Box sx={{ mb: 4}}>
+            {renderAdditionalInputFields()}
+            <Box sx={{ mb: 4 }}>
                 <LoadingButton
                     size="large"
                     onClick={fetchDataStream}

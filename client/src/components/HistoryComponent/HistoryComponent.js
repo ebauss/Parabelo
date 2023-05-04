@@ -42,6 +42,10 @@ export default function HistoryComponent(props) {
             else if (document.type === "Product Description" && document.featureList) {
                 documentCards.push(<HistoryCardComponent userDetails={user} key={document._id} documentId={document._id} promptValue={`Product: ${document.prompt}\nFeature list: ${document.featureList}`} resultValue={document.result} type={document.type} />)
                 documentCards.push(<br />)
+            } 
+            else if (document.type === "Tik Tok Creative Text From Hook") {
+                documentCards.push(<HistoryCardComponent userDetails={user} key={document._id} documentId={document._id} promptValue={`Product: ${document.prompt}\nHook: ${document.hook}`} resultValue={document.result} type={document.type} />)
+                documentCards.push(<br />)
             }
             else {
                 documentCards.push(<HistoryCardComponent userDetails={user} key={document._id} documentId={document._id} promptValue={document.prompt} resultValue={document.result} type={document.type} />)

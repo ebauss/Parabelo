@@ -16,7 +16,8 @@ const documentSchema = new Schema({
     length: String,
     creationTime: Number,
     targetCustomer: String,
-    featureList: String
+    featureList: String,
+    hook: String
 })
 
 const documentModel = mongoose.model("documents", documentSchema);
