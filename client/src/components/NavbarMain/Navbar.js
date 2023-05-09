@@ -42,6 +42,7 @@ export default function Navbar() {
                             sx={{
                                 width: 150,
                                 mr: 2,
+                                mb: 0.5,
                                 display: { xs: 'none', md: 'flex' },
                             }}
                         />
